@@ -1,0 +1,22 @@
+[
+  {
+    "file": "business-workstream-plan.pdf",
+    "sha256": "13bd44c12ef2461c8ed4dae4bd4a458db838cb93395e8d6195b0c27a367ddd78",
+    "visibility": "local-only; excluded by Git"
+  },
+  {
+    "file": "challenge-brief.xlsx",
+    "sha256": "2b760c5ed702c028d3dcb174ea388209ef2c3333b417ed7d3cf35a0cb18b4501",
+    "visibility": "local-only; excluded by Git"
+  },
+  {
+    "file": "challenge-notes.jpg",
+    "sha256": "3fe235ee2d81d13ce2401bc05689b6326ab95bfb710a3dd3ef010a2caa089673",
+    "visibility": "local-only; excluded by Git"
+  },
+  {
+    "file": "master-blueprint.pdf",
+    "sha256": "8d12b8e3ce76f96ddca2d0784b48e96aae6e47bdc5a004ddb165b4902be3bd1a",
+    "visibility": "local-only; excluded by Git"
+  }
+]

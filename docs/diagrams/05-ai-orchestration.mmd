@@ -1,0 +1,24 @@
+flowchart TD
+  request["Task / retrieved evidence"]
+  router["Orchestrator / budget / policy"]
+  n["News / market / trend roles"]
+  f["Fact checker / content auditor"]
+  w["Writer / SEO / reviewer"]
+  g["Model gateway"]
+  a["Gemini adapter"]
+  b["OpenAI adapter"]
+  c["Anthropic adapter"]
+  v["Structured output / citation checks"]
+  request --> router
+  router --> n
+  router --> f
+  router --> w
+  n --> g
+  f --> g
+  w --> g
+  g --> a
+  g --> b
+  g --> c
+  a --> v
+  b --> v
+  c --> v

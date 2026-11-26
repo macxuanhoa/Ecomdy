@@ -1,0 +1,2 @@
+# Ecomdy project instructions
+Read [requirements](docs/01-requirements.md), [product vision](docs/02-product-vision.md), [architecture](docs/03-architecture.md), [workflows](docs/04-workflows.md), [roadmap](docs/05-roadmap.md), [validation](docs/06-validation.md). Target only; inspect actual repository before code edits. Do not invent interviews, sources, tests, capabilities or metrics. Respect public-source terms and human editorial approval. Preserve existing code. Scope approval before implementation. Development harness is separate and not a runtime dependency.

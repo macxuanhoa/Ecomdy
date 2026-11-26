@@ -1,0 +1,20 @@
+digraph G { graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.40", ranksep="0.55", labelloc=t, label="Workflow B — on-demand assistant | TARGET DESIGN", fontname="DejaVu Sans", fontsize=20, fontcolor="#172B43"];
+node [shape=box, style="rounded,filled", color="#718399", penwidth=1.1, fontname="DejaVu Sans", fontsize=11, fontcolor="#172B43", margin="0.18,0.12"]; edge [color="#60758A", arrowsize=0.7, fontname="DejaVu Sans", fontsize=9];
+u [label="Natural language request", fillcolor="#E7EFFC"];
+i [label="Intent / authorization", fillcolor="#DFF1EB"];
+r [label="Retrieve relevant intelligence", fillcolor="#FFF1D5"];
+q [label="Sufficient verified data?", fillcolor="#F0E8FA"];
+f [label="Targeted permitted fetch or disclose gap", fillcolor="#F1F4F7"];
+a [label="Generate grounded response", fillcolor="#E7EFFC"];
+v [label="Verify claims and citations", fillcolor="#DFF1EB"];
+out [label="Return response / save draft", fillcolor="#FFF1D5"];
+u -> i;
+i -> r;
+r -> q;
+q -> f [label="no"];
+f -> r [label="new evidence"];
+f -> out [label="unresolved gap"];
+q -> a [label="yes"];
+a -> v;
+v -> out;
+}

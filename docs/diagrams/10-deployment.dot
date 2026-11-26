@@ -1,0 +1,25 @@
+digraph G { graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.40", ranksep="0.55", labelloc=t, label="Physical deployment — modular monolith | TARGET DESIGN", fontname="DejaVu Sans", fontsize=20, fontcolor="#172B43"];
+node [shape=box, style="rounded,filled", color="#718399", penwidth=1.1, fontname="DejaVu Sans", fontsize=11, fontcolor="#172B43", margin="0.18,0.12"]; edge [color="#60758A", arrowsize=0.7, fontname="DejaVu Sans", fontsize=9];
+web [label="Browser / web client", fillcolor="#E7EFFC"];
+tg [label="Telegram (optional)", fillcolor="#DFF1EB"];
+proxy [label="HTTPS ingress", fillcolor="#FFF1D5"];
+api [label="Modular backend API", fillcolor="#F0E8FA"];
+q [label="Durable jobs / queue", fillcolor="#F1F4F7"];
+worker [label="Background worker + scheduler", fillcolor="#E7EFFC"];
+pg [label="PostgreSQL / FTS", fillcolor="#DFF1EB"];
+obj [label="Optional object storage", fillcolor="#FFF1D5"];
+ai [label="External AI provider APIs", fillcolor="#F0E8FA"];
+mon [label="Logs / metrics / backups", fillcolor="#F1F4F7"];
+web -> proxy;
+tg -> proxy;
+proxy -> api;
+api -> pg;
+api -> q;
+q -> worker;
+worker -> pg;
+worker -> obj;
+worker -> ai;
+api -> ai;
+api -> mon;
+worker -> mon;
+}

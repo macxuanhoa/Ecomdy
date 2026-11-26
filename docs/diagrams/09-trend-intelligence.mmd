@@ -1,0 +1,12 @@
+flowchart TD
+  n0["Collect permitted timestamped signals"]
+  n1["Group by market and topic"]
+  n2["Normalize volume / velocity / recency"]
+  n3["Assess evidence quality and seller relevance"]
+  n4["Rank emerging signals"]
+  n5["Human review / alert"]
+  n0 --> n1
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5

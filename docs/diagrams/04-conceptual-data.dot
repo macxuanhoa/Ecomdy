@@ -1,0 +1,23 @@
+digraph G { graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.40", ranksep="0.55", labelloc=t, label="Conceptual data relationships | TARGET DESIGN", fontname="DejaVu Sans", fontsize=20, fontcolor="#172B43"];
+node [shape=box, style="rounded,filled", color="#718399", penwidth=1.1, fontname="DejaVu Sans", fontsize=11, fontcolor="#172B43", margin="0.18,0.12"]; edge [color="#60758A", arrowsize=0.7, fontname="DejaVu Sans", fontsize=9];
+s [label="Sources", fillcolor="#E7EFFC"];
+a [label="Raw articles / article versions", fillcolor="#DFF1EB"];
+ev [label="Events", fillcolor="#FFF1D5"];
+c [label="Claims", fillcolor="#F0E8FA"];
+e [label="Evidence / citations", fillcolor="#F1F4F7"];
+m [label="Markets / topics", fillcolor="#E7EFFC"];
+d [label="Digest items / digests", fillcolor="#DFF1EB"];
+draft [label="Drafts / versions", fillcolor="#FFF1D5"];
+r [label="Review / approval", fillcolor="#F0E8FA"];
+audit [label="Published articles / audit findings", fillcolor="#F1F4F7"];
+s -> a [label="1 to many"];
+a -> ev [label="event mapping"];
+ev -> c [label="1 to many"];
+a -> e [label="source excerpt"];
+c -> e [label="claim evidence"];
+ev -> m [label="classification"];
+ev -> d [label="selection"];
+d -> draft [label="repurpose"];
+draft -> r [label="review"];
+c -> audit [label="compare"];
+}
