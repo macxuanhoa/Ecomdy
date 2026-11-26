@@ -1,0 +1,12 @@
+%% Diagram: DevHarness Repository CI/CD Pipeline
+%% ID: HARNESS-D24 | Version: 0.1 | State: Validation is implemented; release/deploy is not
+flowchart LR
+  change["Branch push or pull request"] --> checkout["Checkout with persisted credentials disabled"]
+  checkout --> docs["Repository documentation / asset validation"]
+  docs --> tests["DevHarness unit tests"]
+  tests --> harness["Harness docs and diagram-link validation"]
+  harness --> check{"Required validate job passes?"}
+  check -->|No| fail["Block merge; report failure"]
+  check -->|Yes| review["Human PR review and resolved conversations"]
+  review --> merge["Owner-controlled merge to main"]
+  merge -. release / deployment remains manual and unconfigured .-> deploy["Future release boundary"]

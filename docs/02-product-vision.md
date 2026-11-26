@@ -28,4 +28,4 @@ AI-Powered Cross-Border Commerce Intelligence & Content Platform. Database-first
 | M20 | Analytics and Evaluation | Proposed |
 
 ## MVP
-Official/public permitted sources; scheduled collection; cleaning and deduplication; evidence-linked event store; weekly digest; website/social/video drafts; freshness audit; human review, edit, approval; functional demo. Trend radar, Telegram, advanced analytics and multi-provider routing are extensions, not prerequisites. No autonomous publication.
+Official/public permitted sources; bounded scheduled collection; cleaning and deduplication; evidence-linked event store; automatic weekly digest generation; website/social/video drafts; freshness audit; human review, edit, approval; functional demo. Trend radar, Telegram, advanced analytics and multi-provider routing are extensions, not prerequisites. No autonomous publication. Scheduling stays disabled until source and runtime approvals are in place.

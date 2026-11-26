@@ -1,0 +1,11 @@
+%% Diagram: Market Relevance Analysis
+%% ID: ECOMDY-D22 | Version: 0.1 | State: Target proposal; market taxonomy TBD
+flowchart LR
+  event["Verified event and evidence"] --> context["Owner-approved market / platform taxonomy"]
+  context --> compare["Compare affected market, platform and seller context"]
+  event --> compare
+  compare --> rationale["Evidence-linked relevance rationale"]
+  compare --> uncertainty["Unknown context or low confidence"]
+  rationale --> review["Human review; inference remains labeled"]
+  uncertainty --> review
+  review --> result["Relevant / not relevant / unresolved"]

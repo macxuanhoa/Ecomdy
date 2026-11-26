@@ -7,11 +7,11 @@
 
 ## State summary
 
-- **Verified:** GitHub repo exists and is public; `main` history preserved; source audit completed; setup commit `087c27e` pushed; draft PR open; push and pull-request GitHub Actions runs passed; metadata, security, Dependabot, and main protection configured and read back.
-- **Implemented locally:** environment audit, source register, official requirements/traceability, product specifications, current project context, constraints/assumptions, conflicts/open questions, README, documentation portal, packaged `.harness/` starter, and execution records.
-- **Verified locally and remotely:** product and harness link/diagram validators, three DevHarness unit tests, JSON and YAML parsing (including workflow, issue template, and Dependabot configuration), source-file hashes/ignore rules, credential-pattern scan, and staged diff whitespace pass. Current-package independent review passed with two documentation corrections; both CI events passed for `087c27e`.
+- **Verified:** GitHub repo exists and is public; `main` history preserved; source audit completed; verified setup commit `087c27e` and status commit `728871a` pushed; draft PR open; push and pull-request GitHub Actions runs passed for both; metadata, security, Dependabot, and main protection configured and read back.
+- **Implemented locally:** environment audit, source register, official requirements/traceability, expanded product specifications, current project context, constraints/assumptions, conflicts/open questions, README, documentation portal, packaged `.harness/` starter, proposed 56-diagram galleries, and execution records.
+- **Verified locally for current worktree:** product and harness link/diagram metadata validators, three DevHarness unit tests, JSON and YAML parsing, 32 Ecomdy / 24 DevHarness Mermaid source counts and IDs, source-file hashes/ignore rules, credential-pattern scan, diff whitespace pass, and independent review of the latest documentation/diagram additions. Mermaid grammar is not parser-checked locally; revised sources received manual review. Current-branch CI is pending push.
 - **Not implemented:** Ecomdy application, ingestion runtime, database, API, UI, AI execution, scheduler, Telegram integration, deployment, and production monitoring.
-- **Blocked / pending:** draft PR review/merge and post-merge verification; Projects V2 board remains blocked by missing `read:project` / `write:project` authorization. `gh` CLI is absent, but Git Credential Manager/API access was sufficient for repository setup.
+- **Blocked / pending:** latest local documentation/diagram additions need commit, push, and CI; draft PR review/merge and post-merge verification remain. Projects V2 board is blocked by missing `read:project` / `write:project` authorization. `gh` CLI is absent, but Git Credential Manager/API access was sufficient for repository setup.
 - **Requires future owner input:** source allowlist, brand guidelines, approved product scope, interview/feedback evidence, model budget, deployment target, and approval of any internal source publication.
 
 ## State definitions

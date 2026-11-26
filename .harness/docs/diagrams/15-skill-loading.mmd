@@ -1,0 +1,10 @@
+%% Diagram: Skill Loading Mechanism
+%% ID: HARNESS-D15 | Version: 0.1 | State: Target proposal; dynamic loading not implemented
+flowchart LR
+  task["Scoped task and acceptance"] --> catalog["Skill registry metadata"]
+  catalog --> match{"Relevant trigger and scope?"}
+  match -->|No| skip["Do not load unrelated skill"]
+  match -->|Yes| read["Read only selected SKILL.md"]
+  read --> constraints["Apply skill inputs, permissions and stop conditions"]
+  constraints --> action["Perform scoped work"]
+  action --> verify["Run task verification and report evidence"]

@@ -1,0 +1,17 @@
+%% Diagram: Ecomdy C4-style System Context view (flowchart representation)
+%% ID: ECOMDY-D15 | Version: 0.1 | State: Target proposal, not as-built
+flowchart LR
+  subgraph System["ECOMDY-D15 · C4-style System Context · v0.1 · Target"]
+    product["Ecomdy Intelligence Platform"]
+  end
+  team["Person: Ecomdy Marketing / Content Team"]
+  sources["External system: approved public information sources"]
+  provider["External system: AI provider · TBD and owner-approved"]
+  seller["Beneficiary: Vietnamese cross-border sellers"]
+  team -->|Research, review and approve drafts| product
+  product -->|Cited digests and draft content| team
+  product -->|Request to an approved endpoint| sources
+  sources -->|Published source material| product
+  product -->|Task-scoped context after policy review| provider
+  provider -->|Untrusted generated candidate| product
+  team -. prepares useful content for .-> seller

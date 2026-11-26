@@ -1,0 +1,17 @@
+%% Diagram: Ecomdy C4-style Backend Component view (flowchart representation)
+%% ID: ECOMDY-D17 | Version: 0.1 | State: Target proposal, not as-built
+flowchart LR
+  subgraph App["ECOMDY-D17 · C4-style Backend Components · v0.1 · Target"]
+    api["API / authorization boundary"] --> editorial["Editorial workflow and version approvals"]
+    api --> source["Source registry and policy"]
+    source --> collect["Bounded connector / collection jobs"]
+    collect --> normalize["Normalize and deduplicate"]
+    normalize --> classify["Classify and cluster events"]
+    classify --> claims["Claim extraction and verification"]
+    claims --> evidence[("Evidence and knowledge store")]
+    evidence --> digest["Weekly digest and content drafts"]
+    evidence --> audit["Published-content freshness findings"]
+    digest --> editorial
+    audit --> editorial
+    editorial --> api
+  end

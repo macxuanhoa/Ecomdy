@@ -2,6 +2,8 @@
 
 All diagrams are target designs, not as-built evidence. Mermaid and DOT are editable; PNG and SVG are rendered from DOT.
 
+**Metadata:** Numbered source files carry diagram IDs, version `0.1`, and target state in source comments. The 12 initial diagrams have local PNG/SVG assets. Supplemental Mermaid files render directly when opened on GitHub; separate PNG/SVG assets were not generated because Graphviz is unavailable. See [GitHub Mermaid rendering](https://docs.github.com/en/repositories/working-with-files/using-files/working-with-non-code-files#displaying-mermaid-files-on-github).
+
 ## Workspace bootstrap
 
 ![Workspace bootstrap](01-bootstrap.svg)
@@ -326,3 +328,22 @@ flowchart TD
 ```
 
 </details>
+
+## Additional harness architecture and workflow diagrams
+
+These sources fill the component, memory, skill/tool, prompt, dependency, review, approval, recovery, security, and CI/CD gaps. Each Mermaid file includes ID, version, and target-state metadata and renders on GitHub when opened.
+
+| ID | Diagram | Editable / rendered Mermaid source |
+|---|---|---|
+| HARNESS-D13 | Harness Component Architecture | [13-component-architecture.mmd](13-component-architecture.mmd) |
+| HARNESS-D14 | Memory and Context Layers | [14-memory-architecture.mmd](14-memory-architecture.mmd) |
+| HARNESS-D15 | Skill Loading Mechanism | [15-skill-loading.mmd](15-skill-loading.mmd) |
+| HARNESS-D16 | Tool and MCP Integration | [16-tool-mcp-integration.mmd](16-tool-mcp-integration.mmd) |
+| HARNESS-D17 | Prompt Compilation Pipeline | [17-prompt-compilation.mmd](17-prompt-compilation.mmd) |
+| HARNESS-D18 | Task Dependency Graph | [18-task-dependency-graph.mmd](18-task-dependency-graph.mmd) |
+| HARNESS-D19 | Bounded Debugging Workflow | [19-debugging-workflow.mmd](19-debugging-workflow.mmd) |
+| HARNESS-D20 | Independent Review Workflow | [20-independent-review.mmd](20-independent-review.mmd) |
+| HARNESS-D21 | Human Approval Boundaries | [21-human-approval.mmd](21-human-approval.mmd) |
+| HARNESS-D22 | Checkpoint and Resume Workflow | [22-checkpoint-resume.mmd](22-checkpoint-resume.mmd) |
+| HARNESS-D23 | Security and Permission Boundaries | [23-security-permissions.mmd](23-security-permissions.mmd) |
+| HARNESS-D24 | CI/CD Validation and Release Boundary | [24-ci-cd-pipeline.mmd](24-ci-cd-pipeline.mmd) |

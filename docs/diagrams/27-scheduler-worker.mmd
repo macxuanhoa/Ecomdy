@@ -1,0 +1,12 @@
+%% Diagram: Scheduler and Worker Architecture
+%% ID: ECOMDY-D27 | Version: 0.1 | State: Target proposal; runtime disabled
+flowchart LR
+  registry["Owner-approved source profile"] --> schedule["Bounded scheduler · disabled until configured"]
+  schedule --> job["Ingestion job with timeout and rate limits"]
+  job --> worker["Worker / connector"]
+  worker --> raw["Raw source record + provenance"]
+  raw --> process["Normalize, deduplicate, classify, verify"]
+  process --> store[("Knowledge store")]
+  worker --> result["Job status, timestamps and error code"]
+  result --> store
+  worker -. bounded retries .-> job

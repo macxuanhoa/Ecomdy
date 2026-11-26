@@ -1,0 +1,26 @@
+%% Diagram: Ecomdy Product Task Dependency DAG
+%% ID: ECOMDY-D32 | Version: 0.1 | State: Proposed task plan; all nodes unscheduled
+flowchart LR
+  eco01["ECO-01 Approve MVP and constraints"] --> eco02["ECO-02 Authorize source and brand inputs"]
+  eco01 --> eco03["ECO-03 Seller interviews"]
+  eco01 --> eco04["ECO-04 Team feedback and success rubric"]
+  eco03 --> eco04
+  eco01 --> eco05["ECO-05 Data / API contracts"]
+  eco02 --> eco05
+  eco02 --> eco06["ECO-06 Permitted connector"]
+  eco05 --> eco06
+  eco05 --> eco07["ECO-07 Evidence processing and verification"]
+  eco06 --> eco07
+  eco04 --> eco08["ECO-08 Automatic weekly digest and channel drafts"]
+  eco07 --> eco08
+  eco01 --> eco09["ECO-09 Role-gated editorial approval"]
+  eco08 --> eco09
+  eco02 --> eco10["ECO-10 Authorized-content freshness audit"]
+  eco05 --> eco10
+  eco07 --> eco10
+  eco03 --> eco11["ECO-11 Functional demo and acceptance evidence"]
+  eco04 --> eco11
+  eco08 --> eco11
+  eco09 --> eco11
+  eco10 --> eco11
+  eco11 --> eco12["ECO-12 Evidence-led extensions · separately approved"]

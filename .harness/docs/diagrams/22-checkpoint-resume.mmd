@@ -1,0 +1,11 @@
+%% Diagram: Checkpoint and Resume Workflow
+%% ID: HARNESS-D22 | Version: 0.1 | State: Target proposal; durable resume not implemented
+flowchart TD
+  running["Approved task in progress"] --> checkpoint["Save commit, branch, dirty paths, decisions, tests and next step"]
+  checkpoint --> interrupt["Session interrupted or runtime stopped"]
+  interrupt --> inspect["Re-read checkpoint and inspect actual workspace"]
+  inspect --> compare{"Commit, files and constraints match?"}
+  compare -->|No| reconcile["Reconcile changes or mark BLOCKED"]
+  compare -->|Yes| context["Load scoped context and verified evidence"]
+  context --> resume["Resume only remaining approved work"]
+  resume --> checkpoint

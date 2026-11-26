@@ -10,6 +10,9 @@
 
 ## Product specification
 
+- [Product Requirements Document](product-requirements.md)
+- [Software Requirements Specification](software-requirements-specification.md)
+- [Project Constitution](project-constitution.md)
 - [Product vision and capability registry](02-product-vision.md)
 - [Target architecture and candidate stack](03-architecture.md)
 - [Workflows](04-workflows.md)
@@ -23,9 +26,12 @@
 - [Context engineering](context-engineering.md)
 - [Deployment strategy](deployment-strategy.md)
 - [Risk register](risk-register.md)
+- [Sprint planning](sprint-planning.md)
+- [Product task register](task-register.md)
 - [Technology and harness evaluation](technology-evaluation.md)
 - [Definition of Ready / Done](definition-of-ready-done.md)
 - [Developer onboarding](developer-onboarding.md)
+- [Target user guide](user-guide.md)
 - [Harness installation guide](harness-installation-guide.md)
 - [Constraints and assumptions](constraints-assumptions.md)
 - [Conflict reconciliation](conflict-report.md)
@@ -34,7 +40,8 @@
 
 ## Diagrams and setup
 
-- [Diagram gallery](diagrams/README.md)
+- [Ecomdy diagram gallery](diagrams/README.md)
+- [DevHarness diagram gallery](../.harness/docs/diagrams/README.md)
 - [Setup plan](setup/SETUP_PLAN.md)
 - [Task registry](setup/TASK_REGISTRY.md)
 - [Execution status](setup/EXECUTION_STATUS.md)

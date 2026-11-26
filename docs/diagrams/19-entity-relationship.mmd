@@ -1,0 +1,18 @@
+%% Diagram: Ecomdy Conceptual Entity Relationship Diagram
+%% ID: ECOMDY-D19 | Version: 0.1 | State: Target proposal, cardinalities require review
+erDiagram
+  SOURCES ||--o{ INGESTION_JOBS : schedules
+  SOURCES ||--o{ ARTICLES : publishes
+  ARTICLES ||--o{ ARTICLE_VERSIONS : changes_as
+  EVENTS ||--o{ EVENT_SOURCES : supported_by
+  ARTICLE_VERSIONS ||--o{ EVENT_SOURCES : linked_to
+  EVENTS ||--o{ CLAIMS : contains
+  CLAIMS ||--o{ EVIDENCE : evaluated_by
+  ARTICLE_VERSIONS ||--o{ EVIDENCE : cited_as
+  DIGESTS ||--o{ DIGEST_ITEMS : contains
+  EVENTS ||--o{ DIGEST_ITEMS : selected_for
+  CONTENT_DRAFTS ||--o{ CONTENT_VERSIONS : versioned_as
+  CONTENT_VERSIONS ||--o{ REVIEWS : reviewed_in
+  CONTENT_VERSIONS ||--o{ APPROVALS : approved_as
+  PUBLISHED_ARTICLES ||--o{ AUDIT_FINDINGS : checked_by
+  CLAIMS ||--o{ AUDIT_FINDINGS : compared_with

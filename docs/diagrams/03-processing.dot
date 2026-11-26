@@ -1,3 +1,5 @@
+// Diagram: 03 Processing
+// Diagram ID: ECOMDY-D03 | Version: 0.1 | State: Target design, not as-built
 digraph G { graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.40", ranksep="0.55", labelloc=t, label="Data processing pipeline | TARGET DESIGN", fontname="DejaVu Sans", fontsize=20, fontcolor="#172B43"];
 node [shape=box, style="rounded,filled", color="#718399", penwidth=1.1, fontname="DejaVu Sans", fontsize=11, fontcolor="#172B43", margin="0.18,0.12"]; edge [color="#60758A", arrowsize=0.7, fontname="DejaVu Sans", fontsize=9];
 n0 [label="Raw article", fillcolor="#E7EFFC"];

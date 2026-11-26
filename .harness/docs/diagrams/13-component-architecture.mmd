@@ -1,0 +1,11 @@
+%% Diagram: DevHarness Component Architecture
+%% ID: HARNESS-D13 | Version: 0.1 | State: Target proposal; current starter is advisory
+flowchart LR
+  owner["Project owner"] --> cli["CLI / bootstrap entry"]
+  cli --> config["Project profile and local config"]
+  cli --> inventory["Source inventory and prompt template"]
+  cli --> checks["Local validators and tests"]
+  docs["Workspace docs, code and task files"] --> inventory
+  inventory --> workspace["Project workspace / Git"]
+  checks --> workspace
+  future["Future model, MCP and scheduler adapters"] -. not implemented .-> cli

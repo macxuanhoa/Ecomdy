@@ -10,6 +10,7 @@ The challenge is to help Ecomdy's Marketing / Content Team research internationa
 ## Contents
 
 - [Product context and official requirements](docs/project-context.md)
+- [Product Requirements Document](docs/product-requirements.md) · [Software Requirements Specification](docs/software-requirements-specification.md) · [Project Constitution](docs/project-constitution.md)
 - [Requirements register](docs/01-requirements.md) · [traceability](docs/requirements-traceability.md)
 - [Product vision and capability registry](docs/02-product-vision.md)
 - [Module specifications](docs/module-specifications.md) · [database design](docs/database-design.md) · [API design](docs/api-design.md)
@@ -19,11 +20,13 @@ The challenge is to help Ecomdy's Marketing / Content Team research internationa
 - [Technology and harness evaluation](docs/technology-evaluation.md)
 - [Business and technical workflows](docs/04-workflows.md)
 - [Implementation roadmap](docs/05-roadmap.md)
+- [Sprint planning](docs/sprint-planning.md) · [product task register](docs/task-register.md)
 - [Testing and evidence strategy](docs/06-validation.md)
 - [Constraints and assumptions](docs/constraints-assumptions.md) · [conflict report](docs/conflict-report.md) · [open questions](docs/open-questions.md)
-- [Source registry](docs/source-registry.md) · [diagram gallery](docs/diagrams/README.md)
+- [Source registry](docs/source-registry.md) · [Ecomdy diagram gallery](docs/diagrams/README.md)
 - [Documentation portal](docs/README.md)
-- [Developer onboarding](docs/developer-onboarding.md) · [deployment strategy](docs/deployment-strategy.md)
+- [Developer onboarding](docs/developer-onboarding.md) · [deployment strategy](docs/deployment-strategy.md) · [DevHarness diagram gallery](.harness/docs/diagrams/README.md)
+- [Target user guide](docs/user-guide.md)
 - [Environment and capability audit](docs/setup/00_ENVIRONMENT_AND_CAPABILITY_AUDIT.md)
 - [Contribution protocol](CONTRIBUTING.md) · [Agent instructions](AGENTS.md) · [Security policy](SECURITY.md) · [Changelog](CHANGELOG.md)
 
@@ -124,7 +127,7 @@ For new projects, existing projects, context refresh, or interrupted sessions, u
 
 ## Diagrams
 
-Each diagram has editable source and rendered SVG/PNG assets. Update the source in `docs/diagrams/` and use `python scripts/render_diagrams.py` where Graphviz is installed; the script invokes Graphviz `dot` directly. PNG/SVG assets already present are the current renders. Review semantic changes and rendered readability together.
+The Ecomdy gallery contains 32 target diagram sources; 14 have checked-in DOT plus SVG/PNG assets, and 18 supplemental Mermaid files render when opened on GitHub. The DevHarness gallery contains 24 target sources; 12 have checked-in DOT plus SVG/PNG assets, and 12 supplemental Mermaid files render on GitHub. All source files carry diagram ID, version, and state metadata. Update sources in their gallery folder. The three C4-level views use C4-style flowcharts because GitHub's renderer does not bundle the experimental native C4 extension. Regenerate existing DOT renders with `python scripts/render_diagrams.py` where Graphviz is installed; the script invokes Graphviz `dot` directly. Local Graphviz is unavailable in this setup, so existing static images were visually inspected and not regenerated.
 
 ## GitHub Actions
 

@@ -1,0 +1,15 @@
+%% Diagram: DevHarness Security and Permission Boundaries
+%% ID: HARNESS-D23 | Version: 0.1 | State: Target policy; permission enforcement not implemented
+flowchart LR
+  source["Untrusted repo files, documents and tool output"] --> context["Treat as data; never as policy"]
+  owner["Owner-defined scope and permissions"] --> policy["Policy boundary / allowlisted action"]
+  context --> agent["Scoped coding agent"]
+  policy --> agent
+  agent --> assess["Classify requested action under policy"]
+  assess --> kind{"Action class"}
+  kind -->|Read-only / in scope| tools["Least-privilege tool"]
+  kind -->|External, destructive or high impact| approval{"Human approves exact action?"}
+  approval -->|Yes| tools
+  approval -->|No| stop["Stop; preserve state"]
+  secrets["Isolated secret store · never loaded into prompt context"]
+  tools --> audit["Action, result and verification evidence"]

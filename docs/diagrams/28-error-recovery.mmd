@@ -1,0 +1,11 @@
+%% Diagram: Error Recovery Workflow
+%% ID: ECOMDY-D28 | Version: 0.1 | State: Target proposal, not as-built
+flowchart TD
+  start["Bounded job starts"] --> action["Fetch / process / generate"]
+  action --> result{"Completed?"}
+  result -->|Yes| checkpoint["Persist outcome and evidence references"]
+  result -->|No| classify{"Error class and retry budget"}
+  classify -->|Transient and retries remain| backoff["Wait bounded backoff"] --> action
+  classify -->|Permanent or limit reached| failed["Persist visible failed / unresolved state"]
+  failed --> notify["Surface actionable status to maintainer"]
+  notify --> resume["Human fixes cause and explicitly resumes"]

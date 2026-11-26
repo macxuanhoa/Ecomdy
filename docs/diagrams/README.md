@@ -2,6 +2,8 @@
 
 All diagrams are target designs, not as-built evidence. Mermaid and DOT are editable; PNG and SVG are rendered from DOT.
 
+**Metadata:** Numbered source files carry diagram IDs, version `0.1`, and target state in source comments. The 14 initial diagrams have local PNG/SVG assets. Supplemental Mermaid files render directly when opened on GitHub; separate PNG/SVG assets were not generated because Graphviz is unavailable. The three C4-level views use C4-style Mermaid flowcharts rather than native C4 syntax because GitHub's renderer does not bundle Mermaid's experimental C4 extension; see [Mermaid C4 syntax](https://mermaid.js.org/syntax/c4) and [GitHub discussion on C4 renderer support](https://github.com/orgs/community/discussions/197898).
+
 ## Ecomdy logical architecture
 
 ![Ecomdy logical architecture](01-system-architecture.svg)
@@ -390,7 +392,6 @@ flowchart TD
 ```
 
 </details>
-
 ## Editorial workspace user flow
 
 ![Editorial workspace user flow](14-editorial-ui.svg)
@@ -415,3 +416,28 @@ flowchart TD
 ```
 
 </details>
+
+## Additional architecture and workflow diagrams
+
+These Mermaid sources cover C4-style context/container/component views and dedicated workflows missing from the initial 14-image gallery. Each file contains ID, version, and target-state metadata and is rendered by GitHub when opened.
+
+| ID | Diagram | Editable / rendered Mermaid source |
+|---|---|---|
+| ECOMDY-D15 | C4-style System Context view | [15-c4-system-context.mmd](15-c4-system-context.mmd) |
+| ECOMDY-D16 | C4-style Container view | [16-c4-containers.mmd](16-c4-containers.mmd) |
+| ECOMDY-D17 | C4-style Backend Component view | [17-c4-components.mmd](17-c4-components.mmd) |
+| ECOMDY-D18 | Module Dependency Graph | [18-module-dependencies.mmd](18-module-dependencies.mmd) |
+| ECOMDY-D19 | Conceptual Entity Relationship Diagram | [19-entity-relationship.mmd](19-entity-relationship.mmd) |
+| ECOMDY-D20 | Claim Source Verification | [20-source-verification.mmd](20-source-verification.mmd) |
+| ECOMDY-D21 | Claim and Evidence Relationships | [21-claim-evidence.mmd](21-claim-evidence.mmd) |
+| ECOMDY-D22 | Market Relevance Analysis | [22-market-relevance.mmd](22-market-relevance.mmd) |
+| ECOMDY-D23 | Evidence Retrieval and Generation | [23-rag-evidence-retrieval.mmd](23-rag-evidence-retrieval.mmd) |
+| ECOMDY-D24 | Weekly Digest Workflow | [24-weekly-digest.mmd](24-weekly-digest.mmd) |
+| ECOMDY-D25 | Telegram Assistant Workflow · proposed extension | [25-telegram-assistant.mmd](25-telegram-assistant.mmd) |
+| ECOMDY-D26 | Authentication and Authorization | [26-authentication-authorization.mmd](26-authentication-authorization.mmd) |
+| ECOMDY-D27 | Scheduler and Worker Architecture | [27-scheduler-worker.mmd](27-scheduler-worker.mmd) |
+| ECOMDY-D28 | Error Recovery Workflow | [28-error-recovery.mmd](28-error-recovery.mmd) |
+| ECOMDY-D29 | Security and Trust Boundaries | [29-security-boundaries.mmd](29-security-boundaries.mmd) |
+| ECOMDY-D30 | Observability Architecture | [30-observability.mmd](30-observability.mmd) |
+| ECOMDY-D31 | MVP Architecture · proposal pending owner approval | [31-mvp-architecture.mmd](31-mvp-architecture.mmd) |
+| ECOMDY-D32 | Product Task Dependency DAG | [32-product-task-dependencies.mmd](32-product-task-dependencies.mmd) |

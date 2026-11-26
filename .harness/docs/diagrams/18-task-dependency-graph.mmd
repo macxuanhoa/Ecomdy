@@ -1,0 +1,12 @@
+%% Diagram: Acyclic Task Dependency Graph Example
+%% ID: HARNESS-D18 | Version: 0.1 | State: Target DAG example; no scheduler implemented
+flowchart LR
+  scope["H-01 Scope, constraints and acceptance"] --> plan["H-02 Context pack and execution plan"]
+  plan --> implement["H-03 Bounded implementation"]
+  plan --> checks["H-04 Verification plan and fixtures"]
+  implement --> unit["H-05 Focused tests"]
+  implement --> security["H-06 Security / permission review"]
+  checks --> unit
+  unit --> review["H-07 Independent review"]
+  security --> review
+  review --> owner["H-08 Owner acceptance"]

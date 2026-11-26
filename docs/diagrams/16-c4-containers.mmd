@@ -1,0 +1,24 @@
+%% Diagram: Ecomdy C4-style Container view (flowchart representation)
+%% ID: ECOMDY-D16 | Version: 0.1 | State: Target proposal, not as-built
+flowchart LR
+  user["Person: Marketing / Content user"]
+  ext["External system: approved source endpoints"]
+  ai["External system: AI provider · not selected"]
+  subgraph Platform["ECOMDY-D16 · C4-style Container View · v0.1 · Target"]
+    web["Editorial web dashboard"]
+    api["Application API · modular monolith candidate"]
+    db[("Relational knowledge store · candidate")]
+    worker["Background worker"]
+    scheduler["Approved source scheduler · disabled until authorized"]
+  end
+  user --> web
+  web --> api
+  api --> db
+  api --> worker
+  scheduler --> worker
+  worker --> db
+  worker --> ext
+  worker --> ai
+  ai --> worker
+  db --> api
+  api --> web

@@ -1,0 +1,16 @@
+%% Diagram: Evidence-Grounded Retrieval and Generation
+%% ID: ECOMDY-D23 | Version: 0.1 | State: Target proposal; no RAG runtime implemented
+flowchart LR
+  sources["Permitted source versions, claims and citations"] --> index["Knowledge store + metadata / access filters"]
+  index --> search["Scoped retrieval · full-text baseline"]
+  index -. optional only after evaluation .-> vector["Vector retrieval candidate"]
+  auth -. scoped query to optional vector retrieval .-> vector
+  vector --> context["Relevant evidence context"]
+  search --> context
+  user["Authenticated user question"] --> auth["Authorization and scope check"] --> search
+  context --> model["Task-scoped provider · not selected"]
+  model --> answer["Draft answer with claim-to-source links"]
+  answer --> validate["Citation / unsupported-claim validation"]
+  validate --> outcome{"Evidence sufficient?"}
+  outcome -->|Yes| response["Cited response for review"]
+  outcome -->|No| insufficient["Explicit insufficient-evidence response"]

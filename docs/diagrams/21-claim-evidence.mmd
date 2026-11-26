@@ -1,0 +1,13 @@
+%% Diagram: Claim and Evidence Relationships
+%% ID: ECOMDY-D21 | Version: 0.1 | State: Target proposal, not as-built
+flowchart LR
+  event["Market event"] --> c1["Claim A · atomic statement"]
+  event --> c2["Claim B · separate statement"]
+  c1 --> e1["Evidence 1 · source span + version"]
+  c1 --> e2["Evidence 2 · supporting or conflicting"]
+  c2 --> e3["Evidence 3 · source span + version"]
+  e1 --> source["Source identity, URL, observed/published/effective dates"]
+  e2 --> source
+  e3 --> source
+  c1 --> status["Verification state: supported / contradicted / stale / unresolved"]
+  c2 --> status

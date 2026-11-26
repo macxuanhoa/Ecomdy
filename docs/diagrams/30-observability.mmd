@@ -1,0 +1,11 @@
+%% Diagram: Ecomdy Observability Architecture
+%% ID: ECOMDY-D30 | Version: 0.1 | State: Target proposal; thresholds TBD
+flowchart LR
+  jobs["Ingestion / processing jobs"] --> telemetry["Structured status, timing and error metadata"]
+  ai["AI task runs"] --> telemetry
+  editorial["Review / approval actions"] --> telemetry
+  telemetry --> metrics["Coverage, freshness, latency, failures and cost"]
+  telemetry --> logs["Access-controlled, minimized logs"]
+  metrics --> dashboard["Operational view · implementation TBD"]
+  metrics --> alerts["Owner-defined alert thresholds · TBD"]
+  logs --> incident["Investigation and recovery workflow"]
