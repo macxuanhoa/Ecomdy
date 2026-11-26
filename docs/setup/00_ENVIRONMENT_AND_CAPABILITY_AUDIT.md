@@ -51,5 +51,5 @@ Local file reads/writes, Git operations, Python scripts, GitHub branch push, pul
 
 ## Current audit state
 
-**Verified:** remote public/readable, source materials inventoried and extracted, originals ignored; setup branch commit `087c27e` pushed; draft PR #1 updated; push and pull-request GitHub Actions passed; repository metadata, security settings, labels, milestones, and `main` protection read back successfully.<br>
+**Verified:** remote public/readable, source materials inventoried and extracted, originals ignored; setup package commit `a08bb16` pushed; draft PR #1 points to it; push and pull-request GitHub Actions passed; repository metadata, security settings, labels, milestones, and `main` protection read back successfully.<br>
 **Pending verification:** merge and post-merge default-branch checks, Ecomdy application behavior, owner-approved product scope, source allowlist, brand inputs, seller interviews, and Content Team feedback.
