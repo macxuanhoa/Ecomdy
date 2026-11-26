@@ -1,0 +1,16 @@
+%% Diagram: 04 Document Ingestion
+%% Diagram ID: HARNESS-D04 | Version: 0.1 | State: Target design, not as-built
+flowchart TD
+  n0["Discover / checksum"]
+  n1["Extract content (adapter)"]
+  n2["Extract requirements with provenance"]
+  n3["Detect conflicts / questions"]
+  n4["Propose context delta"]
+  n5["Human approval"]
+  n6["Versioned baseline"]
+  n0 --> n1
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6

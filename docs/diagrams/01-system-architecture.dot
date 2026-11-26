@@ -1,0 +1,26 @@
+// Diagram: 01 System Architecture
+// Diagram ID: ECOMDY-D01 | Version: 0.1 | State: Target design, not as-built
+digraph G { graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.40", ranksep="0.55", labelloc=t, label="Ecomdy logical architecture | TARGET DESIGN", fontname="DejaVu Sans", fontsize=20, fontcolor="#172B43"];
+node [shape=box, style="rounded,filled", color="#718399", penwidth=1.1, fontname="DejaVu Sans", fontsize=11, fontcolor="#172B43", margin="0.18,0.12"]; edge [color="#60758A", arrowsize=0.7, fontname="DejaVu Sans", fontsize=9];
+s [label="Marketplace / official sources / social signals", fillcolor="#E7EFFC"];
+i [label="Ingestion / scheduler / connectors", fillcolor="#DFF1EB"];
+p [label="Normalize / deduplicate / classify / verify", fillcolor="#FFF1D5"];
+db [label="Knowledge database / search / evidence", fillcolor="#F0E8FA"];
+ai [label="AI gateway / retrieval / role workflows", fillcolor="#F1F4F7"];
+svc [label="Digest / content / trend / audit / approval", fillcolor="#E7EFFC"];
+api [label="Backend API / authorization", fillcolor="#DFF1EB"];
+web [label="Web editorial dashboard", fillcolor="#FFF1D5"];
+tg [label="Telegram assistant (extension)", fillcolor="#F0E8FA"];
+u [label="Ecomdy Marketing / Content Team", fillcolor="#F1F4F7"];
+s -> i;
+i -> p;
+p -> db;
+db -> ai;
+ai -> db;
+ai -> svc;
+svc -> api;
+api -> web;
+api -> tg;
+web -> u;
+tg -> u;
+}

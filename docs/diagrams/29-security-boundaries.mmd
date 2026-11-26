@@ -1,0 +1,23 @@
+%% Diagram: Ecomdy Security and Trust Boundaries
+%% ID: ECOMDY-D29 | Version: 0.1 | State: Target proposal, not as-built
+flowchart LR
+  subgraph Untrusted["Untrusted external data"]
+    source["Public source content"]
+  end
+  subgraph Product["Ecomdy application boundary"]
+    allow["Approved source allowlist + constrained egress"]
+    api["Validated API / role checks"]
+    store[("Provenance store with least-privilege access")]
+    model["Provider boundary · minimal task context"]
+    review["Human editorial approval"]
+    secret["Secret manager; secrets never enter prompts/logs"]
+    audit["Minimal audit / operational metadata"]
+    allow --> source
+    source -->|Untrusted data only| api
+    api --> store
+    store --> model
+    model --> api
+    api --> review
+    api --> audit
+    secret -. credentials for connectors only .-> allow
+  end

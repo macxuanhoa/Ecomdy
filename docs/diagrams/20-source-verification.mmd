@@ -1,0 +1,14 @@
+%% Diagram: Claim Source Verification Workflow
+%% ID: ECOMDY-D20 | Version: 0.1 | State: Target proposal, not as-built
+flowchart LR
+  claim["Extracted claim + source span"] --> locate["Locate linked source version"]
+  locate --> authority{"Approved / authoritative evidence?"}
+  authority -->|No| unresolved["Unresolved · do not assert as fact"]
+  authority -->|Yes| compare["Compare wording, values and dates"]
+  compare --> state{"Evidence result"}
+  state -->|Supports| supported["Supported with citation"]
+  state -->|Conflicts| contradicted["Contradicted · escalate"]
+  state -->|Out of date| stale["Stale / effective period ended"]
+  supported --> review["Human review for high-impact claims"]
+  contradicted --> review
+  stale --> review

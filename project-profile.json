@@ -1,0 +1,40 @@
+{
+  "project": "Ecomdy Intelligence Platform",
+  "status": "target_proposal",
+  "primary_market": "US (proposed priority)",
+  "languages": [
+    "vi",
+    "en"
+  ],
+  "runtime_automation": false,
+  "publishing_requires_human_approval": true,
+  "source_allowlist": [],
+  "source_policy": "public and terms-compliant only",
+  "devharness": {
+    "path": ".harness/",
+    "status": "bundled_advisory_starter",
+    "runtime_dependency": false
+  },
+  "modules": [
+    "Source Management",
+    "Data Collection",
+    "Scheduled Crawling",
+    "Data Normalization",
+    "Deduplication",
+    "News Classification",
+    "Market Intelligence",
+    "Trend Intelligence",
+    "Claim Extraction",
+    "Source Verification",
+    "Seller Impact Analysis",
+    "Knowledge Database",
+    "Weekly Digest",
+    "Content Studio",
+    "SEO Assistant",
+    "Content Freshness Audit",
+    "Editorial Workflow",
+    "Conversational Assistant",
+    "Notification System",
+    "Analytics and Evaluation"
+  ]
+}

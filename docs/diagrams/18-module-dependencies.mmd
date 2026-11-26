@@ -1,0 +1,24 @@
+%% Diagram: Ecomdy Module Dependency Graph
+%% ID: ECOMDY-D18 | Version: 0.1 | State: Target proposal, not as-built
+flowchart LR
+  source["M01 Source Management"] --> collect["M02 Data Collection"]
+  schedule["M03 Scheduling · gated"] --> collect
+  collect --> norm["M04 Normalization"] --> dedup["M05 Deduplication"] --> classify["M06 Classification"] --> market["M07 Market Intelligence"]
+  classify --> trend["M08 Trend Intelligence · extension"]
+  norm --> claims["M09 Claim Extraction"] --> verify["M10 Source Verification"] --> impact["M11 Seller Impact Analysis"]
+  store[("M12 Knowledge Store")]:::store
+  collect --> store
+  verify --> store
+  market --> store
+  store --> digest["M13 Weekly Digest"]
+  store --> content["M14 Content Studio"]
+  store --> audit["M16 Freshness Audit"]
+  digest --> editorial["M17 Editorial Workflow"]
+  content --> editorial
+  audit --> editorial
+  content --> seo["M15 SEO Assistant · extension"] --> editorial
+  store --> assistant["M18 Conversational Assistant · extension"]
+  assistant --> api["API boundary"]
+  editorial --> notifications["M19 Notifications · configured recipients only"]
+  store --> analytics["M20 Analytics and Evaluation"]
+  classDef store fill:#e8effa,stroke:#52739a

@@ -1,0 +1,14 @@
+%% Diagram: 01 Bootstrap
+%% Diagram ID: HARNESS-D01 | Version: 0.1 | State: Target design, not as-built
+flowchart TD
+  n0["Detect environment"]
+  n1["Inventory repository"]
+  n2["Configure project profile"]
+  n3["Index inputs"]
+  n4["Generate context update prompt"]
+  n5["Owner approves baseline"]
+  n0 --> n1
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5

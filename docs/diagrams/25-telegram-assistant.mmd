@@ -1,0 +1,12 @@
+%% Diagram: Telegram Assistant Workflow
+%% ID: ECOMDY-D25 | Version: 0.1 | State: Proposed extension; integration not implemented
+flowchart LR
+  person["Authorized team member"] --> telegram["Telegram interface · optional extension"]
+  telegram --> identity["Map identity and check access · mechanism TBD"]
+  identity --> intent["Classify request and permitted action"]
+  intent --> retrieve["Retrieve permitted, evidence-linked records"]
+  retrieve --> answer["Draft cited answer"]
+  answer --> validate["Validate citations and evidence sufficiency"]
+  validate -->|Sufficient| response["Return answer; no automatic publication"]
+  validate -->|Insufficient| response2["State insufficient evidence"]
+  identity -->|Denied| reject["Reject and record minimal audit event"]

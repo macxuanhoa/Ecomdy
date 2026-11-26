@@ -1,0 +1,11 @@
+%% Diagram: DevHarness Memory and Context Layers
+%% ID: HARNESS-D14 | Version: 0.1 | State: Target proposal; no persistent index implemented
+flowchart TD
+  l0["L0 Core rules and security boundaries"] --> l1["L1 Project overview and approved context"]
+  l1 --> l2["L2 Current task, constraints and acceptance"]
+  l2 --> l3["L3 Relevant specs, decisions and symbols"]
+  l3 --> l4["L4 Original documents and full repository · load only when needed"]
+  l4 --> work["Task context pack"]
+  work --> checkpoint["Session checkpoint: commit, files, tests, decisions"]
+  raw["Original sources · local / permissioned"] --> inventory["Path, size and hash inventory"] --> l1
+  runtime["Project-local state / cache / logs"] -. ignored from Git .-> checkpoint

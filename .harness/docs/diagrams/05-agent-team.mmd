@@ -1,0 +1,14 @@
+%% Diagram: 05 Agent Team
+%% Diagram ID: HARNESS-D05 | Version: 0.1 | State: Target design, not as-built
+flowchart TD
+  o["Owner"]
+  m["Master orchestrator"]
+  p["Discovery / planning / architect"]
+  i["Implementation / UI / database"]
+  q["QA / reviewer / security"]
+  k["DevOps / documentation / context"]
+  o --> m
+  m --> p
+  m --> i
+  m --> q
+  m --> k

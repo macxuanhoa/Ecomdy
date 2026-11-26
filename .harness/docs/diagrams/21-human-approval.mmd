@@ -1,0 +1,11 @@
+%% Diagram: Human Approval Boundaries
+%% ID: HARNESS-D21 | Version: 0.1 | State: Target policy; no approval service implemented
+flowchart TD
+  request["Proposed scope, source, provider, merge or deployment action"] --> review["Show exact action, diff, data and risk"]
+  review --> decision{"Authorized owner decision?"}
+  decision -->|Reject / defer| stop["Stop and preserve current state"]
+  decision -->|Approve exact version| bind["Bind approval to plan / diff hash and scope"]
+  bind --> execute["Perform only approved bounded action"]
+  execute --> changed{"Scope or version changed?"}
+  changed -->|Yes| review
+  changed -->|No| record["Record outcome and evidence"]

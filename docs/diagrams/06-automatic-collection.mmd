@@ -1,0 +1,14 @@
+%% Diagram: 06 Automatic Collection
+%% Diagram ID: ECOMDY-D06 | Version: 0.1 | State: Target design, not as-built
+flowchart TD
+  n0["Scheduler trigger"]
+  n1["Fetch approved sources"]
+  n2["Detect changes / duplicates"]
+  n3["Extract / classify / verify"]
+  n4["Store events and claims"]
+  n5["Evaluate alert conditions"]
+  n0 --> n1
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5

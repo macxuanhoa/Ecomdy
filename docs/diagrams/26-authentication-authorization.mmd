@@ -1,0 +1,19 @@
+%% Diagram: Authentication and Authorization Flow
+%% ID: ECOMDY-D26 | Version: 0.1 | State: Target proposal; identity provider TBD
+sequenceDiagram
+  actor User
+  participant UI as Editorial UI
+  participant API as Application API
+  participant Auth as Identity / role policy (TBD)
+  participant Audit as Audit record
+  User->>UI: Sign in and request action
+  UI->>API: Request with session / identity proof
+  API->>Auth: Authenticate identity and evaluate role / scope
+  Auth-->>API: Allow or deny
+  alt Allowed
+    API->>Audit: Record actor, action, resource and outcome
+    API-->>UI: Return permitted data or draft action
+  else Denied
+    API->>Audit: Record denied action with minimal metadata
+    API-->>UI: Return access denied
+  end

@@ -1,0 +1,17 @@
+// Diagram: 09 Learning
+// Diagram ID: HARNESS-D09 | Version: 0.1 | State: Target design, not as-built
+digraph G { graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.40", ranksep="0.55", labelloc=t, label="Harness improvement loop | TARGET DESIGN", fontname="DejaVu Sans", fontsize=20, fontcolor="#172B43"];
+node [shape=box, style="rounded,filled", color="#718399", penwidth=1.1, fontname="DejaVu Sans", fontsize=11, fontcolor="#172B43", margin="0.18,0.12"]; edge [color="#60758A", arrowsize=0.7, fontname="DejaVu Sans", fontsize=9];
+a [label="Observe failure", fillcolor="#E7EFFC"];
+b [label="Root cause", fillcolor="#DFF1EB"];
+c [label="Propose skill / workflow change", fillcolor="#FFF1D5"];
+d [label="Regression evaluation", fillcolor="#F0E8FA"];
+e [label="Human approval", fillcolor="#F1F4F7"];
+f [label="Measure benchmark delta", fillcolor="#E7EFFC"];
+a -> b;
+b -> c;
+c -> d;
+d -> e;
+e -> f;
+f -> a;
+}

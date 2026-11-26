@@ -1,0 +1,11 @@
+{
+  "version": "0.1",
+  "mode": "advisory",
+  "automation_enabled": false,
+  "auto_merge": false,
+  "auto_deploy": false,
+  "max_iterations": 3,
+  "max_runtime_minutes": 30,
+  "max_cost_usd": 1,
+  "approved_tasks_only": true
+}

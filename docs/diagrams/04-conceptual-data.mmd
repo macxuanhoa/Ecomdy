@@ -1,0 +1,23 @@
+%% Diagram: 04 Conceptual Data
+%% Diagram ID: ECOMDY-D04 | Version: 0.1 | State: Target design, not as-built
+flowchart TD
+  s["Sources"]
+  a["Raw articles / article versions"]
+  ev["Events"]
+  c["Claims"]
+  e["Evidence / citations"]
+  m["Markets / topics"]
+  d["Digest items / digests"]
+  draft["Drafts / versions"]
+  r["Review / approval"]
+  audit["Published articles / audit findings"]
+  s -->|1 to many| a
+  a -->|event mapping| ev
+  ev -->|1 to many| c
+  a -->|source excerpt| e
+  c -->|claim evidence| e
+  ev -->|classification| m
+  ev -->|selection| d
+  d -->|repurpose| draft
+  draft -->|review| r
+  c -->|compare| audit

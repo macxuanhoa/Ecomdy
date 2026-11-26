@@ -1,0 +1,24 @@
+%% Diagram: 01 System Architecture
+%% Diagram ID: ECOMDY-D01 | Version: 0.1 | State: Target design, not as-built
+flowchart TD
+  s["Marketplace / official sources / social signals"]
+  i["Ingestion / scheduler / connectors"]
+  p["Normalize / deduplicate / classify / verify"]
+  db["Knowledge database / search / evidence"]
+  ai["AI gateway / retrieval / role workflows"]
+  svc["Digest / content / trend / audit / approval"]
+  api["Backend API / authorization"]
+  web["Web editorial dashboard"]
+  tg["Telegram assistant (extension)"]
+  u["Ecomdy Marketing / Content Team"]
+  s --> i
+  i --> p
+  p --> db
+  db --> ai
+  ai --> db
+  ai --> svc
+  svc --> api
+  api --> web
+  api --> tg
+  web --> u
+  tg --> u

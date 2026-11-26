@@ -1,0 +1,25 @@
+%% Diagram: 10 Deployment
+%% Diagram ID: ECOMDY-D10 | Version: 0.1 | State: Target design, not as-built
+flowchart TD
+  web["Browser / web client"]
+  tg["Telegram (optional)"]
+  proxy["HTTPS ingress"]
+  api["Modular backend API"]
+  q["Durable jobs / queue"]
+  worker["Background worker + scheduler"]
+  pg["PostgreSQL / FTS"]
+  obj["Optional object storage"]
+  ai["External AI provider APIs"]
+  mon["Logs / metrics / backups"]
+  web --> proxy
+  tg --> proxy
+  proxy --> api
+  api --> pg
+  api --> q
+  q --> worker
+  worker --> pg
+  worker --> obj
+  worker --> ai
+  api --> ai
+  api --> mon
+  worker --> mon

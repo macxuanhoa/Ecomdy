@@ -1,0 +1,25 @@
+// Diagram: 02 Control Plane
+// Diagram ID: HARNESS-D02 | Version: 0.1 | State: Target design, not as-built
+digraph G { graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.40", ranksep="0.55", labelloc=t, label="DevHarness control plane | TARGET DESIGN", fontname="DejaVu Sans", fontsize=20, fontcolor="#172B43"];
+node [shape=box, style="rounded,filled", color="#718399", penwidth=1.1, fontname="DejaVu Sans", fontsize=11, fontcolor="#172B43", margin="0.18,0.12"]; edge [color="#60758A", arrowsize=0.7, fontname="DejaVu Sans", fontsize=9];
+owner [label="Project owner", fillcolor="#E7EFFC"];
+cli [label="CLI / dashboard / IDE", fillcolor="#DFF1EB"];
+orch [label="Orchestrator / state machine", fillcolor="#FFF1D5"];
+ctx [label="Context / memory / repository index", fillcolor="#F0E8FA"];
+plan [label="Specification / planning / prompts", fillcolor="#F1F4F7"];
+exec [label="Agents / skills / tool adapters", fillcolor="#E7EFFC"];
+qa [label="Tests / review / policy gates", fillcolor="#DFF1EB"];
+auto [label="Scheduler / observability", fillcolor="#FFF1D5"];
+repo [label="Workspace / Git / documents / state", fillcolor="#F0E8FA"];
+owner -> cli;
+cli -> orch;
+orch -> ctx;
+orch -> plan;
+orch -> exec;
+exec -> qa;
+orch -> auto;
+ctx -> repo;
+plan -> repo;
+qa -> repo;
+auto -> repo;
+}

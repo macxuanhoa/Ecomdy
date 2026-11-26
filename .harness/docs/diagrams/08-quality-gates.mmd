@@ -1,0 +1,16 @@
+%% Diagram: 08 Quality Gates
+%% Diagram ID: HARNESS-D08 | Version: 0.1 | State: Target design, not as-built
+flowchart TD
+  n0["Scope compliance"]
+  n1["Build / lint / type checks"]
+  n2["Functional / regression tests"]
+  n3["Security / accessibility as applicable"]
+  n4["Independent review"]
+  n5["Documentation reconciliation"]
+  n6["Acceptance evidence"]
+  n0 --> n1
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5
+  n5 --> n6

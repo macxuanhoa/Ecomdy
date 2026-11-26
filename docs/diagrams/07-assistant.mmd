@@ -1,0 +1,20 @@
+%% Diagram: 07 Assistant
+%% Diagram ID: ECOMDY-D07 | Version: 0.1 | State: Target design, not as-built
+flowchart TD
+  u["Natural language request"]
+  i["Intent / authorization"]
+  r["Retrieve relevant intelligence"]
+  q["Sufficient verified data?"]
+  f["Targeted permitted fetch or disclose gap"]
+  a["Generate grounded response"]
+  v["Verify claims and citations"]
+  out["Return response / save draft"]
+  u --> i
+  i --> r
+  r --> q
+  q -->|no| f
+  f -->|new evidence| r
+  f -->|unresolved gap| out
+  q -->|yes| a
+  a --> v
+  v --> out

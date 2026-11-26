@@ -1,0 +1,13 @@
+%% Diagram: Ecomdy MVP Architecture
+%% ID: ECOMDY-D31 | Version: 0.1 | State: Proposed challenge-demo slice; owner approval pending
+flowchart LR
+  source["Approved public source set · TBD"] --> collect["Bounded collection and provenance"]
+  collect --> process["Normalize, classify, extract claims and verify"]
+  process --> store[("Evidence-backed knowledge store")]
+  store --> digest["Automatically generated weekly cited digest · approved schedule only"]
+  store --> content["Website / social / video content drafts"]
+  store --> freshness["Authorized published-content freshness findings"]
+  digest --> review["Human editorial review and exact-version approval"]
+  content --> review
+  freshness --> review
+  review --> demo["Functional weekly demonstration"]

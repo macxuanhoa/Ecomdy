@@ -1,0 +1,12 @@
+%% Diagram: Weekly Digest Workflow
+%% ID: ECOMDY-D24 | Version: 0.1 | State: Target proposal, not as-built
+flowchart LR
+  trigger["Owner-approved schedule triggers automatic weekly run"] --> window["Select date range and audience"]
+  window --> eligible["Select eligible events and verified evidence"]
+  eligible --> draft["Draft one cited item per selected event"]
+  draft --> checks["Check citations, dates, conflicts and unsupported claims"]
+  checks --> review["Marketing / Content editorial review"]
+  review --> decision{"Approve exact version?"}
+  decision -->|No| revise["Return for edit; new version"] --> checks
+  decision -->|Yes| snapshot["Save approved version and evidence links"]
+  snapshot --> output["Digest ready for owner-controlled use"]

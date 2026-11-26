@@ -1,0 +1,10 @@
+%% Diagram: Independent Review Workflow
+%% ID: HARNESS-D20 | Version: 0.1 | State: Target proposal; review integration not implemented
+flowchart LR
+  implementer["Implementer completes scoped change"] --> evidence["Diff, acceptance checks and command outputs"]
+  evidence --> reviewer["Independent read-only reviewer"]
+  reviewer --> findings["Findings with severity and file evidence"]
+  findings --> decision{"Blocking finding?"}
+  decision -->|Yes| fix["Implementer addresses finding"] --> checks["Rerun affected checks"] --> reviewer
+  decision -->|No| owner["Owner accepts reviewed result"]
+  owner --> record["Record decision and remaining risks"]

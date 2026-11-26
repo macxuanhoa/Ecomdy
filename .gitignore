@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+__pycache__/
+.pytest_cache/
+.venv/
+node_modules/
+.harness/state/
+.harness/cache/
+.harness/logs/
+docs/00-original/*
+!docs/00-original/README.md
+.harness/docs/00-original/*
+!.harness/docs/00-original/README.md

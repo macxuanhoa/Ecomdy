@@ -1,0 +1,22 @@
+// Diagram: 08 Content Approval
+// Diagram ID: ECOMDY-D08 | Version: 0.1 | State: Target design, not as-built
+digraph G { graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.40", ranksep="0.55", labelloc=t, label="Workflow C — content production and approval | TARGET DESIGN", fontname="DejaVu Sans", fontsize=20, fontcolor="#172B43"];
+node [shape=box, style="rounded,filled", color="#718399", penwidth=1.1, fontname="DejaVu Sans", fontsize=11, fontcolor="#172B43", margin="0.18,0.12"]; edge [color="#60758A", arrowsize=0.7, fontname="DejaVu Sans", fontsize=9];
+s [label="Choose verified event", fillcolor="#E7EFFC"];
+r [label="Retrieve evidence / brand guidance", fillcolor="#DFF1EB"];
+g [label="Generate channel drafts", fillcolor="#FFF1D5"];
+v [label="Claim / citation quality checks", fillcolor="#F0E8FA"];
+h [label="Human editor review", fillcolor="#F1F4F7"];
+e [label="Revise draft", fillcolor="#E7EFFC"];
+a [label="Approved version", fillcolor="#DFF1EB"];
+x [label="Export / authorized publication", fillcolor="#FFF1D5"];
+s -> r;
+r -> g;
+g -> v;
+v -> e [label="fail"];
+e -> v;
+v -> h [label="pass"];
+h -> e [label="request changes"];
+h -> a [label="approve"];
+a -> x;
+}

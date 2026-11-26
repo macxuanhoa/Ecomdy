@@ -1,0 +1,23 @@
+%% Diagram: 02 Control Plane
+%% Diagram ID: HARNESS-D02 | Version: 0.1 | State: Target design, not as-built
+flowchart TD
+  owner["Project owner"]
+  cli["CLI / dashboard / IDE"]
+  orch["Orchestrator / state machine"]
+  ctx["Context / memory / repository index"]
+  plan["Specification / planning / prompts"]
+  exec["Agents / skills / tool adapters"]
+  qa["Tests / review / policy gates"]
+  auto["Scheduler / observability"]
+  repo["Workspace / Git / documents / state"]
+  owner --> cli
+  cli --> orch
+  orch --> ctx
+  orch --> plan
+  orch --> exec
+  exec --> qa
+  orch --> auto
+  ctx --> repo
+  plan --> repo
+  qa --> repo
+  auto --> repo

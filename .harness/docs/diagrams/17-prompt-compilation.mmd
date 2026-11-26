@@ -1,0 +1,13 @@
+%% Diagram: Prompt Compilation Pipeline
+%% ID: HARNESS-D17 | Version: 0.1 | State: Target proposal; compiler/provider calls not implemented
+flowchart LR
+  core["L0 core instructions"] --> assemble["Assemble scoped prompt"]
+  project["L1 project profile"] --> assemble
+  task["L2 task, files, constraints and acceptance"] --> assemble
+  knowledge["L3 selected docs and skill"] --> assemble
+  tools["Allowed tool schemas"] --> assemble
+  assemble --> redact["Deduplicate, redact secrets and apply output budget"]
+  redact --> contract["Structured output contract"]
+  contract --> provider["Provider adapter · not selected"]
+  provider --> parse["Parse and validate output"]
+  parse --> evidence["Attach source and verification evidence"]

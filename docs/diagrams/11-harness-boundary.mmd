@@ -1,0 +1,12 @@
+%% Diagram: 11 Harness Boundary
+%% Diagram ID: ECOMDY-D11 | Version: 0.1 | State: Target design, not as-built
+flowchart TD
+  dev["DevHarness OS / development only"]
+  repo["Ecomdy source + specs + tests"]
+  ci["CI / review / release artifact"]
+  run["Ecomdy runtime / independent"]
+  owner["Marketing team"]
+  dev --> repo
+  repo --> ci
+  ci -->|deploy approved release| run
+  run --> owner

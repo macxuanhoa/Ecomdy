@@ -1,0 +1,14 @@
+%% Diagram: 12 Content Audit
+%% Diagram ID: ECOMDY-D12 | Version: 0.1 | State: Target design, not as-built
+flowchart TD
+  n0["Import authorized published article"]
+  n1["Extract claims and original citations"]
+  n2["Retrieve current authoritative evidence"]
+  n3["Flag conflict / expired / missing evidence"]
+  n4["Propose revision with source links"]
+  n5["Human review"]
+  n0 --> n1
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5

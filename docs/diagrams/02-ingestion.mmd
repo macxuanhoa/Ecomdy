@@ -1,0 +1,18 @@
+%% Diagram: 02 Ingestion
+%% Diagram ID: ECOMDY-D02 | Version: 0.1 | State: Target design, not as-built
+flowchart TD
+  s["Scheduler / source registry"]
+  a["API connector"]
+  r["RSS connector"]
+  w["Permitted web connector"]
+  q["Job queue / rate limits / retry"]
+  raw["Raw data / provenance"]
+  p["Processing job"]
+  s --> a
+  s --> r
+  s --> w
+  a --> q
+  r --> q
+  w --> q
+  q --> raw
+  raw --> p

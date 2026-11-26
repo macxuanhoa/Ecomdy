@@ -1,0 +1,2 @@
+# Contribution protocol
+Work from an approved task contract. Create a feature branch; never force-push main. Baseline tests before changes; prefer minimal reuse-aware diffs. Record commands and real results. Review independently. Require explicit approval for scope expansion, dependency changes, production deployment, destructive migrations, credentials and publication. Configure branch protection/rulesets manually after creating the GitHub repository; no remote settings are presumed enabled.

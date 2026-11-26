@@ -1,0 +1,12 @@
+%% Diagram: Bounded Debugging Workflow
+%% ID: HARNESS-D19 | Version: 0.1 | State: Target proposal, not automated
+flowchart TD
+  failure["Observed failure"] --> reproduce["Capture inputs, command, exit code and baseline"]
+  reproduce --> scope["Find smallest relevant files and dependency path"]
+  scope --> hypothesis["State one falsifiable root-cause hypothesis"]
+  hypothesis --> change["Make one minimal, reversible change"]
+  change --> tests["Run focused and regression checks"]
+  tests --> result{"Passes?"}
+  result -->|Yes| review["Independent review and evidence update"]
+  result -->|No; retries remain| hypothesis
+  result -->|Limit reached| blocked["Stop with BLOCKED status and evidence"]

@@ -1,0 +1,15 @@
+%% Diagram: 09 Learning
+%% Diagram ID: HARNESS-D09 | Version: 0.1 | State: Target design, not as-built
+flowchart TD
+  a["Observe failure"]
+  b["Root cause"]
+  c["Propose skill / workflow change"]
+  d["Regression evaluation"]
+  e["Human approval"]
+  f["Measure benchmark delta"]
+  a --> b
+  b --> c
+  c --> d
+  d --> e
+  e --> f
+  f --> a

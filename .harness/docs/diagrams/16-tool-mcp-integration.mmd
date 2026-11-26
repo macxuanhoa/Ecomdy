@@ -1,0 +1,12 @@
+%% Diagram: Tool and MCP Integration
+%% ID: HARNESS-D16 | Version: 0.1 | State: Target proposal; no MCP manager implemented
+flowchart LR
+  task["Approved task need"] --> registry["Tool / MCP capability registry"]
+  registry --> policy["Check identity, scope, data and side-effect policy"]
+  policy --> decision{"Least privilege and allowed?"}
+  decision -->|No| deny["Stop and report required access"]
+  decision -->|Yes| adapter["Connector adapter · future capability"]
+  adapter --> output["Untrusted tool result"]
+  output --> validate["Validate, minimize and retain provenance"]
+  validate --> task
+  validate --> audit["Record action, result status and evidence"]

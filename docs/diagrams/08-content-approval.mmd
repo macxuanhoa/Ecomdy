@@ -1,0 +1,20 @@
+%% Diagram: 08 Content Approval
+%% Diagram ID: ECOMDY-D08 | Version: 0.1 | State: Target design, not as-built
+flowchart TD
+  s["Choose verified event"]
+  r["Retrieve evidence / brand guidance"]
+  g["Generate channel drafts"]
+  v["Claim / citation quality checks"]
+  h["Human editor review"]
+  e["Revise draft"]
+  a["Approved version"]
+  x["Export / authorized publication"]
+  s --> r
+  r --> g
+  g --> v
+  v -->|fail| e
+  e --> v
+  v -->|pass| h
+  h -->|request changes| e
+  h -->|approve| a
+  a --> x

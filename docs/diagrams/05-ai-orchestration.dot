@@ -1,0 +1,28 @@
+// Diagram: 05 Ai Orchestration
+// Diagram ID: ECOMDY-D05 | Version: 0.1 | State: Target design, not as-built
+digraph G { graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.40", ranksep="0.55", labelloc=t, label="AI orchestration and model routing | TARGET DESIGN", fontname="DejaVu Sans", fontsize=20, fontcolor="#172B43"];
+node [shape=box, style="rounded,filled", color="#718399", penwidth=1.1, fontname="DejaVu Sans", fontsize=11, fontcolor="#172B43", margin="0.18,0.12"]; edge [color="#60758A", arrowsize=0.7, fontname="DejaVu Sans", fontsize=9];
+request [label="Task / retrieved evidence", fillcolor="#E7EFFC"];
+router [label="Orchestrator / budget / policy", fillcolor="#DFF1EB"];
+n [label="News / market / trend roles", fillcolor="#FFF1D5"];
+f [label="Fact checker / content auditor", fillcolor="#F0E8FA"];
+w [label="Writer / SEO / reviewer", fillcolor="#F1F4F7"];
+g [label="Model gateway", fillcolor="#E7EFFC"];
+a [label="Gemini adapter", fillcolor="#DFF1EB"];
+b [label="OpenAI adapter", fillcolor="#FFF1D5"];
+c [label="Anthropic adapter", fillcolor="#F0E8FA"];
+v [label="Structured output / citation checks", fillcolor="#F1F4F7"];
+request -> router;
+router -> n;
+router -> f;
+router -> w;
+n -> g;
+f -> g;
+w -> g;
+g -> a;
+g -> b;
+g -> c;
+a -> v;
+b -> v;
+c -> v;
+}
