@@ -7,11 +7,11 @@
 
 ## State summary
 
-- **Verified:** GitHub repo exists and is public; `main` history preserved; source audit completed; baseline setup branch pushed; draft PR open; initial GitHub Actions run passed; metadata, security, Dependabot, and main protection configured and read back.
+- **Verified:** GitHub repo exists and is public; `main` history preserved; source audit completed; setup commit `087c27e` pushed; draft PR open; push and pull-request GitHub Actions runs passed; metadata, security, Dependabot, and main protection configured and read back.
 - **Implemented locally:** environment audit, source register, official requirements/traceability, product specifications, current project context, constraints/assumptions, conflicts/open questions, README, documentation portal, packaged `.harness/` starter, and execution records.
-- **Verified locally for current tree:** product and harness link/diagram validators, three DevHarness unit tests, JSON and YAML parsing (including workflow, issue template, and Dependabot configuration), source-file hashes/ignore rules, credential-pattern scan, and staged diff whitespace pass. Current-package independent review passed with two documentation corrections; current-branch CI is pending.
+- **Verified locally and remotely:** product and harness link/diagram validators, three DevHarness unit tests, JSON and YAML parsing (including workflow, issue template, and Dependabot configuration), source-file hashes/ignore rules, credential-pattern scan, and staged diff whitespace pass. Current-package independent review passed with two documentation corrections; both CI events passed for `087c27e`.
 - **Not implemented:** Ecomdy application, ingestion runtime, database, API, UI, AI execution, scheduler, Telegram integration, deployment, and production monitoring.
-- **Blocked / pending:** second commit/push, updated CI, merge, and post-merge verification; Projects V2 board remains blocked by missing `read:project` / `write:project` authorization. `gh` CLI is absent, but Git Credential Manager/API access was sufficient for repository setup.
+- **Blocked / pending:** draft PR review/merge and post-merge verification; Projects V2 board remains blocked by missing `read:project` / `write:project` authorization. `gh` CLI is absent, but Git Credential Manager/API access was sufficient for repository setup.
 - **Requires future owner input:** source allowlist, brand guidelines, approved product scope, interview/feedback evidence, model budget, deployment target, and approval of any internal source publication.
 
 ## State definitions

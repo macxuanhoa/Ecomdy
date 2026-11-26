@@ -93,7 +93,7 @@ No stack has been approved. Current documentation evaluates candidates such as R
 | Product vision, requirements, proposed workflows and architecture | Documentation present; owner validation pending |
 | Diagrams | Source and rendered assets present; represent target design |
 | Documentation validator | Implemented as `python scripts/validate.py`; run locally or in CI |
-| GitHub Actions | Validation workflow present; remote checks depend on branch/CI settings |
+| GitHub Actions | Documentation and harness validation workflow present; both remote checks passed for the setup PR commit |
 | Ecomdy application and runtime | Not implemented |
 | DevHarness OS | Bundled under `.harness/` as an advisory starter; independent from Ecomdy runtime |
 | Seller interviews, team feedback, benchmarks | Outstanding; no results claimed |

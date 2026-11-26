@@ -1,7 +1,8 @@
 # Verification Report
 
 **Date:** 2026-11-26 (Asia/Saigon)<br>
-**Status:** Local checks and independent review pass for the staged bundled-harness update. Draft PR #1 remains open; commit, push, and remote CI are pending. Ecomdy product tests do not exist because no product code was supplied.
+**Snapshot commit:** `087c27e554e57039af0f9c74e0a8bb09d6c58372`<br>
+**Status:** Local checks, independent review, push, and remote CI pass for the bundled-harness setup commit. Draft PR #1 remains open; no merge or product tests are claimed.
 
 | Check | Command / method | Result |
 |---|---|---|
@@ -12,9 +13,10 @@
 | Repository metadata | GitHub public repository API read | PASS — public, not archived, default branch `main` |
 | History fetch | `git fetch origin main` | PASS — fetched one initial commit |
 | Local branch | `git switch -c setup/phase-0-audit origin/main` | PASS |
-| Baseline branch push | `git push -u origin setup/phase-0-audit` | PASS — initial remote ref was `e32d6fb6b5dc36c985bf09b80187e0f0dd278f6e`; second commit is pending |
-| Draft pull request | GitHub API read-back | PASS — [PR #1](https://github.com/macxuanhoa/Ecomdy/pull/1), open, draft, mergeable; base remains `main` commit `560cf0d` |
-| GitHub Actions | Check run `Validate repository / validate` | PASS — conclusion `success`; [run 45841280241](https://github.com/macxuanhoa/Ecomdy/actions/runs/45841280241) |
+| Branch push | `git push origin setup/phase-0-audit` | PASS — setup commit `087c27e554e57039af0f9c74e0a8bb09d6c58372` is on the remote branch |
+| Draft pull request | GitHub API read-back | PASS — [PR #1](https://github.com/macxuanhoa/Ecomdy/pull/1), open, draft, unmerged; head `087c27e`, base `main` at `560cf0d` |
+| Baseline GitHub Actions | Check run `Validate repository / validate` | PASS — conclusion `success`; [run 45841280241](https://github.com/macxuanhoa/Ecomdy/actions/runs/45841280241) |
+| Current setup commit GitHub Actions | Push and pull-request events for `087c27e` | PASS — both `Validate repository` runs completed successfully: [push](https://github.com/macxuanhoa/Ecomdy/actions/runs/45846988006), [pull request](https://github.com/macxuanhoa/Ecomdy/actions/runs/45847001038) |
 | Repository metadata | Authenticated GitHub API read-back | PASS — description, 5 topics, 7 project labels, 2 undated challenge milestones |
 | `main` protection | Authenticated branch-protection API read-back | PASS — PR required, strict `validate` check from GitHub Actions required, conversation resolution required, admins enforced, force-push/deletion disabled, approvals required: 0 |
 | Security settings | Authenticated GitHub API read-back | PASS — secret scanning, push protection, vulnerability alerts, Dependabot security updates, and private vulnerability reporting enabled |
@@ -36,7 +38,7 @@
 | Diagram rendering | `dot` availability check | NOT RUN — Graphviz is not installed / not on PATH; existing SVG/PNG files are present |
 | Independent review | Read-only reviewer of setup docs and source-backed claims | PASS with one correction — workbook list items share a single cell; citations now use cell coordinate plus item number. |
 | Current package review | Read-only independent review of the harness code/docs, source boundaries, overwrite safety, and commands | PASS — two documentation findings corrected; no remaining blocker |
-| Current commit push / CI | Not performed | PENDING — push after final review, then verify PR #1 check run |
+| Current setup commit push / CI | Git push + GitHub Actions API read-back | PASS — PR head points to `087c27e`; both events succeeded |
 | Merge / post-merge check | Not performed | PENDING — draft PR awaits owner review and merge |
 
 No application tests or deployment checks are reported as passing. Markdown validation checks local targets and diagram asset presence, not external links or semantic correctness of diagrams.
