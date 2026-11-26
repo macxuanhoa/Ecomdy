@@ -1,0 +1,14 @@
+digraph G { graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.40", ranksep="0.55", labelloc=t, label="Workspace bootstrap | TARGET DESIGN", fontname="DejaVu Sans", fontsize=20, fontcolor="#172B43"];
+node [shape=box, style="rounded,filled", color="#718399", penwidth=1.1, fontname="DejaVu Sans", fontsize=11, fontcolor="#172B43", margin="0.18,0.12"]; edge [color="#60758A", arrowsize=0.7, fontname="DejaVu Sans", fontsize=9];
+n0 [label="Detect environment", fillcolor="#E7EFFC"];
+n1 [label="Inventory repository", fillcolor="#DFF1EB"];
+n2 [label="Configure project profile", fillcolor="#FFF1D5"];
+n3 [label="Index inputs", fillcolor="#F0E8FA"];
+n4 [label="Generate context update prompt", fillcolor="#F1F4F7"];
+n5 [label="Owner approves baseline", fillcolor="#E7EFFC"];
+n0 -> n1;
+n1 -> n2;
+n2 -> n3;
+n3 -> n4;
+n4 -> n5;
+}

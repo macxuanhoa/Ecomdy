@@ -1,0 +1,12 @@
+flowchart TD
+  n0["Inspect approved spec or actual code"]
+  n1["Extract semantic model / provenance"]
+  n2["Generate Mermaid / DOT"]
+  n3["Render SVG and PNG"]
+  n4["Validate edges / labels / state"]
+  n5["Review and commit"]
+  n0 --> n1
+  n1 --> n2
+  n2 --> n3
+  n3 --> n4
+  n4 --> n5

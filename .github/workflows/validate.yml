@@ -16,3 +16,5 @@ jobs:
         with:
           python-version: '3.12'
       - run: python scripts/validate.py
+      - run: python -m unittest discover -s .harness/tests -p "test_*.py" -v
+      - run: python .harness/scripts/validate.py

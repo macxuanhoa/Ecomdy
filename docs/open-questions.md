@@ -8,6 +8,6 @@
 4. Who will conduct and record at least five seller interviews and Content Team feedback sessions?
 5. What thresholds define “significantly reduced” research time and “substantial” draft suitability?
 6. What identity/access-control, data-retention, deployment, AI provider, and cost constraints apply?
-7. Should reusable DevHarness OS remain a separate repository or be packaged as a clean installable subset? Only the Ecomdy remote URL has been supplied.
+7. Does the bundled DevHarness need a separate remote or release process later? It is currently available as an independent `.harness/` component in the Ecomdy repository.
 
 These questions do not block documentation reconciliation. They do block decisions or claims that depend on their answers.

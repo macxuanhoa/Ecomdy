@@ -4,7 +4,9 @@
 
 | ID | Blocker | Impact | Resolution path |
 |---|---|---|---|
-| BLK-01 | GitHub authenticated write access is unverified; `gh` is unavailable. | Cannot claim or confirm a push, PR, or repository settings change. | Attempt normal Git credential-based push after local commit; record exact result. Do not request tokens in chat. |
+| BLK-01 | Current GitHub authorization lacks `read:project` / `write:project`; Projects V2 GraphQL requests are denied. | No GitHub Project board can be created or linked through the current credential. Other repository API writes work. | Reauthorize the GitHub integration with Projects access or provide a connected Projects-capable app. Do not paste a PAT into chat. |
+
+This blocker does not prevent the repository branch, pull request, labels, milestones, security settings, or CI setup.
 
 ## Product evidence / owner decisions
 
@@ -15,4 +17,4 @@ These are not blockers to documentation setup, but they are required before the 
 - What is the approved MVP market, platform set, and acceptance threshold for “significantly reduced” research time and “substantial” draft suitability?
 - What are the interview schedule and evidence owner for the required five seller interviews?
 - What deployment environment, model/provider budget, data retention, identity, and access-control constraints apply?
-- Should DevHarness OS remain a separate repository, or should a reusable subset be packaged under this repository? Current local harness files are in a sibling directory and no second remote was supplied.
+- Should the bundled harness later receive a separate remote or release process? The initial packaging decision is recorded in [DEC-009](DECISION_LOG.md); a separate remote is not required to use the current `.harness/` component.

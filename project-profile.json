@@ -10,7 +10,11 @@
   "publishing_requires_human_approval": true,
   "source_allowlist": [],
   "source_policy": "public and terms-compliant only",
-  "devharness": "separate repository",
+  "devharness": {
+    "path": ".harness/",
+    "status": "bundled_advisory_starter",
+    "runtime_dependency": false
+  },
   "modules": [
     "Source Management",
     "Data Collection",

@@ -1,0 +1,16 @@
+name: Implementation task
+description: Scoped task with measurable acceptance criteria
+title: "[TASK] "
+body:
+  - type: textarea
+    id: scope
+    attributes:
+      label: Objective, requirement IDs and allowed paths
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria and verification commands
+    validations:
+      required: true

@@ -2,15 +2,16 @@
 
 **As of:** 2026-11-26 (Asia/Saigon)<br>
 **Branch:** `setup/phase-0-audit`<br>
+**PR:** [#1 (draft)](https://github.com/macxuanhoa/Ecomdy/pull/1)<br>
 **Overall:** In Progress
 
 ## State summary
 
-- **Verified:** GitHub repo exists and is public; `main` has one commit; branch history was fetched; local feature branch created; audit and source extraction completed.
-- **Implemented locally:** environment audit, source register, official requirements/traceability, current project context, constraints/assumptions, conflicts/open questions, README, documentation portal, and execution records.
-- **Verified locally:** documentation/diagram link validator, JSON and YAML parsing, original-file SHA-256 manifest, source-file exclusions, diff whitespace, secret-pattern scan, and two DevHarness OS unit tests.
+- **Verified:** GitHub repo exists and is public; `main` history preserved; source audit completed; baseline setup branch pushed; draft PR open; initial GitHub Actions run passed; metadata, security, Dependabot, and main protection configured and read back.
+- **Implemented locally:** environment audit, source register, official requirements/traceability, product specifications, current project context, constraints/assumptions, conflicts/open questions, README, documentation portal, packaged `.harness/` starter, and execution records.
+- **Verified locally for current tree:** product and harness link/diagram validators, three DevHarness unit tests, JSON and YAML parsing (including workflow, issue template, and Dependabot configuration), source-file hashes/ignore rules, credential-pattern scan, and staged diff whitespace pass. Current-package independent review passed with two documentation corrections; current-branch CI is pending.
 - **Not implemented:** Ecomdy application, ingestion runtime, database, API, UI, AI execution, scheduler, Telegram integration, deployment, and production monitoring.
-- **Blocked / pending:** remote write access and pull-request capability have not been verified; `gh` is not installed.
+- **Blocked / pending:** second commit/push, updated CI, merge, and post-merge verification; Projects V2 board remains blocked by missing `read:project` / `write:project` authorization. `gh` CLI is absent, but Git Credential Manager/API access was sufficient for repository setup.
 - **Requires future owner input:** source allowlist, brand guidelines, approved product scope, interview/feedback evidence, model budget, deployment target, and approval of any internal source publication.
 
 ## State definitions

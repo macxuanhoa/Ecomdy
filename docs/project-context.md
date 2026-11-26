@@ -26,7 +26,7 @@ The user-provided notes and blueprint additionally propose early social trend si
 - Do not expose original challenge materials, credentials, or private business data in this public repository without approval.
 - Generated content remains a draft until a human approves the specific version.
 - No interviews, user feedback, performance measurements, operational schedules, or product tests are claimed as complete.
-- DevHarness OS is development infrastructure and must not become a runtime dependency or be mixed with Ecomdy business logic.
+- DevHarness OS is packaged in `.harness/` as development infrastructure. It must not become a runtime dependency or be mixed with Ecomdy business logic.
 
 ## Current state
 

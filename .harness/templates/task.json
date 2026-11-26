@@ -1,0 +1,18 @@
+{
+  "id": "TASK-001",
+  "status": "proposed",
+  "requirement_ids": [],
+  "objective": "",
+  "allowed_paths": [],
+  "forbidden_paths": [
+    ".env",
+    "production/"
+  ],
+  "depends_on": [],
+  "acceptance_criteria": [],
+  "verification_commands": [],
+  "max_iterations": 3,
+  "max_runtime_minutes": 30,
+  "max_cost_usd": 1,
+  "approval_required": true
+}

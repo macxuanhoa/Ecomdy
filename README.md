@@ -12,13 +12,18 @@ The challenge is to help Ecomdy's Marketing / Content Team research internationa
 - [Product context and official requirements](docs/project-context.md)
 - [Requirements register](docs/01-requirements.md) · [traceability](docs/requirements-traceability.md)
 - [Product vision and capability registry](docs/02-product-vision.md)
+- [Module specifications](docs/module-specifications.md) · [database design](docs/database-design.md) · [API design](docs/api-design.md)
+- [Security and governance](docs/security-governance.md) · [risk register](docs/risk-register.md) · [Definition of Ready / Done](docs/definition-of-ready-done.md)
+- [Agent and tool registry](docs/agent-tool-registry.md) · [automation](docs/automation-specification.md) · [context engineering](docs/context-engineering.md)
 - [Target architecture and candidate stack](docs/03-architecture.md)
+- [Technology and harness evaluation](docs/technology-evaluation.md)
 - [Business and technical workflows](docs/04-workflows.md)
 - [Implementation roadmap](docs/05-roadmap.md)
 - [Testing and evidence strategy](docs/06-validation.md)
 - [Constraints and assumptions](docs/constraints-assumptions.md) · [conflict report](docs/conflict-report.md) · [open questions](docs/open-questions.md)
 - [Source registry](docs/source-registry.md) · [diagram gallery](docs/diagrams/README.md)
 - [Documentation portal](docs/README.md)
+- [Developer onboarding](docs/developer-onboarding.md) · [deployment strategy](docs/deployment-strategy.md)
 - [Environment and capability audit](docs/setup/00_ENVIRONMENT_AND_CAPABILITY_AUDIT.md)
 - [Contribution protocol](CONTRIBUTING.md) · [Agent instructions](AGENTS.md) · [Security policy](SECURITY.md) · [Changelog](CHANGELOG.md)
 
@@ -38,7 +43,7 @@ Social-trend intelligence, Telegram, model routing, frequent updates, and multi-
 
 ## Target system architecture
 
-The proposed design separates source ingestion, processing, evidence storage, AI-assisted analysis, application services, API, and user interfaces. It favors a modular product with background work; it does not require each module to be a microservice. DevHarness OS is separate development infrastructure and is not an Ecomdy runtime dependency.
+The proposed design separates source ingestion, processing, evidence storage, AI-assisted analysis, application services, API, and user interfaces. It favors a modular product with background work; it does not require each module to be a microservice. DevHarness OS is packaged under `.harness/` as separate development infrastructure and is not an Ecomdy runtime dependency.
 
 ![Proposed logical system architecture](docs/diagrams/01-system-architecture.svg)
 
@@ -55,19 +60,23 @@ These workflows are specifications only; none currently runs as a product servic
 
 ## Repository structure
 
+Representative, abbreviated view; see [the documentation portal](docs/README.md) for the full index.
+
 ```text
 .
 ├── .github/                 # Pull request / CI configuration
+├── .harness/                # Reusable advisory development harness
 ├── docs/
 │   ├── 00-original/          # Local originals; Git-ignored except README
 │   ├── diagrams/             # Editable DOT/Mermaid plus SVG/PNG renderings
-│   ├── setup/                # Audit, plan, status, decisions, verification, handoff
 │   ├── 01-requirements.md
 │   ├── 02-product-vision.md
 │   ├── 03-architecture.md
 │   ├── 04-workflows.md
 │   ├── 05-roadmap.md
-│   └── 06-validation.md
+│   ├── 06-validation.md
+│   ├── module-specifications.md, database-design.md, api-design.md, …
+│   └── setup/                # Audit, plan, status, decisions, verification, handoff
 ├── prompts/                  # Bootstrap prompt
 ├── scripts/                  # Documentation validation and diagram rendering
 └── project-profile.json      # Proposed project profile
@@ -86,7 +95,7 @@ No stack has been approved. Current documentation evaluates candidates such as R
 | Documentation validator | Implemented as `python scripts/validate.py`; run locally or in CI |
 | GitHub Actions | Validation workflow present; remote checks depend on branch/CI settings |
 | Ecomdy application and runtime | Not implemented |
-| DevHarness OS | Separate local sibling project; not included as an Ecomdy runtime dependency |
+| DevHarness OS | Bundled under `.harness/` as an advisory starter; independent from Ecomdy runtime |
 | Seller interviews, team feedback, benchmarks | Outstanding; no results claimed |
 
 ## Quick start
@@ -95,9 +104,13 @@ No stack has been approved. Current documentation evaluates candidates such as R
 git clone https://github.com/macxuanhoa/Ecomdy.git
 cd Ecomdy
 python scripts/validate.py
+python .harness/harness.py doctor
+python -m unittest discover -s .harness/tests -v
 ```
 
 The documentation validator uses only the Python standard library. It checks local Markdown links and required diagram assets. It does **not** test an application, external links, legal compliance, or diagram semantics.
+
+The reusable harness CLI is also Python-only. See the [Harness Installation Guide](docs/harness-installation-guide.md) for workspace initialization and source inventory commands. Its current `ingest` command inventories and hashes files but does not extract document contents or execute agent tasks.
 
 ### Contributing and continuing work
 
@@ -107,7 +120,7 @@ The documentation validator uses only the Python standard library. It checks loc
 4. Run only checks that exist and report exact results; do not claim a target workflow is implemented because a design exists.
 5. Update requirements traceability, docs, and verification evidence with any behavior change.
 
-For new projects, existing projects, context refresh, or interrupted sessions, use [the documentation portal](docs/README.md) and [setup handoff](docs/setup/HANDOFF.md). Ecomdy-specific runtime commands do not exist yet.
+For new projects, existing projects, context refresh, or interrupted sessions, use [the documentation portal](docs/README.md), [Harness Installation Guide](docs/harness-installation-guide.md), and [setup handoff](docs/setup/HANDOFF.md). Ecomdy-specific runtime commands do not exist yet.
 
 ## Diagrams
 
@@ -115,12 +128,13 @@ Each diagram has editable source and rendered SVG/PNG assets. Update the source 
 
 ## GitHub Actions
 
-The current workflow runs `python scripts/validate.py` on pushes, pull requests, and manual dispatch with read-only repository permissions. It disables persisted checkout credentials, does not deploy or run AI jobs, and uses the current major releases of the official checkout and setup-python actions. Repository branch protection, required checks, labels, milestones, and topics have not been configured or verified.
+The current workflow runs the product documentation validator, DevHarness unit tests, and harness documentation validator on pushes, pull requests, and manual dispatch with read-only repository permissions. It disables persisted checkout credentials, does not deploy or run AI jobs, and uses the current major releases of the official checkout and setup-python actions. Dependabot checks GitHub Actions versions monthly and opens reviewable PRs; no product packages are declared. Repository description, topics, labels, milestones, secret scanning, dependency updates, private vulnerability reporting, and `main` branch protection are configured as recorded in the [setup audit](docs/setup/00_ENVIRONMENT_AND_CAPABILITY_AUDIT.md). The monthly version-update config activates on `main` after PR #1 merges.
 
 ## Security and source handling
 
 - Never commit credentials, API keys, private user data, or unapproved internal materials.
 - The original challenge documents remain in `docs/00-original/`, ignored by Git. Do not force-add them.
+- Reusable harness workspace originals belong in `.harness/docs/00-original/` and are ignored by Git too.
 - Use an owner-reviewed source allowlist and comply with source terms before any collection implementation.
 - Keep generated content draft-only until an authorized person approves it.
 - Review external-source content as untrusted input; preserve citations and defend against prompt injection.

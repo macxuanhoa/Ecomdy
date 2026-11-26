@@ -1,0 +1,21 @@
+digraph G { graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.40", ranksep="0.55", labelloc=t, label="Bounded Ralph-style execution | TARGET DESIGN", fontname="DejaVu Sans", fontsize=20, fontcolor="#172B43"];
+node [shape=box, style="rounded,filled", color="#718399", penwidth=1.1, fontname="DejaVu Sans", fontsize=11, fontcolor="#172B43", margin="0.18,0.12"]; edge [color="#60758A", arrowsize=0.7, fontname="DejaVu Sans", fontsize=9];
+s [label="Select approved task", fillcolor="#E7EFFC"];
+c [label="Load scoped context", fillcolor="#DFF1EB"];
+i [label="Implement minimal change", fillcolor="#FFF1D5"];
+v [label="Run gates / tests", fillcolor="#F0E8FA"];
+r [label="Independent review", fillcolor="#F1F4F7"];
+p [label="Checkpoint / update state", fillcolor="#E7EFFC"];
+f [label="Diagnose / bounded retry", fillcolor="#DFF1EB"];
+b [label="BLOCKED / approval / budget stop", fillcolor="#FFF1D5"];
+s -> c;
+c -> i;
+i -> v;
+v -> r [label="pass"];
+v -> f [label="fail"];
+f -> i [label="retry allowed"];
+f -> b [label="limit reached"];
+r -> p [label="pass"];
+r -> f [label="fail"];
+p -> s [label="next task"];
+}

@@ -1,0 +1,19 @@
+flowchart TD
+  s["Select approved task"]
+  c["Load scoped context"]
+  i["Implement minimal change"]
+  v["Run gates / tests"]
+  r["Independent review"]
+  p["Checkpoint / update state"]
+  f["Diagnose / bounded retry"]
+  b["BLOCKED / approval / budget stop"]
+  s --> c
+  c --> i
+  i --> v
+  v -->|pass| r
+  v -->|fail| f
+  f -->|retry allowed| i
+  f -->|limit reached| b
+  r -->|pass| p
+  r -->|fail| f
+  p -->|next task| s

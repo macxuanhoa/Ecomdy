@@ -12,3 +12,5 @@ node_modules/
 .harness/logs/
 docs/00-original/*
 !docs/00-original/README.md
+.harness/docs/00-original/*
+!.harness/docs/00-original/README.md
