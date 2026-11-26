@@ -6,7 +6,7 @@
 - Branch: `setup/phase-0-audit` based on fetched `origin/main`
 - Public repository; original source files must remain excluded.
 - Current local repository is a documentation/design scaffold. No Ecomdy runtime has been supplied.
-- [Draft PR #1](https://github.com/macxuanhoa/Ecomdy/pull/1) is open; package commit `a08bb16` is its head and both push and pull-request GitHub Actions runs passed. See [verification report](VERIFICATION_REPORT.md).
+- [Draft PR #1](https://github.com/macxuanhoa/Ecomdy/pull/1) is open and includes package commit `a08bb16` plus status reconciliation commit `d4584ae`; push and pull-request GitHub Actions passed for both. See [verification report](VERIFICATION_REPORT.md).
 - `main` requires a PR, up-to-date `validate` check, and resolved conversations; no minimum review count is set.
 - Secret scanning, push protection, vulnerability alerts, Dependabot security updates, and private vulnerability reporting are enabled. Monthly GitHub Actions version checks are configured in the PR and activate on the default branch after merge.
 - DevHarness OS is packaged at `.harness/` as an advisory starter; root CI runs its unit tests and link/diagram asset validation.

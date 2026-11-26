@@ -7,7 +7,7 @@
 
 ## State summary
 
-- **Verified:** GitHub repo exists and is public; `main` history preserved; source audit completed; setup commits `087c27e`, `728871a`, and `a08bb16` pushed; PR #1 points to `a08bb16`; push and pull-request GitHub Actions runs passed for `a08bb16`; metadata, security, Dependabot, and main protection configured and read back.
+- **Verified:** GitHub repo exists and is public; `main` history preserved; source audit completed; setup package commit `a08bb16` and follow-up status commit `d4584ae` pushed; PR #1 includes both; push and pull-request GitHub Actions runs passed for both; metadata, security, Dependabot, and main protection configured and read back.
 - **Implemented locally:** environment audit, source register, official requirements/traceability, expanded product specifications, current project context, constraints/assumptions, conflicts/open questions, README, documentation portal, packaged `.harness/` starter, proposed 56-diagram galleries, and execution records.
 - **Verified locally for current worktree:** product and harness link/diagram metadata validators, three DevHarness unit tests, JSON and YAML parsing, 32 Ecomdy / 24 DevHarness Mermaid source counts and IDs, source-file hashes/ignore rules, credential-pattern scan, diff whitespace pass, and independent review of the latest documentation/diagram additions. Mermaid grammar is not parser-checked locally; revised sources received manual review. Push and pull-request CI passed for the package commit `a08bb16`.
 - **Not implemented:** Ecomdy application, ingestion runtime, database, API, UI, AI execution, scheduler, Telegram integration, deployment, and production monitoring.

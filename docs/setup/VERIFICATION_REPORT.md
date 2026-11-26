@@ -2,7 +2,7 @@
 
 **Date:** 2026-11-26 (Asia/Saigon)<br>
 **Snapshot commit:** `a08bb1635ae210915cb5c1d13074b98c9b8c2d19`<br>
-**Status:** Local checks, independent review, push, and remote CI pass for the expanded specifications and diagram package. Draft PR #1 remains open; no merge or product tests are claimed.
+**Status:** Local checks, independent review, push, and remote CI pass for the expanded specifications and diagram package (`a08bb16`) and status reconciliation (`d4584ae`). Draft PR #1 remains open; no merge or product tests are claimed.
 
 | Check | Command / method | Result |
 |---|---|---|
@@ -14,7 +14,7 @@
 | History fetch | `git fetch origin main` | PASS — fetched one initial commit |
 | Local branch | `git switch -c setup/phase-0-audit origin/main` | PASS |
 | Branch push | `git push origin setup/phase-0-audit` | PASS — setup commit `087c27e554e57039af0f9c74e0a8bb09d6c58372` is on the remote branch |
-| Draft pull request | GitHub API read-back | PASS — [PR #1](https://github.com/macxuanhoa/Ecomdy/pull/1), open, draft, unmerged; head `a08bb16`, base `main` at `560cf0d` |
+| Draft pull request | GitHub API read-back at final verification | PASS — [PR #1](https://github.com/macxuanhoa/Ecomdy/pull/1), open and draft; package commit `a08bb16` and status record `d4584ae` are on its branch; base `main` at `560cf0d` |
 | Baseline GitHub Actions | Check run `Validate repository / validate` | PASS — conclusion `success`; [run 45841280241](https://github.com/macxuanhoa/Ecomdy/actions/runs/45841280241) |
 | Current setup commit GitHub Actions | Push and pull-request events for `087c27e` | PASS — both `Validate repository` runs completed successfully: [push](https://github.com/macxuanhoa/Ecomdy/actions/runs/45846988006), [pull request](https://github.com/macxuanhoa/Ecomdy/actions/runs/45847001038) |
 | Repository metadata | Authenticated GitHub API read-back | PASS — description, 5 topics, 7 project labels, 2 undated challenge milestones |
@@ -38,7 +38,7 @@
 | Diagram rendering | `dot` availability check | NOT RUN — Graphviz is not installed / not on PATH; existing SVG/PNG files are present |
 | Independent review | Read-only reviewer of setup docs and source-backed claims | PASS with one correction — workbook list items share a single cell; citations now use cell coordinate plus item number. |
 | Current package review | Read-only independent review of the harness code/docs, source boundaries, overwrite safety, and commands | PASS — two documentation findings corrected; no remaining blocker |
-| Current setup commit push / CI | Git push + GitHub Actions API read-back | PASS — PR head points to `a08bb16`; both events succeeded |
+| Package commit push / CI | Git push + GitHub Actions API read-back | PASS — commit `a08bb16` is on the PR branch; both events succeeded |
 | Merge / post-merge check | Not performed | PENDING — draft PR awaits owner review and merge |
 
 No application tests or deployment checks are reported as passing. Markdown validation checks local targets and diagram asset presence, not external links or semantic correctness of diagrams.
@@ -57,9 +57,11 @@ No application tests or deployment checks are reported as passing. Markdown vali
 | Diagram inventory and index | Repository inventory + both gallery validators | PASS — 32 Ecomdy Mermaid sources and 24 DevHarness Mermaid sources are indexed |
 | Diagram syntax/render limits | Independent manual review; local Graphviz availability check | PARTIAL — no obvious syntax issue found manually; Mermaid grammar was not parser-checked, and Graphviz is unavailable for fresh static renders. Existing 14 Ecomdy and 12 DevHarness PNG/SVG pairs were retained. |
 | Independent review | Focused review of security approval flow, weekly digest requirement, C4 representation, RAG query path, dependency graphs, and task register links | PASS — fixes confirmed; no remaining blocker reported |
-| Remote commit read-back | `git ls-remote origin refs/heads/setup/phase-0-audit`; GitHub PR API | PASS — remote and PR head both equal `a08bb1635ae210915cb5c1d13074b98c9b8c2d19`; PR open, draft, unmerged |
+| Remote commit read-back | `git ls-remote origin refs/heads/setup/phase-0-audit`; GitHub PR API | PASS — package commit `a08bb1635ae210915cb5c1d13074b98c9b8c2d19` and status record `d4584ae4d1de6a6d6a6918dcb88e4622ad7e728d` were confirmed on the branch; PR open and draft |
 | GitHub Actions: push | GitHub Actions API for `a08bb16` | PASS — [run 45852911961](https://github.com/macxuanhoa/Ecomdy/actions/runs/45852911961), conclusion `success` |
 | GitHub Actions: pull request | GitHub Actions API for `a08bb16` | PASS — [run 45852921449](https://github.com/macxuanhoa/Ecomdy/actions/runs/45852921449), conclusion `success` |
+| GitHub Actions: push for status reconciliation | GitHub Actions API for `d4584ae` | PASS — [run 45853634151](https://github.com/macxuanhoa/Ecomdy/actions/runs/45853634151), conclusion `success` |
+| GitHub Actions: pull request for status reconciliation | GitHub Actions API for `d4584ae` | PASS — [run 45853648175](https://github.com/macxuanhoa/Ecomdy/actions/runs/45853648175), conclusion `success` |
 | Ecomdy application / deployment tests | No Ecomdy application implementation exists | NOT APPLICABLE — product runtime, database, API, UI, AI execution, scheduler, Telegram integration, and deployment remain unimplemented |
 
 The C4-named additions are C4-style Mermaid flowchart views, not native Mermaid C4 DSL diagrams. The diagram gallery records that distinction and the limitation of local render tooling.
