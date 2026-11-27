@@ -1,19 +1,21 @@
 # Execution Status
 
-**As of:** 2026-11-26 (Asia/Saigon)<br>
-**Branch:** `setup/phase-0-audit`<br>
+**As of:** 2026-11-27 (Asia/Saigon)<br>
+**Baseline:** `4bddc925c941979da60b1250ec4d139381776e22`<br>
+**Acceptance branch:** `docs/phase-0-acceptance` (local, uncommitted)<br>
 **PR:** [#1 (draft)](https://github.com/macxuanhoa/Ecomdy/pull/1)<br>
-**Overall:** In Progress
+**Overall:** Conditional Acceptance — setup baseline only
 
 ## State summary
 
-- **Verified:** GitHub repo exists and is public; `main` history preserved; source audit completed; setup package commit `a08bb16` and follow-up status commit `d4584ae` pushed; PR #1 includes both; push and pull-request GitHub Actions runs passed for both; metadata, security, Dependabot, and main protection configured and read back.
-- **Implemented locally:** environment audit, source register, official requirements/traceability, expanded product specifications, current project context, constraints/assumptions, conflicts/open questions, README, documentation portal, packaged `.harness/` starter, proposed 56-diagram galleries, and execution records.
-- **Verified locally for current worktree:** product and harness link/diagram metadata validators, three DevHarness unit tests, JSON and YAML parsing, 32 Ecomdy / 24 DevHarness Mermaid source counts and IDs, source-file hashes/ignore rules, credential-pattern scan, diff whitespace pass, and independent review of the latest documentation/diagram additions. Mermaid grammar is not parser-checked locally; revised sources received manual review. Push and pull-request CI passed for the package commit `a08bb16`.
-- **Not implemented:** Ecomdy application, ingestion runtime, database, API, UI, AI execution, scheduler, Telegram integration, deployment, and production monitoring.
-- **Blocked / pending:** draft PR review/merge and post-merge verification remain. Projects V2 board is blocked by missing `read:project` / `write:project` authorization. `gh` CLI is absent, but Git Credential Manager/API access was sufficient for repository setup.
-- **Requires future owner input:** source allowlist, brand guidelines, approved product scope, interview/feedback evidence, model budget, deployment target, and approval of any internal source publication.
+- **Verified:** remote `main` remains `560cf0d…`; setup branch and PR #1 head match baseline `4bddc925…`; PR #1 is open, draft, mergeable and clean; push and pull-request CI passed; local product/harness validators, 3/3 harness tests and Python compile checks passed; two fresh clones passed; original source files remain excluded.
+- **Verified within diagram limits:** 56 unique Mermaid IDs, 26 DOT/SVG/PNG sets, no exact source duplicates, all SVGs parse and all PNGs are valid/nonblank; existing static renderings were inspected at overview scale. Thirty Mermaid-only diagrams remain locally unrendered and source parity is not reliably verified.
+- **Verified locally:** [Phase 0 acceptance report](PHASE_0_ACCEPTANCE.md), [capability matrix](CAPABILITY_COVERAGE.md), [Jira setup plan](JIRA_SETUP_PLAN.md), reconciled documentation index, contribution/PR guidance and execution records pass validators, 3/3 tests, compile/config/diff checks, matrix/report integrity checks and credential-pattern scan.
+- **Implemented but unverified:** current GitHub branch-protection and repository-security settings; Phase 0 API revalidation returned HTTP 401.
+- **Blocked:** Jira Cloud project/board/issues/sprints/integration because no authorized Jira access is available. GitHub Projects V2 is not the primary board and no additional Projects permission is requested.
+- **Not implemented:** Ecomdy application, ingestion runtime, database, API, UI, AI execution, scheduler, Telegram integration, deployment, production monitoring, harness scope/budget enforcement, checkpoint/resume, retrieval index or automatic handoff.
+- **Requires owner approval:** PR #1 merge, Jira access/project model, reviewer/module ownership, diagram tool selection, harness hardening, product MVP/source/provider/deployment decisions.
 
 ## State definitions
 
-`Proposed` = candidate scope; `In Progress` = active work; `Blocked` = required capability/evidence missing; `Verified` = a check produced recorded evidence; `Completed` = all acceptance criteria for that task have been verified.
+`Proposed` = candidate scope; `In Progress` = active work; `Blocked` = required capability/evidence missing; `Verified` = a check produced recorded evidence; `Completed` = all acceptance criteria for that task have been verified. See [capability matrix](CAPABILITY_COVERAGE.md) for the full status taxonomy.

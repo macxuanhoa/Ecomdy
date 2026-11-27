@@ -3,7 +3,7 @@
 **AI-Powered Cross-Border Commerce Intelligence & Content Platform**
 Greenwich Industry Challenge 2026 × Ecomdy · Challenge 2
 
-> **Current state:** public documentation and target-design repository. No Ecomdy application, API, database, AI integration, scheduled collector, or deployment is implemented here.
+> **Current state:** public documentation and target-design repository. No Ecomdy application, API, database, AI integration, scheduled collector, or deployment is implemented here. Phase 0 verdict: **conditional acceptance of the setup baseline only**.
 
 The challenge is to help Ecomdy's Marketing / Content Team research international marketplace, tax, and shipping developments for Vietnamese cross-border sellers; produce evidence-linked weekly digests and channel-specific content drafts; and identify published content that may need updating. Product decisions and implementation status must remain traceable to evidence.
 
@@ -25,6 +25,7 @@ The challenge is to help Ecomdy's Marketing / Content Team research internationa
 - [Constraints and assumptions](docs/constraints-assumptions.md) · [conflict report](docs/conflict-report.md) · [open questions](docs/open-questions.md)
 - [Source registry](docs/source-registry.md) · [Ecomdy diagram gallery](docs/diagrams/README.md)
 - [Documentation portal](docs/README.md)
+- [Phase 0 acceptance](docs/setup/PHASE_0_ACCEPTANCE.md) · [capability matrix](docs/setup/CAPABILITY_COVERAGE.md) · [Jira setup plan](docs/setup/JIRA_SETUP_PLAN.md)
 - [Developer onboarding](docs/developer-onboarding.md) · [deployment strategy](docs/deployment-strategy.md) · [DevHarness diagram gallery](.harness/docs/diagrams/README.md)
 - [Target user guide](docs/user-guide.md)
 - [Environment and capability audit](docs/setup/00_ENVIRONMENT_AND_CAPABILITY_AUDIT.md)
@@ -94,11 +95,12 @@ No stack has been approved. Current documentation evaluates candidates such as R
 | Area | State |
 |---|---|
 | Product vision, requirements, proposed workflows and architecture | Documentation present; owner validation pending |
-| Diagrams | Source and rendered assets present; represent target design |
+| Diagrams | 56 Mermaid sources and 26 static DOT/SVG/PNG sets; 30 Mermaid-only diagrams lack local parse/render evidence; all represent target design |
 | Documentation validator | Implemented as `python scripts/validate.py`; run locally or in CI |
-| GitHub Actions | Documentation and harness validation workflow present; both remote checks passed for the setup PR commit |
+| GitHub Actions | Documentation and harness validation workflow present; push and PR checks passed for the audited setup baseline |
 | Ecomdy application and runtime | Not implemented |
-| DevHarness OS | Bundled under `.harness/` as an advisory starter; independent from Ecomdy runtime |
+| DevHarness OS | Bundled under `.harness/` as an advisory starter; independent from Ecomdy runtime; config/scope/budget enforcement not implemented |
+| Jira delivery system | Blocked pending owner-authorized Jira access; no Jira data fabricated |
 | Seller interviews, team feedback, benchmarks | Outstanding; no results claimed |
 
 ## Quick start
@@ -117,8 +119,8 @@ The reusable harness CLI is also Python-only. See the [Harness Installation Guid
 
 ### Contributing and continuing work
 
-1. Read [Agent instructions](AGENTS.md), [requirements](docs/01-requirements.md), [current-state audit](docs/setup/00_ENVIRONMENT_AND_CAPABILITY_AUDIT.md), and the relevant specification.
-2. Create a feature branch and record a bounded task, scope, acceptance checks, and evidence.
+1. Read [Phase 0 acceptance](docs/setup/PHASE_0_ACCEPTANCE.md), [capability matrix](docs/setup/CAPABILITY_COVERAGE.md), [Agent instructions](AGENTS.md), [requirements](docs/01-requirements.md), [current-state audit](docs/setup/00_ENVIRONMENT_AND_CAPABILITY_AUDIT.md), and the relevant specification.
+2. Create a task-scoped branch using a real Jira key when available and record scope, dependencies, acceptance checks, budget, stop conditions and evidence. Do not invent Jira keys or team assignments.
 3. Inspect existing files before adding code. Preserve current behavior and source provenance.
 4. Run only checks that exist and report exact results; do not claim a target workflow is implemented because a design exists.
 5. Update requirements traceability, docs, and verification evidence with any behavior change.
@@ -131,7 +133,7 @@ The Ecomdy gallery contains 32 target diagram sources; 14 have checked-in DOT pl
 
 ## GitHub Actions
 
-The current workflow runs the product documentation validator, DevHarness unit tests, and harness documentation validator on pushes, pull requests, and manual dispatch with read-only repository permissions. It disables persisted checkout credentials, does not deploy or run AI jobs, and uses the current major releases of the official checkout and setup-python actions. Dependabot checks GitHub Actions versions monthly and opens reviewable PRs; no product packages are declared. Repository description, topics, labels, milestones, secret scanning, dependency updates, private vulnerability reporting, and `main` branch protection are configured as recorded in the [setup audit](docs/setup/00_ENVIRONMENT_AND_CAPABILITY_AUDIT.md). The monthly version-update config activates on `main` after PR #1 merges.
+The current workflow runs the product documentation validator, DevHarness unit tests, and harness documentation validator on pushes, pull requests, and manual dispatch with read-only repository permissions. It disables persisted checkout credentials, does not deploy or run AI jobs, and uses the current major releases of the official checkout and setup-python actions. Dependabot checks GitHub Actions versions monthly and opens reviewable PRs; no product packages are declared. Repository description, topics, labels, milestones, secret scanning, dependency updates, private vulnerability reporting, and `main` branch protection were configured as recorded in the [setup audit](docs/setup/00_ENVIRONMENT_AND_CAPABILITY_AUDIT.md). Phase 0 could not re-read current protection/security settings because API revalidation returned HTTP 401; treat them as implemented but unverified until owner-authenticated read-back. The monthly version-update config activates on `main` after PR #1 merges.
 
 ## Security and source handling
 

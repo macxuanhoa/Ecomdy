@@ -19,9 +19,9 @@ cd Ecomdy
 python scripts/validate.py
 ```
 
-1. Read `AGENTS.md`, `README.md`, `docs/project-context.md`, and `docs/01-requirements.md`.
-2. Check `docs/setup/EXECUTION_STATUS.md`, `TASK_REGISTRY.md`, and `BLOCKERS.md` before taking a task.
-3. Create a topic branch from the current default branch and record the requirement IDs, allowed paths, acceptance checks, and dependencies.
+1. Read `AGENTS.md`, `docs/README.md`, `docs/setup/PHASE_0_ACCEPTANCE.md`, `docs/setup/CAPABILITY_COVERAGE.md`, `docs/project-context.md`, and `docs/01-requirements.md`.
+2. Check `docs/setup/EXECUTION_STATUS.md`, `docs/setup/TASK_REGISTRY.md`, and `docs/setup/BLOCKERS.md` before taking a task. Jira is the intended delivery tracker but remains blocked until owner authorization; do not invent keys.
+3. Create a topic branch from the current default branch using `<type>/<jira-key>-<short-kebab>` when a real Jira key exists; otherwise use `<type>/<short-kebab>`. Record requirement/capability IDs, allowed paths, acceptance checks, dependencies, budget and stop conditions.
 4. Preserve local-only originals under `docs/00-original/`; do not force-add them.
 5. Run the relevant checks, record exact results, and update traceability and documentation.
 6. Open a pull request; `main` requires a pull request, the `validate` check, and resolved conversations. There is currently no minimum approval count.

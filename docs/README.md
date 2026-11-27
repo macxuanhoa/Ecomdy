@@ -2,11 +2,14 @@
 
 ## Start here
 
-1. [Project context and current state](project-context.md)
-2. [Official requirements register](01-requirements.md)
-3. [Environment and capability audit](setup/00_ENVIRONMENT_AND_CAPABILITY_AUDIT.md)
-4. [Requirements traceability](requirements-traceability.md)
-5. [Implementation roadmap](05-roadmap.md)
+1. [Phase 0 acceptance and controlled continuation](setup/PHASE_0_ACCEPTANCE.md)
+2. [Capability coverage matrix](setup/CAPABILITY_COVERAGE.md)
+3. [Jira-first setup plan](setup/JIRA_SETUP_PLAN.md)
+4. [Project context and current state](project-context.md)
+5. [Official requirements register](01-requirements.md)
+6. [Environment and capability audit](setup/00_ENVIRONMENT_AND_CAPABILITY_AUDIT.md)
+7. [Requirements traceability](requirements-traceability.md)
+8. [Implementation roadmap](05-roadmap.md)
 
 ## Product specification
 
@@ -56,4 +59,4 @@
 
 ## Current-state reminder
 
-The repository is currently a documentation and diagram scaffold with a local validator. Product runtime, deployment, interviews, feedback, and benchmarks are not evidenced. Target architecture is not as-built architecture.
+The repository is currently a documentation and diagram scaffold with a local validator. Product runtime, deployment, interviews, feedback, and benchmarks are not evidenced. Target architecture is not as-built architecture. The [Phase 0 verdict](setup/PHASE_0_ACCEPTANCE.md) is conditional acceptance of the setup baseline only; Jira, complete Mermaid rendering, ownership and harness enforcement remain open.

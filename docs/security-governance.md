@@ -37,4 +37,4 @@ Log request/run identifiers, actor, source IDs, model/task metadata, status, and
 
 ## Current repository controls
 
-The public repository has GitHub secret scanning, push protection, vulnerability alerts, Dependabot security updates, and private vulnerability reporting enabled; `main` protection requires PRs and CI. These GitHub settings reduce repository risk but do not secure a future product runtime. See [environment audit](setup/00_ENVIRONMENT_AND_CAPABILITY_AUDIT.md).
+The setup record reports GitHub secret scanning, push protection, vulnerability alerts, Dependabot security updates, private vulnerability reporting, and `main` protection requiring PRs and CI. Phase 0 could not independently re-read the current protection/security settings because API revalidation returned HTTP 401; treat them as **implemented but unverified** until owner-authenticated read-back is recorded. These repository controls do not secure a future product runtime. See [Phase 0 acceptance](setup/PHASE_0_ACCEPTANCE.md) and [environment audit](setup/00_ENVIRONMENT_AND_CAPABILITY_AUDIT.md).

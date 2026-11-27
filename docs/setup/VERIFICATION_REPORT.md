@@ -65,3 +65,27 @@ No application tests or deployment checks are reported as passing. Markdown vali
 | Ecomdy application / deployment tests | No Ecomdy application implementation exists | NOT APPLICABLE — product runtime, database, API, UI, AI execution, scheduler, Telegram integration, and deployment remain unimplemented |
 
 The C4-named additions are C4-style Mermaid flowchart views, not native Mermaid C4 DSL diagrams. The diagram gallery records that distinction and the limitation of local render tooling.
+
+## Phase 0 acceptance package — 2026-11-27
+
+**Baseline:** `4bddc925c941979da60b1250ec4d139381776e22`<br>
+**Worktree:** `docs/phase-0-acceptance`, uncommitted; no push, merge, installation or paid-service action.
+
+| Check | Command / method | Result |
+|---|---|---|
+| Product documentation validator | `python scripts/validate.py` | PASS — `Validation: PASS`, exit code 0 |
+| Harness documentation validator | `python .harness/scripts/validate.py` | PASS — `Validation: PASS`, exit code 0 |
+| Embedded harness tests | `python -m unittest discover -s .harness/tests -v` | PASS — 3/3 tests, exit code 0 |
+| Python compile | `python -m compileall -q scripts .harness` | PASS — exit code 0 |
+| JSON/YAML configuration | `json.loads` / `yaml.safe_load` on project profile, harness config/task template, workflow, Dependabot and issue template | PASS — exit code 0 |
+| Diff whitespace | `git diff --check` | PASS — exit code 0 |
+| Capability matrix integrity | Deterministic parse of matrix rows | PASS — 70 unique capability IDs; M01–M20 complete and ordered |
+| Acceptance report structure | Deterministic heading parse | PASS — sections 1–13 present in order |
+| Credential-pattern scan | Common private-key, GitHub token, AWS key and JWT patterns over 19 changed/new files | PASS — 0 matches; not a full secret scanner |
+| Changed-file review | `git diff`, `git status --short` | PASS — 16 tracked files modified and 3 acceptance files added; no original input staged |
+| Jira availability | Connector/environment/CLI/authorization inventory | BLOCKED — no Jira data created or fabricated |
+| Protection/security revalidation | GitHub API recheck | BLOCKED — HTTP 401; current settings remain implemented but unverified |
+| Mermaid parser/render | Tool availability and prior audit evidence | NOT RUN — no approved/pinned Mermaid CLI; 30 Mermaid-only diagrams remain locally unrendered |
+| Product runtime tests | Repository inventory | NOT APPLICABLE — no Ecomdy application implementation exists |
+
+The successful checks verify the acceptance package and the existing documentation/harness scope only. They do not verify Mermaid grammar, diagram semantics, live Jira, current GitHub protection settings or product behavior.
