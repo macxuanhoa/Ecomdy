@@ -1,0 +1,141 @@
+{
+  "schema_version": "1.0",
+  "evidence_id": "WAVE1-2026-11-28",
+  "observed_at": "2026-11-28T15:36:53Z",
+  "host": "Qoder on Windows x64",
+  "authorization": "Controlled Wave 1 evaluation/installation from the owner directive; no paid services or write/merge/deploy credentials were added.",
+  "records": [
+    {
+      "capability_id": "TOOL-001",
+      "name": "OpenSpec",
+      "pinned_version": "2.2.0",
+      "status": "BLOCKED",
+      "reason": "npm metadata requires Node >=22.20.0; observed Node is v22.18.0. Installation was not attempted.",
+      "checks": [
+        {"argv": ["node", "--version"], "exit_code": 0, "observed": "v22.18.0"},
+        {"argv": ["npm", "view", "@fission-ai/openspec@2.2.0", "engines", "version", "dist.integrity", "license", "--json"], "exit_code": 0, "observed": "Node >=22.20.0; version 2.2.0; MIT; integrity sha512-tSLMp9NhjF8zqNI53lZcaeVOFxE25pmMA7WZDsHZbK1Rds4R6nXeCm3mSxvBN1DdiDbKPBHuEkoJrBzF3PVacA=="}
+      ],
+      "next_action": "Use a reviewed Node >=22.20 runtime, then initialize in a disposable copy and run a bounded propose/verify smoke test."
+    },
+    {
+      "capability_id": "TOOL-002",
+      "name": "Superpowers",
+      "pinned_version": "7.0.2",
+      "status": "DEFERRED",
+      "reason": "Qoder hook/helper compatibility is not established and autonomous defaults conflict with the approved bounded runtime. No installation was attempted.",
+      "checks": []
+    },
+    {
+      "capability_id": "INTERNAL-SKILL-TASK-CONTRACT",
+      "name": "task-contract",
+      "status": "INSTALLED",
+      "scope": "project",
+      "source": ".harness/skills/task-contract/SKILL.md",
+      "installed_copy": ".qoder/skills/task-contract/SKILL.md",
+      "sha256": "9ee9dfbaf5572367ccb59550ff73a80eefddb545e1e694b7c37672532b630961",
+      "commands": [
+        {"argv": ["npx", "--yes", "skills@1.5.22", "add", "./.harness/skills/task-contract", "-a", "qoder", "-y", "--copy"], "exit_code": 0},
+        {"argv": ["npx", "--yes", "skills@1.5.22", "list", "-a", "qoder", "--json"], "exit_code": 0, "observed": "Listed with scope project and agent Qoder"}
+      ],
+      "limitations": "Installed and discoverable by the pinned Skills CLI; not claimed available in the already-running session until the host catalog reloads."
+    },
+    {
+      "capability_id": "INTERNAL-SKILL-SECURITY-REVIEW",
+      "name": "security-review",
+      "status": "INSTALLED",
+      "scope": "project",
+      "source": ".harness/skills/security-review/SKILL.md",
+      "installed_copy": ".qoder/skills/security-review/SKILL.md",
+      "sha256": "df074f27cf45715450d1b683516c992c0167ff8114a34b2520d35ace7cd1b86e",
+      "commands": [
+        {"argv": ["npx", "--yes", "skills@1.5.22", "add", "./.harness/skills/security-review", "-a", "qoder", "-y", "--copy"], "exit_code": 0}
+      ],
+      "limitations": "Project installation is not cross-host inheritance or current-session availability."
+    },
+    {
+      "capability_id": "INTERNAL-SKILL-TEST-FIRST",
+      "name": "test-first",
+      "status": "INSTALLED",
+      "scope": "project",
+      "source": ".harness/skills/test-first/SKILL.md",
+      "installed_copy": ".qoder/skills/test-first/SKILL.md",
+      "sha256": "7e096660b87c0f28ed601f82a92f7f164d33bbcb8a443f3fb652b46bd60988fd",
+      "commands": [
+        {"argv": ["npx", "--yes", "skills@1.5.22", "add", "./.harness/skills/test-first", "-a", "qoder", "-y", "--copy"], "exit_code": 0}
+      ],
+      "limitations": "Project installation is not cross-host inheritance or current-session availability."
+    },
+    {
+      "capability_id": "INTERNAL-SKILL-HANDOFF",
+      "name": "handoff",
+      "status": "INSTALLED",
+      "scope": "project",
+      "source": ".harness/skills/handoff/SKILL.md",
+      "installed_copy": ".qoder/skills/handoff/SKILL.md",
+      "sha256": "500a3f0472886692e4442bbdf2400da79b1d369fcf848969402873806e933788",
+      "commands": [
+        {"argv": ["npx", "--yes", "skills@1.5.22", "add", "./.harness/skills/handoff", "-a", "qoder", "-y", "--copy"], "exit_code": 0}
+      ],
+      "limitations": "Project installation is not cross-host inheritance or current-session availability."
+    },
+    {
+      "capability_id": "TOOL-016",
+      "name": "Mermaid CLI",
+      "pinned_version": "12.2.0",
+      "status": "SMOKE TESTED",
+      "disposition": "INSTALLED_USER_SCOPE",
+      "installed_path": "C:/Users/Admin/AppData/Roaming/npm/mmdc.cmd",
+      "commands": [
+        {"argv": ["npm", "install", "-g", "@mermaid-js/mermaid-cli@12.2.0", "--ignore-scripts", "--no-audit", "--no-fund"], "environment": {"PUPPETEER_SKIP_DOWNLOAD": "true"}, "exit_code": 0},
+        {"argv": ["mmdc", "--version"], "exit_code": 0, "observed": "12.2.0"},
+        {"argv": ["mmdc", "-i", "router.mmd", "-o", "router.svg", "-p", "puppeteer.json", "-q"], "cwd": "C:/Users/Admin/AppData/Local/Temp/devharness-wave1-yj1dj26h", "exit_code": 0}
+      ],
+      "evidence": [
+        {"artifact": "C:/Users/Admin/AppData/Local/Temp/devharness-wave1-yj1dj26h/router.svg", "sha256": "370996b3b16f792c1ef11d21ccdf3544086b879e16c1b067cf99e814e4370ccb", "checks": ["SVG exists", "Contains Input, Approved, Verify and Stop nodes"]},
+        {"artifact": "C:/Users/Admin/AppData/Local/Temp/devharness-wave1-yj1dj26h/router.png", "checks": ["PNG rendered and visually inspected"]}
+      ],
+      "limitations": "Uses the existing Playwright Chromium executable; no browser was downloaded. One fixture was rendered, not all 56 repository Mermaid sources. No integration claim."
+    },
+    {
+      "capability_id": "TOOL-017",
+      "name": "Gitleaks",
+      "pinned_version": "8.30.1",
+      "status": "SMOKE TESTED",
+      "disposition": "INSTALLED_USER_SCOPE",
+      "installed_path": "C:/Users/Admin/AppData/Local/Microsoft/WinGet/Packages/Gitleaks.Gitleaks_Microsoft.Winget.Source_8wekyb3d8bbwe/gitleaks.exe",
+      "commands": [
+        {"argv": ["winget", "install", "--id", "Gitleaks.Gitleaks", "--exact", "--version", "8.30.1", "--accept-package-agreements", "--accept-source-agreements", "--disable-interactivity"], "exit_code": 0, "observed": "Installer hash verified; extraction and install succeeded"},
+        {"argv": ["gitleaks", "version"], "exit_code": 0, "observed": "8.30.1"},
+        {"argv": ["gitleaks", "detect", "--no-git", "--source", "source", "--report-format", "json", "--report-path", "report.json", "--redact", "--no-banner"], "cwd": "C:/Users/Admin/AppData/Local/Temp/devharness-gitleaks-4vu_d2s1", "exit_code": 1, "expected_exit_code": 1, "observed": "One github-pat finding; secret REDACTED"}
+      ],
+      "evidence": [
+        {"artifact": "C:/Users/Admin/AppData/Local/Temp/devharness-gitleaks-4vu_d2s1/report.json", "sha256": "d6e5831872795755371c6a09a09415eed30ea5fc4b91e0b924acf255b53e4c52", "checks": ["finding_count=1", "RuleID=github-pat", "Secret=REDACTED"]}
+      ],
+      "limitations": "The fixture contained a deterministic fake token only. No real secret or raw report content is committed. Full repository/history scanning was not run."
+    },
+    {
+      "capability_id": "TOOL-018",
+      "name": "Graphviz",
+      "pinned_version": "16.1.2",
+      "status": "SMOKE TESTED",
+      "disposition": "INSTALLED_USER_SCOPE",
+      "installed_path": "C:/Program Files/Graphviz/bin/dot.exe",
+      "commands": [
+        {"argv": ["winget", "install", "--id", "Graphviz.Graphviz", "--exact", "--version", "16.1.2", "--accept-package-agreements", "--accept-source-agreements", "--disable-interactivity"], "exit_code": 0, "observed": "Installer hash verified; install succeeded"},
+        {"argv": ["dot", "-V"], "exit_code": 0, "observed": "dot - graphviz version 16.1.2 (20261121.0218)"},
+        {"argv": ["dot", "-Tsvg", "router.dot", "-o", "router-dot.svg"], "cwd": "C:/Users/Admin/AppData/Local/Temp/devharness-wave1-yj1dj26h", "exit_code": 0}
+      ],
+      "evidence": [
+        {"artifact": "C:/Users/Admin/AppData/Local/Temp/devharness-wave1-yj1dj26h/router-dot.svg", "sha256": "5a79dedac556fb264dce36af4643c58b25af3eddbd8de2a647dafdbc23f84709", "checks": ["SVG exists", "Contains Input, Approved, Verify and Stop nodes"]},
+        {"artifact": "C:/Users/Admin/AppData/Local/Temp/devharness-wave1-yj1dj26h/router-dot.png", "checks": ["PNG rendered and visually inspected"]}
+      ],
+      "limitations": "One isolated DOT fixture was rendered. Existing repository artifacts were not regenerated and CI inheritance is not established."
+    }
+  ],
+  "limitations": [
+    "Installed does not mean integrated or verified in a complete workflow.",
+    "User-scope CLI installations are not automatically inherited by clones, CI or other hosts.",
+    "Temporary smoke artifacts may be removed by the operating system; hashes and exact fixture commands are retained here.",
+    "No benchmark, paid service, remote script execution, write credential, merge or deployment was performed."
+  ]
+}

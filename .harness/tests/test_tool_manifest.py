@@ -28,13 +28,21 @@ class ToolManifestTests(unittest.TestCase):
         disallowed = {"APPROVED", "CONFIGURED", "INTEGRATED"}
         self.assertTrue(all(tool["status"] not in disallowed for tool in self.manifest["tools"]))
 
-    def test_only_diagram_design_is_installed_and_smoke_tested(self):
+    def test_only_reviewed_wave1_tools_are_installed_and_smoke_tested(self):
         installed = [tool["id"] for tool in self.manifest["tools"] if tool["disposition"] == "INSTALLED_USER_SCOPE"]
         smoke_tested = [tool["id"] for tool in self.manifest["tools"] if tool["status"] == "SMOKE TESTED"]
-        self.assertEqual(installed, ["TOOL-013"])
-        self.assertEqual(smoke_tested, ["TOOL-013"])
-        self.assertTrue(self.tool("TOOL-013")["verification"]["evidence"])
+        self.assertEqual(installed, ["TOOL-013", "TOOL-016", "TOOL-017", "TOOL-018"])
+        self.assertEqual(smoke_tested, ["TOOL-013", "TOOL-016", "TOOL-017", "TOOL-018"])
+        for tool_id in smoke_tested:
+            self.assertTrue(self.tool(tool_id)["verification"]["evidence"])
         self.assertFalse(self.tool("TOOL-013")["compatible_skills"] == [])
+
+    def test_openspec_is_blocked_by_node_compatibility(self):
+        tool = self.tool("TOOL-001")
+        self.assertEqual(tool["status"], "BLOCKED")
+        self.assertEqual(tool["disposition"], "DEFERRED")
+        self.assertEqual(tool["verification"]["status"], "BLOCKED")
+        self.assertTrue(tool["verification"]["evidence"])
 
     def test_structurizr_lite_remains_rejected(self):
         tool = self.tool("TOOL-020")

@@ -2,7 +2,7 @@
 
 **As of:** 2026-11-28 (Asia/Saigon)
 **Authority:** [Tool manifest](../registry/installation/tool-manifest.json) and [manifest schema](../schemas/tool-manifest.schema.json)
-**Status:** Advisory research. Proposed commands are not available commands and have not been executed.
+**Status:** Wave 1 controlled activation is recorded separately from the advisory manifest. Proposed commands in the manifest remain `NOT_RUN`; only commands in [activation evidence](../registry/installation/activation-evidence.json) have observed execution status.
 
 ## 1. Current boundary
 
@@ -15,12 +15,12 @@ The manifest is versioned research data. It does not install packages, grant cre
 | State | Required evidence | Current candidate example |
 |---|---|---|
 | `AVAILABLE IN REGISTRY` | Stable ID and research/card record | All `TOOL-*` records exist in the manifest |
-| `RESEARCHED` | Canonical source, version basis and reviewed limitations | 18 research-only candidates |
-| `APPROVED` | Named owner decision with scope, permissions and rollback | None |
-| `INSTALLED` | Exact command, exit code and installed artifact/version | Diagram Design is user-scope installed |
-| `CONFIGURED` | Project configuration and permission review | None for external candidates |
-| `AVAILABLE IN SESSION` | Host exposes the skill/tool to the active session | Diagram Design was exposed in the earlier session |
-| `SMOKE TESTED` | Bounded output and observed evidence | Diagram Design has earlier smoke-test evidence |
+| `RESEARCHED` | Canonical source, version basis and reviewed limitations | Remaining candidates retain research records |
+| `APPROVED` | Named owner decision with scope, permissions and rollback | Wave 1 controlled evaluation/installation authorized; no integration approval |
+| `INSTALLED` | Exact command, exit code and installed artifact/version | Four internal Qoder skills; Mermaid CLI, Gitleaks and Graphviz user scope |
+| `CONFIGURED` | Project configuration and permission review | Four internal skills copied into project scope; external runtime configuration remains limited |
+| `AVAILABLE IN SESSION` | Host exposes the skill/tool to the active session | Diagram Design was exposed in the earlier session; newly installed skills require catalog reload |
+| `SMOKE TESTED` | Bounded output and observed evidence | Diagram Design, Mermaid CLI, Gitleaks and Graphviz |
 | `INTEGRATED` | Adopted workflow passes acceptance and is reproducible | None |
 | `DEFERRED` | Reason and reconsideration condition | Competing or higher-risk candidates |
 | `REJECTED` | Recorded decision and rationale | Structurizr Lite |
@@ -36,18 +36,19 @@ These observations apply to the audited shell on 2026-11-28, not necessarily to 
 |---|---|---|
 | Python | 3.11.9 | Meets the current harness baseline and Serena's Python floor |
 | Node.js | 22.18.0 | Meets Mermaid CLI's recorded floor; below OpenSpec 2.2.0 and Promptfoo 0.126.0 floors |
-| npm | 10.9.3 | Available, but installation was not attempted |
-| Python Playwright | 1.60.0 | Does not prove Node Playwright MCP or coding-agent CLI installation |
+| npm | 10.9.3 | Available; pinned Mermaid CLI installed with lifecycle scripts disabled |
+| Python Playwright | 1.60.0 | Existing Chromium used by Mermaid smoke test; does not prove Playwright MCP or coding-agent CLI installation |
 | Pillow | 12.1.1 | Local image utility; not an agent capability by itself |
-| Missing on PATH | `dot`, `mmdc`, `gitleaks`, `structurizr`, `drawio`, `gh` | Rendering/CLI checks are blocked until an approved tool is installed |
+| Installed user scope | Mermaid CLI 12.2.0, Gitleaks 8.30.1, Graphviz 16.1.2 | Exact paths and smoke evidence are recorded in activation evidence |
+| Missing on PATH | `structurizr`, `drawio`, `gh`; OpenSpec not installed | Remaining candidates are not activated; OpenSpec is blocked by Node compatibility |
 
-Git is present in the current repository. Graphviz absence does not invalidate committed DOT/SVG/PNG assets; it blocks local regeneration.
+Git is present in the current repository. Graphviz is installed user scope and can regenerate approved DOT assets locally, but it is not inherited by clones or CI. Mermaid uses the existing Playwright Chromium and did not download a browser.
 
 ## 3. Candidate registry
 
 | ID | Candidate | Pinned/researched version | License | Disposition | Decision |
 |---|---|---:|---|---|---|
-| TOOL-001 | OpenSpec | 2.2.0 | MIT | Proposed | Sole proposed default spec workflow; not approved |
+| TOOL-001 | OpenSpec | 2.2.0 | MIT | Blocked / deferred | Node 22.18.0 is below required >=22.20.0; not installed |
 | TOOL-002 | Superpowers | 7.0.2 | MIT | Deferred | Host hooks/autonomy conflict with advisory controls |
 | TOOL-003 | GitHub Spec Kit | 1.4.5 | MIT | Deferred | Governance alternative; avoid competing defaults |
 | TOOL-004 | BMAD Method | 6.12.4 | MIT with trademark terms | Deferred | Broad ceremony and executable helper risk |
@@ -62,11 +63,13 @@ Git is present in the current repository. Graphviz absence does not invalidate c
 | TOOL-013 | Diagram Design | 2.6.131 | See manifest | Installed user scope | Session-visible and earlier smoke-tested; not clone/CI inherited |
 | TOOL-014 | Draw.io core/Desktop | 32.7.7 | Apache-2.0 | Deferred | Local editor option; no installation performed |
 | TOOL-015 | Draw.io MCP | 1.13.1 / 1.11.0 | Apache-2.0 | Deferred | Hosted private-diagram use is rejected in manifest notes |
-| TOOL-016 | Mermaid CLI | 12.2.0 | MIT | Deferred | Local parser/render option; no renderer installed |
-| TOOL-017 | Gitleaks | 8.30.1 | MIT | Deferred | Secret scan must be allowlisted and privacy-reviewed |
-| TOOL-018 | Graphviz | 16.1.2 | EPL-1.0 | Deferred | Required only for approved DOT regeneration |
+| TOOL-016 | Mermaid CLI | 12.2.0 | MIT | Installed user scope | Smoke-tested on one isolated fixture; no workflow integration |
+| TOOL-017 | Gitleaks | 8.30.1 | MIT | Installed user scope | Smoke-tested with one deterministic fake-secret fixture and redaction |
+| TOOL-018 | Graphviz | 16.1.2 | EPL-1.0 | Installed user scope | Smoke-tested on one isolated DOT fixture; existing diagrams preserved |
 | TOOL-019 | Structurizr | 2026.10.26 / 6.2.4 | Apache-2.0 | Deferred | Architecture option; no paid server authorized |
 | TOOL-020 | Structurizr Lite | 2025.11.08 | Apache-2.0 | Rejected | Duplicate local architecture tooling without a demonstrated need |
+
+Four internal skills were installed into project scope with `skills@1.5.22`: `task-contract`, `security-review`, `test-first` and `handoff`. Their installed copies match the canonical `.harness/skills/` sources by SHA-256. The running session catalog has not been reloaded, so they remain `INSTALLED`, not `AVAILABLE IN SESSION`.
 
 The manifest holds the detailed capabilities, platforms, agent compatibility, dependencies, permissions, telemetry/privacy notes, conflicts, resource implications, reproducibility controls, commands and canonical sources for every row.
 
@@ -95,7 +98,7 @@ Before running any proposed command:
 - prepare rollback/uninstall/recovery steps;
 - reject commands that wrap unreviewed remote scripts or require secrets in tracked files.
 
-The exact proposed argv is stored in the manifest. `NOT_RUN` is intentional. A later execution must be recorded separately in an execution trace with command, cwd, timestamps, exit code, bounded output and evidence path. Do not edit `NOT_RUN` to `PASS` without running and observing the command.
+The exact proposed argv is stored in the manifest. `NOT_RUN` remains intentional for those proposals. Wave 1 commands that were actually executed are recorded separately in [activation evidence](../registry/installation/activation-evidence.json) with argv, exit code and observations. Do not edit `NOT_RUN` to `PASS` without running and observing the command.
 
 ## 6. Activation gate
 
@@ -140,6 +143,20 @@ Record:
 
 The existing validator checks this manifest's structure and research semantics. It does not execute proposed commands or prove candidate effectiveness.
 
+### Wave 1 observed evidence
+
+The [activation evidence record](../registry/installation/activation-evidence.json) captures the controlled Wave 1 run on 2026-11-28:
+
+- OpenSpec 2.2.0 was not installed because observed Node 22.18.0 is below its `>=22.20.0` requirement.
+- Superpowers 7.0.2 remains deferred because host hook compatibility and autonomous defaults are not established.
+- Four internal skills were installed at project scope and verified against canonical source hashes.
+- Mermaid CLI 12.2.0 rendered an isolated router fixture to SVG and PNG using existing Playwright Chromium.
+- Gitleaks 8.30.1 detected one deterministic fake `github-pat` fixture, returned expected exit code 1 and redacted the secret.
+- Graphviz 16.1.2 rendered an isolated DOT fixture to SVG and PNG.
+- Temporary smoke artifacts may disappear; exact commands and retained hashes are the durable evidence.
+
+No candidate is claimed `INTEGRATED`, no full repository/history scan was run, and no existing repository diagram was regenerated.
+
 ## 9. Update, uninstall and recovery
 
 - **Update:** review release notes and permission changes, test a pinned update in a disposable copy, then update the manifest deliberately.
@@ -154,4 +171,4 @@ python .harness/scripts/validate_tool_manifest.py
 python -m unittest discover -s .harness/tests -p "test_tool_manifest.py" -v
 ```
 
-These are implemented and tested. All install/activate/verify commands inside the manifest remain proposals unless separate execution evidence is recorded.
+These checks are implemented and tested. All install/activate/verify commands inside the manifest remain proposals; separate activation evidence records only the bounded Wave 1 commands actually observed.

@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "manifest_version": "0.1.0",
+  "manifest_version": "0.2.0",
   "status": "ADVISORY_RESEARCH",
   "as_of": "2026-11-28",
   "baseline_requirements": [
@@ -10,20 +10,20 @@
     {"name": "Graphviz", "constraint": "Pinned approved release required only for DOT rendering", "required": false, "rationale": "Existing static DOT assets remain valid without a local renderer."}
   ],
   "environment_observation": {
-    "observed_at": "2026-11-28T00:00:00+07:00",
+    "observed_at": "2026-11-28T15:36:53Z",
     "python": "3.11.9",
     "node": "22.18.0",
     "npm": "10.9.3",
-    "missing_commands": ["dot", "mmdc", "gitleaks", "structurizr", "drawio", "gh"],
+    "missing_commands": ["openspec", "structurizr", "drawio", "gh"],
     "python_packages": {"playwright": "1.60.0", "Pillow": "12.1.1"},
-    "limitations": ["Shell PATH observations differ from the Qoder host process version and apply only to this shell.", "Python Playwright 1.60.0 does not establish installation of the Node Playwright MCP/CLI alpha line.", "User-scope Diagram Design is not inherited by clones or CI."]
+    "limitations": ["Mermaid CLI, Gitleaks and Graphviz are installed user-scope but require refreshed PATH or explicit paths in this shell.", "Python Playwright 1.60.0 supplies the Chromium used for the Mermaid fixture; it does not establish Node Playwright MCP/CLI installation.", "User-scope CLI and Diagram Design installations are not inherited by clones, CI or other hosts.", "OpenSpec 2.2.0 remains blocked by Node >=22.20 compatibility."]
   },
   "selection_policy": {
     "default_spec_workflow": "OpenSpec 2.2.0 is the sole proposed default spec-workflow candidate, pending explicit owner approval and a project-scoped smoke test.",
     "multi_framework_rule": "Do not activate OpenSpec, Spec Kit, BMAD or Superpowers as competing default spec/workflow systems at the same time.",
     "network_default": "Network access is off by default for harness execution; installation and hosted MCP access require separate approval.",
     "paid_services": "No paid model, hosted evaluation, Structurizr server, JetBrains backend or production service is authorized.",
-    "installation_authorization": "Research is not approval. No proposed command in this manifest was executed."
+    "installation_authorization": "The owner approved controlled Wave 1 evaluation/installation. Proposed command records remain NOT_RUN; actual invoked commands and results are recorded in activation-evidence.json."
   },
   "tools": [
     {
@@ -35,10 +35,10 @@
       "version_basis": "Release observed 2026-11-24; npm package and repository documentation.",
       "license": {"name": "MIT", "spdx": "MIT", "url": "https://github.com/Fission-AI/OpenSpec/blob/v2.2.0/LICENSE", "notes": "Preserve upstream license notices."},
       "maintenance": "Active through 2026-11-28.",
-      "status": "RESEARCHED",
-      "disposition": "PROPOSED",
+      "status": "BLOCKED",
+      "disposition": "DEFERRED",
       "required": false,
-      "recommendation": "Sole proposed default spec-workflow candidate; approve only after project-scoped initialization and smoke test.",
+      "recommendation": "Sole proposed default spec-workflow candidate; blocked until a reviewed Node >=22.20 runtime is available, then requires project-scoped initialization and smoke test.",
       "capabilities": ["Explore", "Propose", "Apply", "Verify", "Archive", "Markdown specs/design/tasks", "Brownfield changes"],
       "platforms": ["Windows x64/ARM", "macOS", "Linux"],
       "agent_compatibility": {"qoder": "Explicit support through generated .qoder/skills links; verify in the active host.", "claude_code": "Explicit support.", "codex": "Explicit support.", "generic_cli": "Agent-neutral CLI with host-provided model access."},
@@ -61,9 +61,9 @@
         "uninstall": ["Remove the pinned package and generated project integration", "Preserve approved specs"],
         "recovery": ["Restore generated config/skills from Git", "Keep specifications separate from tool installation"]
       },
-      "verification": {"status": "NOT_RUN", "proposed_commands": [{"argv": ["openspec", "--version"], "cwd": ".", "execution_status": "NOT_RUN"}], "evidence": []},
+      "verification": {"status": "BLOCKED", "proposed_commands": [{"argv": ["openspec", "--version"], "cwd": ".", "execution_status": "NOT_RUN"}], "evidence": [".harness/registry/installation/activation-evidence.json#TOOL-001"]},
       "sources": ["https://github.com/Fission-AI/OpenSpec", "https://openspec.dev/docs", "https://openspec.dev/docs/supported-tools", "https://www.npmjs.com/package/@fission-ai/openspec/v/2.2.0"],
-      "notes": "Recommended candidate is not approved, installed, configured or integrated."
+      "notes": "Owner-approved for controlled evaluation, but installation is blocked by Node v22.18.0 versus the pinned package requirement >=22.20.0. Not installed, configured or integrated."
     },
     {
       "id": "TOOL-002",
@@ -620,10 +620,10 @@
       "version_basis": "Release 2026-11-02; Mermaid core 12.4.0 is a separate stream.",
       "license": {"name": "MIT", "spdx": "MIT", "url": "https://github.com/mermaid-js/mermaid-cli/blob/main/LICENSE", "notes": "Preserve notices."},
       "maintenance": "Active through 2026-11-02.",
-      "status": "RESEARCHED",
-      "disposition": "DEFERRED",
+      "status": "SMOKE TESTED",
+      "disposition": "INSTALLED_USER_SCOPE",
       "required": false,
-      "recommendation": "Pinned local Mermaid renderer candidate; defer until runtime/dependency approval and full 56-source render plan.",
+      "recommendation": "Pinned local Mermaid renderer installed and fixture-smoke-tested; run the full 56-source render plan before any coverage claim.",
       "capabilities": ["Render SVG/PNG/PDF", "Basic Markdown embedding"],
       "platforms": ["Windows", "macOS", "Linux", "Docker/Podman"],
       "agent_compatibility": {"qoder": "Ordinary shell CLI.", "claude_code": "Ordinary shell CLI.", "codex": "Ordinary shell CLI.", "generic_cli": "mmdc/Node API."},
@@ -646,9 +646,9 @@
         "uninstall": ["Remove package/container and generated artifacts deliberately"],
         "recovery": ["Keep existing SVG/PNG assets and source files"]
       },
-      "verification": {"status": "NOT_RUN", "proposed_commands": [{"argv": ["mmdc", "--version"], "cwd": ".", "execution_status": "NOT_RUN"}], "evidence": []},
+      "verification": {"status": "VERIFIED", "proposed_commands": [{"argv": ["mmdc", "--version"], "cwd": ".", "execution_status": "NOT_RUN"}], "evidence": [".harness/registry/installation/activation-evidence.json#TOOL-016"]},
       "sources": ["https://github.com/mermaid-js/mermaid-cli", "https://mermaid.js.org/config/usage.html"],
-      "notes": "Deferred; mmdc is absent and no Mermaid source was rendered locally."
+      "notes": "Installed user-scope at 12.2.0 with install scripts disabled and no browser download. One isolated SVG/PNG fixture rendered with existing Playwright Chromium and visually inspected. Not integrated; 56-source coverage not run."
     },
     {
       "id": "TOOL-017",
@@ -659,10 +659,10 @@
       "version_basis": "Release 2026-03-21; latest observed commit 2026-10-23.",
       "license": {"name": "MIT", "spdx": "MIT", "url": "https://github.com/gitleaks/gitleaks/blob/v8.30.1/LICENSE", "notes": "Preserve notices."},
       "maintenance": "Upstream declares feature-complete; future releases are security patches only.",
-      "status": "RESEARCHED",
-      "disposition": "DEFERRED",
+      "status": "SMOKE TESTED",
+      "disposition": "INSTALLED_USER_SCOPE",
       "required": false,
-      "recommendation": "Local secret-scanning complement; defer until pinned binary/config and report handling are approved.",
+      "recommendation": "Local secret-scanning complement installed and fake-fixture smoke-tested; use only approved repository scopes and redacted reports.",
       "capabilities": ["Scan Git history/directories/files/stdin", "JSON/CSV/JUnit/SARIF reports"],
       "platforms": ["Windows", "macOS", "Linux", "Docker", "Go"],
       "agent_compatibility": {"qoder": "Ordinary shell CLI.", "claude_code": "Ordinary shell CLI.", "codex": "Ordinary shell CLI.", "generic_cli": "Native binary/container."},
@@ -685,9 +685,9 @@
         "uninstall": ["Remove binary/container and reports deliberately"],
         "recovery": ["Use GitHub secret scanning and manual review"]
       },
-      "verification": {"status": "NOT_RUN", "proposed_commands": [{"argv": ["gitleaks", "version"], "cwd": ".", "execution_status": "NOT_RUN"}], "evidence": []},
+      "verification": {"status": "VERIFIED", "proposed_commands": [{"argv": ["gitleaks", "version"], "cwd": ".", "execution_status": "NOT_RUN"}], "evidence": [".harness/registry/installation/activation-evidence.json#TOOL-017"]},
       "sources": ["https://github.com/gitleaks/gitleaks"],
-      "notes": "Deferred; gitleaks is absent."
+      "notes": "Installed user-scope at 8.30.1 through winget with installer hash verification. A deterministic fake github-pat fixture produced one redacted finding and exit code 1. No real secret or full-history scan."
     },
     {
       "id": "TOOL-018",
@@ -698,10 +698,10 @@
       "version_basis": "Official release 2026-11-21.",
       "license": {"name": "EPL-2.0", "spdx": "EPL-2.0", "url": "https://graphviz.org/license/", "notes": "Review EPL obligations if redistributing."},
       "maintenance": "Active release cadence.",
-      "status": "RESEARCHED",
-      "disposition": "DEFERRED",
+      "status": "SMOKE TESTED",
+      "disposition": "INSTALLED_USER_SCOPE",
       "required": false,
-      "recommendation": "Direct match for existing DOT renderer; defer until pinned Windows/CI package and resource limits are approved.",
+      "recommendation": "Pinned local DOT renderer installed and fixture-smoke-tested; preserve existing artifacts and regenerate only reviewed sources.",
       "capabilities": ["DOT layout", "SVG/PNG/PDF/PostScript output"],
       "platforms": ["Windows EXE/ZIP", "Linux binaries/distro packages", "macOS third-party packaging", "Source build"],
       "agent_compatibility": {"qoder": "Direct CLI.", "claude_code": "Direct CLI.", "codex": "Direct CLI.", "generic_cli": "dot executable."},
@@ -724,9 +724,9 @@
         "uninstall": ["Remove package", "Preserve source and valid artifacts"],
         "recovery": ["Keep existing static assets"]
       },
-      "verification": {"status": "NOT_RUN", "proposed_commands": [{"argv": ["dot", "-V"], "cwd": ".", "execution_status": "NOT_RUN"}], "evidence": []},
+      "verification": {"status": "VERIFIED", "proposed_commands": [{"argv": ["dot", "-V"], "cwd": ".", "execution_status": "NOT_RUN"}], "evidence": [".harness/registry/installation/activation-evidence.json#TOOL-018"]},
       "sources": ["https://gitlab.com/graphviz/graphviz", "https://graphviz.org/download/", "https://graphviz.org/license/"],
-      "notes": "Deferred; dot is absent."
+      "notes": "Installed user-scope at 16.1.2 through winget with installer hash verification. One isolated DOT SVG/PNG fixture rendered and visually inspected. Existing repository artifacts were not regenerated; CI inheritance is not established."
     },
     {
       "id": "TOOL-019",

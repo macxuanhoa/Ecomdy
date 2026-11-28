@@ -1,7 +1,7 @@
 # DevHarness Engineering Technique Library
 
 **As of:** 2026-11-28 (Asia/Saigon)
-**Status:** Initial advisory registry and deterministic routing design. No external candidate is approved, installed or integrated by this document.
+**Status:** Canonical catalogue reconciliation and controlled Wave 1 activation are implemented. The deterministic runtime router, compiler, executor and checkpoint resume are not yet implemented.
 
 ## Start here
 
@@ -23,7 +23,7 @@
 | Routing | 9 profiles, 14 routes and 24 advisory recipes |
 | Execution contract | Trace/checkpoint schema, examples, validator and tests |
 | Ecomdy mapping | M01–M20 plus four cross-cutting areas; proposal only |
-| External tools | 20-candidate installation/activation manifest; research-only except user-scope Diagram Design |
+| External tools | 20-candidate manifest; Diagram Design, Mermaid CLI, Gitleaks and Graphviz smoke-tested; four internal skills installed; no integration claim |
 | Runtime | No router, executor, checkpoint resume or autonomous loop implemented |
 
 The 151-name proposed skill catalogue remains separate from the 145 source entries and 106 canonical techniques.

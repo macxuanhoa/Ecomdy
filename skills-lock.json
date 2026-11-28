@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "skills": {
+    "handoff": {
+      "source": "./.harness/skills/handoff",
+      "sourceType": "local",
+      "computedHash": "2eb42fca2d3dbe32bb298c4972c2df2536b1d0e0c5d173315dcf3f297b968039"
+    },
+    "security-review": {
+      "source": "./.harness/skills/security-review",
+      "sourceType": "local",
+      "computedHash": "4462811b803d04379229d4a1b182637d37b6903fd0dfba67d752246bda18f2b9"
+    },
+    "task-contract": {
+      "source": "./.harness/skills/task-contract",
+      "sourceType": "local",
+      "computedHash": "b1c64342b2668002aeed3db968e30e176fcc0e24b169d4451ab410c5cebc8781"
+    },
+    "test-first": {
+      "source": "./.harness/skills/test-first",
+      "sourceType": "local",
+      "computedHash": "d3389e19a3bc4982885e61d27aed1bba169daf88f0163d4b9aa66e089cbc5e64"
+    }
+  }
+}

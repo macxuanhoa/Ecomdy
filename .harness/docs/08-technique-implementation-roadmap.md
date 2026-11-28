@@ -7,12 +7,12 @@
 
 | ID | Outcome | Current state | Exit evidence |
 |---|---|---|---|
-| M1 | Inventory techniques and repository baseline | Implemented for the inspected baseline | 40-card registry; missing 145-technique baseline explicitly recorded |
+| M1 | Inventory techniques and repository baseline | Implemented | 145 source entries imported; 106 canonical cards; complete crosswalk with zero unresolved mappings |
 | M2 | Technique cards and compatibility research | Partial | Cards validate; 20 external candidates have version/license/security research, but no candidate is approved or compatibility-proven in the target workflow |
-| M3 | Installation and activation manifests | Manifest design implemented; no installation | Versioned schema, 20-candidate inventory, required/optional/missing baseline, lifecycle procedures, validator/tests and human guide exist; owner approval remains pending |
+| M3 | Installation and activation manifests | Partial | Manifest and evidence implemented; four internal skills installed; Diagram Design, Mermaid CLI, Gitleaks and Graphviz smoke-tested; OpenSpec blocked by Node compatibility; no workflow integration claim |
 | M4 | Advisory router and recipe compiler | Partial | 9 profiles, 14 routes, 24 recipes and validator exist; no executable compiler |
 | M5 | Runtime context, verification and file-scope controls | Not implemented | Bounded context loader; allowlisted runner; timeout/output caps; scope report; adversarial tests |
-| M6 | Skill and tool integration | Not implemented | Per-tool approval, pinned installation, session availability, smoke test and workflow integration evidence |
+| M6 | Skill and tool integration | Partial | Wave 1 skills/tools installed or smoke-tested with evidence; current-session availability and approved workflow integration remain unproven |
 | M7 | Checkpoints, traces and resource controls | Partial | Trace/checkpoint schema, examples, validator and tests exist; no automatic capture, process limits or resume |
 | M8 | Advanced orchestration | Blocked | Independent-task analysis, bounded parallel loops, reconciliation and stop controls verified; AUTONOMOUS remains blocked |
 | M9 | Benchmark and portability | Plan only | Same-task comparison across five arms; clean-environment reproduction; measured results with limitations |
@@ -49,17 +49,18 @@ Local verification on 2026-11-28, branch `devharness/technique-library`:
 |---|---|
 | `python scripts/validate.py` | PASS |
 | `python .harness/scripts/validate.py` | PASS |
-| Technique registry validator | PASS: 40 techniques, categories A–H |
+| Technique registry validator | PASS: 106 techniques, categories A–H |
+| Catalogue reconciliation validator | PASS: 145 sources, 106 canonical cards, 145 aliases, zero unresolved mappings |
 | Routing registry validator | PASS: 9 profiles, 14 routes, 24 recipes; advisory only |
 | Execution contract validator | PASS: 2 templates; not run evidence |
-| Tool manifest validator | PASS: 20 candidates; proposed commands `NOT_RUN` |
-| Full harness unit suite | PASS: 50 tests |
+| Tool manifest validator | PASS: 20 candidates; proposed commands remain `NOT_RUN`; separate Wave 1 evidence exists |
+| Full harness unit suite | PASS: 65 tests |
 | JSON Schema conformance | PASS: 4 schemas checked, 7 documents validated with local `jsonschema` 4.26.0 |
 | Workflow YAML parse | PASS: 7 run steps |
 | Python compile and `git diff --check` | PASS |
-| `python .harness/harness.py doctor` | Python 3.11.9; Git present; Graphviz and GitHub CLI absent; advisory mode |
+| `python .harness/harness.py doctor` | Python 3.11.9; Git present; Graphviz and GitHub CLI reported optional/not installed on the shell PATH; advisory mode. Graphviz is installed user scope but the existing shell PATH was not refreshed. |
 
-These are local results, not remote CI evidence. No external candidate was installed by this work, no proposed command was executed, no benchmark was run and no commit/push was performed.
+These are local results, not remote CI evidence. Wave 1 installation and bounded smoke tests are recorded in `activation-evidence.json`; no candidate is claimed integrated, no benchmark was run and no PR merge was performed.
 
 ## Explicit non-goals
 
