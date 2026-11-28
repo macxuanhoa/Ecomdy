@@ -18,3 +18,7 @@ jobs:
       - run: python scripts/validate.py
       - run: python -m unittest discover -s .harness/tests -p "test_*.py" -v
       - run: python .harness/scripts/validate.py
+      - run: python .harness/scripts/validate_techniques.py
+      - run: python .harness/scripts/validate_routing.py
+      - run: python .harness/scripts/validate_execution.py
+      - run: python .harness/scripts/validate_tool_manifest.py

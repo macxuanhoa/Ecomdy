@@ -54,3 +54,11 @@ The catalogue below is proposed; it is not automatically installed or loaded. Th
 
 ## Tool registry candidates
 Codex CLI, Claude Code, Gemini CLI, OpenCode, Aider, Spec Kit or OpenSpec, ripgrep, Tree-sitter/LSP, SQLite FTS5, Git worktree, Playwright, pytest, Vitest, JUnit, Semgrep, Gitleaks, Trivy, Docker, GitHub Actions, OpenTelemetry, Graphviz, Mermaid. Pin versions and validate permissions before installation. No provider assumed installed.
+
+## Engineering technique registry
+
+The separate [technique library](05-technique-library.md) contains 40 stable technique cards across categories A–H with explicit kinds, lifecycle states, verification and security metadata. It is not the proposed skill catalogue above and does not claim that the missing 145-technique baseline was recovered. Use the [routing guide](06-technique-routing.md) for task-scoped selection.
+
+## External candidate tool manifest
+
+The [installation manifest](../registry/installation/tool-manifest.json) records 20 stable `TOOL-*` candidates with canonical sources, pinned versions, licenses, compatibility, permissions, credentials, telemetry/privacy, conflicts, reproducibility and lifecycle procedures. The [installation and activation guide](10-tool-installation-and-activation.md) explains required/optional/missing tools and approval boundaries. No proposed command is execution evidence; no external candidate is integrated. Diagram Design is installed only at user scope and is not inherited by clones or CI.

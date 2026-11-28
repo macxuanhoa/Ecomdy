@@ -10,13 +10,13 @@
 |---|---:|---|---|
 | Root | 11 | Entry points, Git/editor settings, project profile, security/contribution/changelog | Repository policy and navigation |
 | `.github/` | 4 | Validation workflow, Dependabot, issue and PR templates | Implemented documentation CI; no product CI |
-| `docs/` | 137 | Requirements, architecture, product/workflow specs, diagrams, setup evidence and ignored originals | Mixed: official/proposed requirements, verified setup evidence and target design |
-| `.harness/` | 87 | Advisory Python CLI, config, registries, prompts, three skills, tests, validators, docs and diagrams | Small executable starter; most catalogue is proposed |
+| `docs/` | 139 | Requirements, architecture, product/workflow specs, diagrams, setup evidence, technique docs and ignored originals | Mixed: official/proposed requirements, verified setup evidence and target design |
+| `.harness/` | 114 | Advisory Python CLI, config, technique/tool/routing/mapping registries, schemas, prompts, three skills, tests, validators, docs and diagrams | Small executable starter plus advisory contracts; no task executor |
 | `scripts/` | 2 | Product documentation validator and DOT renderer | Implemented |
 | `prompts/` | 1 | Bootstrap prompt | Instruction only |
-| **Total working-tree files** | **242** | Excludes `.git`, caches and virtual environments | Inventory snapshot before final staging: 234 tracked, 4 new operational documents and 4 ignored local originals |
+| **Non-ignored working files** | **267** | Excludes `.git` and ignored files | Before the R01 commit: 238 tracked files (9 modified) plus 29 untracked artifacts |
 
-A clean acceptance-branch clone at `f516230…` contains 225 tracked files. Preservation commit `4cfab07b8a163715ad608e5aaff6628b990d59a5` added nine new files and modified 24, producing 234 tracked files. The controlled remediation adds four operational documents; after staging/commit, verify the tracked count with `git ls-files` rather than treating this snapshot as a released-package count. Default `main` currently contains only `README.md` because PR #1 is unmerged.
+A clean acceptance-branch clone at `f516230…` contains 225 tracked files. Preservation commit `4cfab07b8a163715ad608e5aaff6628b990d59a5` added nine new files and modified 24, producing 234 tracked files. The current `devharness/technique-library` branch is based on `4fb08fe5f269445c9ce191d9806fa6dd394e0638` and has 238 tracked files plus 29 untracked artifacts before they are committed. A broader filesystem count can be higher because it also includes ignored/local files; it must not be treated as the Git inventory. Verify counts with `git ls-files` and `git status` rather than treating this snapshot as a released-package count. Default `main` currently contains only `README.md` because PR #1 is unmerged.
 
 ## 2. Directory map
 
@@ -53,18 +53,26 @@ A clean acceptance-branch clone at `f516230…` contains 225 tracked files. Pres
 │   ├── developer-onboarding.md
 │   ├── developer-operations.md
 │   ├── minimum-viable-harness-plan.md
+│   ├── engineering-technique-library.md
+│   ├── engineering-technique-mapping.md
 │   ├── project-owner-guide.md
 │   └── repository-map.md
 ├── .harness/
 │   ├── harness.py            # init, ingest, doctor only
 │   ├── config/default.json   # Copied config; not enforced by CLI
-│   ├── registry/capabilities.json
-│   ├── templates/task.json   # Task contract template; no executor
+│   ├── registry/
+│   │   ├── capabilities.json
+│   │   ├── techniques.json   # 40 advisory technique cards
+│   │   ├── ecomdy-mapping.json
+│   │   ├── installation/     # 20-candidate tool manifest
+│   │   └── routing/          # 9 profiles, 14 routes, 24 recipes
+│   ├── schemas/              # Technique, routing, execution and tool-manifest contracts
+│   ├── templates/            # Task plus trace/checkpoint examples
 │   ├── prompts/bootstrap.md
 │   ├── skills/               # scoped-task, debug, diagram instruction files
-│   ├── tests/test_harness.py # 3 tests
-│   ├── scripts/              # Validator and DOT renderer
-│   └── docs/                 # Harness specs and 24 diagrams
+│   ├── tests/                # Starter, registry, routing, mapping and trace tests
+│   ├── scripts/              # Documentation, technique, routing, execution and tool-manifest validators; DOT renderer
+│   └── docs/                 # Harness specs, technique/tool guides and 24 diagrams
 ├── prompts/BOOTSTRAP.md
 └── scripts/
     ├── validate.py
@@ -82,6 +90,8 @@ A clean acceptance-branch clone at `f516230…` contains 225 tracked files. Pres
 | How does the target system fit together? | [03-architecture.md](03-architecture.md) | [phase1-architecture-delta.md](phase1-architecture-delta.md), [database-design.md](database-design.md), [api-design.md](api-design.md) |
 | How do product and team workflows operate? | [04-workflows.md](04-workflows.md) | [automation-specification.md](automation-specification.md), [CONTRIBUTING.md](../CONTRIBUTING.md) |
 | What can DevHarness execute? | [.harness/harness.py](../.harness/harness.py) | [harness-installation-guide.md](harness-installation-guide.md), [.harness/tests](../.harness/tests/test_harness.py) |
+| Which engineering techniques are registered? | [.harness/registry/techniques.json](../.harness/registry/techniques.json) | [Technique library](../.harness/docs/05-technique-library.md), [routing guide](../.harness/docs/06-technique-routing.md) |
+| Which external tool candidates are researched? | [.harness/registry/installation/tool-manifest.json](../.harness/registry/installation/tool-manifest.json) | [Installation/activation guide](../.harness/docs/10-tool-installation-and-activation.md) |
 | What is blocked or awaiting approval? | [BLOCKERS.md](setup/BLOCKERS.md) | [open-questions.md](open-questions.md), [risk-register.md](risk-register.md) |
 | Where should a new session resume? | [HANDOFF.md](setup/HANDOFF.md) | [EXECUTION_STATUS.md](setup/EXECUTION_STATUS.md), [PHASE_1_TRANSITION.md](setup/PHASE_1_TRANSITION.md) |
 
@@ -93,8 +103,12 @@ A clean acceptance-branch clone at `f516230…` contains 225 tracked files. Pres
 | `python .harness/harness.py doctor` | Reports Python/project path and optional Git/Graphviz/GitHub CLI availability | Does not validate Jira, credentials, models, source policy or product readiness |
 | `python .harness/harness.py init --project PATH` | Creates missing starter files and appends missing ignore rules | Does not install the reusable harness into the destination or enforce task scope |
 | `python .harness/harness.py ingest --project PATH` | Inventories/hashes regular non-symlink files under `PATH/docs/00-original` | Does not extract contents, call models or approve sources |
-| `python -m unittest discover -s .harness/tests -v` | Runs three starter tests | Does not test Ecomdy product behavior |
+| `python -m unittest discover -s .harness/tests -v` | Runs harness starter, technique/routing/tool-manifest, mapping and execution-contract tests | Does not test Ecomdy product behavior |
 | `python .harness/scripts/validate.py` | Checks harness Markdown/diagram metadata/assets | Does not execute harness roles or skills |
+| `python .harness/scripts/validate_techniques.py` | Validates 40 technique cards, references and status/invocation invariants | Does not prove technique effectiveness or installation |
+| `python .harness/scripts/validate_routing.py` | Validates nine profiles, 14 routes and 24 recipes | Does not route or execute tasks |
+| `python .harness/scripts/validate_execution.py` | Validates trace/checkpoint structure and state semantics | Does not capture runs, execute commands or resume work |
+| `python .harness/scripts/validate_tool_manifest.py` | Checks 20 candidate records, lifecycle semantics, procedures and `NOT_RUN` research commands | Does not install tools, grant credentials or prove effectiveness |
 | `python scripts/render_diagrams.py` | Invokes Graphviz to regenerate DOT assets when Graphviz exists | Does not render Mermaid; Graphviz is currently unavailable |
 
 There is no application install, migration, API server, UI, collector, scheduler, worker, model call or deployment command.
@@ -118,7 +132,7 @@ Requirements → implementation → tests → evidence → review → demo
 
 Repository documentation/harness
         │
-        ├── local validators + 3 harness tests
+        ├── local validators + harness unit tests
         ├── GitHub Actions validate
         ├── draft PR review
         └── manual handoff/checkpoint
@@ -158,7 +172,7 @@ Do not add fictional handles to `CODEOWNERS` or invent Jira assignees.
 | Plan a product task | [task-register.md](task-register.md), [vertical-slice-01-plan.md](vertical-slice-01-plan.md) | Module/workflow/architecture contracts and acceptance tests |
 | Review a PR | [team-development-readiness.md](team-development-readiness.md) | Diff, traceability, exact checks, security/source/diagram impact |
 | Change a diagram | [diagram gallery](diagrams/README.md) | [Diagram tooling](setup/DIAGRAM_TOOLING.md), source metadata, paired artifacts, parser/render evidence |
-| Use DevHarness | [harness-installation-guide.md](harness-installation-guide.md) | CLI help, tests, config limits and skill instructions |
+| Use DevHarness | [harness-installation-guide.md](harness-installation-guide.md) | CLI help, tests, config limits, [technique library](../.harness/docs/05-technique-library.md), [routing](../.harness/docs/06-technique-routing.md) and [tool activation](../.harness/docs/10-tool-installation-and-activation.md) |
 | Resume a session | [HANDOFF.md](setup/HANDOFF.md) | Git status/HEAD, blockers, execution status, relevant task only |
 | Prepare owner decisions | [project-owner-guide.md](project-owner-guide.md) | [VS01 approval pack](vs01-owner-approval-pack.md), open questions, Jira plan, PR state |
 

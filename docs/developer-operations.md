@@ -17,6 +17,10 @@
 | `.harness/harness.py doctor` | Implemented and tested | Report environment in advisory mode | No readiness gate or agent execution |
 | `scripts/validate.py` | Implemented and tested | Validate local Markdown links, diagram metadata/listings and static assets | No Mermaid grammar/render/semantic validation |
 | `.harness/scripts/validate.py` | Implemented and tested | Validate harness docs/diagram metadata/assets | No role/skill execution |
+| `.harness/scripts/validate_techniques.py` | Implemented and tested | Validate technique cards and references | No installation or effectiveness claim |
+| `.harness/scripts/validate_routing.py` | Implemented and tested | Validate profiles, routes and recipes | No runtime routing or execution |
+| `.harness/scripts/validate_execution.py` | Implemented and tested | Validate trace/checkpoint state semantics | No automatic capture or resume |
+| `.harness/scripts/validate_tool_manifest.py` | Implemented and tested | Validate 20 candidate records, lifecycle semantics, procedures and `NOT_RUN` research commands | No installation, activation or candidate effectiveness claim |
 | `scripts/render_diagrams.py` | Implemented; runtime depends on Graphviz | Regenerate DOT assets when an approved Graphviz is installed | Graphviz is absent in the audited environment |
 | Jira | Blocked | Use stable internal IDs and import-ready CSV until access is authorized | No real Jira keys/issues exist |
 
@@ -80,7 +84,7 @@
 
 - **What:** Execute existing checks and record exact outcomes.
 - **Why:** Separate observed evidence from assumptions.
-- **How:** Run product validator, harness validator, unit tests, compile check and task-specific checks that actually exist.
+- **How:** Run product validator, harness validator, technique/routing/execution/tool-manifest validators, unit tests, compile check and task-specific checks that actually exist.
 - **Tool:** Python, Git, validators.
 - **Skill:** `scoped-task`.
 - **Harness:** Validators/tests are implemented; no generic verification runner.

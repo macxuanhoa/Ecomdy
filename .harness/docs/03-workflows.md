@@ -16,3 +16,7 @@ OS scheduler or CI may invoke approved tasks only after execution adapter exists
 
 ## Quality and improvement
 Scope, build, lint, type, unit/integration/regression, security and review gates as applicable. Propose improvement separately; benchmark before adoption. Metrics: verified task rate, regression rate, tokens/cost per verified task, latency and human interventions.
+
+## Advisory technique routing
+
+Use the [technique routing guide](06-technique-routing.md) to select a route, profile and recipe without activating the whole library. Record selected, attempted, executed and verified states using the [trace/checkpoint contract](07-execution-traces-and-checkpoints.md). The [M1–M9 roadmap](08-technique-implementation-roadmap.md) keeps runtime enforcement and autonomous orchestration separate from the current advisory design.

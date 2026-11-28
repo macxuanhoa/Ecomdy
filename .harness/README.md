@@ -14,6 +14,10 @@ python harness.py init --project ../../my-project
 python harness.py ingest --project ../../my-project
 python -m unittest discover -s tests -v
 python scripts/validate.py
+python scripts/validate_techniques.py
+python scripts/validate_routing.py
+python scripts/validate_execution.py
+python scripts/validate_tool_manifest.py
 ```
 
 The example destination is outside the Ecomdy checkout when this harness is run from `Ecomdy/.harness/`. Choose a different destination as needed; never initialize a workspace inside a public repository by accident. If this is a standalone harness clone rather than the embedded `.harness/` directory, set `--project` to a path outside that checkout.
@@ -25,7 +29,13 @@ Open the generated `docs/01-project-context/CONTEXT_UPDATE_PROMPT.md` in your co
 - [Capabilities, agents, skills and tools](docs/02-registries.md)
 - [Workflows and loops](docs/03-workflows.md)
 - [Development roadmap](docs/04-roadmap.md)
+- [Engineering technique library](docs/05-technique-library.md)
+- [Technique routing, profiles and recipes](docs/06-technique-routing.md)
+- [Execution traces and checkpoints](docs/07-execution-traces-and-checkpoints.md)
+- [Technique implementation roadmap](docs/08-technique-implementation-roadmap.md)
+- [Benchmark and portability protocol](docs/09-benchmark-and-portability.md)
+- [Tool installation, activation and verification](docs/10-tool-installation-and-activation.md)
 - [Diagram catalogue](docs/diagrams/README.md)
 - [Contribution protocol](CONTRIBUTING.md)
 
-Future capabilities are proposals, not features already implemented. Project-specific data must stay outside this reusable repository.
+Future capabilities are proposals, not features already implemented. The technique/routing registries and trace contracts are implemented validators and advisory data, not an autonomous runtime. Project-specific data must stay outside this reusable repository.
