@@ -120,6 +120,21 @@ Shared evidence: all 20 entries are `Proposed` in `docs/02-product-vision.md`; `
 | M19 | Notification System | Product vision, tool registry | No notification adapter, consent or delivery controls. | SPECIFICATION ONLY | ECO-12: extension decision and least-privilege delivery design. |
 | M20 | Analytics and Evaluation | Product vision, validation strategy | No metrics pipeline, baseline or evaluation dataset. | SPECIFICATION ONLY | ECO-04/ECO-11/ECO-12: approve rubric, baseline and reporting. |
 
+## Comprehensive-audit overlay — 2026-11-28
+
+This overlay preserves all 70 Phase 0 IDs, statuses and counts while recording later evidence. It does not retroactively rewrite the Phase 0 baseline.
+
+| ID | Later verified evidence | Remaining limit |
+|---|---|---|
+| `HAR-05` | Product/harness validators pass for local Markdown targets, required diagram metadata/listings and static assets. | The validators do not parse registry schemas, Mermaid grammar, diagram semantics or visual rendering. |
+| `DGM-03` | The installed plugin's bounded standard-library extractor parsed 55/56 Mermaid sources; 473 nodes and 490 edges were extracted. | `.harness/docs/diagrams/19-debugging-workflow.mmd:11` hit an extractor compatibility limit. No Mermaid source was rendered, so rendering remains unverified. |
+| `DGM-04` | Deterministic normalized comparison passed 26/26 Mermaid/DOT pairs on node labels, edge endpoints, edge labels and canonical direction. | This verifies source parity only; it does not prove fresh rendering, visual quality or as-built correctness. |
+| `DGM-02` | 26/26 SVGs parsed and contained expected DOT labels; 26/26 PNGs decoded and were nonblank. | Existing artifacts were not freshly rendered with a pinned local Graphviz toolchain. |
+| `TLS-01` | Plugin 2.6.131 is installed, enabled and exposed as a Skill in the current audit session; its reviewed extractor was executed. | User-level tooling is not a repository/CI dependency; no diagram was generated or rendered. |
+| `FND-09` / `FND-10` | Acceptance-branch clone at `f516230…` passed documentation/harness checks; two isolated workspaces passed independently. | Default `main` clone remains blocked until PR #1 merges. |
+
+See [COMPREHENSIVE_AUDIT.md](COMPREHENSIVE_AUDIT.md) and [VERIFICATION_REPORT.md](VERIFICATION_REPORT.md#comprehensive-audit--2026-11-28) for commands, results and limitations.
+
 ## Acceptance interpretation
 
 The matrix accepts the **documentation/setup baseline and bounded advisory harness** only. It does not accept Ecomdy as an implemented product or DevHarness as an autonomous execution platform. Jira, diagram parser/render coverage, ownership and runtime enforcement remain explicit gaps with next actions rather than implied completion.

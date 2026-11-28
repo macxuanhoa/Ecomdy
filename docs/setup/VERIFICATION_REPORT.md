@@ -89,3 +89,57 @@ The C4-named additions are C4-style Mermaid flowchart views, not native Mermaid 
 | Product runtime tests | Repository inventory | NOT APPLICABLE — no Ecomdy application implementation exists |
 
 The successful checks verify the acceptance package and the existing documentation/harness scope only. They do not verify Mermaid grammar, diagram semantics, live Jira, current GitHub protection settings or product behavior.
+
+## Comprehensive audit — 2026-11-28
+
+**Audit baseline:** `f5162302aae3b9ab5e5798d722cfbfa60d9164b9` on `docs/phase-0-acceptance`<br>
+**Working tree:** later Phase 1/comprehensive-audit documentation changes remained uncommitted during evidence collection<br>
+**Scope:** actual local/remote repository, documentation, harness, diagrams, clean clones, workspace isolation and bounded parser extraction; no product runtime exists to test.
+
+| Check | Command / method | Result |
+|---|---|---|
+| Working-tree inventory | Python filesystem inventory excluding `.git`, caches and virtual environments; Git tree count at the audited commit | 238 current files including 4 ignored local originals and 9 nonignored audit/Phase 1 files; 225 tracked files at acceptance-branch commit `f516230…` |
+| Application/runtime inventory | Manifest/source-path search for application package, API, DB, migrations, UI, collector, scheduler, worker, adapter and deployment | NOT IMPLEMENTED — no product application or runtime found |
+| Capability matrix integrity | Deterministic parse of the 70-row matrix with hyphenated/non-hyphenated ID support | PASS — 70 rows, 70 unique IDs; M01–M20 present and ordered |
+| Capability status counts | Count of the preserved Phase 0 matrix statuses | PASS — 18 implemented/verified, 4 implemented/unverified, 8 configuration only, 26 specification only, 10 not implemented, 3 blocked, 1 requires human approval |
+| Jira CSV integrity | CSV parse, unique-ID/dependency/Jira-key checks | PASS — 39 rows, 39 unique IDs, empty Jira keys, all dependencies resolved; no Jira mutation |
+| GitHub repository/PR/CI read-back | Read-only remote/API inspection | PASS for observed state — `main` at `560cf0d…`; PR #1 head `4bddc92…`; PR #2 head `f516230…`; both open draft, mergeable/clean, CI success, zero submitted reviews |
+| Protection/security current read-back | Unauthenticated GitHub API recheck | BLOCKED — HTTP 401/404; historical authenticated evidence retained but current state unverified |
+| Default `main` clean clone | Clone default branch and inspect/run documented commands | BLOCKED — only one-line README; validator and harness absent |
+| Acceptance-branch clean clone | Clone `docs/phase-0-acceptance` at `f516230…`; run product validator, harness doctor, unit tests and harness validator | PASS for documentation/harness only — validators PASS, doctor exit 0/advisory, 3/3 tests OK |
+| Harness initialization | `harness.py init` in an empty temporary project; inspect preservation/creation | PASS — existing files preserved, missing starter files created, exit 0 |
+| Harness ingestion | `harness.py ingest` in an empty temporary project | PASS with empty-input limitation — zero files inventoried, exit 0 |
+| Two-workspace isolation | Two independent clones at `f516230…`; branches `sim/workspace-a` and `sim/workspace-b`; separate disposable markers; run all four baseline checks; inspect full status | PASS for filesystem/Git isolation — each workspace passed independently and showed only its own marker; no push/merge/shared mutation |
+| Mermaid source inventory | Gallery/metadata inventory across `docs/diagrams` and `.harness/docs/diagrams` | PASS — 56 sources (32 Ecomdy + 24 harness), 26 paired static sets, 30 Mermaid-only sources |
+| Bounded Mermaid extraction | Installed Diagram Design 2.6.131 reviewed standard-library extractor with source/node/edge/statement limits; no rendering, URL fetch or diagram evaluation | PARTIAL — 55/56 source files parsed; 473 nodes and 490 edges extracted |
+| Extractor compatibility exception | `.harness/docs/diagrams/19-debugging-workflow.mmd:11` | Extractor reported `malformed edge at line 11` because `;` occurs inside an edge label; this does not prove the Mermaid source is invalid |
+| Mermaid/DOT semantic parity | Deterministic Python comparison of normalized node labels, edge endpoints, edge labels and canonical direction (`TD`/`TB` normalized) | PASS — 26/26 paired sources match |
+| Static SVG validation | XML parse and expected DOT-label comparison | PASS — 26/26 SVGs valid and contain expected labels |
+| Static PNG validation | Pillow decode and nonblank-pixel check | PASS — 26/26 PNGs valid and nonblank |
+| Diagram complexity review | Plugin guideline comparison after extraction | INFORMATIONAL — 16 diagrams exceed 9 nodes and 5 exceed 12 edges; simplification prompts, not correctness failures |
+| Mermaid rendering / visual acceptance | No Mermaid renderer installed or executed | NOT RUN — parser extraction and source parity are not rendering or visual acceptance |
+| Product tests/deployment | Repository/runtime inventory | NOT APPLICABLE — no Ecomdy application implementation exists |
+| Jira / live source / model / interview / benchmark | Access and implementation inventory | BLOCKED or NOT IMPLEMENTED — no corresponding evidence claimed |
+
+The comprehensive audit found no product implementation and did not merge PRs, push, change permissions, install new software, mutate Jira, collect external sources, call models or deploy.
+
+## Final post-edit verification — 2026-11-28
+
+| Check | Command / method | Result |
+|---|---|---|
+| Product documentation validator | `python scripts/validate.py` | PASS — `Validation: PASS`, exit 0 |
+| Harness documentation validator | `python .harness/scripts/validate.py` | PASS — `Validation: PASS`, exit 0 |
+| Harness unit tests | `python -m unittest discover -s .harness/tests -p "test_*.py" -v` | PASS — 3/3 tests, `OK`, exit 0 |
+| Python compile | `python -m compileall -q scripts .harness` | PASS — exit 0, no compiler output |
+| Harness doctor | `python .harness/harness.py doctor --project <repository>` | PASS/advisory — Python/Git detected; Graphviz/GitHub CLI absent; no agent execution or scheduling |
+| JSON/YAML syntax | `json.loads` / `yaml.safe_load` | PASS — 5 JSON and 3 YAML files parsed |
+| Tracked diff whitespace | `git diff --check` | PASS — exit 0; Git emitted only a CRLF-to-LF normalization warning for `.harness/docs/diagrams/README.md` |
+| All nonignored text-file hygiene | Python scan over `git ls-files --cached --others --exclude-standard` | PASS — 234 nonignored files / 178 text files scanned; zero trailing-whitespace, conflict-marker or common credential-pattern matches; not a full secret scanner |
+| Capability baseline integrity | Parse only the Phase 0 matrix before the audit overlay | PASS — 70 rows, 70 unique IDs, M01–M20 complete |
+| Jira CSV integrity | CSV parse and ID/dependency checks | PASS — 39 rows and 39 unique IDs; Jira keys remain empty |
+| Remote heads | `git ls-remote --heads origin main docs/phase-0-acceptance setup/phase-0-audit` | PASS — `main` `560cf0d…`, acceptance `f516230…`, setup `4bddc92…`; no remote mutation |
+| Working-tree state | `git status --short --branch --untracked-files=all` | 24 tracked files modified and 9 nonignored files untracked; no commit or push performed |
+| Product/runtime tests | Repository inventory | NOT APPLICABLE — no Ecomdy application implementation exists |
+| Mermaid rendering/visual acceptance | No renderer installed or executed | NOT RUN — remains an explicit blocker |
+
+These results accept the documentation/setup and advisory-harness scope only. They do not accept product behavior, live integrations, current GitHub governance settings, Jira operation, Mermaid rendering, visual quality, deployment or production readiness.

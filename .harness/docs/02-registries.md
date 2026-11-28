@@ -30,7 +30,9 @@
 | A23 | Context Curator | Proposed |
 | A24 | Harness Engineer | Proposed |
 
-## Skill catalogue (proposed, not installed)
+## Proposed skill catalogue
+
+The catalogue below is proposed; it is not automatically installed or loaded. Three physical instruction files exist under `.harness/skills/` (`scoped-task`, `debug`, `diagram`) and can be read manually. They are guidance documents, not executable skills or a role router. The user-level Diagram Design Plugin is external to this harness and is not required for a repository clone.
 
 - **discovery**: project-discovery, requirements-extraction, rubric-analysis, document-analysis, evidence-validation, gap-analysis
 - **management**: scope-management, wbs-generation, roadmap-planning, sprint-planning, dependency-management, risk-management, gantt-generation, change-management

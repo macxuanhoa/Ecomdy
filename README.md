@@ -16,7 +16,8 @@ The challenge is to help Ecomdy's Marketing / Content Team research internationa
 - [Module specifications](docs/module-specifications.md) · [database design](docs/database-design.md) · [API design](docs/api-design.md)
 - [Security and governance](docs/security-governance.md) · [risk register](docs/risk-register.md) · [Definition of Ready / Done](docs/definition-of-ready-done.md)
 - [Agent and tool registry](docs/agent-tool-registry.md) · [automation](docs/automation-specification.md) · [context engineering](docs/context-engineering.md)
-- [Target architecture and candidate stack](docs/03-architecture.md)
+- [Target architecture and candidate stack](docs/03-architecture.md) · [Phase 1 requirements delta](docs/phase1-requirements-delta.md) · [Phase 1 architecture delta](docs/phase1-architecture-delta.md)
+- [First vertical-slice plan](docs/vertical-slice-01-plan.md) · [team development readiness](docs/team-development-readiness.md) · [Phase 1 transition checkpoint](docs/setup/PHASE_1_TRANSITION.md)
 - [Technology and harness evaluation](docs/technology-evaluation.md)
 - [Business and technical workflows](docs/04-workflows.md)
 - [Implementation roadmap](docs/05-roadmap.md)
@@ -25,8 +26,9 @@ The challenge is to help Ecomdy's Marketing / Content Team research internationa
 - [Constraints and assumptions](docs/constraints-assumptions.md) · [conflict report](docs/conflict-report.md) · [open questions](docs/open-questions.md)
 - [Source registry](docs/source-registry.md) · [Ecomdy diagram gallery](docs/diagrams/README.md)
 - [Documentation portal](docs/README.md)
+- [Comprehensive project audit](docs/setup/COMPREHENSIVE_AUDIT.md) · [repository map](docs/repository-map.md) · [Project Owner guide](docs/project-owner-guide.md)
 - [Phase 0 acceptance](docs/setup/PHASE_0_ACCEPTANCE.md) · [capability matrix](docs/setup/CAPABILITY_COVERAGE.md) · [Jira setup plan](docs/setup/JIRA_SETUP_PLAN.md)
-- [Developer onboarding](docs/developer-onboarding.md) · [deployment strategy](docs/deployment-strategy.md) · [DevHarness diagram gallery](.harness/docs/diagrams/README.md)
+- [Developer onboarding and playbook](docs/developer-onboarding.md) · [deployment strategy](docs/deployment-strategy.md) · [DevHarness diagram gallery](.harness/docs/diagrams/README.md)
 - [Target user guide](docs/user-guide.md)
 - [Environment and capability audit](docs/setup/00_ENVIRONMENT_AND_CAPABILITY_AUDIT.md)
 - [Contribution protocol](CONTRIBUTING.md) · [Agent instructions](AGENTS.md) · [Security policy](SECURITY.md) · [Changelog](CHANGELOG.md)
@@ -95,7 +97,7 @@ No stack has been approved. Current documentation evaluates candidates such as R
 | Area | State |
 |---|---|
 | Product vision, requirements, proposed workflows and architecture | Documentation present; owner validation pending |
-| Diagrams | 56 Mermaid sources and 26 static DOT/SVG/PNG sets; 30 Mermaid-only diagrams lack local parse/render evidence; all represent target design |
+| Diagrams | 56 Mermaid sources and 26 static DOT/SVG/PNG sets; bounded parser extraction passed 55/56 sources (one extractor compatibility exception), Mermaid/DOT parity passed 26/26, and static assets passed 26/26; no Mermaid source was rendered locally; Diagram Design Plugin 2.6.131 is installed, enabled and exposed in the audit session; all diagrams remain target design |
 | Documentation validator | Implemented as `python scripts/validate.py`; run locally or in CI |
 | GitHub Actions | Documentation and harness validation workflow present; push and PR checks passed for the audited setup baseline |
 | Ecomdy application and runtime | Not implemented |
@@ -105,13 +107,18 @@ No stack has been approved. Current documentation evaluates candidates such as R
 
 ## Quick start
 
+Default `main` currently contains only a one-line README because PR #1 is unmerged. Until the approved baseline merges, clone the acceptance branch explicitly.
+
 ```bash
-git clone https://github.com/macxuanhoa/Ecomdy.git
+git clone --branch docs/phase-0-acceptance https://github.com/macxuanhoa/Ecomdy.git
 cd Ecomdy
 python scripts/validate.py
 python .harness/harness.py doctor
 python -m unittest discover -s .harness/tests -v
+python .harness/scripts/validate.py
 ```
+
+After the baseline merges and the branch limitation is removed, use the normal default-branch clone documented in the [developer onboarding and playbook](docs/developer-onboarding.md). The acceptance-branch clone passed these documentation/harness checks; it does not provide an Ecomdy application setup.
 
 The documentation validator uses only the Python standard library. It checks local Markdown links and required diagram assets. It does **not** test an application, external links, legal compliance, or diagram semantics.
 
@@ -129,7 +136,7 @@ For new projects, existing projects, context refresh, or interrupted sessions, u
 
 ## Diagrams
 
-The Ecomdy gallery contains 32 target diagram sources; 14 have checked-in DOT plus SVG/PNG assets, and 18 supplemental Mermaid files render when opened on GitHub. The DevHarness gallery contains 24 target sources; 12 have checked-in DOT plus SVG/PNG assets, and 12 supplemental Mermaid files render on GitHub. All source files carry diagram ID, version, and state metadata. Update sources in their gallery folder. The three C4-level views use C4-style flowcharts because GitHub's renderer does not bundle the experimental native C4 extension. Regenerate existing DOT renders with `python scripts/render_diagrams.py` where Graphviz is installed; the script invokes Graphviz `dot` directly. Local Graphviz is unavailable in this setup, so existing static images were visually inspected and not regenerated.
+The Ecomdy gallery contains 32 target diagram sources; 14 have checked-in DOT plus SVG/PNG assets, and 18 are supplemental Mermaid files. The DevHarness gallery contains 24 target sources; 12 have checked-in DOT plus SVG/PNG assets, and 12 are supplemental Mermaid files. Supplemental Mermaid is intended to render on GitHub, but this behavior was not locally verified. All source files carry diagram ID, version, and state metadata. Update sources in their gallery folder. The three C4-level views use C4-style flowcharts because GitHub's renderer does not bundle the experimental native C4 extension. Regenerate existing DOT renders with `python scripts/render_diagrams.py` where Graphviz is installed; the script invokes Graphviz `dot` directly. Local Graphviz is unavailable in this setup, so existing static images were structurally validated and visually inspected at overview scale, not freshly regenerated. See the [comprehensive audit](docs/setup/COMPREHENSIVE_AUDIT.md) for parser, parity and asset evidence.
 
 ## GitHub Actions
 

@@ -103,6 +103,8 @@ The local planning IDs below are not Jira keys. Assign real keys only after the 
 
 ECO-01–ECO-12 remain in the product task register and should be linked to Jira after owner-approved scope and dependencies are ready. Do not bulk-create speculative issues before the project model is accepted.
 
+The Phase 1 import representation is [JIRA_IMPORT_BACKLOG.csv](JIRA_IMPORT_BACKLOG.csv). It contains proposed epics/tasks, stable internal IDs, dependencies, role placeholders and acceptance criteria. The `Jira Key` column is intentionally empty; no issue has been created. Map the CSV to the approved Jira fields and import method only after project authorization.
+
 ## 6. Labels and automation
 
 ### Labels

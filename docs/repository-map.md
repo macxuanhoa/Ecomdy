@@ -1,0 +1,167 @@
+# Repository Map
+
+**As of:** 2026-11-28 (Asia/Saigon)<br>
+**Purpose:** Help a contributor locate authority, executable behavior, target design, local-only inputs and current delivery state without reading the whole repository.<br>
+**Current state:** Documentation/setup repository plus an advisory harness. No Ecomdy application runtime is implemented.
+
+## 1. Actual inventory
+
+| Path | Files | Purpose | Authority / status |
+|---|---:|---|---|
+| Root | 11 | Entry points, Git/editor settings, project profile, security/contribution/changelog | Repository policy and navigation |
+| `.github/` | 4 | Validation workflow, Dependabot, issue and PR templates | Implemented documentation CI; no product CI |
+| `docs/` | 133 | Requirements, architecture, product/workflow specs, diagrams, setup evidence and ignored originals | Mixed: official/proposed requirements, verified setup evidence and target design |
+| `.harness/` | 87 | Advisory Python CLI, config, registries, prompts, three skills, tests, validators, docs and diagrams | Small executable starter; most catalogue is proposed |
+| `scripts/` | 2 | Product documentation validator and DOT renderer | Implemented |
+| `prompts/` | 1 | Bootstrap prompt | Instruction only |
+| **Total working-tree files** | **238** | Excludes `.git`, caches and virtual environments | Includes 4 ignored local original inputs and 9 nonignored audit/Phase 1 files |
+
+A clean acceptance-branch clone at `f516230…` contains 225 tracked files. The current working tree contains 238 files after adding nine nonignored audit/Phase 1 files and retaining four ignored local originals. Default `main` currently contains only `README.md` because PR #1 is unmerged.
+
+## 2. Directory map
+
+```text
+.
+├── AGENTS.md                 # Agent working rules and stop boundaries
+├── CONTRIBUTING.md           # Branch, review and delivery protocol
+├── README.md                 # Project entry point and current-state warning
+├── SECURITY.md               # Reporting and source/security policy
+├── project-profile.json      # Target profile; runtime automation false
+├── .github/
+│   ├── workflows/validate.yml
+│   ├── dependabot.yml
+│   ├── ISSUE_TEMPLATE/task.yml
+│   └── pull_request_template.md
+├── docs/
+│   ├── 00-original/          # Local-only source inputs; ignored except README
+│   ├── diagrams/             # 32 Mermaid + 14 DOT/SVG/PNG sets
+│   ├── setup/                # Acceptance, audit, blockers, decisions, verification, handoff
+│   ├── 01-requirements.md    # Official requirement register
+│   ├── 02-product-vision.md  # M01–M20 capability registry
+│   ├── 03-architecture.md    # Target architecture and assessment
+│   ├── 04-workflows.md       # Product/development/harness workflow catalogue
+│   ├── 05-roadmap.md         # Stages, milestones, critical path and workstreams
+│   ├── 06-validation.md      # Target verification strategy
+│   ├── module-specifications.md
+│   ├── database-design.md    # Conceptual only; no migration
+│   ├── api-design.md         # Proposed resources only; no OpenAPI/server
+│   ├── phase1-requirements-delta.md
+│   ├── phase1-architecture-delta.md
+│   ├── vertical-slice-01-plan.md
+│   ├── team-development-readiness.md
+│   ├── developer-onboarding.md
+│   ├── project-owner-guide.md
+│   └── repository-map.md
+├── .harness/
+│   ├── harness.py            # init, ingest, doctor only
+│   ├── config/default.json   # Copied config; not enforced by CLI
+│   ├── registry/capabilities.json
+│   ├── templates/task.json   # Task contract template; no executor
+│   ├── prompts/bootstrap.md
+│   ├── skills/               # scoped-task, debug, diagram instruction files
+│   ├── tests/test_harness.py # 3 tests
+│   ├── scripts/              # Validator and DOT renderer
+│   └── docs/                 # Harness specs and 24 diagrams
+├── prompts/BOOTSTRAP.md
+└── scripts/
+    ├── validate.py
+    └── render_diagrams.py
+```
+
+## 3. Authority map
+
+| Question | Primary source | Supporting evidence |
+|---|---|---|
+| What is officially required? | [01-requirements.md](01-requirements.md) | [project-context.md](project-context.md), [product-requirements.md](product-requirements.md) |
+| What is merely proposed? | [02-product-vision.md](02-product-vision.md), [module-specifications.md](module-specifications.md) | [phase1-requirements-delta.md](phase1-requirements-delta.md) |
+| What is actually implemented? | [CAPABILITY_COVERAGE.md](setup/CAPABILITY_COVERAGE.md) | [COMPREHENSIVE_AUDIT.md](setup/COMPREHENSIVE_AUDIT.md), [VERIFICATION_REPORT.md](setup/VERIFICATION_REPORT.md) |
+| What should be built first? | [vertical-slice-01-plan.md](vertical-slice-01-plan.md) | [05-roadmap.md](05-roadmap.md), [sprint-planning.md](sprint-planning.md) |
+| How does the target system fit together? | [03-architecture.md](03-architecture.md) | [phase1-architecture-delta.md](phase1-architecture-delta.md), [database-design.md](database-design.md), [api-design.md](api-design.md) |
+| How do product and team workflows operate? | [04-workflows.md](04-workflows.md) | [automation-specification.md](automation-specification.md), [CONTRIBUTING.md](../CONTRIBUTING.md) |
+| What can DevHarness execute? | [.harness/harness.py](../.harness/harness.py) | [harness-installation-guide.md](harness-installation-guide.md), [.harness/tests](../.harness/tests/test_harness.py) |
+| What is blocked or awaiting approval? | [BLOCKERS.md](setup/BLOCKERS.md) | [open-questions.md](open-questions.md), [risk-register.md](risk-register.md) |
+| Where should a new session resume? | [HANDOFF.md](setup/HANDOFF.md) | [EXECUTION_STATUS.md](setup/EXECUTION_STATUS.md), [PHASE_1_TRANSITION.md](setup/PHASE_1_TRANSITION.md) |
+
+## 4. Executable behavior map
+
+| Command | Implemented behavior | Does not do |
+|---|---|---|
+| `python scripts/validate.py` | Checks local Markdown links, diagram metadata, gallery listing and required static assets | Does not parse Mermaid, render diagrams, test products or verify semantics |
+| `python .harness/harness.py doctor` | Reports Python/project path and optional Git/Graphviz/GitHub CLI availability | Does not validate Jira, credentials, models, source policy or product readiness |
+| `python .harness/harness.py init --project PATH` | Creates missing starter files and appends missing ignore rules | Does not install the reusable harness into the destination or enforce task scope |
+| `python .harness/harness.py ingest --project PATH` | Inventories/hashes regular non-symlink files under `PATH/docs/00-original` | Does not extract contents, call models or approve sources |
+| `python -m unittest discover -s .harness/tests -v` | Runs three starter tests | Does not test Ecomdy product behavior |
+| `python .harness/scripts/validate.py` | Checks harness Markdown/diagram metadata/assets | Does not execute harness roles or skills |
+| `python scripts/render_diagrams.py` | Invokes Graphviz to regenerate DOT assets when Graphviz exists | Does not render Mermaid; Graphviz is currently unavailable |
+
+There is no application install, migration, API server, UI, collector, scheduler, worker, model call or deployment command.
+
+## 5. Logical data and control flow
+
+```text
+Official/local source inputs
+        │
+        ▼
+Requirements and decision records ─────► Jira import-ready backlog (not yet imported)
+        │
+        ▼
+Target architecture + module/workflow contracts
+        │
+        ▼
+Vertical Slice 01 plan ─────► owner gates ─────► future implementation (not started)
+        │
+        ▼
+Requirements → implementation → tests → evidence → review → demo
+
+Repository documentation/harness
+        │
+        ├── local validators + 3 harness tests
+        ├── GitHub Actions validate
+        ├── draft PR review
+        └── manual handoff/checkpoint
+```
+
+## 6. Ownership boundaries
+
+| Area | Proposed owner role | Current enforcement |
+|---|---|---|
+| Product scope, sources, budget, merge/deploy/publish | Project Owner | Human approval required; no named owner assigned |
+| Architecture and shared contracts | Technical Lead / Architect | Review policy proposed |
+| M01–M03 source/collection | Source & Collection Owner | Placeholder only |
+| M04–M11 processing/evidence | Processing & Evidence Owner | Placeholder only |
+| M12 persistence/API/migrations | Knowledge & API Owner | Placeholder only |
+| M13–M17 content/editorial | Content & Editorial Owner | Placeholder only |
+| CI, security, diagrams, deployment readiness | Platform & Quality Owner | Placeholder only |
+| `.harness/` behavior | DevHarness Owner | Placeholder only |
+| Independent change review | Independent Reviewer | No reviewer assigned or required count verified |
+
+Do not add fictional handles to `CODEOWNERS` or invent Jira assignees.
+
+## 7. Source and confidentiality boundaries
+
+- `docs/00-original/` is local-only and ignored except its README.
+- `.harness/docs/00-original/` is also ignored; it is not the default input directory for the bundled `ingest` command.
+- A newly initialized workspace uses `<project>/docs/00-original`.
+- Never force-add originals, credentials, private source text or personal data.
+- No source is approved for collection merely because it appears in a document or diagram.
+- No non-public material may be sent to a model provider before an owner-approved data-handling decision.
+
+## 8. Navigation by task
+
+| Task | Read first | Then inspect |
+|---|---|---|
+| Understand the project | [README.md](../README.md) | [project-context.md](project-context.md), [COMPREHENSIVE_AUDIT.md](setup/COMPREHENSIVE_AUDIT.md) |
+| Change documentation | [AGENTS.md](../AGENTS.md), [CONTRIBUTING.md](../CONTRIBUTING.md) | Relevant specification, validator, PR template |
+| Plan a product task | [task-register.md](task-register.md), [vertical-slice-01-plan.md](vertical-slice-01-plan.md) | Module/workflow/architecture contracts and acceptance tests |
+| Review a PR | [team-development-readiness.md](team-development-readiness.md) | Diff, traceability, exact checks, security/source/diagram impact |
+| Change a diagram | [diagram gallery](diagrams/README.md) | Source metadata, paired artifacts, parser/render evidence |
+| Use DevHarness | [harness-installation-guide.md](harness-installation-guide.md) | CLI help, tests, config limits and skill instructions |
+| Resume a session | [HANDOFF.md](setup/HANDOFF.md) | Git status/HEAD, blockers, execution status, relevant task only |
+| Prepare owner decisions | [project-owner-guide.md](project-owner-guide.md) | Open questions, VS01 gates, Jira plan, PR state |
+
+## 9. Known map limitations
+
+- The map describes the audited working tree, not a released package.
+- Default `main` is not yet equivalent to the acceptance branch.
+- Proposed directories such as application source, migrations, API contracts and deployment manifests do not exist and are therefore not shown as current.
+- Update this map when product code is first introduced; do not pre-create speculative folders.

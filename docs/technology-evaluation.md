@@ -1,6 +1,6 @@
 # Technology and Harness Evaluation
 
-**As of:** 2026-11-26. **Decision:** no new framework or product stack selected. This repository has no application code, and team skills, deployment environment, source permissions, timeline, and budget are unknown.
+**As of:** 2026-11-28. **Decision:** no new product framework or stack selected; Diagram Design Plugin 2.6.131 is installed at user scope only. This repository has no application code, and team skills, deployment environment, source permissions, timeline, and budget are unknown.
 
 ## Selection criteria
 
@@ -34,6 +34,17 @@ No benchmark shows that a framework or model improves Ecomdy accuracy, Vietnames
 ## Product stack evaluation status
 
 The blueprint lists React/Next.js, Python/FastAPI, PostgreSQL, workers, and optional vector search as candidates. There is no codebase to preserve or team/deployment profile to compare against. Record these as candidates only; defer stack decision until constraints are known. A later ADR should compare at least one viable alternative per layer and include version, support lifecycle, security update process, deployment fit, skills, and total operating cost.
+
+## Diagram engineering evaluation — Phase 1
+
+| Option | Verified facts | Decision |
+|---|---|---|
+| Diagram Design Plugin | Qoder market identity `diagram-design` 2.6.131, publisher Cathryn Lavery; canonical repository `cathrynlavery/diagram-design`; MIT license; 1 skill, 6 commands, 0 MCP; no install hooks in the Qoder manifest. Static review of packaged commands/scripts found no hidden installer/network execution; exports may use Playwright and one SVG template references a remote Google Fonts URL. Upstream `main` was observed at commit `795eec47…` with manifest 2.6.181, newer than the market pin. | Installed/enabled at user scope after explicit selection and exposed as a Skill in the current audit session. Its reviewed standard-library extractor was used for parser-only evidence; no diagram was generated or rendered. |
+| Mermaid CLI | `@mermaid-js/mermaid-cli` 12.2.0, MIT, Node >=22.13.0; local Node 22.18.0 satisfies the engine; npm distribution integrity was recorded during evaluation. PNG/PDF require a browser runtime. | Evaluated, not selected or installed. A separate pin/lock/audit/render task is required for CI-safe validation. |
+| Draw.io-compatible tooling | Diagram Design supports `.drawio` import. No official Draw.io MCP was verified in the Qoder market/MCP catalog. | Use only the installed plugin's import capability after it is loaded; do not label third-party candidates official. |
+| Structurizr | Useful for model-driven C4 views, but no current requirement or implementation need is established. | Deferred; no installation. |
+
+No diagram was rendered or regenerated during Phase 1 evaluation or the comprehensive audit. Existing valid sources and artifacts remain unchanged. The later audit recorded bounded parser extraction at 55/56 Mermaid sources, Mermaid/DOT parity at 26/26 and static SVG/PNG validation at 26/26. These checks do not establish Mermaid rendering, visual acceptance or as-built correctness; see [COMPREHENSIVE_AUDIT.md](setup/COMPREHENSIVE_AUDIT.md) and [VERIFICATION_REPORT.md](setup/VERIFICATION_REPORT.md#comprehensive-audit--2026-11-28).
 
 ## Research scope and sources
 
