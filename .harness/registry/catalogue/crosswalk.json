@@ -1,0 +1,1457 @@
+{
+  "schema_version": "1.0",
+  "source_catalogue": ".harness/registry/catalogue/source-145.json",
+  "source_sha256": "ca74a11a7960a3edebfef83cdad30e71e77afd6b4a50a94f6a19945bdac0c4fe",
+  "mappings": [
+    {
+      "source_id": "A01",
+      "canonical_id": "TECH-003",
+      "classification": "partial_match",
+      "canonical_name": "Change specification workflow",
+      "rationale": "Spec-before-implementation is the core; source is broader than bounded change proposals.",
+      "source_group": "A",
+      "source_name": "Spec-Driven Development",
+      "source_usage_context_vi": "Trước khi triển khai chức năng mới"
+    },
+    {
+      "source_id": "A02",
+      "canonical_id": "TECH-003",
+      "classification": "partial_match",
+      "canonical_name": "Change specification workflow",
+      "rationale": "OpenSpec operationalizes this change-spec workflow; the source names a framework rather than the full method.",
+      "source_group": "A",
+      "source_name": "OpenSpec",
+      "source_usage_context_vi": "Thay đổi hoặc mở rộng chức năng hiện có"
+    },
+    {
+      "source_id": "A03",
+      "canonical_id": "TECH-001",
+      "classification": "exact_match",
+      "canonical_name": "Requirements traceability",
+      "rationale": "Same bidirectional requirement-to-code-and-test traceability.",
+      "source_group": "A",
+      "source_name": "Requirements Traceability",
+      "source_usage_context_vi": "Liên kết yêu cầu với code và test"
+    },
+    {
+      "source_id": "A04",
+      "canonical_id": "TECH-004",
+      "classification": "exact_match",
+      "canonical_name": "Task contract and acceptance criteria",
+      "rationale": "Same pre-execution task contract and acceptance boundary.",
+      "source_group": "A",
+      "source_name": "Task Contract",
+      "source_usage_context_vi": "Trước khi giao nhiệm vụ cho AI"
+    },
+    {
+      "source_id": "A05",
+      "canonical_id": "TECH-041",
+      "classification": "distinct_technique",
+      "canonical_name": "Brainstorming",
+      "rationale": "No existing card covers idea generation before solution selection.",
+      "source_group": "A",
+      "source_name": "Brainstorming",
+      "source_usage_context_vi": "Chưa xác định được giải pháp tối ưu"
+    },
+    {
+      "source_id": "A06",
+      "canonical_id": "TECH-042",
+      "classification": "distinct_technique",
+      "canonical_name": "First Principles Thinking",
+      "rationale": "Assumption-breaking analysis is not requirement extraction or change specification.",
+      "source_group": "A",
+      "source_name": "First Principles Thinking",
+      "source_usage_context_vi": "Vấn đề phức tạp, nhiều giả định"
+    },
+    {
+      "source_id": "A07",
+      "canonical_id": "TECH-032",
+      "classification": "exact_match",
+      "canonical_name": "Architecture decision record",
+      "rationale": "Same ADR context, options, decision and consequences record.",
+      "source_group": "A",
+      "source_name": "Architecture Decision Records",
+      "source_usage_context_vi": "Khi lựa chọn công nghệ hoặc kiến trúc"
+    },
+    {
+      "source_id": "A08",
+      "canonical_id": "TECH-043",
+      "classification": "related_method",
+      "canonical_name": "Task Decomposition and Work Breakdown",
+      "rationale": "Decomposition creates work units; TECH-005 consumes dependencies but does not decompose tasks.",
+      "source_group": "A",
+      "source_name": "Task Decomposition",
+      "source_usage_context_vi": "Task quá lớn để thực hiện một lần"
+    },
+    {
+      "source_id": "A09",
+      "canonical_id": "TECH-005",
+      "classification": "partial_match",
+      "canonical_name": "Dependency-aware planning",
+      "rationale": "A DAG is the dependency input used by dependency-aware sequencing.",
+      "source_group": "A",
+      "source_name": "Dependency Graph / DAG",
+      "source_usage_context_vi": "Nhiều task phụ thuộc nhau"
+    },
+    {
+      "source_id": "A10",
+      "canonical_id": "TECH-005",
+      "classification": "partial_match",
+      "canonical_name": "Dependency-aware planning",
+      "rationale": "Critical-path ordering is a dependency-aware planning specialization.",
+      "source_group": "A",
+      "source_name": "Critical Path Analysis",
+      "source_usage_context_vi": "Lập thứ tự triển khai dự án"
+    },
+    {
+      "source_id": "A11",
+      "canonical_id": "TECH-018",
+      "classification": "partial_match",
+      "canonical_name": "API contract-first design",
+      "rationale": "Contract-first is broader; the existing card covers API contracts and contract tests.",
+      "source_group": "A",
+      "source_name": "Contract-First Development",
+      "source_usage_context_vi": "Nhiều thành viên xây các module khác nhau"
+    },
+    {
+      "source_id": "A12",
+      "canonical_id": "TECH-044",
+      "classification": "related_method",
+      "canonical_name": "Vertical Slice Development",
+      "rationale": "End-to-end slice delivery differs from the bounded step loop in TECH-012.",
+      "source_group": "A",
+      "source_name": "Vertical Slice Development",
+      "source_usage_context_vi": "Cần chứng minh hệ thống chạy end-to-end"
+    },
+    {
+      "source_id": "A13",
+      "canonical_id": "TECH-045",
+      "classification": "related_method",
+      "canonical_name": "Risk-Based Planning",
+      "rationale": "Risk-based planning is broader than TECH-023 test selection and TECH-036 threat modeling.",
+      "source_group": "A",
+      "source_name": "Risk-Based Planning",
+      "source_usage_context_vi": "Công việc có độ bất định cao"
+    },
+    {
+      "source_id": "A14",
+      "canonical_id": "TECH-022",
+      "classification": "partial_match",
+      "canonical_name": "Hypothesis–experiment loop",
+      "rationale": "A spike is a time-boxed feasibility hypothesis/experiment; the existing loop supplies test-and-record discipline.",
+      "source_group": "A",
+      "source_name": "Spike / Proof of Concept",
+      "source_usage_context_vi": "Chưa biết công nghệ có khả thi không"
+    },
+    {
+      "source_id": "B01",
+      "canonical_id": "TECH-006",
+      "classification": "exact_match",
+      "canonical_name": "Progressive disclosure",
+      "rationale": "Same load-detail-only-when-needed method.",
+      "source_group": "B",
+      "source_name": "Progressive Disclosure",
+      "source_usage_context_vi": "Khởi động phiên làm việc mới"
+    },
+    {
+      "source_id": "B02",
+      "canonical_id": "TECH-007",
+      "classification": "exact_match",
+      "canonical_name": "Scoped context packing",
+      "rationale": "Same task-specific context pack.",
+      "source_group": "B",
+      "source_name": "Context Packing",
+      "source_usage_context_vi": "Chuẩn bị context riêng cho task"
+    },
+    {
+      "source_id": "B03",
+      "canonical_id": "TECH-010",
+      "classification": "partial_match",
+      "canonical_name": "Budgeted context compilation",
+      "rationale": "Compression is one truncation or summarization control within budgeted compilation.",
+      "source_group": "B",
+      "source_name": "Context Compression",
+      "source_usage_context_vi": "Context trở nên quá dài"
+    },
+    {
+      "source_id": "B04",
+      "canonical_id": "TECH-027",
+      "classification": "partial_match",
+      "canonical_name": "Deterministic preprocessing before AI",
+      "rationale": "Deduplication is explicit preprocessing; the source applies it to context documents.",
+      "source_group": "B",
+      "source_name": "Context Deduplication",
+      "source_usage_context_vi": "Nhiều tài liệu chứa thông tin trùng"
+    },
+    {
+      "source_id": "B05",
+      "canonical_id": "TECH-006",
+      "classification": "exact_match",
+      "canonical_name": "Progressive disclosure",
+      "rationale": "Lazy loading is progressive disclosure of skills and details.",
+      "source_group": "B",
+      "source_name": "Lazy Skill Loading",
+      "source_usage_context_vi": "Chỉ nạp skill khi cần"
+    },
+    {
+      "source_id": "B06",
+      "canonical_id": "TECH-008",
+      "classification": "partial_match",
+      "canonical_name": "Repository mapping and symbol retrieval",
+      "rationale": "Repository mapping is the exploration portion of the existing broader card.",
+      "source_group": "B",
+      "source_name": "Repository Mapping",
+      "source_usage_context_vi": "AI tiếp cận codebase lần đầu"
+    },
+    {
+      "source_id": "B07",
+      "canonical_id": "TECH-008",
+      "classification": "partial_match",
+      "canonical_name": "Repository mapping and symbol retrieval",
+      "rationale": "AST retrieval is a symbol-retrieval mechanism already named through Tree-sitter or LSP.",
+      "source_group": "B",
+      "source_name": "AST-based Retrieval",
+      "source_usage_context_vi": "Tìm cấu trúc code chính xác"
+    },
+    {
+      "source_id": "B08",
+      "canonical_id": "TECH-008",
+      "classification": "partial_match",
+      "canonical_name": "Repository mapping and symbol retrieval",
+      "rationale": "Symbol lookup is the core retrieval step in the existing card.",
+      "source_group": "B",
+      "source_name": "Symbol-level Retrieval",
+      "source_usage_context_vi": "Tìm class, method, function"
+    },
+    {
+      "source_id": "B09",
+      "canonical_id": "TECH-046",
+      "classification": "related_method",
+      "canonical_name": "Hybrid Retrieval and Search",
+      "rationale": "Combines keyword and semantic retrieval; TECH-008 is exact-first retrieval, not hybrid retrieval.",
+      "source_group": "B",
+      "source_name": "Hybrid Retrieval",
+      "source_usage_context_vi": "Kết hợp tìm kiếm từ khóa và ngữ nghĩa"
+    },
+    {
+      "source_id": "B10",
+      "canonical_id": "TECH-010",
+      "classification": "exact_match",
+      "canonical_name": "Budgeted context compilation",
+      "rationale": "Same explicit context and resource budget allocation.",
+      "source_group": "B",
+      "source_name": "Context Budget Allocation",
+      "source_usage_context_vi": "Giới hạn tài nguyên cho task"
+    },
+    {
+      "source_id": "B11",
+      "canonical_id": "TECH-047",
+      "classification": "related_method",
+      "canonical_name": "Prompt Caching",
+      "rationale": "Provider prefix reuse addresses context cost differently from TECH-010 packing and truncation.",
+      "source_group": "B",
+      "source_name": "Prompt Caching",
+      "source_usage_context_vi": "Tái sử dụng phần prompt ổn định nếu provider hỗ trợ"
+    },
+    {
+      "source_id": "B12",
+      "canonical_id": "TECH-048",
+      "classification": "related_method",
+      "canonical_name": "Incremental Indexing",
+      "rationale": "Index maintenance after repository changes differs from TECH-009 provenance and delta tracking.",
+      "source_group": "B",
+      "source_name": "Incremental Indexing",
+      "source_usage_context_vi": "Repository vừa thay đổi"
+    },
+    {
+      "source_id": "B13",
+      "canonical_id": "TECH-009",
+      "classification": "exact_match",
+      "canonical_name": "Context provenance and delta",
+      "rationale": "Same changed-context delta used for continuation and revalidation.",
+      "source_group": "B",
+      "source_name": "Delta Context",
+      "source_usage_context_vi": "Tiếp tục công việc từ phiên trước"
+    },
+    {
+      "source_id": "B14",
+      "canonical_id": "TECH-049",
+      "classification": "related_method",
+      "canonical_name": "Tool Output Filtering",
+      "rationale": "Filtering raw tool logs differs from TECH-010 context-pack omission reporting.",
+      "source_group": "B",
+      "source_name": "Tool Output Filtering",
+      "source_usage_context_vi": "Terminal và tool trả về quá nhiều log"
+    },
+    {
+      "source_id": "B15",
+      "canonical_id": "TECH-009",
+      "classification": "exact_match",
+      "canonical_name": "Context provenance and delta",
+      "rationale": "Same source and provenance tracking for context.",
+      "source_group": "B",
+      "source_name": "Context Provenance",
+      "source_usage_context_vi": "Truy vết nguồn thông tin AI sử dụng"
+    },
+    {
+      "source_id": "B16",
+      "canonical_id": "TECH-006",
+      "classification": "exact_match",
+      "canonical_name": "Progressive disclosure",
+      "rationale": "Same retrieve-only-when-needed progressive disclosure.",
+      "source_group": "B",
+      "source_name": "Just-in-time Retrieval",
+      "source_usage_context_vi": "Lấy thông tin ngay khi cần"
+    },
+    {
+      "source_id": "B17",
+      "canonical_id": "TECH-050",
+      "classification": "related_method",
+      "canonical_name": "Session Summarization",
+      "rationale": "Conversation summary and compaction differ from TECH-015 repository and task checkpointing.",
+      "source_group": "B",
+      "source_name": "Session Summarization",
+      "source_usage_context_vi": "Kết thúc phiên dài"
+    },
+    {
+      "source_id": "B18",
+      "canonical_id": "TECH-051",
+      "classification": "related_method",
+      "canonical_name": "Hierarchical Memory",
+      "rationale": "Persistent tiered memory differs from the layered prompt-context loading in TECH-006 and TECH-007.",
+      "source_group": "B",
+      "source_name": "Hierarchical Memory",
+      "source_usage_context_vi": "Tổ chức kiến thức theo nhiều tầng"
+    },
+    {
+      "source_id": "C01",
+      "canonical_id": "TECH-012",
+      "classification": "exact_match",
+      "canonical_name": "Plan–Execute–Verify loop",
+      "rationale": "Same plan, execute and verify loop.",
+      "source_group": "C",
+      "source_name": "Plan–Execute–Verify",
+      "source_usage_context_vi": "Hầu hết task triển khai"
+    },
+    {
+      "source_id": "C02",
+      "canonical_id": "TECH-052",
+      "classification": "related_method",
+      "canonical_name": "ReAct",
+      "rationale": "Dynamic reason–act–observe differs from the preapproved TECH-012 plan and TECH-022 experiment loop.",
+      "source_group": "C",
+      "source_name": "ReAct",
+      "source_usage_context_vi": "Công việc cần gọi tool và quan sát kết quả"
+    },
+    {
+      "source_id": "C03",
+      "canonical_id": "TECH-053",
+      "classification": "related_method",
+      "canonical_name": "Prompt Chaining",
+      "rationale": "Chained prompt outputs define staged AI composition; TECH-012 does not prescribe prompt interfaces.",
+      "source_group": "C",
+      "source_name": "Prompt Chaining",
+      "source_usage_context_vi": "Quy trình có nhiều giai đoạn"
+    },
+    {
+      "source_id": "C04",
+      "canonical_id": "TECH-011",
+      "classification": "partial_match",
+      "canonical_name": "Deterministic task router",
+      "rationale": "Task routing overlaps; the source selects agents while TECH-011 selects profiles and techniques.",
+      "source_group": "C",
+      "source_name": "Task Routing",
+      "source_usage_context_vi": "Chọn agent phù hợp"
+    },
+    {
+      "source_id": "C05",
+      "canonical_id": "TECH-014",
+      "classification": "partial_match",
+      "canonical_name": "Bounded parallel execution",
+      "rationale": "Same independent-task parallelism; the existing card adds disjoint writes, caps and reconciliation.",
+      "source_group": "C",
+      "source_name": "Parallelization",
+      "source_usage_context_vi": "Nhiều nhiệm vụ độc lập"
+    },
+    {
+      "source_id": "C06",
+      "canonical_id": "TECH-014",
+      "classification": "partial_match",
+      "canonical_name": "Bounded parallel execution",
+      "rationale": "Orchestrator–workers is a central-coordinator form of bounded parallel execution.",
+      "source_group": "C",
+      "source_name": "Orchestrator–Workers",
+      "source_usage_context_vi": "Một nhiệm vụ lớn có nhiều workstream"
+    },
+    {
+      "source_id": "C07",
+      "canonical_id": "TECH-054",
+      "classification": "related_method",
+      "canonical_name": "Evaluator–Optimizer",
+      "rationale": "Generate, evaluate and revise optimization is more than TECH-022 experiments or TECH-024 benchmarking.",
+      "source_group": "C",
+      "source_name": "Evaluator–Optimizer",
+      "source_usage_context_vi": "Đầu ra cần cải thiện qua nhiều vòng"
+    },
+    {
+      "source_id": "C08",
+      "canonical_id": "TECH-013",
+      "classification": "partial_match",
+      "canonical_name": "Implementer–Reviewer separation",
+      "rationale": "Generator–critic is an independent-review variant; the existing card focuses on post-implementation review.",
+      "source_group": "C",
+      "source_name": "Generator–Critic",
+      "source_usage_context_vi": "Tách người tạo và người phản biện"
+    },
+    {
+      "source_id": "C09",
+      "canonical_id": "TECH-013",
+      "classification": "exact_match",
+      "canonical_name": "Implementer–Reviewer separation",
+      "rationale": "Same independent reviewer after implementation.",
+      "source_group": "C",
+      "source_name": "Independent Reviewer",
+      "source_usage_context_vi": "Sau khi implementation hoàn thành"
+    },
+    {
+      "source_id": "C10",
+      "canonical_id": "TECH-013",
+      "classification": "partial_match",
+      "canonical_name": "Implementer–Reviewer separation",
+      "rationale": "Adversarial review is a high-risk independent-review mode; explicit attack-case generation is absent.",
+      "source_group": "C",
+      "source_name": "Adversarial Review",
+      "source_usage_context_vi": "Tính năng có rủi ro cao"
+    },
+    {
+      "source_id": "C11",
+      "canonical_id": "TECH-012",
+      "classification": "partial_match",
+      "canonical_name": "Plan–Execute–Verify loop",
+      "rationale": "Repeated bounded plan–execute–verify until criteria matches the loop; the source emphasizes repetition.",
+      "source_group": "C",
+      "source_name": "Bounded Ralph Loop",
+      "source_usage_context_vi": "Task có tiêu chí dừng kiểm chứng được"
+    },
+    {
+      "source_id": "C12",
+      "canonical_id": "TECH-055",
+      "classification": "related_method",
+      "canonical_name": "Reflection",
+      "rationale": "Post-run self-critique differs from TECH-022 hypothesis updates and TECH-040 factual logging.",
+      "source_group": "C",
+      "source_name": "Reflection",
+      "source_usage_context_vi": "Phân tích lỗi sau execution"
+    },
+    {
+      "source_id": "C13",
+      "canonical_id": "TECH-004",
+      "classification": "partial_match",
+      "canonical_name": "Task contract and acceptance criteria",
+      "rationale": "Human decision gates overlap task approvals and stop conditions; version-bound publication approval remains TECH-029.",
+      "source_group": "C",
+      "source_name": "Human-in-the-loop",
+      "source_usage_context_vi": "Quyết định quan trọng hoặc rủi ro"
+    },
+    {
+      "source_id": "C14",
+      "canonical_id": "TECH-056",
+      "classification": "related_method",
+      "canonical_name": "Cost-aware Model Routing and Cascading",
+      "rationale": "Selecting models by need and cost is routing; TECH-030 only isolates providers behind an adapter.",
+      "source_group": "C",
+      "source_name": "Model Routing",
+      "source_usage_context_vi": "Chọn LLM theo yêu cầu và chi phí"
+    },
+    {
+      "source_id": "C15",
+      "canonical_id": "TECH-057",
+      "classification": "related_method",
+      "canonical_name": "Ensemble Verification",
+      "rationale": "Multiple verifier perspectives and aggregation go beyond the single independent reviewer in TECH-013.",
+      "source_group": "C",
+      "source_name": "Ensemble Verification",
+      "source_usage_context_vi": "Kiểm tra nhiều góc nhìn khi cần"
+    },
+    {
+      "source_id": "C16",
+      "canonical_id": "TECH-058",
+      "classification": "related_method",
+      "canonical_name": "Tool Calling",
+      "rationale": "General environment tool use is broader than the allowlisted verification runner in TECH-039.",
+      "source_group": "C",
+      "source_name": "Tool Calling",
+      "source_usage_context_vi": "AI cần thao tác trên môi trường"
+    },
+    {
+      "source_id": "C17",
+      "canonical_id": "TECH-015",
+      "classification": "exact_match",
+      "canonical_name": "Checkpoint and resume",
+      "rationale": "Same checkpoint and resume method.",
+      "source_group": "C",
+      "source_name": "Checkpoint & Resume",
+      "source_usage_context_vi": "Công việc dài hoặc bị gián đoạn"
+    },
+    {
+      "source_id": "C18",
+      "canonical_id": "TECH-059",
+      "classification": "related_method",
+      "canonical_name": "State Machine Orchestration",
+      "rationale": "Explicit states, transitions and guards extend the workflow control in TECH-012.",
+      "source_group": "C",
+      "source_name": "State Machine Orchestration",
+      "source_usage_context_vi": "Workflow có trạng thái rõ ràng"
+    },
+    {
+      "source_id": "C19",
+      "canonical_id": "TECH-040",
+      "classification": "exact_match",
+      "canonical_name": "Handoff and incident-ready logging",
+      "rationale": "Same structured handoff between agents or developers.",
+      "source_group": "C",
+      "source_name": "Agent Handoff",
+      "source_usage_context_vi": "Chuyển giao giữa agent hoặc developer"
+    },
+    {
+      "source_id": "C20",
+      "canonical_id": "TECH-060",
+      "classification": "related_method",
+      "canonical_name": "Bounded Retry",
+      "rationale": "Retry-after-failure policy differs from TECH-012 stop limits and TECH-022 experiment limits.",
+      "source_group": "C",
+      "source_name": "Bounded Retry",
+      "source_usage_context_vi": "Xử lý lỗi mà không lặp vô hạn"
+    },
+    {
+      "source_id": "D01",
+      "canonical_id": "TECH-016",
+      "classification": "exact_match",
+      "canonical_name": "Red–Green–Refactor",
+      "rationale": "The TDD red–green cycle is present; the existing card adds refactoring under green.",
+      "source_group": "D",
+      "source_name": "Test-Driven Development",
+      "source_usage_context_vi": "Triển khai business logic"
+    },
+    {
+      "source_id": "D02",
+      "canonical_id": "TECH-061",
+      "classification": "related_method",
+      "canonical_name": "Behaviour-Driven Development",
+      "rationale": "BDD adds business-readable scenarios and collaboration beyond TECH-016 test-first and TECH-004 acceptance.",
+      "source_group": "D",
+      "source_name": "Behaviour-Driven Development",
+      "source_usage_context_vi": "Chuyển yêu cầu nghiệp vụ thành test"
+    },
+    {
+      "source_id": "D03",
+      "canonical_id": "TECH-062",
+      "classification": "distinct_technique",
+      "canonical_name": "Domain-Driven Design",
+      "rationale": "Domain models, ubiquitous language and bounded contexts are absent.",
+      "source_group": "D",
+      "source_name": "Domain-Driven Design",
+      "source_usage_context_vi": "Nghiệp vụ có nhiều khái niệm và quy tắc"
+    },
+    {
+      "source_id": "D04",
+      "canonical_id": "TECH-063",
+      "classification": "distinct_technique",
+      "canonical_name": "SOLID Design Principles",
+      "rationale": "SOLID is a design-principle set not represented by an existing card.",
+      "source_group": "D",
+      "source_name": "SOLID Principles",
+      "source_usage_context_vi": "Thiết kế class và service"
+    },
+    {
+      "source_id": "D05",
+      "canonical_id": "TECH-017",
+      "classification": "partial_match",
+      "canonical_name": "Minimal change and reuse analysis",
+      "rationale": "DRY, KISS and YAGNI overlap reuse, minimal diff and avoidance of speculative abstraction.",
+      "source_group": "D",
+      "source_name": "DRY / KISS / YAGNI",
+      "source_usage_context_vi": "Kiểm soát độ phức tạp"
+    },
+    {
+      "source_id": "D06",
+      "canonical_id": "TECH-064",
+      "classification": "distinct_technique",
+      "canonical_name": "Modular Monolith",
+      "rationale": "The module-boundary architectural style is not component or state design.",
+      "source_group": "D",
+      "source_name": "Modular Monolith",
+      "source_usage_context_vi": "Phát triển hệ thống theo module"
+    },
+    {
+      "source_id": "D07",
+      "canonical_id": "TECH-065",
+      "classification": "distinct_technique",
+      "canonical_name": "Dependency Injection",
+      "rationale": "Dependency inversion and injection are not provider-adapter isolation.",
+      "source_group": "D",
+      "source_name": "Dependency Injection",
+      "source_usage_context_vi": "Tách dependency để dễ kiểm thử"
+    },
+    {
+      "source_id": "D08",
+      "canonical_id": "TECH-030",
+      "classification": "partial_match",
+      "canonical_name": "Provider-neutral AI adapter contract",
+      "rationale": "The adapter pattern is general; the existing card is the AI-provider-specific adapter contract.",
+      "source_group": "D",
+      "source_name": "Adapter Pattern",
+      "source_usage_context_vi": "Kết nối nhiều nguồn dữ liệu hoặc LLM"
+    },
+    {
+      "source_id": "D09",
+      "canonical_id": "TECH-066",
+      "classification": "distinct_technique",
+      "canonical_name": "Strategy Pattern",
+      "rationale": "An interchangeable algorithm family is absent.",
+      "source_group": "D",
+      "source_name": "Strategy Pattern",
+      "source_usage_context_vi": "Thay đổi thuật toán xử lý"
+    },
+    {
+      "source_id": "D10",
+      "canonical_id": "TECH-067",
+      "classification": "distinct_technique",
+      "canonical_name": "Repository Pattern",
+      "rationale": "A data-access abstraction and persistence boundary are absent.",
+      "source_group": "D",
+      "source_name": "Repository Pattern",
+      "source_usage_context_vi": "Tách logic truy cập dữ liệu"
+    },
+    {
+      "source_id": "D11",
+      "canonical_id": "TECH-068",
+      "classification": "distinct_technique",
+      "canonical_name": "Pipeline Pattern",
+      "rationale": "A general staged processing pipeline is not the existing preprocessing stage alone.",
+      "source_group": "D",
+      "source_name": "Pipeline Pattern",
+      "source_usage_context_vi": "Chuỗi thu thập, xử lý và kiểm chứng"
+    },
+    {
+      "source_id": "D12",
+      "canonical_id": "TECH-069",
+      "classification": "distinct_technique",
+      "canonical_name": "Event-Driven Architecture",
+      "rationale": "Asynchronous event producers, brokers and consumers are absent.",
+      "source_group": "D",
+      "source_name": "Event-Driven Architecture",
+      "source_usage_context_vi": "Xử lý sự kiện bất đồng bộ"
+    },
+    {
+      "source_id": "D13",
+      "canonical_id": "TECH-019",
+      "classification": "partial_match",
+      "canonical_name": "Idempotent migration workflow",
+      "rationale": "Idempotency is core to the migration workflow; the source covers collectors and jobs more broadly.",
+      "source_group": "D",
+      "source_name": "Idempotency",
+      "source_usage_context_vi": "Collector, retry và background jobs"
+    },
+    {
+      "source_id": "D14",
+      "canonical_id": "TECH-063",
+      "classification": "related_method",
+      "canonical_name": "SOLID Design Principles",
+      "rationale": "Interface Segregation is one SOLID principle; group with D04 rather than duplicate it; TECH-018 is related contract design.",
+      "source_group": "D",
+      "source_name": "Interface Segregation",
+      "source_usage_context_vi": "Thiết kế contracts giữa các module"
+    },
+    {
+      "source_id": "D15",
+      "canonical_id": "TECH-020",
+      "classification": "partial_match",
+      "canonical_name": "Safe refactoring with characterization tests",
+      "rationale": "Incremental structural improvement overlaps; the existing card adds characterization tests and behavior preservation.",
+      "source_group": "D",
+      "source_name": "Incremental Refactoring",
+      "source_usage_context_vi": "Cải thiện code hiện có"
+    },
+    {
+      "source_id": "D16",
+      "canonical_id": "TECH-070",
+      "classification": "distinct_technique",
+      "canonical_name": "Feature Flags",
+      "rationale": "Runtime feature enablement and rollback controls are absent.",
+      "source_group": "D",
+      "source_name": "Feature Flags",
+      "source_usage_context_vi": "Phát triển tính năng chưa phát hành"
+    },
+    {
+      "source_id": "D17",
+      "canonical_id": "TECH-027",
+      "classification": "partial_match",
+      "canonical_name": "Deterministic preprocessing before AI",
+      "rationale": "Input validation is explicit preprocessing; the source covers broader defensive coding.",
+      "source_group": "D",
+      "source_name": "Defensive Programming",
+      "source_usage_context_vi": "Xử lý input không đáng tin cậy"
+    },
+    {
+      "source_id": "D18",
+      "canonical_id": "TECH-017",
+      "classification": "exact_match",
+      "canonical_name": "Minimal change and reuse analysis",
+      "rationale": "Same reuse discovery before adding new code.",
+      "source_group": "D",
+      "source_name": "Code Reuse Discovery",
+      "source_usage_context_vi": "Trước khi viết service hoặc component mới"
+    },
+    {
+      "source_id": "E01",
+      "canonical_id": "TECH-071",
+      "classification": "related_method",
+      "canonical_name": "Unit Testing",
+      "rationale": "Unit-test execution is a test level; TECH-023 selects levels and TECH-016 uses tests but neither defines unit testing.",
+      "source_group": "E",
+      "source_name": "Unit Testing",
+      "source_usage_context_vi": "Kiểm tra hàm và business logic"
+    },
+    {
+      "source_id": "E02",
+      "canonical_id": "TECH-072",
+      "classification": "related_method",
+      "canonical_name": "Integration Testing",
+      "rationale": "Integration-test execution is distinct from TECH-023 risk-based test selection.",
+      "source_group": "E",
+      "source_name": "Integration Testing",
+      "source_usage_context_vi": "Kiểm tra giao tiếp giữa module"
+    },
+    {
+      "source_id": "E03",
+      "canonical_id": "TECH-018",
+      "classification": "partial_match",
+      "canonical_name": "API contract-first design",
+      "rationale": "Contract tests are an explicit output and step of API contract-first design.",
+      "source_group": "E",
+      "source_name": "Contract Testing",
+      "source_usage_context_vi": "Nhiều thành viên phát triển song song"
+    },
+    {
+      "source_id": "E04",
+      "canonical_id": "TECH-034",
+      "classification": "partial_match",
+      "canonical_name": "Accessibility-first UI verification",
+      "rationale": "User-flow browser verification overlaps; the existing card is accessibility-first UI verification.",
+      "source_group": "E",
+      "source_name": "End-to-End Testing",
+      "source_usage_context_vi": "Kiểm chứng workflow người dùng"
+    },
+    {
+      "source_id": "E05",
+      "canonical_id": "TECH-073",
+      "classification": "related_method",
+      "canonical_name": "Regression Testing",
+      "rationale": "Regression test design and execution differ from the evidence gate in TECH-025.",
+      "source_group": "E",
+      "source_name": "Regression Testing",
+      "source_usage_context_vi": "Sau mỗi thay đổi"
+    },
+    {
+      "source_id": "E06",
+      "canonical_id": "TECH-024",
+      "classification": "partial_match",
+      "canonical_name": "LLM evaluation harness",
+      "rationale": "Golden datasets are a fixed-case component of the existing evaluation harness.",
+      "source_group": "E",
+      "source_name": "Golden Dataset Testing",
+      "source_usage_context_vi": "Đánh giá đầu ra AI"
+    },
+    {
+      "source_id": "E07",
+      "canonical_id": "TECH-074",
+      "classification": "distinct_technique",
+      "canonical_name": "Property-Based Testing",
+      "rationale": "Generated-input invariants are absent.",
+      "source_group": "E",
+      "source_name": "Property-Based Testing",
+      "source_usage_context_vi": "Dữ liệu có nhiều biến thể"
+    },
+    {
+      "source_id": "E08",
+      "canonical_id": "TECH-075",
+      "classification": "distinct_technique",
+      "canonical_name": "Mutation Testing",
+      "rationale": "Test-suite mutation analysis is absent.",
+      "source_group": "E",
+      "source_name": "Mutation Testing",
+      "source_usage_context_vi": "Kiểm tra chất lượng test"
+    },
+    {
+      "source_id": "E09",
+      "canonical_id": "TECH-021",
+      "classification": "partial_match",
+      "canonical_name": "Reproduction-first debugging",
+      "rationale": "Root-cause isolation is explicit within reproduction-first debugging.",
+      "source_group": "E",
+      "source_name": "Root Cause Analysis",
+      "source_usage_context_vi": "Bug chưa rõ nguyên nhân"
+    },
+    {
+      "source_id": "E10",
+      "canonical_id": "TECH-022",
+      "classification": "exact_match",
+      "canonical_name": "Hypothesis–experiment loop",
+      "rationale": "Same falsifiable-hypothesis and bounded-experiment loop.",
+      "source_group": "E",
+      "source_name": "Hypothesis-Driven Debugging",
+      "source_usage_context_vi": "Điều tra lỗi phức tạp"
+    },
+    {
+      "source_id": "E11",
+      "canonical_id": "TECH-021",
+      "classification": "exact_match",
+      "canonical_name": "Reproduction-first debugging",
+      "rationale": "Same minimal reproduction before fixing.",
+      "source_group": "E",
+      "source_name": "Reproduction-First Debugging",
+      "source_usage_context_vi": "Trước khi sửa bug"
+    },
+    {
+      "source_id": "E12",
+      "canonical_id": "TECH-021",
+      "classification": "partial_match",
+      "canonical_name": "Reproduction-first debugging",
+      "rationale": "Git bisect is the named optional tool for locating a regression-introducing commit.",
+      "source_group": "E",
+      "source_name": "Git Bisect",
+      "source_usage_context_vi": "Xác định commit gây regression"
+    },
+    {
+      "source_id": "E13",
+      "canonical_id": "TECH-076",
+      "classification": "distinct_technique",
+      "canonical_name": "Differential Testing",
+      "rationale": "Comparing two implementations' outputs is absent.",
+      "source_group": "E",
+      "source_name": "Differential Testing",
+      "source_usage_context_vi": "So sánh hai implementation"
+    },
+    {
+      "source_id": "E14",
+      "canonical_id": "TECH-077",
+      "classification": "distinct_technique",
+      "canonical_name": "Snapshot Testing",
+      "rationale": "Stored-output snapshot comparison is absent.",
+      "source_group": "E",
+      "source_name": "Snapshot Testing",
+      "source_usage_context_vi": "Kiểm tra output ổn định"
+    },
+    {
+      "source_id": "E15",
+      "canonical_id": "TECH-034",
+      "classification": "partial_match",
+      "canonical_name": "Accessibility-first UI verification",
+      "rationale": "Visual regression is a named supporting skill within browser and UI verification.",
+      "source_group": "E",
+      "source_name": "Visual Regression Testing",
+      "source_usage_context_vi": "UI hoặc sơ đồ thay đổi"
+    },
+    {
+      "source_id": "E16",
+      "canonical_id": "TECH-024",
+      "classification": "partial_match",
+      "canonical_name": "LLM evaluation harness",
+      "rationale": "An LLM judge is a scoring mechanism within a fixed evaluation harness.",
+      "source_group": "E",
+      "source_name": "LLM-as-a-Judge",
+      "source_usage_context_vi": "Hỗ trợ đánh giá đầu ra phi cấu trúc"
+    },
+    {
+      "source_id": "E17",
+      "canonical_id": "TECH-078",
+      "classification": "related_method",
+      "canonical_name": "Red Teaming",
+      "rationale": "Adversarial AI and security probing shares abuse-case discovery with TECH-036 but is a different activity.",
+      "source_group": "E",
+      "source_name": "Red Teaming",
+      "source_usage_context_vi": "Tìm lỗ hổng AI và security"
+    },
+    {
+      "source_id": "E18",
+      "canonical_id": "TECH-024",
+      "classification": "partial_match",
+      "canonical_name": "LLM evaluation harness",
+      "rationale": "Before-and-after benchmarks overlap; the existing card is an evaluation harness, not the full optimization loop.",
+      "source_group": "E",
+      "source_name": "Benchmark-Driven Optimization",
+      "source_usage_context_vi": "Đo hiệu quả trước và sau cải tiến"
+    },
+    {
+      "source_id": "E19",
+      "canonical_id": "TECH-079",
+      "classification": "distinct_technique",
+      "canonical_name": "Failure Injection",
+      "rationale": "Fault injection for resilience testing is absent.",
+      "source_group": "E",
+      "source_name": "Failure Injection",
+      "source_usage_context_vi": "Kiểm tra khả năng phục hồi"
+    },
+    {
+      "source_id": "E20",
+      "canonical_id": "TECH-080",
+      "classification": "related_method",
+      "canonical_name": "Acceptance Test Automation",
+      "rationale": "Automating acceptance checks differs from TECH-004 defining them and TECH-025 gating on evidence.",
+      "source_group": "E",
+      "source_name": "Acceptance Test Automation",
+      "source_usage_context_vi": "Nghiệm thu Jira task"
+    },
+    {
+      "source_id": "F01",
+      "canonical_id": "TECH-028",
+      "classification": "exact_match",
+      "canonical_name": "Retrieval-grounded generation",
+      "rationale": "Same retrieval-augmented, evidence-grounded generation.",
+      "source_group": "F",
+      "source_name": "Retrieval-Augmented Generation",
+      "source_usage_context_vi": "Truy xuất thông tin từ knowledge base"
+    },
+    {
+      "source_id": "F02",
+      "canonical_id": "TECH-046",
+      "classification": "related_method",
+      "canonical_name": "Hybrid Retrieval and Search",
+      "rationale": "Evidence hybrid search is the same keyword-plus-semantic combination as B09; TECH-008 is only exact-first retrieval.",
+      "source_group": "F",
+      "source_name": "Hybrid Search",
+      "source_usage_context_vi": "Tìm tin tức và evidence"
+    },
+    {
+      "source_id": "F03",
+      "canonical_id": "TECH-030",
+      "classification": "partial_match",
+      "canonical_name": "Provider-neutral AI adapter contract",
+      "rationale": "Response-schema normalization is explicit in the provider-neutral adapter contract.",
+      "source_group": "F",
+      "source_name": "Structured LLM Output",
+      "source_usage_context_vi": "Chuẩn hóa kết quả AI"
+    },
+    {
+      "source_id": "F04",
+      "canonical_id": "TECH-081",
+      "classification": "related_method",
+      "canonical_name": "Claim Extraction",
+      "rationale": "Extracting verifiable claims is not requirement extraction in TECH-002 or grounded generation in TECH-028.",
+      "source_group": "F",
+      "source_name": "Claim Extraction",
+      "source_usage_context_vi": "Tách các tuyên bố cần kiểm chứng"
+    },
+    {
+      "source_id": "F05",
+      "canonical_id": "TECH-028",
+      "classification": "partial_match",
+      "canonical_name": "Retrieval-grounded generation",
+      "rationale": "Claim-to-evidence checking is an explicit verification stage within grounded generation.",
+      "source_group": "F",
+      "source_name": "Claim-level Verification",
+      "source_usage_context_vi": "Kiểm chứng từng tuyên bố"
+    },
+    {
+      "source_id": "F06",
+      "canonical_id": "TECH-082",
+      "classification": "related_method",
+      "canonical_name": "Cross-source Verification",
+      "rationale": "Independent multi-source corroboration exceeds TECH-028 citation checks and TECH-002 conflict logging.",
+      "source_group": "F",
+      "source_name": "Cross-source Verification",
+      "source_usage_context_vi": "Đối chiếu nhiều nguồn độc lập"
+    },
+    {
+      "source_id": "F07",
+      "canonical_id": "TECH-028",
+      "classification": "partial_match",
+      "canonical_name": "Retrieval-grounded generation",
+      "rationale": "Citation grounding is core RAG; the existing card adds authority, relevance and effective-date validation.",
+      "source_group": "F",
+      "source_name": "Citation Grounding",
+      "source_usage_context_vi": "Gắn đầu ra với bằng chứng"
+    },
+    {
+      "source_id": "F08",
+      "canonical_id": "TECH-083",
+      "classification": "distinct_technique",
+      "canonical_name": "Entity Resolution",
+      "rationale": "Entity identity resolution is not normalization or deduplication alone.",
+      "source_group": "F",
+      "source_name": "Entity Resolution",
+      "source_usage_context_vi": "Nhận diện cùng một đối tượng"
+    },
+    {
+      "source_id": "F09",
+      "canonical_id": "TECH-084",
+      "classification": "distinct_technique",
+      "canonical_name": "Event Clustering",
+      "rationale": "Grouping reports by real-world event is absent.",
+      "source_group": "F",
+      "source_name": "Event Clustering",
+      "source_usage_context_vi": "Gom tin cùng sự kiện"
+    },
+    {
+      "source_id": "F10",
+      "canonical_id": "TECH-027",
+      "classification": "partial_match",
+      "canonical_name": "Deterministic preprocessing before AI",
+      "rationale": "Near-duplicate detection is within preprocessing; semantic similarity is the source's specific mechanism.",
+      "source_group": "F",
+      "source_name": "Semantic Deduplication",
+      "source_usage_context_vi": "Loại nội dung trùng ngữ nghĩa"
+    },
+    {
+      "source_id": "F11",
+      "canonical_id": "TECH-085",
+      "classification": "related_method",
+      "canonical_name": "Temporal Reasoning",
+      "rationale": "Publication-date and effective-date reasoning exceeds the date check in TECH-028.",
+      "source_group": "F",
+      "source_name": "Temporal Reasoning",
+      "source_usage_context_vi": "Phân biệt ngày công bố và ngày hiệu lực"
+    },
+    {
+      "source_id": "F12",
+      "canonical_id": "TECH-086",
+      "classification": "distinct_technique",
+      "canonical_name": "Multi-modal Processing",
+      "rationale": "Text, image, audio and video processing is absent.",
+      "source_group": "F",
+      "source_name": "Multi-modal Processing",
+      "source_usage_context_vi": "Xử lý text, video, audio, hình ảnh"
+    },
+    {
+      "source_id": "F13",
+      "canonical_id": "TECH-087",
+      "classification": "related_method",
+      "canonical_name": "Multi-agent Debate",
+      "rationale": "Multi-agent argumentation extends the critic and parallel-review patterns in TECH-013 and TECH-014.",
+      "source_group": "F",
+      "source_name": "Multi-agent Debate",
+      "source_usage_context_vi": "Hỗ trợ phản biện kết quả phân tích"
+    },
+    {
+      "source_id": "F14",
+      "canonical_id": "TECH-056",
+      "classification": "related_method",
+      "canonical_name": "Cost-aware Model Routing and Cascading",
+      "rationale": "Escalating to stronger models only when needed is a routing policy; TECH-030 is adapter isolation.",
+      "source_group": "F",
+      "source_name": "Model Cascading",
+      "source_usage_context_vi": "Chỉ dùng model mạnh khi cần"
+    },
+    {
+      "source_id": "F15",
+      "canonical_id": "TECH-028",
+      "classification": "partial_match",
+      "canonical_name": "Retrieval-grounded generation",
+      "rationale": "Relevance and authority ranking is an explicit retrieval-grounding step.",
+      "source_group": "F",
+      "source_name": "Reranking",
+      "source_usage_context_vi": "Xếp hạng thông tin theo độ liên quan"
+    },
+    {
+      "source_id": "F16",
+      "canonical_id": "TECH-024",
+      "classification": "partial_match",
+      "canonical_name": "LLM evaluation harness",
+      "rationale": "Confidence calibration uses evaluation evidence; the harness supplies datasets and baselines but not calibration.",
+      "source_group": "F",
+      "source_name": "Confidence Calibration",
+      "source_usage_context_vi": "Đánh giá độ tin cậy dựa trên bộ eval"
+    },
+    {
+      "source_id": "F17",
+      "canonical_id": "TECH-002",
+      "classification": "partial_match",
+      "canonical_name": "Evidence-first requirement extraction",
+      "rationale": "Escalating conflicting or insufficient evidence matches the source-authority clarification fallback.",
+      "source_group": "F",
+      "source_name": "Human Escalation",
+      "source_usage_context_vi": "Tin mâu thuẫn hoặc thiếu bằng chứng"
+    },
+    {
+      "source_id": "F18",
+      "canonical_id": "TECH-026",
+      "classification": "exact_match",
+      "canonical_name": "Untrusted-source isolation",
+      "rationale": "Same prompt-injection isolation and defense.",
+      "source_group": "F",
+      "source_name": "Prompt Injection Defense",
+      "source_usage_context_vi": "Chống chỉ dẫn độc hại trong dữ liệu web"
+    },
+    {
+      "source_id": "F19",
+      "canonical_id": "TECH-009",
+      "classification": "partial_match",
+      "canonical_name": "Context provenance and delta",
+      "rationale": "Data lineage overlaps provenance; the existing card tracks context versions and deltas specifically.",
+      "source_group": "F",
+      "source_name": "Data Provenance",
+      "source_usage_context_vi": "Truy vết thông tin tới nguồn gốc"
+    },
+    {
+      "source_id": "F20",
+      "canonical_id": "TECH-024",
+      "classification": "partial_match",
+      "canonical_name": "LLM evaluation harness",
+      "rationale": "Whole-chain AI evaluation overlaps; the existing card is the fixed-case harness methodology.",
+      "source_group": "F",
+      "source_name": "AI Evaluation Pipeline",
+      "source_usage_context_vi": "Kiểm tra chất lượng toàn chuỗi"
+    },
+    {
+      "source_id": "G01",
+      "canonical_id": "TECH-031",
+      "classification": "exact_match",
+      "canonical_name": "C4 and architecture views",
+      "rationale": "Same C4 multi-level architecture views.",
+      "source_group": "G",
+      "source_name": "C4 Architecture Modeling",
+      "source_usage_context_vi": "Thiết kế kiến trúc nhiều cấp độ"
+    },
+    {
+      "source_id": "G02",
+      "canonical_id": "TECH-033",
+      "classification": "exact_match",
+      "canonical_name": "Diagram-as-code and parity checking",
+      "rationale": "Same Git-managed diagram source and rendering workflow.",
+      "source_group": "G",
+      "source_name": "Diagrams-as-Code",
+      "source_usage_context_vi": "Quản lý sơ đồ bằng Git"
+    },
+    {
+      "source_id": "G03",
+      "canonical_id": "TECH-088",
+      "classification": "related_method",
+      "canonical_name": "Architecture-as-Code",
+      "rationale": "An executable architecture model exceeds TECH-031 views and TECH-033 diagram parity.",
+      "source_group": "G",
+      "source_name": "Architecture-as-Code",
+      "source_usage_context_vi": "Đồng nhất các architectural views"
+    },
+    {
+      "source_id": "G04",
+      "canonical_id": "TECH-089",
+      "classification": "related_method",
+      "canonical_name": "Architecture Drift Detection",
+      "rationale": "Code-versus-architecture drift detection exceeds TECH-033 diagram source and render parity.",
+      "source_group": "G",
+      "source_name": "Architecture Drift Detection",
+      "source_usage_context_vi": "Source code khác tài liệu"
+    },
+    {
+      "source_id": "G05",
+      "canonical_id": "TECH-008",
+      "classification": "partial_match",
+      "canonical_name": "Repository mapping and symbol retrieval",
+      "rationale": "Understanding existing code through mapping, symbols and call sites is the core; reverse engineering may be broader.",
+      "source_group": "G",
+      "source_name": "Reverse Engineering",
+      "source_usage_context_vi": "Hiểu codebase đã tồn tại"
+    },
+    {
+      "source_id": "G06",
+      "canonical_id": "TECH-033",
+      "classification": "partial_match",
+      "canonical_name": "Diagram-as-code and parity checking",
+      "rationale": "Semantic and logical diagram checks overlap validation; the existing card emphasizes source, metadata and parity.",
+      "source_group": "G",
+      "source_name": "Semantic Diagram Validation",
+      "source_usage_context_vi": "Kiểm tra sơ đồ đúng logic"
+    },
+    {
+      "source_id": "G07",
+      "canonical_id": "TECH-090",
+      "classification": "distinct_technique",
+      "canonical_name": "Data Flow Modeling",
+      "rationale": "Data-flow and pipeline modeling is not a C4 view or component-state contract.",
+      "source_group": "G",
+      "source_name": "Data Flow Modeling",
+      "source_usage_context_vi": "Thiết kế pipeline dữ liệu"
+    },
+    {
+      "source_id": "G08",
+      "canonical_id": "TECH-091",
+      "classification": "distinct_technique",
+      "canonical_name": "Sequence Modeling",
+      "rationale": "Runtime interaction sequence modeling is not a C4 structural view.",
+      "source_group": "G",
+      "source_name": "Sequence Modeling",
+      "source_usage_context_vi": "Hiểu thứ tự tương tác runtime"
+    },
+    {
+      "source_id": "G09",
+      "canonical_id": "TECH-092",
+      "classification": "distinct_technique",
+      "canonical_name": "ERD Modeling",
+      "rationale": "Entity-relationship data modeling is absent.",
+      "source_group": "G",
+      "source_name": "ERD Modeling",
+      "source_usage_context_vi": "Thiết kế database"
+    },
+    {
+      "source_id": "G10",
+      "canonical_id": "TECH-093",
+      "classification": "distinct_technique",
+      "canonical_name": "Design Tokens",
+      "rationale": "Shared UI and diagram design tokens are absent.",
+      "source_group": "G",
+      "source_name": "Design Tokens",
+      "source_usage_context_vi": "Đồng nhất giao diện và sơ đồ"
+    },
+    {
+      "source_id": "G11",
+      "canonical_id": "TECH-035",
+      "classification": "partial_match",
+      "canonical_name": "Component composition and state boundaries",
+      "rationale": "Component-driven design overlaps composition and contracts; the existing card focuses on state and side effects.",
+      "source_group": "G",
+      "source_name": "Component-Driven Design",
+      "source_usage_context_vi": "Phát triển frontend"
+    },
+    {
+      "source_id": "G12",
+      "canonical_id": "TECH-094",
+      "classification": "distinct_technique",
+      "canonical_name": "Screenshot-Driven Development",
+      "rationale": "Implementing UI from reference screenshots is not browser verification.",
+      "source_group": "G",
+      "source_name": "Screenshot-Driven Development",
+      "source_usage_context_vi": "Xây UI theo thiết kế tham chiếu"
+    },
+    {
+      "source_id": "G13",
+      "canonical_id": "TECH-034",
+      "classification": "exact_match",
+      "canonical_name": "Accessibility-first UI verification",
+      "rationale": "Same accessibility verification in a real browser.",
+      "source_group": "G",
+      "source_name": "Accessibility Testing",
+      "source_usage_context_vi": "Kiểm tra khả năng tiếp cận"
+    },
+    {
+      "source_id": "G14",
+      "canonical_id": "TECH-034",
+      "classification": "partial_match",
+      "canonical_name": "Accessibility-first UI verification",
+      "rationale": "Browser golden-path and edge-path verification is explicit; the existing card adds accessibility-first checks.",
+      "source_group": "G",
+      "source_name": "Browser-driven Verification",
+      "source_usage_context_vi": "Kiểm chứng UI trên trình duyệt"
+    },
+    {
+      "source_id": "G15",
+      "canonical_id": "TECH-095",
+      "classification": "related_method",
+      "canonical_name": "Living Documentation",
+      "rationale": "Continuously synchronized documentation differs from TECH-033 diagram parity and TECH-009 context delta.",
+      "source_group": "G",
+      "source_name": "Living Documentation",
+      "source_usage_context_vi": "Cập nhật tài liệu cùng source code"
+    },
+    {
+      "source_id": "H01",
+      "canonical_id": "TECH-014",
+      "classification": "partial_match",
+      "canonical_name": "Bounded parallel execution",
+      "rationale": "Git worktrees are the named optional enabler for disjoint parallel work.",
+      "source_group": "H",
+      "source_name": "Git Worktrees",
+      "source_usage_context_vi": "Nhiều task hoặc agent song song"
+    },
+    {
+      "source_id": "H02",
+      "canonical_id": "TECH-096",
+      "classification": "related_method",
+      "canonical_name": "Short-lived Branches",
+      "rationale": "Short-lived issue branches are a branching policy; TECH-038 governs pull-request merge gates only.",
+      "source_group": "H",
+      "source_name": "Short-lived Branches",
+      "source_usage_context_vi": "Phát triển từng Jira issue"
+    },
+    {
+      "source_id": "H03",
+      "canonical_id": "TECH-097",
+      "classification": "related_method",
+      "canonical_name": "Trunk-Based Development",
+      "rationale": "Frequent trunk integration is a branching and integration strategy; TECH-038 governs merge readiness only.",
+      "source_group": "H",
+      "source_name": "Trunk-Based Development",
+      "source_usage_context_vi": "Tích hợp code thường xuyên"
+    },
+    {
+      "source_id": "H04",
+      "canonical_id": "TECH-005",
+      "classification": "partial_match",
+      "canonical_name": "Dependency-aware planning",
+      "rationale": "Dependency ordering covers stacked PRs; the registry example explicitly sequences PR #2 behind PR #1.",
+      "source_group": "H",
+      "source_name": "Stacked Pull Requests",
+      "source_usage_context_vi": "Nhiều PR phụ thuộc nhau"
+    },
+    {
+      "source_id": "H05",
+      "canonical_id": "TECH-013",
+      "classification": "exact_match",
+      "canonical_name": "Implementer–Reviewer separation",
+      "rationale": "Same independent peer review before integration; merge policy remains TECH-038.",
+      "source_group": "H",
+      "source_name": "Peer Review",
+      "source_usage_context_vi": "Trước khi merge"
+    },
+    {
+      "source_id": "H06",
+      "canonical_id": "TECH-025",
+      "classification": "exact_match",
+      "canonical_name": "Regression and evidence gate",
+      "rationale": "Same CI checks acting as blocking quality and evidence gates.",
+      "source_group": "H",
+      "source_name": "CI Quality Gates",
+      "source_usage_context_vi": "Kiểm tra tự động trên GitHub"
+    },
+    {
+      "source_id": "H07",
+      "canonical_id": "TECH-098",
+      "classification": "related_method",
+      "canonical_name": "Scope Guard",
+      "rationale": "Detecting out-of-scope edits exceeds TECH-004 scope declaration and TECH-012 stop rules.",
+      "source_group": "H",
+      "source_name": "Scope Guard",
+      "source_usage_context_vi": "Phát hiện sửa ngoài phạm vi"
+    },
+    {
+      "source_id": "H08",
+      "canonical_id": "TECH-099",
+      "classification": "related_method",
+      "canonical_name": "Least Privilege",
+      "rationale": "Permission minimization is cross-cutting; TECH-026, TECH-036 and TECH-039 apply specific controls only.",
+      "source_group": "H",
+      "source_name": "Least Privilege",
+      "source_usage_context_vi": "Cấp quyền cho agent và MCP"
+    },
+    {
+      "source_id": "H09",
+      "canonical_id": "TECH-037",
+      "classification": "partial_match",
+      "canonical_name": "Secret and dependency scanning",
+      "rationale": "Secret scanning is one half of the combined secret and dependency scan.",
+      "source_group": "H",
+      "source_name": "Secret Scanning",
+      "source_usage_context_vi": "Trước commit và push"
+    },
+    {
+      "source_id": "H10",
+      "canonical_id": "TECH-100",
+      "classification": "related_method",
+      "canonical_name": "Pre-commit Hooks",
+      "rationale": "Git pre-commit enforcement differs from TECH-037 scanning and TECH-025 merge gates.",
+      "source_group": "H",
+      "source_name": "Pre-commit Hooks",
+      "source_usage_context_vi": "Kiểm tra trước commit"
+    },
+    {
+      "source_id": "H11",
+      "canonical_id": "TECH-101",
+      "classification": "distinct_technique",
+      "canonical_name": "Policy-as-Code",
+      "rationale": "Machine-enforceable organizational policy is absent.",
+      "source_group": "H",
+      "source_name": "Policy-as-Code",
+      "source_usage_context_vi": "Chuyển quy định thành kiểm tra thực thi"
+    },
+    {
+      "source_id": "H12",
+      "canonical_id": "TECH-037",
+      "classification": "partial_match",
+      "canonical_name": "Secret and dependency scanning",
+      "rationale": "Pinning, source and version recording are explicit dependency-scan prerequisites and acceptance criteria.",
+      "source_group": "H",
+      "source_name": "Dependency Pinning",
+      "source_usage_context_vi": "Tái tạo môi trường ổn định"
+    },
+    {
+      "source_id": "H13",
+      "canonical_id": "TECH-102",
+      "classification": "distinct_technique",
+      "canonical_name": "Scheduled Automation",
+      "rationale": "Periodic scheduled execution is absent.",
+      "source_group": "H",
+      "source_name": "Scheduled Automation",
+      "source_usage_context_vi": "Công việc chạy định kỳ"
+    },
+    {
+      "source_id": "H14",
+      "canonical_id": "TECH-103",
+      "classification": "distinct_technique",
+      "canonical_name": "Event-driven Automation",
+      "rationale": "Event-triggered Jira or GitHub automation is absent.",
+      "source_group": "H",
+      "source_name": "Event-driven Automation",
+      "source_usage_context_vi": "Phản ứng với sự kiện Jira/GitHub"
+    },
+    {
+      "source_id": "H15",
+      "canonical_id": "TECH-015",
+      "classification": "exact_match",
+      "canonical_name": "Checkpoint and resume",
+      "rationale": "Same execution checkpoint method.",
+      "source_group": "H",
+      "source_name": "Execution Checkpoints",
+      "source_usage_context_vi": "Công việc dài"
+    },
+    {
+      "source_id": "H16",
+      "canonical_id": "TECH-104",
+      "classification": "related_method",
+      "canonical_name": "Budget Enforcement",
+      "rationale": "General cost and runtime budget enforcement exceeds the context-only budgeting in TECH-010.",
+      "source_group": "H",
+      "source_name": "Budget Enforcement",
+      "source_usage_context_vi": "Giới hạn chi phí và runtime"
+    },
+    {
+      "source_id": "H17",
+      "canonical_id": "TECH-040",
+      "classification": "partial_match",
+      "canonical_name": "Handoff and incident-ready logging",
+      "rationale": "Execution-flow tracing overlaps action and outcome logging; spans and metrics are not specified.",
+      "source_group": "H",
+      "source_name": "Observability & Tracing",
+      "source_usage_context_vi": "Theo dõi execution flow"
+    },
+    {
+      "source_id": "H18",
+      "canonical_id": "TECH-040",
+      "classification": "partial_match",
+      "canonical_name": "Handoff and incident-ready logging",
+      "rationale": "Audit trails overlap run, actor and action logs; tamper evidence and retention are not specified.",
+      "source_group": "H",
+      "source_name": "Audit Logging",
+      "source_usage_context_vi": "Truy vết hoạt động"
+    },
+    {
+      "source_id": "H19",
+      "canonical_id": "TECH-105",
+      "classification": "distinct_technique",
+      "canonical_name": "Reproducible Environments",
+      "rationale": "Reproducible clone, setup and toolchain environments are absent.",
+      "source_group": "H",
+      "source_name": "Reproducible Environments",
+      "source_usage_context_vi": "Thành viên clone và setup"
+    },
+    {
+      "source_id": "H20",
+      "canonical_id": "TECH-106",
+      "classification": "related_method",
+      "canonical_name": "Continuous Integration",
+      "rationale": "Team integration practice differs from TECH-025 quality gates and TECH-038 merge policy.",
+      "source_group": "H",
+      "source_name": "Continuous Integration",
+      "source_usage_context_vi": "Tích hợp kết quả của cả nhóm"
+    }
+  ]
+}

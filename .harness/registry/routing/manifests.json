@@ -1,0 +1,404 @@
+{
+  "schema_version": "1.0",
+  "registry_version": "0.1.0",
+  "status": "ADVISORY_DESIGN",
+  "manifests": [
+    {
+      "id": "ROUTE-QUICK-DOCS",
+      "task_types": ["documentation"],
+      "activation_rules": [
+        {"field": "task_type", "operator": "equals", "value": "documentation"},
+        {"field": "risk", "operator": "in", "value": ["low"]},
+        {"field": "complexity", "operator": "equals", "value": "low"},
+        {"field": "changed_file_count", "operator": "lte", "value": 3}
+      ],
+      "profile": "PROFILE-QUICK",
+      "required_techniques": ["TECH-004", "TECH-006", "TECH-017", "TECH-025"],
+      "optional_techniques": ["TECH-009", "TECH-040"],
+      "incompatible_techniques": ["TECH-014"],
+      "incompatible_tools": ["Competing spec-driven frameworks"],
+      "sequence": [
+        {"step": 1, "technique": "TECH-004", "agent": "A06", "output": "Bounded task contract"},
+        {"step": 2, "technique": "TECH-006", "agent": "A23", "output": "Scoped reading list"},
+        {"step": 3, "technique": "TECH-017", "agent": "A22", "output": "Minimal documentation diff"},
+        {"step": 4, "technique": "TECH-025", "agent": "A16", "output": "Validator and scope evidence"}
+      ],
+      "context_scope": {"include_paths": ["Changed Markdown and directly linked targets"], "exclude_paths": ["docs/00-original/*", ".harness/docs/00-original/*", ".env*"], "max_files": 12, "max_bytes": 131072, "include_originals": false},
+      "runtime_limits": {"max_iterations": 1, "max_runtime_minutes": 10, "max_cost_usd": 0, "enforcement": "advisory"},
+      "retry_limits": {"max_retries": 0},
+      "verification_gates": ["Documentation validator", "Link check", "Scope review"],
+      "approval_conditions": ["Approved task contract"],
+      "stop_conditions": ["Broken link", "Unexpected scope", "Failed validator"],
+      "fallback": "Escalate to ROUTE-DOCS under STANDARD.",
+      "rationale": "Small documentation changes need scope and link evidence, not multi-agent orchestration."
+    },
+    {
+      "id": "ROUTE-DOCS",
+      "task_types": ["documentation"],
+      "activation_rules": [
+        {"field": "task_type", "operator": "equals", "value": "documentation"},
+        {"field": "risk", "operator": "in", "value": ["low", "medium"]},
+        {"field": "complexity", "operator": "in", "value": ["low", "medium"]}
+      ],
+      "profile": "PROFILE-STANDARD",
+      "required_techniques": ["TECH-001", "TECH-004", "TECH-006", "TECH-007", "TECH-017", "TECH-023", "TECH-025", "TECH-038"],
+      "optional_techniques": ["TECH-008", "TECH-009", "TECH-013", "TECH-015", "TECH-040"],
+      "incompatible_techniques": ["TECH-014"],
+      "incompatible_tools": ["Competing spec-driven frameworks"],
+      "sequence": [
+        {"step": 1, "technique": "TECH-004", "agent": "A06", "output": "Task contract"},
+        {"step": 2, "technique": "TECH-001", "agent": "A04", "output": "Requirement links"},
+        {"step": 3, "technique": "TECH-007", "agent": "A23", "output": "Context manifest"},
+        {"step": 4, "technique": "TECH-017", "agent": "A22", "output": "Documentation delta"},
+        {"step": 5, "technique": "TECH-025", "agent": "A16", "output": "Validation evidence"},
+        {"step": 6, "technique": "TECH-038", "agent": "A17", "output": "Review decision"}
+      ],
+      "context_scope": {"include_paths": ["Task-relevant docs", "Linked specifications", "Existing validators"], "exclude_paths": ["docs/00-original/*", ".harness/docs/00-original/*", ".env*"], "max_files": 40, "max_bytes": 262144, "include_originals": false},
+      "runtime_limits": {"max_iterations": 3, "max_runtime_minutes": 30, "max_cost_usd": 1, "enforcement": "advisory"},
+      "retry_limits": {"max_retries": 1},
+      "verification_gates": ["Product documentation validator", "Harness validator when affected", "Technique validator when affected", "Scope review"],
+      "approval_conditions": ["Task contract approval", "Human review before merge"],
+      "stop_conditions": ["Authority conflict", "Broken links", "Unapproved scope expansion"],
+      "fallback": "Use DEEP if multiple authorities conflict; otherwise return BLOCKED with exact missing evidence.",
+      "rationale": "Documentation changes require authority, link and scope checks before integration."
+    },
+    {
+      "id": "ROUTE-FEATURE",
+      "task_types": ["feature", "complex_feature"],
+      "activation_rules": [
+        {"field": "task_type", "operator": "in", "value": ["feature", "complex_feature"]},
+        {"field": "acceptance_criteria_present", "operator": "equals", "value": true}
+      ],
+      "profile": "PROFILE-STANDARD",
+      "required_techniques": ["TECH-001", "TECH-004", "TECH-006", "TECH-007", "TECH-012", "TECH-017", "TECH-023", "TECH-025", "TECH-038"],
+      "optional_techniques": ["TECH-003", "TECH-008", "TECH-013", "TECH-016", "TECH-018", "TECH-020", "TECH-034", "TECH-035"],
+      "incompatible_techniques": ["TECH-014"],
+      "incompatible_tools": ["OpenSpec and GitHub Spec Kit orchestration enabled simultaneously"],
+      "sequence": [
+        {"step": 1, "technique": "TECH-004", "agent": "A06", "output": "Approved task contract"},
+        {"step": 2, "technique": "TECH-001", "agent": "A04", "output": "Traceability links"},
+        {"step": 3, "technique": "TECH-008", "agent": "A08", "output": "Impact and reuse map"},
+        {"step": 4, "technique": "TECH-012", "agent": "A10", "output": "Bounded implementation"},
+        {"step": 5, "technique": "TECH-023", "agent": "A16", "output": "Test evidence"},
+        {"step": 6, "technique": "TECH-013", "agent": "A17", "output": "Independent review"},
+        {"step": 7, "technique": "TECH-025", "agent": "A16", "output": "Completion gate"}
+      ],
+      "context_scope": {"include_paths": ["Requirements", "Affected modules", "Tests", "Task contract"], "exclude_paths": ["Unrelated modules", "Ignored originals", "Secret files"], "max_files": 40, "max_bytes": 262144, "include_originals": false},
+      "runtime_limits": {"max_iterations": 3, "max_runtime_minutes": 30, "max_cost_usd": 1, "enforcement": "advisory"},
+      "retry_limits": {"max_retries": 1},
+      "verification_gates": ["Targeted tests", "Regression suite", "Traceability review", "Independent review"],
+      "approval_conditions": ["Approved task contract", "Human review before merge"],
+      "stop_conditions": ["Acceptance criteria missing", "Scope violation", "Repeated test failure"],
+      "fallback": "Escalate to DEEP for cross-module changes or split the feature into smaller tasks.",
+      "rationale": "Feature work needs traceability, minimal implementation, tests and independent review."
+    },
+    {
+      "id": "ROUTE-BUG",
+      "task_types": ["bug", "test_failure"],
+      "activation_rules": [
+        {"field": "task_type", "operator": "in", "value": ["bug", "test_failure"]},
+        {"field": "failure_observed", "operator": "equals", "value": true}
+      ],
+      "profile": "PROFILE-DEBUG",
+      "required_techniques": ["TECH-004", "TECH-006", "TECH-008", "TECH-021", "TECH-022", "TECH-023", "TECH-025"],
+      "optional_techniques": ["TECH-009", "TECH-016", "TECH-020", "TECH-040"],
+      "incompatible_techniques": ["TECH-014"],
+      "incompatible_tools": [],
+      "sequence": [
+        {"step": 1, "technique": "TECH-004", "agent": "A06", "output": "Debug task contract"},
+        {"step": 2, "technique": "TECH-021", "agent": "A15", "output": "Minimal reproduction"},
+        {"step": 3, "technique": "TECH-008", "agent": "A08", "output": "Relevant code and callers"},
+        {"step": 4, "technique": "TECH-022", "agent": "A15", "output": "Root-cause evidence"},
+        {"step": 5, "technique": "TECH-016", "agent": "A10", "output": "Regression test and minimal fix"},
+        {"step": 6, "technique": "TECH-025", "agent": "A16", "output": "Passing regression evidence"}
+      ],
+      "context_scope": {"include_paths": ["Failure evidence", "Relevant source", "Tests", "Recent changes"], "exclude_paths": ["Unrelated modules", "Secret-bearing logs", "Ignored originals"], "max_files": 30, "max_bytes": 196608, "include_originals": false},
+      "runtime_limits": {"max_iterations": 3, "max_runtime_minutes": 30, "max_cost_usd": 1, "enforcement": "advisory"},
+      "retry_limits": {"max_retries": 2},
+      "verification_gates": ["Reproduction before fix", "Regression after fix", "Scope review"],
+      "approval_conditions": ["Approved debug contract", "Human review before fix merge"],
+      "stop_conditions": ["No deterministic reproduction", "Experiment limit reached", "Fix exceeds scope"],
+      "fallback": "Return BLOCKED with missing reproduction evidence rather than guessing.",
+      "rationale": "Debugging starts from observed failure and falsifiable experiments, not speculative rewrites."
+    },
+    {
+      "id": "ROUTE-REFACTOR",
+      "task_types": ["refactor"],
+      "activation_rules": [
+        {"field": "task_type", "operator": "equals", "value": "refactor"},
+        {"field": "behavior_change_intended", "operator": "equals", "value": false}
+      ],
+      "profile": "PROFILE-STANDARD",
+      "required_techniques": ["TECH-004", "TECH-006", "TECH-008", "TECH-017", "TECH-020", "TECH-023", "TECH-025"],
+      "optional_techniques": ["TECH-013", "TECH-016"],
+      "incompatible_techniques": ["TECH-014"],
+      "incompatible_tools": [],
+      "sequence": [
+        {"step": 1, "technique": "TECH-004", "agent": "A06", "output": "Behavior-preserving scope"},
+        {"step": 2, "technique": "TECH-008", "agent": "A08", "output": "Dependency map"},
+        {"step": 3, "technique": "TECH-020", "agent": "A14", "output": "Characterization tests"},
+        {"step": 4, "technique": "TECH-017", "agent": "A14", "output": "Minimal structural diff"},
+        {"step": 5, "technique": "TECH-025", "agent": "A16", "output": "Regression evidence"}
+      ],
+      "context_scope": {"include_paths": ["Target module", "Callers", "Tests"], "exclude_paths": ["Unrelated modules", "Secret files"], "max_files": 30, "max_bytes": 196608, "include_originals": false},
+      "runtime_limits": {"max_iterations": 3, "max_runtime_minutes": 30, "max_cost_usd": 1, "enforcement": "advisory"},
+      "retry_limits": {"max_retries": 1},
+      "verification_gates": ["Characterization baseline", "Regression suite", "Behavior-diff review"],
+      "approval_conditions": ["Approved refactor scope", "Human review before merge"],
+      "stop_conditions": ["Observable behavior changes", "Coverage missing", "Scope expands"],
+      "fallback": "Defer refactor and perform only the task-required behavioral change.",
+      "rationale": "Refactoring must preserve observable behavior and avoid mixed functional changes."
+    },
+    {
+      "id": "ROUTE-EXPLORE",
+      "task_types": ["codebase_exploration", "research"],
+      "activation_rules": [
+        {"field": "task_type", "operator": "in", "value": ["codebase_exploration", "research"]},
+        {"field": "mutation_required", "operator": "equals", "value": false}
+      ],
+      "profile": "PROFILE-AUDIT",
+      "required_techniques": ["TECH-002", "TECH-006", "TECH-008", "TECH-009"],
+      "optional_techniques": ["TECH-007", "TECH-014", "TECH-015", "TECH-040"],
+      "incompatible_techniques": [],
+      "incompatible_tools": [],
+      "sequence": [
+        {"step": 1, "technique": "TECH-002", "agent": "A07", "output": "Source authority map"},
+        {"step": 2, "technique": "TECH-006", "agent": "A23", "output": "Progressive reading plan"},
+        {"step": 3, "technique": "TECH-008", "agent": "A08", "output": "Repository/symbol map"},
+        {"step": 4, "technique": "TECH-009", "agent": "A22", "output": "Evidence-backed findings"}
+      ],
+      "context_scope": {"include_paths": ["Task-relevant repository paths", "Approved external sources"], "exclude_paths": ["Ignored originals", "Credentials", "Unrelated private systems"], "max_files": 50, "max_bytes": 327680, "include_originals": false},
+      "runtime_limits": {"max_iterations": 2, "max_runtime_minutes": 30, "max_cost_usd": 0, "enforcement": "advisory"},
+      "retry_limits": {"max_retries": 1},
+      "verification_gates": ["Source provenance", "Coverage against question", "No mutation"],
+      "approval_conditions": ["Read-only research scope approved"],
+      "stop_conditions": ["Sensitive boundary reached", "Question answered", "Source unavailable"],
+      "fallback": "Return bounded findings with unanswered areas marked unknown.",
+      "rationale": "Read-only exploration should use exact search and provenance before broad model-based synthesis."
+    },
+    {
+      "id": "ROUTE-REQUIREMENTS",
+      "task_types": ["requirements_analysis"],
+      "activation_rules": [
+        {"field": "task_type", "operator": "equals", "value": "requirements_analysis"},
+        {"field": "authoritative_sources_present", "operator": "equals", "value": true}
+      ],
+      "profile": "PROFILE-DESIGN",
+      "required_techniques": ["TECH-001", "TECH-002", "TECH-003", "TECH-004", "TECH-009"],
+      "optional_techniques": ["TECH-005", "TECH-013", "TECH-032"],
+      "incompatible_techniques": ["TECH-014"],
+      "incompatible_tools": ["OpenSpec and GitHub Spec Kit orchestration enabled simultaneously"],
+      "sequence": [
+        {"step": 1, "technique": "TECH-002", "agent": "A03", "output": "Evidence-backed requirement candidates"},
+        {"step": 2, "technique": "TECH-001", "agent": "A04", "output": "Traceability map"},
+        {"step": 3, "technique": "TECH-003", "agent": "A02", "output": "Change specification"},
+        {"step": 4, "technique": "TECH-004", "agent": "A06", "output": "Approved task contract"}
+      ],
+      "context_scope": {"include_paths": ["Official requirements", "Approved local sources", "Existing decisions"], "exclude_paths": ["Unapproved sources", "Ignored originals by default"], "max_files": 50, "max_bytes": 327680, "include_originals": false},
+      "runtime_limits": {"max_iterations": 2, "max_runtime_minutes": 30, "max_cost_usd": 0, "enforcement": "advisory"},
+      "retry_limits": {"max_retries": 1},
+      "verification_gates": ["Source authority review", "Conflict log", "Owner approval"],
+      "approval_conditions": ["Owner approves requirement interpretation"],
+      "stop_conditions": ["Source authority unclear", "Unresolved conflict", "Proposal treated as requirement"],
+      "fallback": "Return open questions without inventing a resolution.",
+      "rationale": "Requirements work must preserve source authority and uncertainty before planning."
+    },
+    {
+      "id": "ROUTE-ARCHITECTURE",
+      "task_types": ["architecture", "cross_module_change", "migration"],
+      "activation_rules": [
+        {"field": "task_type", "operator": "in", "value": ["architecture", "cross_module_change", "migration"]},
+        {"field": "complexity", "operator": "in", "value": ["medium", "high"]}
+      ],
+      "profile": "PROFILE-DEEP",
+      "required_techniques": ["TECH-001", "TECH-003", "TECH-004", "TECH-005", "TECH-013", "TECH-018", "TECH-031", "TECH-032", "TECH-038"],
+      "optional_techniques": ["TECH-019", "TECH-023", "TECH-036"],
+      "incompatible_techniques": ["TECH-014"],
+      "incompatible_tools": ["Competing spec-driven frameworks"],
+      "sequence": [
+        {"step": 1, "technique": "TECH-003", "agent": "A05", "output": "Change specification"},
+        {"step": 2, "technique": "TECH-031", "agent": "A05", "output": "Architecture views"},
+        {"step": 3, "technique": "TECH-032", "agent": "A05", "output": "Architecture decision record"},
+        {"step": 4, "technique": "TECH-005", "agent": "A06", "output": "Dependency and rollout plan"},
+        {"step": 5, "technique": "TECH-013", "agent": "A17", "output": "Independent design review"}
+      ],
+      "context_scope": {"include_paths": ["Requirements", "Architecture", "Affected module contracts", "Risk and security docs"], "exclude_paths": ["Unrelated implementation details", "Ignored originals", "Secrets"], "max_files": 80, "max_bytes": 524288, "include_originals": false},
+      "runtime_limits": {"max_iterations": 5, "max_runtime_minutes": 60, "max_cost_usd": 1, "enforcement": "advisory"},
+      "retry_limits": {"max_retries": 2},
+      "verification_gates": ["Traceability", "Architecture consistency", "ADR review", "Rollback plan for durable state"],
+      "approval_conditions": ["Owner-approved design", "Human review before implementation"],
+      "stop_conditions": ["Unresolved architecture conflict", "New product scope", "Missing rollback or security review"],
+      "fallback": "Split into smaller approved tasks after recording the architecture decision.",
+      "rationale": "Cross-module design needs explicit decisions, dependency planning and independent review."
+    },
+    {
+      "id": "ROUTE-API",
+      "task_types": ["api"],
+      "activation_rules": [
+        {"field": "task_type", "operator": "equals", "value": "api"},
+        {"field": "contract_change", "operator": "equals", "value": true}
+      ],
+      "profile": "PROFILE-STANDARD",
+      "required_techniques": ["TECH-001", "TECH-004", "TECH-006", "TECH-012", "TECH-018", "TECH-023", "TECH-025", "TECH-038"],
+      "optional_techniques": ["TECH-003", "TECH-013", "TECH-027", "TECH-036"],
+      "incompatible_techniques": ["TECH-014"],
+      "incompatible_tools": [],
+      "sequence": [
+        {"step": 1, "technique": "TECH-018", "agent": "A05", "output": "API contract"},
+        {"step": 2, "technique": "TECH-004", "agent": "A06", "output": "Implementation task contract"},
+        {"step": 3, "technique": "TECH-012", "agent": "A10", "output": "Bounded implementation"},
+        {"step": 4, "technique": "TECH-023", "agent": "A16", "output": "Contract and regression tests"},
+        {"step": 5, "technique": "TECH-025", "agent": "A17", "output": "Review gate"}
+      ],
+      "context_scope": {"include_paths": ["API spec", "Affected service", "Consumers", "Security rules"], "exclude_paths": ["Unrelated APIs", "Secrets", "Production data"], "max_files": 40, "max_bytes": 262144, "include_originals": false},
+      "runtime_limits": {"max_iterations": 3, "max_runtime_minutes": 30, "max_cost_usd": 1, "enforcement": "advisory"},
+      "retry_limits": {"max_retries": 1},
+      "verification_gates": ["Contract tests", "Authorization tests", "Regression", "Compatibility review"],
+      "approval_conditions": ["Contract approval", "Human review before merge"],
+      "stop_conditions": ["Breaking change unapproved", "Authorization unclear", "Contract tests fail"],
+      "fallback": "Keep the existing contract and propose a versioned migration.",
+      "rationale": "API work should freeze behavior and compatibility before implementation."
+    },
+    {
+      "id": "ROUTE-DATA",
+      "task_types": ["data_collection", "data_processing", "database", "rag"],
+      "activation_rules": [
+        {"field": "task_type", "operator": "in", "value": ["data_collection", "data_processing", "database", "rag"]},
+        {"field": "data_source_approved", "operator": "equals", "value": true}
+      ],
+      "profile": "PROFILE-DEEP",
+      "required_techniques": ["TECH-001", "TECH-004", "TECH-018", "TECH-019", "TECH-023", "TECH-025", "TECH-026", "TECH-027", "TECH-028", "TECH-036"],
+      "optional_techniques": ["TECH-013", "TECH-024", "TECH-029", "TECH-030"],
+      "incompatible_techniques": ["TECH-014"],
+      "incompatible_tools": ["Unapproved live crawlers or paid model providers"],
+      "sequence": [
+        {"step": 1, "technique": "TECH-036", "agent": "A18", "output": "Data-flow threat model"},
+        {"step": 2, "technique": "TECH-018", "agent": "A05", "output": "Data and API contracts"},
+        {"step": 3, "technique": "TECH-027", "agent": "A12", "output": "Deterministic pipeline"},
+        {"step": 4, "technique": "TECH-019", "agent": "A11", "output": "Migration and rollback plan when needed"},
+        {"step": 5, "technique": "TECH-028", "agent": "A13", "output": "Grounded AI stage when needed"},
+        {"step": 6, "technique": "TECH-025", "agent": "A16", "output": "Data quality and security evidence"}
+      ],
+      "context_scope": {"include_paths": ["Approved source registry", "Data contracts", "Pipeline code", "Fixtures"], "exclude_paths": ["Unapproved sources", "Private community data", "Secrets", "Production records"], "max_files": 60, "max_bytes": 393216, "include_originals": false},
+      "runtime_limits": {"max_iterations": 5, "max_runtime_minutes": 60, "max_cost_usd": 1, "enforcement": "advisory"},
+      "retry_limits": {"max_retries": 2},
+      "verification_gates": ["Source authorization", "Schema validation", "Idempotency", "Citation/provenance checks", "Security review"],
+      "approval_conditions": ["Source and provider policy approved", "Separate approval for live collection or paid calls"],
+      "stop_conditions": ["Source terms unclear", "SSRF or private-network risk", "Data loss", "Unsupported claims"],
+      "fallback": "Use approved local fixtures and block live or paid stages.",
+      "rationale": "Data and AI workflows require deterministic validation, provenance and explicit source authorization."
+    },
+    {
+      "id": "ROUTE-SECURITY",
+      "task_types": ["security_review", "dependency_change", "threat_model"],
+      "activation_rules": [
+        {"field": "task_type", "operator": "in", "value": ["security_review", "dependency_change", "threat_model"]},
+        {"field": "authorized_scope", "operator": "equals", "value": true}
+      ],
+      "profile": "PROFILE-SECURITY",
+      "required_techniques": ["TECH-004", "TECH-026", "TECH-036", "TECH-037", "TECH-038", "TECH-039"],
+      "optional_techniques": ["TECH-013", "TECH-023", "TECH-025", "TECH-029", "TECH-040"],
+      "incompatible_techniques": ["TECH-014"],
+      "incompatible_tools": ["Unreviewed scanners or active exploitation tools"],
+      "sequence": [
+        {"step": 1, "technique": "TECH-004", "agent": "A06", "output": "Authorized security scope"},
+        {"step": 2, "technique": "TECH-036", "agent": "A18", "output": "Threat model"},
+        {"step": 3, "technique": "TECH-026", "agent": "A18", "output": "Untrusted-input controls"},
+        {"step": 4, "technique": "TECH-037", "agent": "A18", "output": "Scan evidence"},
+        {"step": 5, "technique": "TECH-013", "agent": "A17", "output": "Independent security review"}
+      ],
+      "context_scope": {"include_paths": ["Security docs", "Changed manifests/config", "Relevant code and fixtures"], "exclude_paths": ["Real secrets", "Unapproved production data", "Unrelated private systems"], "max_files": 40, "max_bytes": 262144, "include_originals": false},
+      "runtime_limits": {"max_iterations": 2, "max_runtime_minutes": 30, "max_cost_usd": 0, "enforcement": "advisory"},
+      "retry_limits": {"max_retries": 1},
+      "verification_gates": ["Threat-model review", "Secret/dependency scan", "Security regression tests", "Independent review"],
+      "approval_conditions": ["Explicit authorized security scope", "Human approval before integration"],
+      "stop_conditions": ["Secret exposure", "Critical unresolved finding", "Authorization unclear"],
+      "fallback": "Block and escalate to the designated security owner.",
+      "rationale": "Security work needs authorization, threat modeling and independent evidence before any mutation."
+    },
+    {
+      "id": "ROUTE-DIAGRAM",
+      "task_types": ["diagram", "architecture_documentation"],
+      "activation_rules": [
+        {"field": "task_type", "operator": "in", "value": ["diagram", "architecture_documentation"]},
+        {"field": "existing_gallery_identified", "operator": "equals", "value": true}
+      ],
+      "profile": "PROFILE-DESIGN",
+      "required_techniques": ["TECH-004", "TECH-006", "TECH-031", "TECH-032", "TECH-033", "TECH-025"],
+      "optional_techniques": ["TECH-013", "TECH-017"],
+      "incompatible_techniques": ["TECH-014"],
+      "incompatible_tools": ["Unapproved remote diagram renderers"],
+      "sequence": [
+        {"step": 1, "technique": "TECH-004", "agent": "A22", "output": "Diagram task contract"},
+        {"step": 2, "technique": "TECH-031", "agent": "A05", "output": "Architecture view choice"},
+        {"step": 3, "technique": "TECH-033", "agent": "A22", "output": "Source, metadata and gallery update"},
+        {"step": 4, "technique": "TECH-025", "agent": "A16", "output": "Validation and render evidence"}
+      ],
+      "context_scope": {"include_paths": ["Existing diagram gallery", "Relevant architecture docs", "Diagram tooling guide"], "exclude_paths": ["Unrelated diagrams", "Remote templates/fonts", "Secrets"], "max_files": 30, "max_bytes": 196608, "include_originals": false},
+      "runtime_limits": {"max_iterations": 2, "max_runtime_minutes": 30, "max_cost_usd": 0, "enforcement": "advisory"},
+      "retry_limits": {"max_retries": 1},
+      "verification_gates": ["Metadata and gallery validation", "Architecture consistency", "Parser evidence separated from rendering"],
+      "approval_conditions": ["Diagram scope approved", "Renderer approved before use"],
+      "stop_conditions": ["ID collision", "Unrelated regeneration", "Rendering claimed without execution"],
+      "fallback": "Keep valid source and gallery entry; mark rendering BLOCKED when tooling is unavailable.",
+      "rationale": "Diagram work should extend the existing gallery and preserve source/render evidence boundaries."
+    },
+    {
+      "id": "ROUTE-AUDIT",
+      "task_types": ["repository_audit", "evidence_review", "readiness_check"],
+      "activation_rules": [
+        {"field": "task_type", "operator": "in", "value": ["repository_audit", "evidence_review", "readiness_check"]},
+        {"field": "mutation_required", "operator": "equals", "value": false}
+      ],
+      "profile": "PROFILE-AUDIT",
+      "required_techniques": ["TECH-001", "TECH-002", "TECH-006", "TECH-007", "TECH-009", "TECH-013", "TECH-023", "TECH-025", "TECH-040"],
+      "optional_techniques": ["TECH-005", "TECH-008", "TECH-014", "TECH-024", "TECH-036", "TECH-037", "TECH-038"],
+      "incompatible_techniques": [],
+      "incompatible_tools": [],
+      "sequence": [
+        {"step": 1, "technique": "TECH-002", "agent": "A04", "output": "Authority and evidence map"},
+        {"step": 2, "technique": "TECH-006", "agent": "A23", "output": "Bounded coverage plan"},
+        {"step": 3, "technique": "TECH-008", "agent": "A08", "output": "Repository evidence"},
+        {"step": 4, "technique": "TECH-023", "agent": "A16", "output": "Verification matrix"},
+        {"step": 5, "technique": "TECH-013", "agent": "A17", "output": "Independent findings review"},
+        {"step": 6, "technique": "TECH-040", "agent": "A22", "output": "Audit report and handoff"}
+      ],
+      "context_scope": {"include_paths": ["Approved audit scope", "Repository map", "Relevant evidence"], "exclude_paths": ["Out-of-scope remediation", "Ignored originals", "Secrets"], "max_files": 80, "max_bytes": 524288, "include_originals": false},
+      "runtime_limits": {"max_iterations": 3, "max_runtime_minutes": 45, "max_cost_usd": 0, "enforcement": "advisory"},
+      "retry_limits": {"max_retries": 1},
+      "verification_gates": ["Coverage against rubric", "Provenance", "Independent review", "Explicit limitations"],
+      "approval_conditions": ["Approved audit scope", "Separate approval before remediation"],
+      "stop_conditions": ["Evidence unavailable", "Sensitive boundary reached", "Scope expansion required"],
+      "fallback": "Return bounded findings and mark unverified areas explicitly.",
+      "rationale": "Audits must be evidence-bounded, read-only unless remediation is separately authorized."
+    },
+    {
+      "id": "ROUTE-PARALLEL-RESEARCH",
+      "task_types": ["independent_research", "parallel_review"],
+      "activation_rules": [
+        {"field": "task_type", "operator": "in", "value": ["independent_research", "parallel_review"]},
+        {"field": "independent_scopes", "operator": "equals", "value": true},
+        {"field": "mutation_required", "operator": "equals", "value": false}
+      ],
+      "profile": "PROFILE-PARALLEL",
+      "required_techniques": ["TECH-005", "TECH-006", "TECH-013", "TECH-014", "TECH-015", "TECH-025"],
+      "optional_techniques": ["TECH-008", "TECH-024", "TECH-038", "TECH-040"],
+      "incompatible_techniques": [],
+      "incompatible_tools": ["Shared mutable workspaces without isolation"],
+      "sequence": [
+        {"step": 1, "technique": "TECH-005", "agent": "A06", "output": "Independence proof"},
+        {"step": 2, "technique": "TECH-014", "agent": "A01", "output": "Bounded worker results"},
+        {"step": 3, "technique": "TECH-013", "agent": "A17", "output": "Cross-worker review"},
+        {"step": 4, "technique": "TECH-015", "agent": "A22", "output": "Reconciled checkpoint"}
+      ],
+      "context_scope": {"include_paths": ["Disjoint read-only scopes", "Shared question and rubric"], "exclude_paths": ["Shared mutable files", "Secrets", "Unapproved external systems"], "max_files": 40, "max_bytes": 262144, "include_originals": false},
+      "runtime_limits": {"max_iterations": 3, "max_runtime_minutes": 30, "max_cost_usd": 1, "enforcement": "advisory"},
+      "retry_limits": {"max_retries": 1},
+      "verification_gates": ["Scope independence", "Per-worker provenance", "Reconciliation", "No duplicate findings"],
+      "approval_conditions": ["Approved parallel scope", "Named reconciliation owner"],
+      "stop_conditions": ["Scope overlap", "Worker cap reached", "Shared-state conflict"],
+      "fallback": "Serialize under ROUTE-EXPLORE or ROUTE-AUDIT.",
+      "rationale": "Parallel research is allowed only after independence is proven and results are reconciled."
+    }
+  ]
+}

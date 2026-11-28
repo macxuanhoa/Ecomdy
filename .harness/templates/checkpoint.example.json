@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "checkpoint_id": "CHECKPOINT-001",
+  "created_at": "2026-11-28T00:04:00Z",
+  "task_id": "TASK-EXAMPLE",
+  "trace_id": "TRACE-001",
+  "status": "BLOCKED",
+  "route_id": "ROUTE-DOCS",
+  "profile_id": "PROFILE-STANDARD",
+  "recipe_id": null,
+  "repository": {
+    "branch": "devharness/example",
+    "head_commit": null,
+    "base_commit": "0000000000000000000000000000000000000000",
+    "changed_paths": [],
+    "untracked_paths": []
+  },
+  "completed_step_ids": ["STEP-004"],
+  "pending_step_ids": ["STEP-005"],
+  "blockers": ["Example blocker: required human approval is not recorded."],
+  "evidence_paths": ["review decision"],
+  "next_action": "Record the approval or keep the task blocked; do not continue automatically.",
+  "resume_conditions": ["Required human approval is recorded against the exact version."]
+}

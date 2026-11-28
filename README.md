@@ -29,6 +29,7 @@ The challenge is to help Ecomdy's Marketing / Content Team research internationa
 - [Comprehensive project audit](docs/setup/COMPREHENSIVE_AUDIT.md) · [repository map](docs/repository-map.md) · [Project Owner guide](docs/project-owner-guide.md)
 - [Phase 0 acceptance](docs/setup/PHASE_0_ACCEPTANCE.md) · [capability matrix](docs/setup/CAPABILITY_COVERAGE.md) · [Jira setup plan](docs/setup/JIRA_SETUP_PLAN.md)
 - [Developer onboarding and playbook](docs/developer-onboarding.md) · [deployment strategy](docs/deployment-strategy.md) · [DevHarness diagram gallery](.harness/docs/diagrams/README.md)
+- [DevHarness engineering technique library](docs/engineering-technique-library.md) · [tool installation and activation](.harness/docs/10-tool-installation-and-activation.md) · [Ecomdy technique mapping](docs/engineering-technique-mapping.md)
 - [Target user guide](docs/user-guide.md)
 - [Environment and capability audit](docs/setup/00_ENVIRONMENT_AND_CAPABILITY_AUDIT.md)
 - [Contribution protocol](CONTRIBUTING.md) · [Agent instructions](AGENTS.md) · [Security policy](SECURITY.md) · [Changelog](CHANGELOG.md)
@@ -101,7 +102,7 @@ No stack has been approved. Current documentation evaluates candidates such as R
 | Documentation validator | Implemented as `python scripts/validate.py`; run locally or in CI |
 | GitHub Actions | Documentation and harness validation workflow present; push and PR checks passed for the audited setup baseline |
 | Ecomdy application and runtime | Not implemented |
-| DevHarness OS | Bundled under `.harness/` as an advisory starter; independent from Ecomdy runtime; config/scope/budget enforcement not implemented |
+| DevHarness OS | Bundled under `.harness/` as an advisory starter; independent from Ecomdy runtime. Working CLI remains `init`, `ingest`, `doctor`; technique/routing/execution/tool-manifest validators are implemented, but scope/budget enforcement and execution are not |
 | Jira delivery system | Blocked pending owner-authorized Jira access; no Jira data fabricated |
 | Seller interviews, team feedback, benchmarks | Outstanding; no results claimed |
 
@@ -120,11 +121,11 @@ The repository is usable now for controlled documentation, diagram-source and ad
 | Repository structure | `docs/` is specification/evidence, `.harness/` is advisory tooling, `scripts/` contains working validators/renderer, no application tree exists | Navigate with the [repository map](docs/repository-map.md). |
 | Clone and setup | Default `main` is not ready; acceptance-branch clone passes documentation/harness checks | Use the branch-specific Quick Start below and [onboarding](docs/developer-onboarding.md). |
 | AI coding agent configuration | `AGENTS.md` defines scope and stop rules; DevHarness does not route roles or enforce budgets automatically | Read [AGENTS.md](AGENTS.md) and the [agent configuration procedure](docs/developer-operations.md#2-configure-the-coding-agent). |
-| Available skills and tools | Three manual harness instruction files; user-level Diagram Design plugin; tool candidates are not automatically installed | Use the [skill/tool map](docs/developer-operations.md#skill-and-tool-map) and [technology evaluation](docs/technology-evaluation.md). |
-| Actual working commands | Validators, 3 harness tests, compile check, `init`, `ingest`, `doctor`; Graphviz renderer only when Graphviz exists | Run the [verified command set](docs/repository-map.md#4-executable-behavior-map). |
+| Available skills and tools | Three manual harness instruction files; user-level Diagram Design plugin; 40-card technique registry, 20-candidate tool manifest and routing design are advisory; external tool candidates are not automatically installed | Use the [technique library](docs/engineering-technique-library.md), [installation/activation guide](.harness/docs/10-tool-installation-and-activation.md), [skill/tool map](docs/developer-operations.md#skill-and-tool-map) and [technology evaluation](docs/technology-evaluation.md). |
+| Actual working commands | Validators, harness unit tests, compile check, `init`, `ingest`, `doctor`; Graphviz renderer only when Graphviz exists | Run the [verified command set](docs/repository-map.md#4-executable-behavior-map). |
 | Jira and GitHub workflow | GitHub owns source/review/CI; Jira is intended delivery tracker but access is blocked; 39 CSV records are import-ready | Follow [Jira setup](docs/setup/JIRA_SETUP_PLAN.md) and [team readiness](docs/team-development-readiness.md). |
 | Branching | One task per short-lived branch; PR #2 is stacked on PR #1; no force-push or direct `main` change | Follow [branch/sync procedure](docs/developer-onboarding.md#3-create-a-task-branch) and [contribution protocol](CONTRIBUTING.md). |
-| Testing | Three harness unit tests and documentation validators exist; no product tests exist | Run the [verification procedure](docs/developer-onboarding.md#5-run-verification) and record exact results. |
+| Testing | Harness unit tests cover starter behavior, technique/routing/tool-manifest contracts, Ecomdy mapping and trace semantics; documentation validators exist; no product tests exist | Run the [verification procedure](docs/developer-onboarding.md#5-run-verification) and record exact results. |
 | Diagram generation | Existing DOT/SVG/PNG assets are preserved; Mermaid rendering is not reproducible yet; parser extraction is not rendering | Follow [diagram workflow](docs/developer-onboarding.md#12-diagram-workflow) and [diagram tooling](docs/setup/DIAGRAM_TOOLING.md). |
 | Current roadmap | Integrable baseline → accountable delivery → approved slice contract → fixture vertical slice → editorial MVP | Use the [master roadmap](docs/05-roadmap.md#master-roadmap-and-critical-path). |
 | Immediate next actions | Owner review/merge of Ready PR #1, real reviewer assignment, Jira authorization and VS01 gate decisions; authenticated governance read-back is complete | Use the [Project Owner guide](docs/project-owner-guide.md), [VS01 approval pack](docs/vs01-owner-approval-pack.md) and [ordered audit plan](docs/setup/COMPREHENSIVE_AUDIT.md#20-ordered-owner-action-plan). |

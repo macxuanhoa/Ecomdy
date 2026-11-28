@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://devharness.local/schemas/tool-manifest.schema.json",
+  "title": "DevHarness tool installation and activation manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "manifest_version", "status", "as_of", "baseline_requirements", "environment_observation", "selection_policy", "tools", "shared_procedures"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "manifest_version": {"type": "string", "minLength": 1},
+    "status": {"const": "ADVISORY_RESEARCH"},
+    "as_of": {"type": "string", "format": "date"},
+    "baseline_requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "constraint", "required", "rationale"],
+        "properties": {
+          "name": {"type": "string", "minLength": 1},
+          "constraint": {"type": "string", "minLength": 1},
+          "required": {"type": "boolean"},
+          "rationale": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "environment_observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observed_at", "python", "node", "npm", "missing_commands", "python_packages", "limitations"],
+      "properties": {
+        "observed_at": {"type": "string", "format": "date-time"},
+        "python": {"type": "string", "minLength": 1},
+        "node": {"type": "string", "minLength": 1},
+        "npm": {"type": "string", "minLength": 1},
+        "missing_commands": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "python_packages": {"type": "object", "additionalProperties": {"type": "string"}},
+        "limitations": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "selection_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["default_spec_workflow", "multi_framework_rule", "network_default", "paid_services", "installation_authorization"],
+      "properties": {
+        "default_spec_workflow": {"type": "string", "minLength": 1},
+        "multi_framework_rule": {"type": "string", "minLength": 1},
+        "network_default": {"type": "string", "minLength": 1},
+        "paid_services": {"type": "string", "minLength": 1},
+        "installation_authorization": {"type": "string", "minLength": 1}
+      }
+    },
+    "tools": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/tool"}
+    },
+    "shared_procedures": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["install", "activate", "verify", "update", "uninstall", "recovery"],
+      "properties": {
+        "install": {"$ref": "#/$defs/steps"},
+        "activate": {"$ref": "#/$defs/steps"},
+        "verify": {"$ref": "#/$defs/steps"},
+        "update": {"$ref": "#/$defs/steps"},
+        "uninstall": {"$ref": "#/$defs/steps"},
+        "recovery": {"$ref": "#/$defs/steps"}
+      }
+    }
+  },
+  "$defs": {
+    "steps": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "string_array": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "command": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["argv", "cwd", "execution_status"],
+      "properties": {
+        "argv": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "cwd": {"type": "string", "minLength": 1},
+        "execution_status": {"enum": ["NOT_RUN", "ATTEMPTED", "EXECUTED", "VERIFIED", "BLOCKED"]}
+      }
+    },
+    "tool": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "name", "kind", "canonical_repository", "version", "version_basis", "license",
+        "maintenance", "status", "disposition", "required", "recommendation", "capabilities",
+        "platforms", "agent_compatibility", "dependencies", "compatible_skills", "mcp_credentials",
+        "network", "permissions", "telemetry_privacy", "security", "conflicts", "resource_implications",
+        "reproducibility", "installation", "procedures", "verification", "sources", "notes"
+      ],
+      "properties": {
+        "id": {"type": "string", "pattern": "^TOOL-[0-9]{3}$"},
+        "name": {"type": "string", "minLength": 1},
+        "kind": {"enum": ["tool", "framework", "mcp_server", "skill", "script"]},
+        "canonical_repository": {"type": "string", "format": "uri"},
+        "version": {"type": "string", "minLength": 1},
+        "version_basis": {"type": "string", "minLength": 1},
+        "license": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "spdx", "url", "notes"],
+          "properties": {
+            "name": {"type": "string", "minLength": 1},
+            "spdx": {"type": "string", "minLength": 1},
+            "url": {"type": "string", "format": "uri"},
+            "notes": {"type": "string"}
+          }
+        },
+        "maintenance": {"type": "string", "minLength": 1},
+        "status": {"enum": ["AVAILABLE IN REGISTRY", "RESEARCHED", "APPROVED", "INSTALLED", "CONFIGURED", "AVAILABLE IN SESSION", "SMOKE TESTED", "INTEGRATED", "DEFERRED", "REJECTED", "BLOCKED"]},
+        "disposition": {"enum": ["PROPOSED", "DEFERRED", "REJECTED", "INSTALLED_USER_SCOPE"]},
+        "required": {"type": "boolean"},
+        "recommendation": {"type": "string", "minLength": 1},
+        "capabilities": {"$ref": "#/$defs/string_array"},
+        "platforms": {"$ref": "#/$defs/string_array"},
+        "agent_compatibility": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["qoder", "claude_code", "codex", "generic_cli"],
+          "properties": {
+            "qoder": {"type": "string", "minLength": 1},
+            "claude_code": {"type": "string", "minLength": 1},
+            "codex": {"type": "string", "minLength": 1},
+            "generic_cli": {"type": "string", "minLength": 1}
+          }
+        },
+        "dependencies": {"$ref": "#/$defs/string_array"},
+        "compatible_skills": {"$ref": "#/$defs/string_array"},
+        "mcp_credentials": {
+          "oneOf": [
+            {"type": "null"},
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["required", "storage", "scopes", "notes"],
+              "properties": {
+                "required": {"type": "boolean"},
+                "storage": {"type": "string", "minLength": 1},
+                "scopes": {"$ref": "#/$defs/string_array"},
+                "notes": {"type": "string", "minLength": 1}
+              }
+            }
+          ]
+        },
+        "network": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["installation", "runtime", "notes"],
+          "properties": {
+            "installation": {"type": "boolean"},
+            "runtime": {"type": "boolean"},
+            "notes": {"type": "string", "minLength": 1}
+          }
+        },
+        "permissions": {"$ref": "#/$defs/string_array"},
+        "telemetry_privacy": {"$ref": "#/$defs/string_array"},
+        "security": {"$ref": "#/$defs/string_array"},
+        "conflicts": {"$ref": "#/$defs/string_array"},
+        "resource_implications": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["token", "runtime", "measurement_status"],
+          "properties": {
+            "token": {"type": "string", "minLength": 1},
+            "runtime": {"type": "string", "minLength": 1},
+            "measurement_status": {"const": "not_measured"}
+          }
+        },
+        "reproducibility": {"$ref": "#/$defs/string_array"},
+        "installation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["method", "proposed_commands"],
+          "properties": {
+            "method": {"type": "string", "minLength": 1},
+            "proposed_commands": {"type": "array", "items": {"$ref": "#/$defs/command"}}
+          }
+        },
+        "procedures": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["install", "activate", "verify", "update", "uninstall", "recovery"],
+          "properties": {
+            "install": {"$ref": "#/$defs/steps"},
+            "activate": {"$ref": "#/$defs/steps"},
+            "verify": {"$ref": "#/$defs/steps"},
+            "update": {"$ref": "#/$defs/steps"},
+            "uninstall": {"$ref": "#/$defs/steps"},
+            "recovery": {"$ref": "#/$defs/steps"}
+          }
+        },
+        "verification": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "proposed_commands", "evidence"],
+          "properties": {
+            "status": {"enum": ["NOT_RUN", "ATTEMPTED", "EXECUTED", "VERIFIED", "BLOCKED"]},
+            "proposed_commands": {"type": "array", "items": {"$ref": "#/$defs/command"}},
+            "evidence": {"$ref": "#/$defs/string_array"}
+          }
+        },
+        "sources": {"type": "array", "minItems": 1, "items": {"type": "string", "format": "uri"}},
+        "notes": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

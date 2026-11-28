@@ -38,10 +38,83 @@ def ingest(project, overwrite=False):
     prompt=(HOME/'prompts/bootstrap.md').read_text(encoding='utf-8')+'\n## Source inventory (not extracted)\n'+''.join('- '+i['path']+' / SHA256 '+i['sha256']+'\n' for i in data)
     context_prompt.write_text(prompt,encoding='utf-8')
     print(f'Inventoried {len(data)} files. Content extraction and requirement approval are manual in V0.1.')
+def emit_json(result, output, label):
+    text=json.dumps(result,indent=2,ensure_ascii=False)+'\n'
+    if output:
+        try: Path(output).write_text(text,encoding='utf-8')
+        except OSError as exc:
+            print(f'{label} output error: {exc}',file=sys.stderr); return 1
+    print(text,end='')
+    return 0
+
 def main():
-    p=argparse.ArgumentParser(description='DevHarness V0.1 advisory starter'); p.add_argument('command',choices=['init','ingest','doctor']); p.add_argument('--project',default='.'); p.add_argument('--overwrite',action='store_true',help='replace existing generated inventory and prompt files (ingest only)'); a=p.parse_args(); project=Path(a.project).resolve()
+    p=argparse.ArgumentParser(description='DevHarness advisory starter, deterministic compilers and controlled verification')
+    p.add_argument('command',choices=['init','ingest','doctor','route','capabilities','compile','context','scope','verify'])
+    p.add_argument('--project',default='.')
+    p.add_argument('--task',default='-',help='Task, route or context request JSON file or - for stdin')
+    p.add_argument('--output',help='Write JSON to this path')
+    p.add_argument('--root',help='Harness root to inspect (capabilities only)')
+    p.add_argument('--session-skill',action='append',default=[],help='Observed session capability ID or skill name; repeatable')
+    p.add_argument('--strict',action='store_true',help='Fail when a registered tool is BLOCKED (capabilities only)')
+    p.add_argument('--recipe',help='Explicit recipe ID (compile only)')
+    p.add_argument('--task-type',help='Unique recipe task type (compile only)')
+    p.add_argument('--context',help='Optional context request JSON file (compile only)')
+    p.add_argument('--overwrite',action='store_true',help='replace existing generated inventory and prompt files (ingest only)')
+    a=p.parse_args(); project=Path(a.project).resolve()
     if a.command=='init': initialize(project)
     elif a.command=='ingest': ingest(project,overwrite=a.overwrite)
-    else:
+    elif a.command=='doctor':
         print('Python',sys.version.split()[0]); print('Project',project); print('Git:',shutil.which('git') or 'not installed'); print('Graphviz:',shutil.which('dot') or 'optional / not installed'); print('GitHub CLI:',shutil.which('gh') or 'optional / not installed'); print('Mode: advisory; no agent execution or scheduling.')
-if __name__=='__main__': main()
+    else:
+        sys.path.insert(0,str(HOME/'scripts'))
+        if a.command=='route':
+            import technique_router
+            try:
+                task=technique_router.load_task(a.task); result=technique_router.route_task(task)
+            except (OSError,ValueError,json.JSONDecodeError) as exc:
+                print(f'Route input error: {exc}',file=sys.stderr); return 1
+            if emit_json(result,a.output,'Route'): return 1
+            return {'RECOMMENDED':0,'NO_MATCH':2,'BLOCKED':3}.get(result['state'],1)
+        if a.command=='capabilities':
+            import capability_doctor
+            try: result=capability_doctor.inspect_capabilities(Path(a.root).resolve() if a.root else HOME,a.session_skill)
+            except (OSError,ValueError,json.JSONDecodeError) as exc:
+                print(f'Capability inspection error: {exc}',file=sys.stderr); return 1
+            print(json.dumps(result,indent=2,ensure_ascii=False))
+            if result['status']=='FAIL': return 1
+            if a.strict and result['registries']['tools']['blocked']: return 2
+        elif a.command=='compile':
+            import recipe_compiler
+            try:
+                route=recipe_compiler.load_json(a.task)
+                context_request=recipe_compiler.load_json(a.context) if a.context else None
+                result=recipe_compiler.compile_recipe(route,a.recipe,a.task_type,context_request,project)
+            except (OSError,ValueError,json.JSONDecodeError) as exc:
+                print(f'Recipe compile input error: {exc}',file=sys.stderr); return 1
+            if emit_json(result,a.output,'Recipe compile'): return 1
+            return {'COMPILED':0,'BLOCKED':3}.get(result['state'],1)
+        elif a.command=='context':
+            import context_compiler
+            try: result=context_compiler.compile_context(context_compiler.load_json(a.task),project)
+            except (OSError,ValueError,json.JSONDecodeError) as exc:
+                print(f'Context compile input error: {exc}',file=sys.stderr); return 1
+            if emit_json(result,a.output,'Context compile'): return 1
+            return {'COMPILED':0,'BLOCKED':3}.get(result['state'],1)
+        elif a.command=='scope':
+            import scope_checker
+            try: result=scope_checker.check_scope(scope_checker.task_contract.load_json(a.task),project)
+            except (OSError,ValueError,json.JSONDecodeError) as exc:
+                print(f'Scope input error: {exc}',file=sys.stderr); return 2
+            if emit_json(result,a.output,'Scope check'): return 2
+            if result.get('errors'): return 2
+            return 0 if result['state']=='PASS' else 3
+        elif a.command=='verify':
+            import verification_runner
+            try: result=verification_runner.verify_task(verification_runner.task_contract.load_json(a.task),project)
+            except (OSError,ValueError,json.JSONDecodeError) as exc:
+                print(f'Verification input error: {exc}',file=sys.stderr); return 2
+            if emit_json(result,a.output,'Verification'): return 2
+            if result.get('input_error'): return 2
+            return {'PASS':0,'FAIL':1,'BLOCKED':3}.get(result['state'],2)
+    return 0
+if __name__=='__main__': sys.exit(main())

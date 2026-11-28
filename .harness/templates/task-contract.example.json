@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "task_id": "TASK-VERIFY-EXAMPLE",
+  "trace_id": "TRACE-001",
+  "objective": "Example only: validate an authorized repository change without claiming task execution.",
+  "acceptance_criteria": [
+    "The explicitly allowlisted harness CLI regression test passes."
+  ],
+  "route_id": "ROUTE-FEATURE",
+  "profile_id": "PROFILE-STANDARD",
+  "recipe_id": "RECIPE-001",
+  "verification_technique_id": "TECH-038",
+  "scope": {
+    "allow_paths": [".harness/**", "docs/**"],
+    "base_commit": null,
+    "max_changed_files": 40,
+    "max_changed_bytes": 1048576
+  },
+  "commands": [
+    {
+      "id": "CHECK-001",
+      "kind": "test",
+      "argv": ["python", "-m", "unittest", "discover", "-s", ".harness/tests", "-p", "test_harness.py", "-v"],
+      "criteria": ["The explicitly allowlisted harness CLI regression test passes."],
+      "timeout_seconds": 120,
+      "max_output_bytes": 65536
+    }
+  ],
+  "budgets": {
+    "max_iterations": 1,
+    "max_runtime_minutes": 5,
+    "max_cost_usd": 0,
+    "max_retries": 0
+  },
+  "approvals": [],
+  "evidence_dir": ".harness/state/evidence",
+  "secret_scan_required": false
+}

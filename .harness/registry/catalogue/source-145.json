@@ -1,0 +1,1065 @@
+{
+  "title": "DevHarness Engineering Technique Library — conversation baseline",
+  "source": "Danh mục A01–H20 trong câu trả lời trước của ChatGPT, được chuyển nguyên tên và ngữ cảnh sử dụng. Không phải inventory repo hoặc bằng chứng triển khai.",
+  "import_policy": "Reconcile with existing TECH-001–TECH-040; retain canonical existing IDs, map source_id as aliases; document overlaps, preserve references. Do not assume 145 executable capabilities.",
+  "count": 145,
+  "groups": [
+    {
+      "id": "A",
+      "name": "Requirements, Specification & Planning",
+      "count": 14
+    },
+    {
+      "id": "B",
+      "name": "Context Engineering & Token Optimization",
+      "count": 18
+    },
+    {
+      "id": "C",
+      "name": "Agent Engineering",
+      "count": 20
+    },
+    {
+      "id": "D",
+      "name": "Coding & Software Engineering",
+      "count": 18
+    },
+    {
+      "id": "E",
+      "name": "Testing, Debugging & Evaluation",
+      "count": 20
+    },
+    {
+      "id": "F",
+      "name": "AI Product Engineering",
+      "count": 20
+    },
+    {
+      "id": "G",
+      "name": "Architecture, Diagram & UI/UX",
+      "count": 15
+    },
+    {
+      "id": "H",
+      "name": "Collaboration, Security & Automation",
+      "count": 20
+    }
+  ],
+  "techniques": [
+    {
+      "source_id": "A01",
+      "group": "A",
+      "name": "Spec-Driven Development",
+      "usage_context_vi": "Trước khi triển khai chức năng mới",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "A02",
+      "group": "A",
+      "name": "OpenSpec",
+      "usage_context_vi": "Thay đổi hoặc mở rộng chức năng hiện có",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "A03",
+      "group": "A",
+      "name": "Requirements Traceability",
+      "usage_context_vi": "Liên kết yêu cầu với code và test",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "A04",
+      "group": "A",
+      "name": "Task Contract",
+      "usage_context_vi": "Trước khi giao nhiệm vụ cho AI",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "A05",
+      "group": "A",
+      "name": "Brainstorming",
+      "usage_context_vi": "Chưa xác định được giải pháp tối ưu",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "A06",
+      "group": "A",
+      "name": "First Principles Thinking",
+      "usage_context_vi": "Vấn đề phức tạp, nhiều giả định",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "A07",
+      "group": "A",
+      "name": "Architecture Decision Records",
+      "usage_context_vi": "Khi lựa chọn công nghệ hoặc kiến trúc",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "A08",
+      "group": "A",
+      "name": "Task Decomposition",
+      "usage_context_vi": "Task quá lớn để thực hiện một lần",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "A09",
+      "group": "A",
+      "name": "Dependency Graph / DAG",
+      "usage_context_vi": "Nhiều task phụ thuộc nhau",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "A10",
+      "group": "A",
+      "name": "Critical Path Analysis",
+      "usage_context_vi": "Lập thứ tự triển khai dự án",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "A11",
+      "group": "A",
+      "name": "Contract-First Development",
+      "usage_context_vi": "Nhiều thành viên xây các module khác nhau",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "A12",
+      "group": "A",
+      "name": "Vertical Slice Development",
+      "usage_context_vi": "Cần chứng minh hệ thống chạy end-to-end",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "A13",
+      "group": "A",
+      "name": "Risk-Based Planning",
+      "usage_context_vi": "Công việc có độ bất định cao",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "A14",
+      "group": "A",
+      "name": "Spike / Proof of Concept",
+      "usage_context_vi": "Chưa biết công nghệ có khả thi không",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "B01",
+      "group": "B",
+      "name": "Progressive Disclosure",
+      "usage_context_vi": "Khởi động phiên làm việc mới",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "B02",
+      "group": "B",
+      "name": "Context Packing",
+      "usage_context_vi": "Chuẩn bị context riêng cho task",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "B03",
+      "group": "B",
+      "name": "Context Compression",
+      "usage_context_vi": "Context trở nên quá dài",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "B04",
+      "group": "B",
+      "name": "Context Deduplication",
+      "usage_context_vi": "Nhiều tài liệu chứa thông tin trùng",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "B05",
+      "group": "B",
+      "name": "Lazy Skill Loading",
+      "usage_context_vi": "Chỉ nạp skill khi cần",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "B06",
+      "group": "B",
+      "name": "Repository Mapping",
+      "usage_context_vi": "AI tiếp cận codebase lần đầu",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "B07",
+      "group": "B",
+      "name": "AST-based Retrieval",
+      "usage_context_vi": "Tìm cấu trúc code chính xác",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "B08",
+      "group": "B",
+      "name": "Symbol-level Retrieval",
+      "usage_context_vi": "Tìm class, method, function",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "B09",
+      "group": "B",
+      "name": "Hybrid Retrieval",
+      "usage_context_vi": "Kết hợp tìm kiếm từ khóa và ngữ nghĩa",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "B10",
+      "group": "B",
+      "name": "Context Budget Allocation",
+      "usage_context_vi": "Giới hạn tài nguyên cho task",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "B11",
+      "group": "B",
+      "name": "Prompt Caching",
+      "usage_context_vi": "Tái sử dụng phần prompt ổn định nếu provider hỗ trợ",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "B12",
+      "group": "B",
+      "name": "Incremental Indexing",
+      "usage_context_vi": "Repository vừa thay đổi",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "B13",
+      "group": "B",
+      "name": "Delta Context",
+      "usage_context_vi": "Tiếp tục công việc từ phiên trước",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "B14",
+      "group": "B",
+      "name": "Tool Output Filtering",
+      "usage_context_vi": "Terminal và tool trả về quá nhiều log",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "B15",
+      "group": "B",
+      "name": "Context Provenance",
+      "usage_context_vi": "Truy vết nguồn thông tin AI sử dụng",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "B16",
+      "group": "B",
+      "name": "Just-in-time Retrieval",
+      "usage_context_vi": "Lấy thông tin ngay khi cần",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "B17",
+      "group": "B",
+      "name": "Session Summarization",
+      "usage_context_vi": "Kết thúc phiên dài",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "B18",
+      "group": "B",
+      "name": "Hierarchical Memory",
+      "usage_context_vi": "Tổ chức kiến thức theo nhiều tầng",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "C01",
+      "group": "C",
+      "name": "Plan–Execute–Verify",
+      "usage_context_vi": "Hầu hết task triển khai",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "C02",
+      "group": "C",
+      "name": "ReAct",
+      "usage_context_vi": "Công việc cần gọi tool và quan sát kết quả",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "C03",
+      "group": "C",
+      "name": "Prompt Chaining",
+      "usage_context_vi": "Quy trình có nhiều giai đoạn",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "C04",
+      "group": "C",
+      "name": "Task Routing",
+      "usage_context_vi": "Chọn agent phù hợp",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "C05",
+      "group": "C",
+      "name": "Parallelization",
+      "usage_context_vi": "Nhiều nhiệm vụ độc lập",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "C06",
+      "group": "C",
+      "name": "Orchestrator–Workers",
+      "usage_context_vi": "Một nhiệm vụ lớn có nhiều workstream",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "C07",
+      "group": "C",
+      "name": "Evaluator–Optimizer",
+      "usage_context_vi": "Đầu ra cần cải thiện qua nhiều vòng",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "C08",
+      "group": "C",
+      "name": "Generator–Critic",
+      "usage_context_vi": "Tách người tạo và người phản biện",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "C09",
+      "group": "C",
+      "name": "Independent Reviewer",
+      "usage_context_vi": "Sau khi implementation hoàn thành",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "C10",
+      "group": "C",
+      "name": "Adversarial Review",
+      "usage_context_vi": "Tính năng có rủi ro cao",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "C11",
+      "group": "C",
+      "name": "Bounded Ralph Loop",
+      "usage_context_vi": "Task có tiêu chí dừng kiểm chứng được",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "C12",
+      "group": "C",
+      "name": "Reflection",
+      "usage_context_vi": "Phân tích lỗi sau execution",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "C13",
+      "group": "C",
+      "name": "Human-in-the-loop",
+      "usage_context_vi": "Quyết định quan trọng hoặc rủi ro",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "C14",
+      "group": "C",
+      "name": "Model Routing",
+      "usage_context_vi": "Chọn LLM theo yêu cầu và chi phí",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "C15",
+      "group": "C",
+      "name": "Ensemble Verification",
+      "usage_context_vi": "Kiểm tra nhiều góc nhìn khi cần",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "C16",
+      "group": "C",
+      "name": "Tool Calling",
+      "usage_context_vi": "AI cần thao tác trên môi trường",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "C17",
+      "group": "C",
+      "name": "Checkpoint & Resume",
+      "usage_context_vi": "Công việc dài hoặc bị gián đoạn",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "C18",
+      "group": "C",
+      "name": "State Machine Orchestration",
+      "usage_context_vi": "Workflow có trạng thái rõ ràng",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "C19",
+      "group": "C",
+      "name": "Agent Handoff",
+      "usage_context_vi": "Chuyển giao giữa agent hoặc developer",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "C20",
+      "group": "C",
+      "name": "Bounded Retry",
+      "usage_context_vi": "Xử lý lỗi mà không lặp vô hạn",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "D01",
+      "group": "D",
+      "name": "Test-Driven Development",
+      "usage_context_vi": "Triển khai business logic",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "D02",
+      "group": "D",
+      "name": "Behaviour-Driven Development",
+      "usage_context_vi": "Chuyển yêu cầu nghiệp vụ thành test",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "D03",
+      "group": "D",
+      "name": "Domain-Driven Design",
+      "usage_context_vi": "Nghiệp vụ có nhiều khái niệm và quy tắc",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "D04",
+      "group": "D",
+      "name": "SOLID Principles",
+      "usage_context_vi": "Thiết kế class và service",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "D05",
+      "group": "D",
+      "name": "DRY / KISS / YAGNI",
+      "usage_context_vi": "Kiểm soát độ phức tạp",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "D06",
+      "group": "D",
+      "name": "Modular Monolith",
+      "usage_context_vi": "Phát triển hệ thống theo module",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "D07",
+      "group": "D",
+      "name": "Dependency Injection",
+      "usage_context_vi": "Tách dependency để dễ kiểm thử",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "D08",
+      "group": "D",
+      "name": "Adapter Pattern",
+      "usage_context_vi": "Kết nối nhiều nguồn dữ liệu hoặc LLM",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "D09",
+      "group": "D",
+      "name": "Strategy Pattern",
+      "usage_context_vi": "Thay đổi thuật toán xử lý",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "D10",
+      "group": "D",
+      "name": "Repository Pattern",
+      "usage_context_vi": "Tách logic truy cập dữ liệu",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "D11",
+      "group": "D",
+      "name": "Pipeline Pattern",
+      "usage_context_vi": "Chuỗi thu thập, xử lý và kiểm chứng",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "D12",
+      "group": "D",
+      "name": "Event-Driven Architecture",
+      "usage_context_vi": "Xử lý sự kiện bất đồng bộ",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "D13",
+      "group": "D",
+      "name": "Idempotency",
+      "usage_context_vi": "Collector, retry và background jobs",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "D14",
+      "group": "D",
+      "name": "Interface Segregation",
+      "usage_context_vi": "Thiết kế contracts giữa các module",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "D15",
+      "group": "D",
+      "name": "Incremental Refactoring",
+      "usage_context_vi": "Cải thiện code hiện có",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "D16",
+      "group": "D",
+      "name": "Feature Flags",
+      "usage_context_vi": "Phát triển tính năng chưa phát hành",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "D17",
+      "group": "D",
+      "name": "Defensive Programming",
+      "usage_context_vi": "Xử lý input không đáng tin cậy",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "D18",
+      "group": "D",
+      "name": "Code Reuse Discovery",
+      "usage_context_vi": "Trước khi viết service hoặc component mới",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "E01",
+      "group": "E",
+      "name": "Unit Testing",
+      "usage_context_vi": "Kiểm tra hàm và business logic",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "E02",
+      "group": "E",
+      "name": "Integration Testing",
+      "usage_context_vi": "Kiểm tra giao tiếp giữa module",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "E03",
+      "group": "E",
+      "name": "Contract Testing",
+      "usage_context_vi": "Nhiều thành viên phát triển song song",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "E04",
+      "group": "E",
+      "name": "End-to-End Testing",
+      "usage_context_vi": "Kiểm chứng workflow người dùng",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "E05",
+      "group": "E",
+      "name": "Regression Testing",
+      "usage_context_vi": "Sau mỗi thay đổi",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "E06",
+      "group": "E",
+      "name": "Golden Dataset Testing",
+      "usage_context_vi": "Đánh giá đầu ra AI",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "E07",
+      "group": "E",
+      "name": "Property-Based Testing",
+      "usage_context_vi": "Dữ liệu có nhiều biến thể",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "E08",
+      "group": "E",
+      "name": "Mutation Testing",
+      "usage_context_vi": "Kiểm tra chất lượng test",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "E09",
+      "group": "E",
+      "name": "Root Cause Analysis",
+      "usage_context_vi": "Bug chưa rõ nguyên nhân",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "E10",
+      "group": "E",
+      "name": "Hypothesis-Driven Debugging",
+      "usage_context_vi": "Điều tra lỗi phức tạp",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "E11",
+      "group": "E",
+      "name": "Reproduction-First Debugging",
+      "usage_context_vi": "Trước khi sửa bug",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "E12",
+      "group": "E",
+      "name": "Git Bisect",
+      "usage_context_vi": "Xác định commit gây regression",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "E13",
+      "group": "E",
+      "name": "Differential Testing",
+      "usage_context_vi": "So sánh hai implementation",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "E14",
+      "group": "E",
+      "name": "Snapshot Testing",
+      "usage_context_vi": "Kiểm tra output ổn định",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "E15",
+      "group": "E",
+      "name": "Visual Regression Testing",
+      "usage_context_vi": "UI hoặc sơ đồ thay đổi",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "E16",
+      "group": "E",
+      "name": "LLM-as-a-Judge",
+      "usage_context_vi": "Hỗ trợ đánh giá đầu ra phi cấu trúc",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "E17",
+      "group": "E",
+      "name": "Red Teaming",
+      "usage_context_vi": "Tìm lỗ hổng AI và security",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "E18",
+      "group": "E",
+      "name": "Benchmark-Driven Optimization",
+      "usage_context_vi": "Đo hiệu quả trước và sau cải tiến",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "E19",
+      "group": "E",
+      "name": "Failure Injection",
+      "usage_context_vi": "Kiểm tra khả năng phục hồi",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "E20",
+      "group": "E",
+      "name": "Acceptance Test Automation",
+      "usage_context_vi": "Nghiệm thu Jira task",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "F01",
+      "group": "F",
+      "name": "Retrieval-Augmented Generation",
+      "usage_context_vi": "Truy xuất thông tin từ knowledge base",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "F02",
+      "group": "F",
+      "name": "Hybrid Search",
+      "usage_context_vi": "Tìm tin tức và evidence",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "F03",
+      "group": "F",
+      "name": "Structured LLM Output",
+      "usage_context_vi": "Chuẩn hóa kết quả AI",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "F04",
+      "group": "F",
+      "name": "Claim Extraction",
+      "usage_context_vi": "Tách các tuyên bố cần kiểm chứng",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "F05",
+      "group": "F",
+      "name": "Claim-level Verification",
+      "usage_context_vi": "Kiểm chứng từng tuyên bố",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "F06",
+      "group": "F",
+      "name": "Cross-source Verification",
+      "usage_context_vi": "Đối chiếu nhiều nguồn độc lập",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "F07",
+      "group": "F",
+      "name": "Citation Grounding",
+      "usage_context_vi": "Gắn đầu ra với bằng chứng",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "F08",
+      "group": "F",
+      "name": "Entity Resolution",
+      "usage_context_vi": "Nhận diện cùng một đối tượng",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "F09",
+      "group": "F",
+      "name": "Event Clustering",
+      "usage_context_vi": "Gom tin cùng sự kiện",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "F10",
+      "group": "F",
+      "name": "Semantic Deduplication",
+      "usage_context_vi": "Loại nội dung trùng ngữ nghĩa",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "F11",
+      "group": "F",
+      "name": "Temporal Reasoning",
+      "usage_context_vi": "Phân biệt ngày công bố và ngày hiệu lực",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "F12",
+      "group": "F",
+      "name": "Multi-modal Processing",
+      "usage_context_vi": "Xử lý text, video, audio, hình ảnh",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "F13",
+      "group": "F",
+      "name": "Multi-agent Debate",
+      "usage_context_vi": "Hỗ trợ phản biện kết quả phân tích",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "F14",
+      "group": "F",
+      "name": "Model Cascading",
+      "usage_context_vi": "Chỉ dùng model mạnh khi cần",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "F15",
+      "group": "F",
+      "name": "Reranking",
+      "usage_context_vi": "Xếp hạng thông tin theo độ liên quan",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "F16",
+      "group": "F",
+      "name": "Confidence Calibration",
+      "usage_context_vi": "Đánh giá độ tin cậy dựa trên bộ eval",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "F17",
+      "group": "F",
+      "name": "Human Escalation",
+      "usage_context_vi": "Tin mâu thuẫn hoặc thiếu bằng chứng",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "F18",
+      "group": "F",
+      "name": "Prompt Injection Defense",
+      "usage_context_vi": "Chống chỉ dẫn độc hại trong dữ liệu web",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "F19",
+      "group": "F",
+      "name": "Data Provenance",
+      "usage_context_vi": "Truy vết thông tin tới nguồn gốc",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "F20",
+      "group": "F",
+      "name": "AI Evaluation Pipeline",
+      "usage_context_vi": "Kiểm tra chất lượng toàn chuỗi",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "G01",
+      "group": "G",
+      "name": "C4 Architecture Modeling",
+      "usage_context_vi": "Thiết kế kiến trúc nhiều cấp độ",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "G02",
+      "group": "G",
+      "name": "Diagrams-as-Code",
+      "usage_context_vi": "Quản lý sơ đồ bằng Git",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "G03",
+      "group": "G",
+      "name": "Architecture-as-Code",
+      "usage_context_vi": "Đồng nhất các architectural views",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "G04",
+      "group": "G",
+      "name": "Architecture Drift Detection",
+      "usage_context_vi": "Source code khác tài liệu",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "G05",
+      "group": "G",
+      "name": "Reverse Engineering",
+      "usage_context_vi": "Hiểu codebase đã tồn tại",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "G06",
+      "group": "G",
+      "name": "Semantic Diagram Validation",
+      "usage_context_vi": "Kiểm tra sơ đồ đúng logic",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "G07",
+      "group": "G",
+      "name": "Data Flow Modeling",
+      "usage_context_vi": "Thiết kế pipeline dữ liệu",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "G08",
+      "group": "G",
+      "name": "Sequence Modeling",
+      "usage_context_vi": "Hiểu thứ tự tương tác runtime",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "G09",
+      "group": "G",
+      "name": "ERD Modeling",
+      "usage_context_vi": "Thiết kế database",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "G10",
+      "group": "G",
+      "name": "Design Tokens",
+      "usage_context_vi": "Đồng nhất giao diện và sơ đồ",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "G11",
+      "group": "G",
+      "name": "Component-Driven Design",
+      "usage_context_vi": "Phát triển frontend",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "G12",
+      "group": "G",
+      "name": "Screenshot-Driven Development",
+      "usage_context_vi": "Xây UI theo thiết kế tham chiếu",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "G13",
+      "group": "G",
+      "name": "Accessibility Testing",
+      "usage_context_vi": "Kiểm tra khả năng tiếp cận",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "G14",
+      "group": "G",
+      "name": "Browser-driven Verification",
+      "usage_context_vi": "Kiểm chứng UI trên trình duyệt",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "G15",
+      "group": "G",
+      "name": "Living Documentation",
+      "usage_context_vi": "Cập nhật tài liệu cùng source code",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "H01",
+      "group": "H",
+      "name": "Git Worktrees",
+      "usage_context_vi": "Nhiều task hoặc agent song song",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "H02",
+      "group": "H",
+      "name": "Short-lived Branches",
+      "usage_context_vi": "Phát triển từng Jira issue",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "H03",
+      "group": "H",
+      "name": "Trunk-Based Development",
+      "usage_context_vi": "Tích hợp code thường xuyên",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "H04",
+      "group": "H",
+      "name": "Stacked Pull Requests",
+      "usage_context_vi": "Nhiều PR phụ thuộc nhau",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "H05",
+      "group": "H",
+      "name": "Peer Review",
+      "usage_context_vi": "Trước khi merge",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "H06",
+      "group": "H",
+      "name": "CI Quality Gates",
+      "usage_context_vi": "Kiểm tra tự động trên GitHub",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "H07",
+      "group": "H",
+      "name": "Scope Guard",
+      "usage_context_vi": "Phát hiện sửa ngoài phạm vi",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "H08",
+      "group": "H",
+      "name": "Least Privilege",
+      "usage_context_vi": "Cấp quyền cho agent và MCP",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "H09",
+      "group": "H",
+      "name": "Secret Scanning",
+      "usage_context_vi": "Trước commit và push",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "H10",
+      "group": "H",
+      "name": "Pre-commit Hooks",
+      "usage_context_vi": "Kiểm tra trước commit",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "H11",
+      "group": "H",
+      "name": "Policy-as-Code",
+      "usage_context_vi": "Chuyển quy định thành kiểm tra thực thi",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "H12",
+      "group": "H",
+      "name": "Dependency Pinning",
+      "usage_context_vi": "Tái tạo môi trường ổn định",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "H13",
+      "group": "H",
+      "name": "Scheduled Automation",
+      "usage_context_vi": "Công việc chạy định kỳ",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "H14",
+      "group": "H",
+      "name": "Event-driven Automation",
+      "usage_context_vi": "Phản ứng với sự kiện Jira/GitHub",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "H15",
+      "group": "H",
+      "name": "Execution Checkpoints",
+      "usage_context_vi": "Công việc dài",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "H16",
+      "group": "H",
+      "name": "Budget Enforcement",
+      "usage_context_vi": "Giới hạn chi phí và runtime",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "H17",
+      "group": "H",
+      "name": "Observability & Tracing",
+      "usage_context_vi": "Theo dõi execution flow",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "H18",
+      "group": "H",
+      "name": "Audit Logging",
+      "usage_context_vi": "Truy vết hoạt động",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "H19",
+      "group": "H",
+      "name": "Reproducible Environments",
+      "usage_context_vi": "Thành viên clone và setup",
+      "implementation_status": "NOT_ASSESSED"
+    },
+    {
+      "source_id": "H20",
+      "group": "H",
+      "name": "Continuous Integration",
+      "usage_context_vi": "Tích hợp kết quả của cả nhóm",
+      "implementation_status": "NOT_ASSESSED"
+    }
+  ]
+}

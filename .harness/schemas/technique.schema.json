@@ -1,0 +1,190 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://devharness.local/schemas/technique.schema.json",
+  "title": "DevHarness technique registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "registry_version",
+    "status",
+    "baseline_note",
+    "techniques"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "registry_version": {"type": "string", "minLength": 1},
+    "status": {"enum": ["AVAILABLE IN REGISTRY"]},
+    "baseline_note": {"type": "string", "minLength": 1},
+    "techniques": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/technique"}
+    }
+  },
+  "$defs": {
+    "category": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name"],
+      "properties": {
+        "id": {"enum": ["A", "B", "C", "D", "E", "F", "G", "H"]},
+        "name": {"type": "string", "minLength": 1}
+      }
+    },
+    "resource_implications": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "relative_token_cost",
+        "relative_runtime",
+        "network_required",
+        "paid_service_required",
+        "measurement_status"
+      ],
+      "properties": {
+        "relative_token_cost": {"enum": ["low", "medium", "high", "unknown"]},
+        "relative_runtime": {"enum": ["low", "medium", "high", "unknown"]},
+        "network_required": {"type": "boolean"},
+        "paid_service_required": {"type": "boolean"},
+        "measurement_status": {"const": "not_measured"}
+      }
+    },
+    "technique": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "category",
+        "kind",
+        "description",
+        "purpose",
+        "problem_solved",
+        "applicable_task_types",
+        "catalogue_aliases",
+        "when_to_use",
+        "when_not_to_use",
+        "trigger_conditions",
+        "prerequisites",
+        "inputs",
+        "outputs",
+        "supporting_skills",
+        "supporting_tools",
+        "compatible_agents",
+        "workflow_steps",
+        "example_prompt",
+        "invocation",
+        "ecomdy_example",
+        "acceptance_criteria",
+        "verification_procedure",
+        "security_considerations",
+        "resource_implications",
+        "conflicting_techniques",
+        "alternative_techniques",
+        "fallback_procedure",
+        "source_references",
+        "implementation_status",
+        "status"
+      ],
+      "properties": {
+        "id": {"type": "string", "pattern": "^TECH-[0-9]{3}$"},
+        "name": {"type": "string", "minLength": 1},
+        "category": {"$ref": "#/$defs/category"},
+        "kind": {
+          "enum": [
+            "methodology",
+            "design_pattern",
+            "agent_pattern",
+            "skill",
+            "tool",
+            "mcp_server",
+            "framework",
+            "script",
+            "workflow",
+            "policy"
+          ]
+        },
+        "description": {"type": "string", "minLength": 1},
+        "purpose": {"type": "string", "minLength": 1},
+        "problem_solved": {"type": "string", "minLength": 1},
+        "applicable_task_types": {"$ref": "#/$defs/string_array"},
+        "catalogue_aliases": {"$ref": "#/$defs/source_id_array"},
+        "when_to_use": {"$ref": "#/$defs/string_array"},
+        "when_not_to_use": {"$ref": "#/$defs/string_array"},
+        "trigger_conditions": {"$ref": "#/$defs/string_array"},
+        "prerequisites": {"$ref": "#/$defs/string_array"},
+        "inputs": {"$ref": "#/$defs/string_array"},
+        "outputs": {"$ref": "#/$defs/string_array"},
+        "supporting_skills": {"$ref": "#/$defs/string_array"},
+        "supporting_tools": {"$ref": "#/$defs/string_array"},
+        "compatible_agents": {"$ref": "#/$defs/agent_array"},
+        "workflow_steps": {"$ref": "#/$defs/string_array"},
+        "example_prompt": {"type": "string", "minLength": 1},
+        "invocation": {
+          "oneOf": [
+            {"type": "null"},
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["argv", "cwd", "verification_status"],
+              "properties": {
+                "argv": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+                "cwd": {"type": "string", "minLength": 1},
+                "verification_status": {"enum": ["SMOKE TESTED", "VERIFIED"]}
+              }
+            }
+          ]
+        },
+        "ecomdy_example": {"type": "string", "minLength": 1},
+        "acceptance_criteria": {"$ref": "#/$defs/string_array"},
+        "verification_procedure": {"$ref": "#/$defs/string_array"},
+        "security_considerations": {"$ref": "#/$defs/string_array"},
+        "resource_implications": {"$ref": "#/$defs/resource_implications"},
+        "conflicting_techniques": {"$ref": "#/$defs/id_array"},
+        "alternative_techniques": {"$ref": "#/$defs/id_array"},
+        "fallback_procedure": {"type": "string", "minLength": 1},
+        "source_references": {"$ref": "#/$defs/string_array"},
+        "implementation_status": {
+          "enum": [
+            "documented_advisory",
+            "manual_instruction_exists",
+            "candidate_uninstalled",
+            "implemented_verified"
+          ]
+        },
+        "status": {
+          "enum": [
+            "AVAILABLE IN REGISTRY",
+            "RESEARCHED",
+            "APPROVED",
+            "INSTALLED",
+            "CONFIGURED",
+            "AVAILABLE IN SESSION",
+            "SMOKE TESTED",
+            "INTEGRATED",
+            "DEFERRED",
+            "REJECTED",
+            "BLOCKED"
+          ]
+        }
+      }
+    },
+    "string_array": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "id_array": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^TECH-[0-9]{3}$"}
+    },
+    "source_id_array": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^[A-H][0-9]{2}$"}
+    },
+    "agent_array": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^A[0-9]{2}$"}
+    }
+  }
+}

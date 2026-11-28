@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "source_entries_imported": 145,
+  "existing_canonical_entries_preserved": 40,
+  "existing_entries_reused": 35,
+  "source_rows_mapped_to_existing": 76,
+  "new_entries_added": 66,
+  "overlapping_source_entries": 117,
+  "exact_matches": 26,
+  "partial_matches": 50,
+  "related_methods": 41,
+  "distinct_techniques": 28,
+  "aliases": 145,
+  "final_canonical_technique_count": 106,
+  "existing_entries_without_source_alias": [
+    "TECH-023",
+    "TECH-029",
+    "TECH-036",
+    "TECH-038",
+    "TECH-039"
+  ],
+  "unresolved_mappings": []
+}

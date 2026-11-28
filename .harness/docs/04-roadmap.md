@@ -14,3 +14,7 @@
 | V1.0 | Packaging, benchmark, upgrade | clean-machine install, recovery and security audit |
 
 Each phase requires owner approval and detailed task contracts. Do not confuse roadmap with implemented capabilities.
+
+## Technique-library milestones
+
+The separate [M1–M9 technique roadmap](08-technique-implementation-roadmap.md) tracks inventory, cards/compatibility, installation manifests, advisory routing, runtime controls, integration, traces/resources, orchestration and benchmarking. The [tool installation guide](10-tool-installation-and-activation.md) records the current research-only activation boundary. It does not replace the phase roadmap above or authorize product implementation.
