@@ -57,7 +57,7 @@ Codex CLI, Claude Code, Gemini CLI, OpenCode, Aider, Spec Kit or OpenSpec, ripgr
 
 ## Engineering technique registry
 
-The separate [technique library](05-technique-library.md) contains 40 stable technique cards across categories A–H with explicit kinds, lifecycle states, verification and security metadata. It is not the proposed skill catalogue above and does not claim that the missing 145-technique baseline was recovered. Use the [routing guide](06-technique-routing.md) for task-scoped selection.
+The separate [technique library](05-technique-library.md) contains 106 stable canonical cards reconciled from the supplied 145-source catalogue across categories A–H, with explicit kinds, lifecycle states, verification and security metadata. It preserves `TECH-001`–`TECH-040`, records all source aliases in a complete crosswalk and remains separate from the proposed skill catalogue. Use the [routing guide](06-technique-routing.md) for task-scoped selection.
 
 ## External candidate tool manifest
 

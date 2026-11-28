@@ -61,6 +61,8 @@
         "description",
         "purpose",
         "problem_solved",
+        "applicable_task_types",
+        "catalogue_aliases",
         "when_to_use",
         "when_not_to_use",
         "trigger_conditions",
@@ -106,6 +108,8 @@
         "description": {"type": "string", "minLength": 1},
         "purpose": {"type": "string", "minLength": 1},
         "problem_solved": {"type": "string", "minLength": 1},
+        "applicable_task_types": {"$ref": "#/$defs/string_array"},
+        "catalogue_aliases": {"$ref": "#/$defs/source_id_array"},
         "when_to_use": {"$ref": "#/$defs/string_array"},
         "when_not_to_use": {"$ref": "#/$defs/string_array"},
         "trigger_conditions": {"$ref": "#/$defs/string_array"},
@@ -173,6 +177,10 @@
     "id_array": {
       "type": "array",
       "items": {"type": "string", "pattern": "^TECH-[0-9]{3}$"}
+    },
+    "source_id_array": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^[A-H][0-9]{2}$"}
     },
     "agent_array": {
       "type": "array",

@@ -62,7 +62,7 @@ A clean acceptance-branch clone at `f516230…` contains 225 tracked files. Pres
 │   ├── config/default.json   # Copied config; not enforced by CLI
 │   ├── registry/
 │   │   ├── capabilities.json
-│   │   ├── techniques.json   # 40 advisory technique cards
+│   │   ├── techniques.json   # 106 canonical advisory technique cards
 │   │   ├── ecomdy-mapping.json
 │   │   ├── installation/     # 20-candidate tool manifest
 │   │   └── routing/          # 9 profiles, 14 routes, 24 recipes

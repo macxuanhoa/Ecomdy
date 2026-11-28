@@ -41,6 +41,8 @@ ARRAY_FIELDS = {
     "prerequisites",
     "inputs",
     "outputs",
+    "applicable_task_types",
+    "catalogue_aliases",
     "supporting_skills",
     "supporting_tools",
     "compatible_agents",
@@ -165,6 +167,12 @@ def validate_registry(data):
                 if not isinstance(agent, str) or not re.fullmatch(r"A[0-9]{2}", agent):
                     errors.append(f"{label}.compatible_agents has invalid agent ID: {agent!r}")
 
+        aliases = card.get("catalogue_aliases", [])
+        if isinstance(aliases, list):
+            for alias in aliases:
+                if not isinstance(alias, str) or not re.fullmatch(r"[A-H][0-9]{2}", alias):
+                    errors.append(f"{label}.catalogue_aliases has invalid source ID: {alias!r}")
+
         invocation = card.get("invocation")
         if invocation is not None:
             if card.get("kind") not in EXECUTABLE_KINDS:
@@ -203,6 +211,14 @@ def validate_registry(data):
     duplicates = sorted({item for item in ids if ids.count(item) > 1})
     if duplicates:
         errors.append("Duplicate technique IDs: " + ", ".join(duplicates))
+    expected_ids = [f"TECH-{number:03d}" for number in range(1, len(ids) + 1)]
+    if sorted(ids) != expected_ids:
+        errors.append("Technique IDs must be contiguous from TECH-001 without gaps")
+
+    aliases = [alias for card in techniques if isinstance(card, dict) and isinstance(card.get("catalogue_aliases"), list) for alias in card["catalogue_aliases"]]
+    duplicate_aliases = sorted({item for item in aliases if aliases.count(item) > 1})
+    if duplicate_aliases:
+        errors.append("Duplicate catalogue aliases: " + ", ".join(duplicate_aliases))
 
     id_set = set(ids)
     for card in techniques:

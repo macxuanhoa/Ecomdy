@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "catalogue_id": "DEVHARNESS-145",
+  "source_title": "DevHarness — Master Technique Library (145 kỹ thuật)",
+  "imported_at": "2026-11-28T15:36:53Z",
+  "source_entries": 145,
+  "group_counts": {"A": 14, "B": 18, "C": 20, "D": 18, "E": 20, "F": 20, "G": 15, "H": 20},
+  "source_id_range": "A01-H20",
+  "artifacts": [
+    {
+      "path": ".harness/registry/catalogue/source-145.json",
+      "sha256": "ca74a11a7960a3edebfef83cdad30e71e77afd6b4a50a94f6a19945bdac0c4fe",
+      "role": "authoritative_source_snapshot"
+    },
+    {
+      "path": "C:/Users/Admin/Downloads/DevHarness_145_Techniques.md",
+      "sha256": "910e6f372d17f8cc39197e6628717f31ed52165723e073f7852e7811c5e99aa8",
+      "role": "supplied_human_readable_source_not_copied"
+    }
+  ],
+  "namespace_rule": "Source IDs A01-H20 are technique catalogue IDs. Agent role IDs A01-A24 are a separate namespace and must not be inferred from source IDs.",
+  "implementation_claim": "Source entries are methods and usage contexts, not proof of executable capabilities, installation or integration."
+}

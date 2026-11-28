@@ -1,0 +1,146 @@
+source_id	canonical_id	classification	canonical_name	rationale
+A01	TECH-003	partial_match	Change specification workflow	Spec-before-implementation is the core; source is broader than bounded change proposals.
+A02	TECH-003	partial_match	Change specification workflow	OpenSpec operationalizes this change-spec workflow; the source names a framework rather than the full method.
+A03	TECH-001	exact_match	Requirements traceability	Same bidirectional requirement-to-code-and-test traceability.
+A04	TECH-004	exact_match	Task contract and acceptance criteria	Same pre-execution task contract and acceptance boundary.
+A05	TECH-041	distinct_technique	Brainstorming	No existing card covers idea generation before solution selection.
+A06	TECH-042	distinct_technique	First Principles Thinking	Assumption-breaking analysis is not requirement extraction or change specification.
+A07	TECH-032	exact_match	Architecture decision record	Same ADR context, options, decision and consequences record.
+A08	TECH-043	related_method	Task Decomposition and Work Breakdown	Decomposition creates work units; TECH-005 consumes dependencies but does not decompose tasks.
+A09	TECH-005	partial_match	Dependency-aware planning	A DAG is the dependency input used by dependency-aware sequencing.
+A10	TECH-005	partial_match	Dependency-aware planning	Critical-path ordering is a dependency-aware planning specialization.
+A11	TECH-018	partial_match	API contract-first design	Contract-first is broader; the existing card covers API contracts and contract tests.
+A12	TECH-044	related_method	Vertical Slice Development	End-to-end slice delivery differs from the bounded step loop in TECH-012.
+A13	TECH-045	related_method	Risk-Based Planning	Risk-based planning is broader than TECH-023 test selection and TECH-036 threat modeling.
+A14	TECH-022	partial_match	Hypothesis–experiment loop	A spike is a time-boxed feasibility hypothesis/experiment; the existing loop supplies test-and-record discipline.
+B01	TECH-006	exact_match	Progressive disclosure	Same load-detail-only-when-needed method.
+B02	TECH-007	exact_match	Scoped context packing	Same task-specific context pack.
+B03	TECH-010	partial_match	Budgeted context compilation	Compression is one truncation or summarization control within budgeted compilation.
+B04	TECH-027	partial_match	Deterministic preprocessing before AI	Deduplication is explicit preprocessing; the source applies it to context documents.
+B05	TECH-006	exact_match	Progressive disclosure	Lazy loading is progressive disclosure of skills and details.
+B06	TECH-008	partial_match	Repository mapping and symbol retrieval	Repository mapping is the exploration portion of the existing broader card.
+B07	TECH-008	partial_match	Repository mapping and symbol retrieval	AST retrieval is a symbol-retrieval mechanism already named through Tree-sitter or LSP.
+B08	TECH-008	partial_match	Repository mapping and symbol retrieval	Symbol lookup is the core retrieval step in the existing card.
+B09	TECH-046	related_method	Hybrid Retrieval and Search	Combines keyword and semantic retrieval; TECH-008 is exact-first retrieval, not hybrid retrieval.
+B10	TECH-010	exact_match	Budgeted context compilation	Same explicit context and resource budget allocation.
+B11	TECH-047	related_method	Prompt Caching	Provider prefix reuse addresses context cost differently from TECH-010 packing and truncation.
+B12	TECH-048	related_method	Incremental Indexing	Index maintenance after repository changes differs from TECH-009 provenance and delta tracking.
+B13	TECH-009	exact_match	Context provenance and delta	Same changed-context delta used for continuation and revalidation.
+B14	TECH-049	related_method	Tool Output Filtering	Filtering raw tool logs differs from TECH-010 context-pack omission reporting.
+B15	TECH-009	exact_match	Context provenance and delta	Same source and provenance tracking for context.
+B16	TECH-006	exact_match	Progressive disclosure	Same retrieve-only-when-needed progressive disclosure.
+B17	TECH-050	related_method	Session Summarization	Conversation summary and compaction differ from TECH-015 repository and task checkpointing.
+B18	TECH-051	related_method	Hierarchical Memory	Persistent tiered memory differs from the layered prompt-context loading in TECH-006 and TECH-007.
+C01	TECH-012	exact_match	Plan–Execute–Verify loop	Same plan, execute and verify loop.
+C02	TECH-052	related_method	ReAct	Dynamic reason–act–observe differs from the preapproved TECH-012 plan and TECH-022 experiment loop.
+C03	TECH-053	related_method	Prompt Chaining	Chained prompt outputs define staged AI composition; TECH-012 does not prescribe prompt interfaces.
+C04	TECH-011	partial_match	Deterministic task router	Task routing overlaps; the source selects agents while TECH-011 selects profiles and techniques.
+C05	TECH-014	partial_match	Bounded parallel execution	Same independent-task parallelism; the existing card adds disjoint writes, caps and reconciliation.
+C06	TECH-014	partial_match	Bounded parallel execution	Orchestrator–workers is a central-coordinator form of bounded parallel execution.
+C07	TECH-054	related_method	Evaluator–Optimizer	Generate, evaluate and revise optimization is more than TECH-022 experiments or TECH-024 benchmarking.
+C08	TECH-013	partial_match	Implementer–Reviewer separation	Generator–critic is an independent-review variant; the existing card focuses on post-implementation review.
+C09	TECH-013	exact_match	Implementer–Reviewer separation	Same independent reviewer after implementation.
+C10	TECH-013	partial_match	Implementer–Reviewer separation	Adversarial review is a high-risk independent-review mode; explicit attack-case generation is absent.
+C11	TECH-012	partial_match	Plan–Execute–Verify loop	Repeated bounded plan–execute–verify until criteria matches the loop; the source emphasizes repetition.
+C12	TECH-055	related_method	Reflection	Post-run self-critique differs from TECH-022 hypothesis updates and TECH-040 factual logging.
+C13	TECH-004	partial_match	Task contract and acceptance criteria	Human decision gates overlap task approvals and stop conditions; version-bound publication approval remains TECH-029.
+C14	TECH-056	related_method	Cost-aware Model Routing and Cascading	Selecting models by need and cost is routing; TECH-030 only isolates providers behind an adapter.
+C15	TECH-057	related_method	Ensemble Verification	Multiple verifier perspectives and aggregation go beyond the single independent reviewer in TECH-013.
+C16	TECH-058	related_method	Tool Calling	General environment tool use is broader than the allowlisted verification runner in TECH-039.
+C17	TECH-015	exact_match	Checkpoint and resume	Same checkpoint and resume method.
+C18	TECH-059	related_method	State Machine Orchestration	Explicit states, transitions and guards extend the workflow control in TECH-012.
+C19	TECH-040	exact_match	Handoff and incident-ready logging	Same structured handoff between agents or developers.
+C20	TECH-060	related_method	Bounded Retry	Retry-after-failure policy differs from TECH-012 stop limits and TECH-022 experiment limits.
+D01	TECH-016	exact_match	Red–Green–Refactor	The TDD red–green cycle is present; the existing card adds refactoring under green.
+D02	TECH-061	related_method	Behaviour-Driven Development	BDD adds business-readable scenarios and collaboration beyond TECH-016 test-first and TECH-004 acceptance.
+D03	TECH-062	distinct_technique	Domain-Driven Design	Domain models, ubiquitous language and bounded contexts are absent.
+D04	TECH-063	distinct_technique	SOLID Design Principles	SOLID is a design-principle set not represented by an existing card.
+D05	TECH-017	partial_match	Minimal change and reuse analysis	DRY, KISS and YAGNI overlap reuse, minimal diff and avoidance of speculative abstraction.
+D06	TECH-064	distinct_technique	Modular Monolith	The module-boundary architectural style is not component or state design.
+D07	TECH-065	distinct_technique	Dependency Injection	Dependency inversion and injection are not provider-adapter isolation.
+D08	TECH-030	partial_match	Provider-neutral AI adapter contract	The adapter pattern is general; the existing card is the AI-provider-specific adapter contract.
+D09	TECH-066	distinct_technique	Strategy Pattern	An interchangeable algorithm family is absent.
+D10	TECH-067	distinct_technique	Repository Pattern	A data-access abstraction and persistence boundary are absent.
+D11	TECH-068	distinct_technique	Pipeline Pattern	A general staged processing pipeline is not the existing preprocessing stage alone.
+D12	TECH-069	distinct_technique	Event-Driven Architecture	Asynchronous event producers, brokers and consumers are absent.
+D13	TECH-019	partial_match	Idempotent migration workflow	Idempotency is core to the migration workflow; the source covers collectors and jobs more broadly.
+D14	TECH-063	related_method	SOLID Design Principles	Interface Segregation is one SOLID principle; group with D04 rather than duplicate it; TECH-018 is related contract design.
+D15	TECH-020	partial_match	Safe refactoring with characterization tests	Incremental structural improvement overlaps; the existing card adds characterization tests and behavior preservation.
+D16	TECH-070	distinct_technique	Feature Flags	Runtime feature enablement and rollback controls are absent.
+D17	TECH-027	partial_match	Deterministic preprocessing before AI	Input validation is explicit preprocessing; the source covers broader defensive coding.
+D18	TECH-017	exact_match	Minimal change and reuse analysis	Same reuse discovery before adding new code.
+E01	TECH-071	related_method	Unit Testing	Unit-test execution is a test level; TECH-023 selects levels and TECH-016 uses tests but neither defines unit testing.
+E02	TECH-072	related_method	Integration Testing	Integration-test execution is distinct from TECH-023 risk-based test selection.
+E03	TECH-018	partial_match	API contract-first design	Contract tests are an explicit output and step of API contract-first design.
+E04	TECH-034	partial_match	Accessibility-first UI verification	User-flow browser verification overlaps; the existing card is accessibility-first UI verification.
+E05	TECH-073	related_method	Regression Testing	Regression test design and execution differ from the evidence gate in TECH-025.
+E06	TECH-024	partial_match	LLM evaluation harness	Golden datasets are a fixed-case component of the existing evaluation harness.
+E07	TECH-074	distinct_technique	Property-Based Testing	Generated-input invariants are absent.
+E08	TECH-075	distinct_technique	Mutation Testing	Test-suite mutation analysis is absent.
+E09	TECH-021	partial_match	Reproduction-first debugging	Root-cause isolation is explicit within reproduction-first debugging.
+E10	TECH-022	exact_match	Hypothesis–experiment loop	Same falsifiable-hypothesis and bounded-experiment loop.
+E11	TECH-021	exact_match	Reproduction-first debugging	Same minimal reproduction before fixing.
+E12	TECH-021	partial_match	Reproduction-first debugging	Git bisect is the named optional tool for locating a regression-introducing commit.
+E13	TECH-076	distinct_technique	Differential Testing	Comparing two implementations' outputs is absent.
+E14	TECH-077	distinct_technique	Snapshot Testing	Stored-output snapshot comparison is absent.
+E15	TECH-034	partial_match	Accessibility-first UI verification	Visual regression is a named supporting skill within browser and UI verification.
+E16	TECH-024	partial_match	LLM evaluation harness	An LLM judge is a scoring mechanism within a fixed evaluation harness.
+E17	TECH-078	related_method	Red Teaming	Adversarial AI and security probing shares abuse-case discovery with TECH-036 but is a different activity.
+E18	TECH-024	partial_match	LLM evaluation harness	Before-and-after benchmarks overlap; the existing card is an evaluation harness, not the full optimization loop.
+E19	TECH-079	distinct_technique	Failure Injection	Fault injection for resilience testing is absent.
+E20	TECH-080	related_method	Acceptance Test Automation	Automating acceptance checks differs from TECH-004 defining them and TECH-025 gating on evidence.
+F01	TECH-028	exact_match	Retrieval-grounded generation	Same retrieval-augmented, evidence-grounded generation.
+F02	TECH-046	related_method	Hybrid Retrieval and Search	Evidence hybrid search is the same keyword-plus-semantic combination as B09; TECH-008 is only exact-first retrieval.
+F03	TECH-030	partial_match	Provider-neutral AI adapter contract	Response-schema normalization is explicit in the provider-neutral adapter contract.
+F04	TECH-081	related_method	Claim Extraction	Extracting verifiable claims is not requirement extraction in TECH-002 or grounded generation in TECH-028.
+F05	TECH-028	partial_match	Retrieval-grounded generation	Claim-to-evidence checking is an explicit verification stage within grounded generation.
+F06	TECH-082	related_method	Cross-source Verification	Independent multi-source corroboration exceeds TECH-028 citation checks and TECH-002 conflict logging.
+F07	TECH-028	partial_match	Retrieval-grounded generation	Citation grounding is core RAG; the existing card adds authority, relevance and effective-date validation.
+F08	TECH-083	distinct_technique	Entity Resolution	Entity identity resolution is not normalization or deduplication alone.
+F09	TECH-084	distinct_technique	Event Clustering	Grouping reports by real-world event is absent.
+F10	TECH-027	partial_match	Deterministic preprocessing before AI	Near-duplicate detection is within preprocessing; semantic similarity is the source's specific mechanism.
+F11	TECH-085	related_method	Temporal Reasoning	Publication-date and effective-date reasoning exceeds the date check in TECH-028.
+F12	TECH-086	distinct_technique	Multi-modal Processing	Text, image, audio and video processing is absent.
+F13	TECH-087	related_method	Multi-agent Debate	Multi-agent argumentation extends the critic and parallel-review patterns in TECH-013 and TECH-014.
+F14	TECH-056	related_method	Cost-aware Model Routing and Cascading	Escalating to stronger models only when needed is a routing policy; TECH-030 is adapter isolation.
+F15	TECH-028	partial_match	Retrieval-grounded generation	Relevance and authority ranking is an explicit retrieval-grounding step.
+F16	TECH-024	partial_match	LLM evaluation harness	Confidence calibration uses evaluation evidence; the harness supplies datasets and baselines but not calibration.
+F17	TECH-002	partial_match	Evidence-first requirement extraction	Escalating conflicting or insufficient evidence matches the source-authority clarification fallback.
+F18	TECH-026	exact_match	Untrusted-source isolation	Same prompt-injection isolation and defense.
+F19	TECH-009	partial_match	Context provenance and delta	Data lineage overlaps provenance; the existing card tracks context versions and deltas specifically.
+F20	TECH-024	partial_match	LLM evaluation harness	Whole-chain AI evaluation overlaps; the existing card is the fixed-case harness methodology.
+G01	TECH-031	exact_match	C4 and architecture views	Same C4 multi-level architecture views.
+G02	TECH-033	exact_match	Diagram-as-code and parity checking	Same Git-managed diagram source and rendering workflow.
+G03	TECH-088	related_method	Architecture-as-Code	An executable architecture model exceeds TECH-031 views and TECH-033 diagram parity.
+G04	TECH-089	related_method	Architecture Drift Detection	Code-versus-architecture drift detection exceeds TECH-033 diagram source and render parity.
+G05	TECH-008	partial_match	Repository mapping and symbol retrieval	Understanding existing code through mapping, symbols and call sites is the core; reverse engineering may be broader.
+G06	TECH-033	partial_match	Diagram-as-code and parity checking	Semantic and logical diagram checks overlap validation; the existing card emphasizes source, metadata and parity.
+G07	TECH-090	distinct_technique	Data Flow Modeling	Data-flow and pipeline modeling is not a C4 view or component-state contract.
+G08	TECH-091	distinct_technique	Sequence Modeling	Runtime interaction sequence modeling is not a C4 structural view.
+G09	TECH-092	distinct_technique	ERD Modeling	Entity-relationship data modeling is absent.
+G10	TECH-093	distinct_technique	Design Tokens	Shared UI and diagram design tokens are absent.
+G11	TECH-035	partial_match	Component composition and state boundaries	Component-driven design overlaps composition and contracts; the existing card focuses on state and side effects.
+G12	TECH-094	distinct_technique	Screenshot-Driven Development	Implementing UI from reference screenshots is not browser verification.
+G13	TECH-034	exact_match	Accessibility-first UI verification	Same accessibility verification in a real browser.
+G14	TECH-034	partial_match	Accessibility-first UI verification	Browser golden-path and edge-path verification is explicit; the existing card adds accessibility-first checks.
+G15	TECH-095	related_method	Living Documentation	Continuously synchronized documentation differs from TECH-033 diagram parity and TECH-009 context delta.
+H01	TECH-014	partial_match	Bounded parallel execution	Git worktrees are the named optional enabler for disjoint parallel work.
+H02	TECH-096	related_method	Short-lived Branches	Short-lived issue branches are a branching policy; TECH-038 governs pull-request merge gates only.
+H03	TECH-097	related_method	Trunk-Based Development	Frequent trunk integration is a branching and integration strategy; TECH-038 governs merge readiness only.
+H04	TECH-005	partial_match	Dependency-aware planning	Dependency ordering covers stacked PRs; the registry example explicitly sequences PR #2 behind PR #1.
+H05	TECH-013	exact_match	Implementer–Reviewer separation	Same independent peer review before integration; merge policy remains TECH-038.
+H06	TECH-025	exact_match	Regression and evidence gate	Same CI checks acting as blocking quality and evidence gates.
+H07	TECH-098	related_method	Scope Guard	Detecting out-of-scope edits exceeds TECH-004 scope declaration and TECH-012 stop rules.
+H08	TECH-099	related_method	Least Privilege	Permission minimization is cross-cutting; TECH-026, TECH-036 and TECH-039 apply specific controls only.
+H09	TECH-037	partial_match	Secret and dependency scanning	Secret scanning is one half of the combined secret and dependency scan.
+H10	TECH-100	related_method	Pre-commit Hooks	Git pre-commit enforcement differs from TECH-037 scanning and TECH-025 merge gates.
+H11	TECH-101	distinct_technique	Policy-as-Code	Machine-enforceable organizational policy is absent.
+H12	TECH-037	partial_match	Secret and dependency scanning	Pinning, source and version recording are explicit dependency-scan prerequisites and acceptance criteria.
+H13	TECH-102	distinct_technique	Scheduled Automation	Periodic scheduled execution is absent.
+H14	TECH-103	distinct_technique	Event-driven Automation	Event-triggered Jira or GitHub automation is absent.
+H15	TECH-015	exact_match	Checkpoint and resume	Same execution checkpoint method.
+H16	TECH-104	related_method	Budget Enforcement	General cost and runtime budget enforcement exceeds the context-only budgeting in TECH-010.
+H17	TECH-040	partial_match	Handoff and incident-ready logging	Execution-flow tracing overlaps action and outcome logging; spans and metrics are not specified.
+H18	TECH-040	partial_match	Handoff and incident-ready logging	Audit trails overlap run, actor and action logs; tamper evidence and retention are not specified.
+H19	TECH-105	distinct_technique	Reproducible Environments	Reproducible clone, setup and toolchain environments are absent.
+H20	TECH-106	related_method	Continuous Integration	Team integration practice differs from TECH-025 quality gates and TECH-038 merge policy.

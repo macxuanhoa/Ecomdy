@@ -18,19 +18,20 @@
 
 | Artifact | Current state |
 |---|---|
-| Technique cards | 40 initial techniques across categories A–H; `AVAILABLE IN REGISTRY` |
-| Missing 145-technique baseline | Explicitly recorded as unavailable; not fabricated |
+| Technique cards | 106 canonical techniques reconciled from 145 source entries; `AVAILABLE IN REGISTRY` |
+| Catalogue crosswalk | 145 aliases; 76 rows reuse 35 existing cards; 66 new cards; zero unresolved mappings |
 | Routing | 9 profiles, 14 routes and 24 advisory recipes |
 | Execution contract | Trace/checkpoint schema, examples, validator and tests |
 | Ecomdy mapping | M01–M20 plus four cross-cutting areas; proposal only |
 | External tools | 20-candidate installation/activation manifest; research-only except user-scope Diagram Design |
 | Runtime | No router, executor, checkpoint resume or autonomous loop implemented |
 
-The existing 151-name proposed skill catalogue remains separate. It is not the missing 145-technique baseline.
+The 151-name proposed skill catalogue remains separate from the 145 source entries and 106 canonical techniques.
 
 ## Implemented checks
 
 ```bash
+python .harness/scripts/validate_catalogue.py
 python .harness/scripts/validate_techniques.py
 python .harness/scripts/validate_routing.py
 python .harness/scripts/validate_execution.py

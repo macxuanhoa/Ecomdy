@@ -7,7 +7,7 @@
 
 The machine-readable source of truth is [`.harness/registry/techniques.json`](../registry/techniques.json), validated against [`.harness/schemas/technique.schema.json`](../schemas/technique.schema.json).
 
-The supplied directive refers to a 145-technique catalogue. That catalogue was not present in the repository, attachment or inspected workspace. The registry therefore contains an explicitly labelled initial set of **40 techniques**, five in each category A–H. It does not fabricate the missing 145 entries and does not substitute the separate 151-name proposed skill catalogue in [Agent, skill and tool registry](02-registries.md).
+The owner-supplied 145-source catalogue is preserved verbatim in [`.harness/registry/catalogue/source-145.json`](../registry/catalogue/source-145.json) and reconciled through [`.harness/registry/catalogue/crosswalk.json`](../registry/catalogue/crosswalk.json). Existing `TECH-001`–`TECH-040` IDs and references are preserved. Seventy-six source rows reuse 35 existing cards; 66 new canonical cards were added, producing **106 canonical techniques**. The complete [reconciliation summary](../registry/catalogue/reconciliation-summary.json) records 26 exact matches, 50 partial matches, 41 related methods, 28 distinct techniques, 145 aliases and zero unresolved mappings. Source IDs `A01`–`H20` are catalogue aliases, not agent role IDs. The separate 151-name proposed skill catalogue remains distinct.
 
 DevHarness techniques are development methods and controls. They do not change Ecomdy product requirements, module status, architecture, Jira backlog or runtime scope.
 
@@ -71,18 +71,20 @@ Do not skip from `RESEARCHED` or `INSTALLED` to `INTEGRATED`.
 
 ## Current resource claims
 
-All 40 cards use `measurement_status: "not_measured"`. Qualitative token/runtime implications are planning notes, not measured usage. Provider token or cost fields remain `unknown` unless the provider exposes them.
+All 106 cards use `measurement_status: "not_measured"`. Qualitative token/runtime implications are planning notes, not measured usage. Provider token or cost fields remain `unknown` unless the provider exposes them.
 
 ## Supported checks
 
 These commands are implemented read-only validators:
 
 ```bash
+python .harness/scripts/validate_catalogue.py
 python .harness/scripts/validate_techniques.py
 python -m unittest discover -s .harness/tests -p "test_technique_registry.py" -v
+python -m unittest discover -s .harness/tests -p "test_catalogue_reconciliation.py" -v
 ```
 
-The registry has no command that automatically loads all 40 cards into an agent prompt. Use the [routing guide](06-technique-routing.md) to select a small task-relevant subset.
+The registry has no command that automatically loads all 106 cards into an agent prompt. Use the [routing guide](06-technique-routing.md) to select a small task-relevant subset.
 
 ## Related documents
 
