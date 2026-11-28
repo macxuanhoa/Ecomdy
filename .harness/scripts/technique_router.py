@@ -209,6 +209,7 @@ def route_task(task):
     result = {
         "schema_version": "1.0",
         "task_id": task["task_id"],
+        "task_type": task["task_type"],
         "input_sha256": input_hash(task),
         "state": "RECOMMENDED",
         "runtime_state": "RECOMMENDED",
@@ -222,6 +223,7 @@ def route_task(task):
         "selected": {
             "required_techniques": required,
             "optional_techniques": selected_optional,
+            "optional_reasons": {item: task.get("optional_reasons", {}).get(item) for item in selected_optional},
             "techniques": selected,
             "excluded_optional": excluded_optional,
             "incompatible_techniques": sorted(incompatible),

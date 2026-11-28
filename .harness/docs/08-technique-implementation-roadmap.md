@@ -10,8 +10,8 @@
 | M1 | Inventory techniques and repository baseline | Implemented | 145 source entries imported; 106 canonical cards; complete crosswalk with zero unresolved mappings |
 | M2 | Technique cards and compatibility research | Partial | Cards validate; 20 external candidates have version/license/security research, but no candidate is approved or compatibility-proven in the target workflow |
 | M3 | Installation and activation manifests | Partial | Manifest and evidence implemented; four internal skills installed; Diagram Design, Mermaid CLI, Gitleaks and Graphviz smoke-tested; OpenSpec blocked by Node compatibility; no workflow integration claim |
-| M4 | Advisory router and recipe compiler | Partial | Executable deterministic Technique Router and Capability Doctor implemented with CLI/tests; 9 profiles, 14 routes and 24 recipes validate; recipe compiler and task execution remain unimplemented |
-| M5 | Runtime context, verification and file-scope controls | Not implemented | Bounded context loader; allowlisted runner; timeout/output caps; scope report; adversarial tests |
+| M4 | Advisory router and recipe compiler | Implemented (advisory) | Executable deterministic Technique Router, Capability Doctor and Recipe Compiler implemented with CLI/tests; 9 profiles, 14 routes and 24 recipes validate; task execution and model routing remain unimplemented |
+| M5 | Runtime context, verification and file-scope controls | Partial | Local-first Context Compiler implements bounded metadata manifests, hashes, provenance, deduplication, lazy-load guidance and baseline deltas; runtime loader, allowlisted runner, timeout/output caps, scope enforcement and adversarial process tests remain pending |
 | M6 | Skill and tool integration | Partial | Wave 1 skills/tools installed or smoke-tested with evidence; current-session availability and approved workflow integration remain unproven |
 | M7 | Checkpoints, traces and resource controls | Partial | Trace/checkpoint schema, examples, validator and tests exist; no automatic capture, process limits or resume |
 | M8 | Advanced orchestration | Blocked | Independent-task analysis, bounded parallel loops, reconciliation and stop controls verified; AUTONOMOUS remains blocked |
@@ -54,15 +54,18 @@ Local verification on 2026-11-28, branch `devharness/technique-library`:
 | Routing registry validator | PASS: 9 profiles, 14 routes, 24 recipes; advisory only |
 | Execution contract validator | PASS: 2 templates; not run evidence |
 | Tool manifest validator | PASS: 20 candidates; proposed commands remain `NOT_RUN`; separate Wave 1 evidence exists |
-| Full harness unit suite | PASS: 91 tests |
+| Full harness unit suite | PASS: 123 tests run; 122 passed and one real-symlink creation test skipped by Windows privileges; mocked symlink rejection passed |
+| All registered recipes | PASS/advisory: all 24 recipes compiled against current route/profile/technique registries with `COMPILED` / `NOT_EXECUTED`; no recipe executed |
 | `python .harness/harness.py route` | PASS/advisory: bounded documentation fixture selected `ROUTE-QUICK-DOCS` / `PROFILE-QUICK`; `RECOMMENDED` and `NOT_EXECUTED`; 14 route decisions recorded |
+| `python .harness/harness.py compile` | PASS/advisory: feature fixture compiled `RECIPE-001` / `PROFILE-STANDARD`; 11 advisory steps, 10 techniques, `COMPILED` and `NOT_EXECUTED`; compilation SHA-256 `2e8619b0eec4fd5199d602a6821cfc781871453104c9e754120f47b9f33749ca` |
+| `python .harness/harness.py context` | PASS/advisory: three exact local files compiled to 28,576 logical bytes, three unique contents, zero deduplicated bytes and `not_measured` token status; manifest `CONTEXT-D24B92A9713F`; `../outside` returned exit 3 / `BLOCKED` |
 | `python .harness/harness.py capabilities` | PASS: 106 techniques, 20 tools, seven internal skills; eight installed artifacts and zero integrations detected locally; OpenSpec reported `BLOCKED` |
 | JSON Schema conformance | PASS: 4 schemas checked, 7 documents validated with local `jsonschema` 4.26.0 |
 | Workflow YAML parse | PASS: 7 run steps |
 | Python compile and `git diff --check` | PASS |
 | `python .harness/harness.py doctor` | Python 3.11.9; Git present; Graphviz and GitHub CLI reported optional/not installed on the shell PATH; advisory mode. Graphviz is installed user scope but the existing shell PATH was not refreshed. |
 
-These are local results, not remote CI evidence. Wave 1 installation and bounded smoke tests are recorded in `activation-evidence.json`; no candidate is claimed integrated, no benchmark was run and no PR merge was performed.
+These are local results, not remote CI evidence. Wave 1 installation and bounded smoke tests are recorded in `activation-evidence.json`; recipe/context fixtures were temporary and were not task execution. No candidate is claimed integrated, no benchmark was run and no PR merge was performed.
 
 ## Explicit non-goals
 

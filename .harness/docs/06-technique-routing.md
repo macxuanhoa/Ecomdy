@@ -1,7 +1,7 @@
 # Technique Routing, Profiles and Recipes
 
 **As of:** 2026-11-28 (Asia/Saigon)
-**Status:** Advisory routing and capability inspection implemented and tested. No task executor, model router or autonomous runtime is implemented.
+**Status:** Advisory routing, recipe compilation, local context manifests and capability inspection implemented and tested. No task executor, model router or autonomous runtime is implemented.
 
 ## Sources of truth
 
@@ -13,8 +13,10 @@
 | [`.harness/schemas/routing.schema.json`](../schemas/routing.schema.json) | JSON Schema Draft 2020-12 contract |
 | [`.harness/scripts/validate_routing.py`](../scripts/validate_routing.py) | Standard-library reference and invariant checks |
 | [`.harness/scripts/technique_router.py`](../scripts/technique_router.py) | Deterministic advisory route selection and explainability record |
+| [`.harness/scripts/recipe_compiler.py`](../scripts/recipe_compiler.py) | Deterministic recipe, technique, limit and acceptance-contract compilation |
+| [`.harness/scripts/context_compiler.py`](../scripts/context_compiler.py) | Bounded local-first context metadata manifests and baseline deltas |
 | [`.harness/scripts/capability_doctor.py`](../scripts/capability_doctor.py) | Local capability lifecycle inspection |
-| [`.harness/harness.py`](../harness.py) | `route` and `capabilities` CLI entry points |
+| [`.harness/harness.py`](../harness.py) | `route`, `compile`, `context` and `capabilities` CLI entry points |
 
 ## Deterministic selection procedure
 
@@ -53,7 +55,24 @@ The 14 routes cover quick documentation, documentation, feature, bug, refactor, 
 
 The 24 recipes cover feature, bug, refactor, exploration, requirements, architecture, API, database/migrations, data collection, data processing, AI workflow, RAG, LLM evaluation, UI, browser testing, security review, performance, diagram, documentation, PR review, release, handoff, interrupted recovery and parallel development.
 
-A recipe is reusable guidance, not proof that its workflow ran.
+A recipe is reusable guidance, not proof that its workflow ran. Recipe techniques must be allowed by both their route and profile; the routing validator rejects allow-list and incompatibility drift.
+
+### Recipe compilation
+
+`compile` accepts a `RECOMMENDED` / `NOT_EXECUTED` route record. It uses the route's `task_type` to select a unique compatible recipe when possible. `--recipe` selects an explicit compatible recipe and `--task-type` overrides the route task type for recipe selection. Multiple matches without an explicit selector are blocked; an unmatched explicit task type is blocked rather than silently falling back. A route with no registered recipe, such as `ROUTE-QUICK-DOCS`, compiles an explicit route/profile-only contract with a warning.
+
+The compiler:
+
+1. Revalidates technique and routing registries and records their SHA-256 hashes.
+2. Confirms route/profile identity, blocked-profile state and recipe compatibility.
+3. Unions route-required, profile-required and recipe techniques while preserving route-selected optional reasons.
+4. Rejects route incompatibilities, unknown techniques and required/optional conflicts.
+5. Expands technique contracts without invoking them.
+6. Uses the stricter route/profile context, runtime and retry limits.
+7. Expands acceptance, failure, approval, stop, fallback and owner-role contracts.
+8. Marks required techniques missing from the route sequence as unsequenced; it does not invent an agent assignment.
+9. Optionally embeds a separately compiled context manifest.
+10. Returns `COMPILED` / `NOT_EXECUTED`; no resource measurement or task execution is claimed.
 
 ## Context policy
 
@@ -63,7 +82,12 @@ A recipe is reusable guidance, not proof that its workflow ran.
 - Record path, hash, authority and reason for every loaded file.
 - Deduplicate overlapping excerpts and preserve provenance.
 - Apply progressive disclosure: load detail only when the current step needs it.
-- Context byte/file limits are advisory until an approved loader enforces them.
+- Context byte/file limits are enforced by the local manifest compiler for that compilation only; they remain advisory to an independent agent terminal.
+- The context compiler stores paths, SHA-256 hashes, sizes, provenance and lazy-load guidance, not file contents.
+- Duplicate content is represented once in a content pool while every source path retains provenance.
+- Byte/file caps, path escapes, non-regular files and explicit symlinks fail closed. Git metadata, local harness state and original sources are excluded by default.
+- `baseline_manifest` adds deterministic added, removed, changed and unchanged path lists.
+- Token values are `bytes/4` heuristic estimates and are explicitly `not_measured`.
 
 ## Enforcement layers
 
@@ -108,19 +132,39 @@ Run from the repository root. The router accepts a JSON object on stdin by defau
 }
 ```
 
+A context request uses repository-relative local paths and positive limits:
+
+```json
+{
+  "include_paths": ["AGENTS.md", "docs/repository-map.md"],
+  "exclude_paths": ["docs/00-original/*"],
+  "max_files": 2,
+  "max_bytes": 65536,
+  "include_originals": false
+}
+```
+
 ```bash
 python .harness/harness.py route --task task.json --output route.json
 python .harness/scripts/technique_router.py task.json
+python .harness/harness.py compile --task route.json --output compiled.json
+python .harness/harness.py compile --task route.json --recipe RECIPE-001 --output compiled.json
+python .harness/harness.py compile --task route.json --context context.json --output compiled-with-context.json
+python .harness/scripts/recipe_compiler.py route.json --task-type feature
+python .harness/harness.py context --task context.json --output context-manifest.json
+python .harness/scripts/context_compiler.py context.json --project .
 python .harness/harness.py capabilities
 python .harness/scripts/capability_doctor.py --session-skill TOOL-013
 python .harness/scripts/capability_doctor.py --strict
 python .harness/scripts/validate_routing.py
 python -m unittest discover -s .harness/tests -p "test_technique_router.py" -v
+python -m unittest discover -s .harness/tests -p "test_recipe_compiler.py" -v
+python -m unittest discover -s .harness/tests -p "test_context_compiler.py" -v
 python -m unittest discover -s .harness/tests -p "test_capability_doctor.py" -v
 python -m unittest discover -s .harness/tests -p "test_harness.py" -v
 ```
 
-Route exit codes are `0` for `RECOMMENDED`, `2` for `NO_MATCH`, `3` for `BLOCKED`, and `1` for input errors. These codes describe selection only. They do not report task execution.
+Route exit codes are `0` for `RECOMMENDED`, `2` for `NO_MATCH`, `3` for `BLOCKED`, and `1` for input errors. Recipe and context compiler exit codes are `0` for `COMPILED`, `3` for `BLOCKED`, and `1` for input/output errors. These codes describe selection or compilation only. They do not report task execution.
 
 Capability exit codes are `0` for a valid inspection, `1` for inspection/registry failure, and `2` for `--strict` when a registered tool is `BLOCKED`.
 
@@ -136,4 +180,4 @@ Capability Doctor reports `registered`, `installed`, `configured`, `available_in
 
 ## Implementation boundary
 
-The routing and capability commands are local advisory tools. They do not execute tasks, invoke agents, enforce filesystem/process boundaries, compile recipes or provide model routing. `harness.py recipe compile` and autonomous execution remain unimplemented. Context and runtime limits remain advisory until R05–R07 add reviewed enforcement and evidence contracts.
+The routing, compiler and capability commands are local advisory tools. Recipe and context compilation are implemented, but they do not execute tasks, invoke agents, enforce OS/process filesystem boundaries, route models or resume work. Context limits bind the local compiler only; runtime limits remain advisory until R06–R07 add reviewed verification, evidence and checkpoint controls. Autonomous execution remains unimplemented and blocked.

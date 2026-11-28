@@ -58,7 +58,7 @@ A clean acceptance-branch clone at `f516230…` contains 225 tracked files. Pres
 │   ├── project-owner-guide.md
 │   └── repository-map.md
 ├── .harness/
-│   ├── harness.py            # init, ingest, doctor only
+│   ├── harness.py            # init, ingest, doctor, route, compile, context, capabilities
 │   ├── config/default.json   # Copied config; not enforced by CLI
 │   ├── registry/
 │   │   ├── capabilities.json
@@ -71,7 +71,7 @@ A clean acceptance-branch clone at `f516230…` contains 225 tracked files. Pres
 │   ├── prompts/bootstrap.md
 │   ├── skills/               # scoped-task, debug, diagram instruction files
 │   ├── tests/                # Starter, registry, routing, mapping and trace tests
-│   ├── scripts/              # Documentation, technique, routing, execution and tool-manifest validators; DOT renderer
+│   ├── scripts/              # Documentation, technique, routing, execution and tool-manifest validators; router/compilers; DOT renderer
 │   └── docs/                 # Harness specs, technique/tool guides and 24 diagrams
 ├── prompts/BOOTSTRAP.md
 └── scripts/
@@ -102,6 +102,8 @@ A clean acceptance-branch clone at `f516230…` contains 225 tracked files. Pres
 | `python scripts/validate.py` | Checks local Markdown links, diagram metadata, gallery listing and required static assets | Does not parse Mermaid, render diagrams, test products or verify semantics |
 | `python .harness/harness.py doctor` | Reports Python/project path and optional Git/Graphviz/GitHub CLI availability | Does not validate Jira, credentials, models, source policy or product readiness |
 | `python .harness/harness.py route --task task.json --output route.json` | Evaluates explicit activation rules and returns a deterministic advisory route record | Does not execute tasks, compile recipes, route models or enforce limits |
+| `python .harness/harness.py compile --task route.json --output compiled.json` | Compiles a compatible recipe and expanded advisory contracts; optionally embeds a context manifest | Does not execute steps, invoke agents, invent missing sequence assignments or measure resources |
+| `python .harness/harness.py context --task context.json --output manifest.json` | Builds bounded local metadata manifests with hashes, provenance, deduplication and baseline deltas | Does not embed content, approve sources, call models or enforce OS/process boundaries |
 | `python .harness/harness.py capabilities` | Inspects local registry, skill-copy and detectable tool lifecycle states | Does not prove host-wide/session availability, integration or sandbox enforcement |
 | `python .harness/harness.py init --project PATH` | Creates missing starter files and appends missing ignore rules | Does not install the reusable harness into the destination or enforce task scope |
 | `python .harness/harness.py ingest --project PATH` | Inventories/hashes regular non-symlink files under `PATH/docs/00-original` | Does not extract contents, call models or approve sources |

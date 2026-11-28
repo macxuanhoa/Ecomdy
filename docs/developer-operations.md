@@ -16,6 +16,8 @@
 | `.harness/harness.py ingest` | Implemented and tested | Inventory/hash `<project>/docs/00-original` | No content extraction or source approval |
 | `.harness/harness.py doctor` | Implemented and tested | Report environment in advisory mode | No readiness gate or agent execution |
 | `.harness/harness.py route` | Implemented and tested | Select the unique most-specific explicit route and write an explainable advisory JSON record | No task execution, recipe compilation, model routing or limit enforcement |
+| `.harness/harness.py compile` | Implemented and tested | Compile a compatible recipe, expanded technique contracts, stricter limits and optional context manifest | No task execution, agent invocation, automatic ordering for unsequenced techniques or resource measurement |
+| `.harness/harness.py context` | Implemented and tested | Build a bounded local file metadata manifest with hashes, provenance, deduplication and baseline delta | No content extraction, model call, source approval or OS-level restriction on an independent terminal |
 | `.harness/harness.py capabilities` | Implemented and tested | Report registered/installed/configured/session/smoke/integrated/verified states independently | Local artifact inspection only; not a complete host catalog or OS sandbox |
 | `scripts/validate.py` | Implemented and tested | Validate local Markdown links, diagram metadata/listings and static assets | No Mermaid grammar/render/semantic validation |
 | `.harness/scripts/validate.py` | Implemented and tested | Validate harness docs/diagram metadata/assets | No role/skill execution |

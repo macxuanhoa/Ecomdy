@@ -74,6 +74,21 @@ class RoutingRegistryTests(unittest.TestCase):
         errors = validate_routing.validate_manifests(changed, self.technique_ids, self.profile_ids, self.schema)
         self.assertTrue(any("selects an incompatible technique" in error for error in errors))
 
+    def test_recipe_techniques_must_fit_route_and_profile_allow_lists(self):
+        route_techniques = {
+            item["id"]: (set(item["required_techniques"]) | set(item["optional_techniques"]), set(item["incompatible_techniques"]))
+            for item in self.manifests["manifests"]
+        }
+        profile_techniques = {
+            item["id"]: set(item["required_techniques"]) | set(item["optional_techniques"])
+            for item in self.profiles["profiles"]
+        }
+        changed = copy.deepcopy(self.recipes)
+        changed["recipes"][0]["techniques"].append("TECH-014")
+        errors = validate_routing.validate_recipes(changed, self.technique_ids, self.profile_ids, self.route_profiles, self.schema, route_techniques, profile_techniques)
+        self.assertTrue(any("not allowed by its route" in error for error in errors))
+        self.assertTrue(any("incompatible with its route" in error for error in errors))
+
     def test_unknown_recipe_route_is_rejected(self):
         changed = copy.deepcopy(self.recipes)
         changed["recipes"][0]["route_id"] = "ROUTE-UNKNOWN"

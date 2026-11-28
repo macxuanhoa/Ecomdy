@@ -240,7 +240,7 @@ def validate_manifests(data, technique_ids, profile_ids, schema):
     return errors
 
 
-def validate_recipes(data, technique_ids, profile_ids, route_profiles, schema):
+def validate_recipes(data, technique_ids, profile_ids, route_profiles, schema, route_techniques=None, profile_techniques=None):
     errors = []
     definition = schema["$defs"]["recipe"]
     required = set(definition["required"])
@@ -271,6 +271,18 @@ def validate_recipes(data, technique_ids, profile_ids, route_profiles, schema):
         if recipe.get("profile_id") not in profile_ids:
             errors.append(f"{label}.profile_id is unknown")
         check_technique_refs(recipe.get("techniques", []), technique_ids, f"{label}.techniques", errors)
+        recipe_techniques = set(recipe.get("techniques", []))
+        if route_techniques is not None and recipe.get("route_id") in route_techniques:
+            route_allowed, route_incompatible = route_techniques[recipe["route_id"]]
+            outside_route = recipe_techniques - route_allowed
+            if outside_route:
+                errors.append(f"{label}.techniques are not allowed by its route: {', '.join(sorted(outside_route))}")
+            if recipe_techniques & route_incompatible:
+                errors.append(f"{label}.techniques are incompatible with its route: {', '.join(sorted(recipe_techniques & route_incompatible))}")
+        if profile_techniques is not None and recipe.get("profile_id") in profile_techniques:
+            outside_profile = recipe_techniques - profile_techniques[recipe["profile_id"]]
+            if outside_profile:
+                errors.append(f"{label}.techniques are not allowed by its profile: {', '.join(sorted(outside_profile))}")
         if recipe.get("implementation_status") != "advisory_design":
             errors.append(f"{label}.implementation_status must be advisory_design")
 
@@ -291,7 +303,17 @@ def validate_all():
     profile_ids = {item.get("id") for item in profiles.get("profiles", []) if isinstance(item, dict)}
     errors += validate_manifests(manifests, technique_ids, profile_ids, schema)
     route_profiles = {item.get("id"): item.get("profile") for item in manifests.get("manifests", []) if isinstance(item, dict)}
-    errors += validate_recipes(recipes, technique_ids, profile_ids, route_profiles, schema)
+    route_techniques = {
+        item["id"]: (set(item["required_techniques"]) | set(item["optional_techniques"]), set(item["incompatible_techniques"]))
+        for item in manifests.get("manifests", [])
+        if isinstance(item, dict) and "id" in item and all(isinstance(item.get(field), list) for field in ("required_techniques", "optional_techniques", "incompatible_techniques"))
+    }
+    profile_techniques = {
+        item["id"]: set(item["required_techniques"]) | set(item["optional_techniques"])
+        for item in profiles.get("profiles", [])
+        if isinstance(item, dict) and "id" in item and all(isinstance(item.get(field), list) for field in ("required_techniques", "optional_techniques"))
+    }
+    errors += validate_recipes(recipes, technique_ids, profile_ids, route_profiles, schema, route_techniques, profile_techniques)
     return errors, len(profiles.get("profiles", [])), len(manifests.get("manifests", [])), len(recipes.get("recipes", []))
 
 

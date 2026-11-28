@@ -46,4 +46,21 @@ class StarterTests(unittest.TestCase):
         with patch('sys.argv',['harness.py','capabilities','--strict']), redirect_stdout(stdout):
             self.assertEqual(harness.main(),2)
         self.assertEqual(json.loads(stdout.getvalue())['registries']['tools']['blocked'],['TOOL-001'])
+    def test_compile_command_selects_recipe(self):
+        with tempfile.TemporaryDirectory() as d:
+            task=Path(d)/'task.json'; route=Path(d)/'route.json'; output=Path(d)/'compiled.json'
+            task.write_text(json.dumps({'task_id':'TASK-COMPILE-CLI','task_type':'feature','acceptance_criteria_present':True}))
+            with patch('sys.argv',['harness.py','route','--task',str(task),'--output',str(route)]), redirect_stdout(StringIO()):
+                self.assertEqual(harness.main(),0)
+            with patch('sys.argv',['harness.py','compile','--task',str(route),'--task-type','feature','--output',str(output)]), redirect_stdout(StringIO()):
+                self.assertEqual(harness.main(),0)
+            self.assertEqual(json.loads(output.read_text())['recipe_id'],'RECIPE-001')
+    def test_context_command_compiles_local_manifest(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d); (root/'docs').mkdir(); (root/'docs'/'a.md').write_text('local')
+            request=root/'context.json'; request.write_text(json.dumps({'include_paths':['docs'],'max_files':2,'max_bytes':100}))
+            stdout=StringIO()
+            with patch('sys.argv',['harness.py','context','--task',str(request),'--project',str(root)]), redirect_stdout(stdout):
+                self.assertEqual(harness.main(),0)
+            self.assertEqual(json.loads(stdout.getvalue())['summary']['file_count'],1)
 if __name__=='__main__': unittest.main()
