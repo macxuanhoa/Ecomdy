@@ -49,7 +49,7 @@ The owner's next job is not to request more architecture documents. It is to mak
 - [ ] Review the full diff, not only the latest commit.
 - [ ] Confirm `Validate repository` is successful and required by current protection.
 - [ ] Confirm no local originals, credentials or sensitive files are included.
-- [ ] Confirm historical security/protection claims with authenticated read-back.
+- [x] Authenticated governance/security read-back completed on 2026-11-28: strict `validate` protection, PR-only/resolved-conversation requirements, admin enforcement, no force-pushes/deletions, no rulesets, read-only default workflow permissions, and enabled secret scanning/push protection, Dependabot security updates, vulnerability alerts and private vulnerability reporting.
 - [ ] Decide: approve, request changes or reject; record the decision.
 - [ ] Merge only through the protected process after approval.
 
@@ -190,7 +190,7 @@ Next review point:
 
 ## 11. Current owner actions
 
-1. Review PR #1 and obtain authenticated governance read-back.
+1. Review Ready PR #1; authenticated governance read-back is complete.
 2. Assign real reviewers and approve review policy.
 3. Authorize Jira or explicitly approve the temporary internal-ID workflow.
 4. Resolve VS01-G1–VS01-G4 decisions.

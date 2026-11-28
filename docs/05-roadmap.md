@@ -57,7 +57,7 @@ Each wave needs a task contract, dependencies, acceptance criteria, resource est
 
 | Milestone | Outcome | Depends on | Exit gate | Current state |
 |---|---|---|---|---|
-| MS0 — Integrable baseline | Accepted setup/docs are on default `main`; fresh clone follows Quick Start | PR #1 review, authenticated protection/security read-back, normal merge | Default clone passes validator, doctor, 3 tests and harness validator | BLOCKED by owner review/merge |
+| MS0 — Integrable baseline | Accepted setup/docs are on default `main`; fresh clone follows Quick Start | PR #1 owner review and normal merge; authenticated governance read-back is complete | Default clone passes validator, doctor, 3 tests and harness validator | BLOCKED by owner review/merge |
 | MS1 — Accountable delivery | Real owners/reviewers and Jira-first task flow operate | MS0; role mapping; Jira authorization | One real task links requirement → branch → PR → checks → decision | BLOCKED by Jira/owners |
 | MS2 — Approved slice contract | Source/market/retention/verification/provider/stack decisions and fixtures are approved | MS1 for assignments; owner/source/data/security decisions | `VS01-G1`–`VS01-G6` signed; contracts reviewed | PREPARED, not approved |
 | MS3 — Evidence vertical slice | Fixture source produces traceable digest preview and exact-version review | MS2 | All Slice 01 acceptance tests and independent review pass | NOT IMPLEMENTED |
@@ -69,7 +69,7 @@ Each wave needs a task contract, dependencies, acceptance criteria, resource est
 ### Critical path
 
 ```text
-PR #1 owner review + authenticated governance verification
+PR #1 owner review (authenticated governance verification complete)
         │
         ▼
 MS0 default-branch baseline merge

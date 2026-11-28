@@ -20,6 +20,8 @@ A passing documentation validator does not verify product behavior, Mermaid gram
 
 ## A. Repository, governance and reproducibility
 
+> **Current overlay note — 2026-11-28:** authenticated read-back now verifies FND-05/FND-06, and PR #1 is Ready for review rather than draft. The rows and status counts below preserve the Phase 0 baseline; current evidence is recorded in `VERIFICATION_REPORT.md`.
+
 | ID | Capability | Implementation / reference | Phase 0 evidence | Status | Next action |
 |---|---|---|---|---|---|
 | FND-01 | Requirements and target-design baseline | `docs/01-requirements.md`, `docs/requirements-traceability.md`, `docs/project-context.md` | Validator PASS; target/current states explicitly separated. | IMPLEMENTED AND VERIFIED | Maintain requirement-to-task traceability; owner ratifies constitution before implementation. |

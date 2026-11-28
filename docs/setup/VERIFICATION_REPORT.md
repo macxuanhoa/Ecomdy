@@ -180,3 +180,25 @@ These results accept the documentation/setup and advisory-harness scope only. Th
 | Remote push and PR #2 CI | Post-push GitHub read-back for remediation commit `27b628ba1fd6e91ac7365859606c8501c1f4c884` | PASS — remote head matched; `validate` runs [46100355853](https://github.com/macxuanhoa/Ecomdy/actions/runs/46100355853) and [46100351225](https://github.com/macxuanhoa/Ecomdy/actions/runs/46100351225) succeeded; PR #2 open draft, mergeable/clean, zero reviews. Later review-fix commits may supersede this head; PR #2 is authoritative. |
 
 The smoke artifacts were temporary and are not repository diagram assets. Existing valid diagrams and static artifacts were not regenerated. The 960×601 PNG result is retained as an unresolved export detail; the SVG/viewBox remains the geometry reference.
+
+## Authenticated GitHub governance and PR readiness — 2026-11-28
+
+**Checkpoint:** `2dbe287365e2313c7e83daf62a074f0782f13990` on `docs/phase-0-acceptance`<br>
+**Method:** authenticated GitHub REST/GraphQL read-back plus remote-branch and PR/check-run verification; no protection, permission or security setting was changed.
+
+| Check | Method | Result |
+|---|---|---|
+| Authenticated identity | GitHub API `/user` | PASS — authenticated as `macxuanhoa` |
+| Remote heads | Remote branch refs and PR API | PASS — `main` `560cf0d2ecaf862749edbe9b8823eebc4e0327a0`; PR #1 head `4bddc925c941979da60b1250ec4d139381776e22`; PR #2 head `2dbe287365e2313c7e83daf62a074f0782f13990` |
+| PR #1 readiness | PR API/GraphQL and check-run read-back | PASS for review readiness — base `main`, open and Ready for review, mergeable/clean, successful `validate`, zero submitted reviews or requested reviewers/teams |
+| PR #2 readiness | PR API and check-run read-back | PASS for sequential review — base `setup/phase-0-audit`, open draft, mergeable/clean, successful `validate`, zero submitted reviews or requested reviewers/teams |
+| `main` branch protection | Authenticated branch-protection API | PASS — pull request required; strict `validate` status check required; conversation resolution required; admin enforcement enabled; force-push and deletion disabled; approving review count is 0 |
+| Repository rulesets | Authenticated rulesets API | PASS — no repository rulesets configured |
+| Actions permissions | Authenticated Actions permissions API | VERIFIED — Actions enabled; all actions allowed; SHA pinning not required; default workflow permissions `read`; workflows cannot approve pull-request reviews |
+| Secret scanning | Authenticated repository `security_and_analysis` fields | ENABLED — secret scanning and secret-scanning push protection; non-provider patterns and validity checks remain disabled |
+| Dependency and vulnerability security | Authenticated Dependabot/vulnerability-alert/private-reporting read-back | ENABLED — Dependabot security updates, vulnerability alerts and private vulnerability reporting |
+| PR metadata update | GitHub PR body update; PR #1 GraphQL Ready transition | COMPLETED — both descriptions carry verified heads/CI/limits; PR #1 is Ready; PR #2 remains a stacked draft |
+| Human integration | Not performed | BLOCKED — explicit owner review/merge is still required for PR #1; PR #2 cannot be integrated first |
+| Default `main` onboarding | Not performed | BLOCKED — PR #1 is unmerged, so default `main` still contains only the one-line README |
+
+The authenticated read-back resolves the earlier HTTP 401 governance blocker. It does not remove the separate human-approval requirement, authorize either merge, or prove default-branch onboarding. The current protection setting requires zero approving reviews, but the project directive explicitly requires human review before merge.
