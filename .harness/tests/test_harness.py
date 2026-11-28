@@ -1,4 +1,4 @@
-import tempfile, unittest, sys, json
+import tempfile, unittest, sys, json, subprocess
 from contextlib import redirect_stdout
 from io import StringIO
 from pathlib import Path
@@ -63,4 +63,23 @@ class StarterTests(unittest.TestCase):
             with patch('sys.argv',['harness.py','context','--task',str(request),'--project',str(root)]), redirect_stdout(stdout):
                 self.assertEqual(harness.main(),0)
             self.assertEqual(json.loads(stdout.getvalue())['summary']['file_count'],1)
+    def test_scope_and_verify_commands_use_task_contract(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d)/'repo'; root.mkdir(); task=Path(d)/'task.json'
+            subprocess.run(['git','init','-q',str(root)],check=True)
+            subprocess.run(['git','-C',str(root),'config','user.email','test@example.invalid'],check=True)
+            subprocess.run(['git','-C',str(root),'config','user.name','Test'],check=True)
+            (root/'.gitignore').write_text('.harness/state/\n'); (root/'check.py').write_text("print('PASS')\n")
+            subprocess.run(['git','-C',str(root),'add','.'],check=True)
+            subprocess.run(['git','-C',str(root),'-c','commit.gpgsign=false','commit','-qm','fixture'],check=True)
+            contract={'schema_version':'1.0','task_id':'TASK-CLI-GATE','trace_id':'TRACE-001','objective':'CLI fixture','acceptance_criteria':['check passes'],'route_id':'ROUTE-FEATURE','profile_id':'PROFILE-STANDARD','recipe_id':'RECIPE-001','verification_technique_id':'TECH-038','scope':{'allow_paths':['check.py'],'max_changed_files':2,'max_changed_bytes':1024},'commands':[{'id':'CHECK-001','kind':'test','argv':[sys.executable,'check.py'],'criteria':['check passes'],'timeout_seconds':10,'max_output_bytes':1024}],'budgets':{'max_iterations':1,'max_runtime_minutes':1,'max_cost_usd':0,'max_retries':0},'approvals':['cli-fixture']}
+            task.write_text(json.dumps(contract))
+            stdout=StringIO()
+            with patch('sys.argv',['harness.py','scope','--task',str(task),'--project',str(root)]), redirect_stdout(stdout):
+                self.assertEqual(harness.main(),0)
+            self.assertEqual(json.loads(stdout.getvalue())['state'],'PASS')
+            stdout=StringIO()
+            with patch('sys.argv',['harness.py','verify','--task',str(task),'--project',str(root)]), redirect_stdout(stdout):
+                self.assertEqual(harness.main(),0)
+            self.assertEqual(json.loads(stdout.getvalue())['verification_state'],'VERIFIED')
 if __name__=='__main__': unittest.main()

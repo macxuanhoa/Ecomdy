@@ -19,6 +19,8 @@
 | `.harness/harness.py compile` | Implemented and tested | Compile a compatible recipe, expanded technique contracts, stricter limits and optional context manifest | No task execution, agent invocation, automatic ordering for unsequenced techniques or resource measurement |
 | `.harness/harness.py context` | Implemented and tested | Build a bounded local file metadata manifest with hashes, provenance, deduplication and baseline delta | No content extraction, model call, source approval or OS-level restriction on an independent terminal |
 | `.harness/harness.py capabilities` | Implemented and tested | Report registered/installed/configured/session/smoke/integrated/verified states independently | Local artifact inspection only; not a complete host catalog or OS sandbox |
+| `.harness/harness.py scope` | Implemented and tested | Detect staged, unstaged, untracked and rename paths outside an approved task-contract scope | Detection only; does not prevent independent terminal edits or provide filesystem isolation |
+| `.harness/harness.py verify` | Implemented and tested | Run reviewed Python/pytest/Gitleaks argv after approval and pre/post scope checks; capture bounded logs, trace and hash evidence | No arbitrary shell, retries, paid calls, checkpoint/resume or process/network sandbox |
 | `scripts/validate.py` | Implemented and tested | Validate local Markdown links, diagram metadata/listings and static assets | No Mermaid grammar/render/semantic validation |
 | `.harness/scripts/validate.py` | Implemented and tested | Validate harness docs/diagram metadata/assets | No role/skill execution |
 | `.harness/scripts/validate_techniques.py` | Implemented and tested | Validate technique cards and references | No installation or effectiveness claim |
@@ -35,7 +37,7 @@
 - **How:** Read handoff/status/blockers, relevant requirement/module/workflow and `.harness/templates/task.json`; write a task contract.
 - **Tool:** Git, documentation portal, task template.
 - **Skill:** `scoped-task` instruction.
-- **Harness:** Task template only; no executor enforces it.
+- **Harness:** Use `.harness/schemas/task-contract.schema.json` and `.harness/templates/task-contract.example.json` for executable verification; the starter task template remains descriptive.
 - **Status:** Manual procedure; Jira intake blocked.
 - **Expected:** A reviewable Ready task or an explicit Blocked decision.
 - **Verify:** Contract contains allowed/forbidden paths, exact commands, reviewer role and rollback.
@@ -49,7 +51,7 @@
 - **How:** Read `AGENTS.md`, relevant specs and only task-scoped skills; disable unapproved automation/paid calls.
 - **Tool:** Qoder session, `AGENTS.md`, repository map.
 - **Skill:** `scoped-task`; optional user-level Diagram Design for diagrams.
-- **Harness:** Config/template are descriptive; budgets and scope are not enforced.
+- **Harness:** Config is descriptive; controlled verification enforces its contract's command, timeout, output, iteration and retry limits, not an independent agent's process.
 - **Status:** Manual configuration.
 - **Expected:** Agent can state scope, evidence rules and stop conditions.
 - **Verify:** Ask for a short restatement of allowed paths, checks and forbidden actions before editing.
@@ -77,8 +79,8 @@
 - **How:** Inspect existing behavior, reuse valid artifacts, update source before rendered output, record assumptions.
 - **Tool:** Editor, Git diff, relevant validator.
 - **Skill:** `scoped-task`; `diagram` for diagram changes.
-- **Harness:** No file-scope enforcement yet.
-- **Status:** Manual.
+- **Harness:** `scope` detects staged, unstaged, untracked and rename violations; `verify` rechecks scope before and after commands. Neither is an OS-level edit barrier.
+- **Status:** Manual implementation with automated change detection.
 - **Expected:** Minimal coherent diff with traceability.
 - **Verify:** `git diff`, changed-path list and requirement/capability references.
 - **Recovery:** Revert only the agent's own incomplete edit; preserve user work and request review if intent is unclear.
@@ -91,8 +93,8 @@
 - **How:** Run product validator, harness validator, technique/routing/execution/tool-manifest validators, unit tests, compile check and task-specific checks that actually exist.
 - **Tool:** Python, Git, validators.
 - **Skill:** `scoped-task`.
-- **Harness:** Validators/tests are implemented; no generic verification runner.
-- **Status:** Automated checks exist for docs/harness only.
+- **Harness:** Validators/tests plus `verify` for reviewed Python, pytest or Gitleaks command argv with approval, scope, timeout/output and evidence controls.
+- **Status:** Automated checks exist for docs/harness only; controlled runner records PASS/FAIL/BLOCKED without implying product correctness.
 - **Expected:** PASS, FAIL, NOT RUN or BLOCKED with evidence.
 - **Verify:** Capture command, exit code and relevant output; never mark an unrun check PASS.
 - **Recovery:** Fix root cause or record the blocker; do not weaken tests or bypass hooks.

@@ -48,8 +48,8 @@ def emit_json(result, output, label):
     return 0
 
 def main():
-    p=argparse.ArgumentParser(description='DevHarness advisory starter and deterministic compilers')
-    p.add_argument('command',choices=['init','ingest','doctor','route','capabilities','compile','context'])
+    p=argparse.ArgumentParser(description='DevHarness advisory starter, deterministic compilers and controlled verification')
+    p.add_argument('command',choices=['init','ingest','doctor','route','capabilities','compile','context','scope','verify'])
     p.add_argument('--project',default='.')
     p.add_argument('--task',default='-',help='Task, route or context request JSON file or - for stdin')
     p.add_argument('--output',help='Write JSON to this path')
@@ -100,5 +100,21 @@ def main():
                 print(f'Context compile input error: {exc}',file=sys.stderr); return 1
             if emit_json(result,a.output,'Context compile'): return 1
             return {'COMPILED':0,'BLOCKED':3}.get(result['state'],1)
+        elif a.command=='scope':
+            import scope_checker
+            try: result=scope_checker.check_scope(scope_checker.task_contract.load_json(a.task),project)
+            except (OSError,ValueError,json.JSONDecodeError) as exc:
+                print(f'Scope input error: {exc}',file=sys.stderr); return 2
+            if emit_json(result,a.output,'Scope check'): return 2
+            if result.get('errors'): return 2
+            return 0 if result['state']=='PASS' else 3
+        elif a.command=='verify':
+            import verification_runner
+            try: result=verification_runner.verify_task(verification_runner.task_contract.load_json(a.task),project)
+            except (OSError,ValueError,json.JSONDecodeError) as exc:
+                print(f'Verification input error: {exc}',file=sys.stderr); return 2
+            if emit_json(result,a.output,'Verification'): return 2
+            if result.get('input_error'): return 2
+            return {'PASS':0,'FAIL':1,'BLOCKED':3}.get(result['state'],2)
     return 0
 if __name__=='__main__': sys.exit(main())

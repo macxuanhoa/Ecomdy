@@ -1,6 +1,6 @@
 # DevHarness OS
 
-Reusable agentic engineering harness • v0.1 starter • advisory mode.
+Reusable agentic engineering harness • v0.1 starter • advisory routing and controlled verification.
 
 ![Control plane](docs/diagrams/02-control-plane.svg)
 
@@ -22,6 +22,9 @@ python scripts/validate_tool_manifest.py
 python harness.py route --task task.json --output route.json
 python harness.py compile --task route.json --output compiled.json
 python harness.py context --task context.json --output context-manifest.json
+# inspect scope and run only a reviewed, approved task contract
+python harness.py scope --task task-contract.json --output scope.json
+python harness.py verify --task task-contract.json --output verification.json
 python harness.py capabilities
 ```
 
@@ -43,4 +46,4 @@ Open the generated `docs/01-project-context/CONTEXT_UPDATE_PROMPT.md` in your co
 - [Diagram catalogue](docs/diagrams/README.md)
 - [Contribution protocol](CONTRIBUTING.md)
 
-Future capabilities are proposals, not features already implemented. The technique/routing registries, deterministic advisory router, recipe compiler, local context manifest compiler, capability doctor and trace contracts are implemented validators or local advisory tools, not an autonomous runtime. `route` returns `RECOMMENDED`/`NOT_EXECUTED`; `compile` returns `COMPILED`/`NOT_EXECUTED`; `context` records local file metadata without embedding content; `capabilities` does not prove host-wide availability. Project-specific data must stay outside this reusable repository.
+Future capabilities are proposals, not features already implemented. The technique/routing registries, deterministic advisory router, recipe compiler, local context manifest compiler, capability doctor and trace contracts are implemented validators or local advisory tools, not an autonomous runtime. `route` returns `RECOMMENDED`/`NOT_EXECUTED`; `compile` returns `COMPILED`/`NOT_EXECUTED`; `context` records local file metadata without embedding content; `capabilities` does not prove host-wide availability. `scope` detects changed-path violations but does not prevent an independent agent from editing; `verify` runs only allowlisted command argv after approval and pre/post scope checks, with bounded output and evidence hashes. It is not an OS sandbox, checkpoint/resume system or product implementation runner. Project-specific data must stay outside this reusable repository.

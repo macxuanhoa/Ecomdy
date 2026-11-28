@@ -58,7 +58,7 @@ A clean acceptance-branch clone at `f516230…` contains 225 tracked files. Pres
 │   ├── project-owner-guide.md
 │   └── repository-map.md
 ├── .harness/
-│   ├── harness.py            # init, ingest, doctor, route, compile, context, capabilities
+│   ├── harness.py            # init, ingest, doctor, route, compile, context, scope, verify, capabilities
 │   ├── config/default.json   # Copied config; not enforced by CLI
 │   ├── registry/
 │   │   ├── capabilities.json
@@ -66,12 +66,12 @@ A clean acceptance-branch clone at `f516230…` contains 225 tracked files. Pres
 │   │   ├── ecomdy-mapping.json
 │   │   ├── installation/     # 20-candidate tool manifest
 │   │   └── routing/          # 9 profiles, 14 routes, 24 recipes
-│   ├── schemas/              # Technique, routing, execution and tool-manifest contracts
-│   ├── templates/            # Task plus trace/checkpoint examples
+│   ├── schemas/              # Technique, routing, task-contract, execution and tool-manifest contracts
+│   ├── templates/            # Task, verification-contract, trace/checkpoint examples
 │   ├── prompts/bootstrap.md
 │   ├── skills/               # scoped-task, debug, diagram instruction files
-│   ├── tests/                # Starter, registry, routing, mapping and trace tests
-│   ├── scripts/              # Documentation, technique, routing, execution and tool-manifest validators; router/compilers; DOT renderer
+│   ├── tests/                # Starter, registry, routing, mapping, execution-contract and execution-gate tests
+│   ├── scripts/              # Validators, router/compilers, scope checker, controlled verification runner; DOT renderer
 │   └── docs/                 # Harness specs, technique/tool guides and 24 diagrams
 ├── prompts/BOOTSTRAP.md
 └── scripts/
@@ -104,14 +104,16 @@ A clean acceptance-branch clone at `f516230…` contains 225 tracked files. Pres
 | `python .harness/harness.py route --task task.json --output route.json` | Evaluates explicit activation rules and returns a deterministic advisory route record | Does not execute tasks, compile recipes, route models or enforce limits |
 | `python .harness/harness.py compile --task route.json --output compiled.json` | Compiles a compatible recipe and expanded advisory contracts; optionally embeds a context manifest | Does not execute steps, invoke agents, invent missing sequence assignments or measure resources |
 | `python .harness/harness.py context --task context.json --output manifest.json` | Builds bounded local metadata manifests with hashes, provenance, deduplication and baseline deltas | Does not embed content, approve sources, call models or enforce OS/process boundaries |
+| `python .harness/harness.py scope --task task-contract.json --output scope.json` | Detects staged, unstaged, untracked and rename paths outside the approved contract scope; checks Git HEAD/base and limits | Does not prevent independent edits or provide filesystem/network isolation |
+| `python .harness/harness.py verify --task task-contract.json --output verification.json` | Runs approved, allowlisted Python/pytest/Gitleaks argv with pre/post scope checks, bounded logs and hashed evidence | Rejects arbitrary shells; does not support retries, paid calls, checkpoint/resume or a process/network sandbox |
 | `python .harness/harness.py capabilities` | Inspects local registry, skill-copy and detectable tool lifecycle states | Does not prove host-wide/session availability, integration or sandbox enforcement |
 | `python .harness/harness.py init --project PATH` | Creates missing starter files and appends missing ignore rules | Does not install the reusable harness into the destination or enforce task scope |
 | `python .harness/harness.py ingest --project PATH` | Inventories/hashes regular non-symlink files under `PATH/docs/00-original` | Does not extract contents, call models or approve sources |
-| `python -m unittest discover -s .harness/tests -v` | Runs harness starter, technique/routing/tool-manifest, mapping and execution-contract tests | Does not test Ecomdy product behavior |
+| `python -m unittest discover -s .harness/tests -v` | Runs harness starter, technique/routing/tool-manifest, mapping, execution-contract and controlled-execution tests | Does not test Ecomdy product behavior |
 | `python .harness/scripts/validate.py` | Checks harness Markdown/diagram metadata/assets | Does not execute harness roles or skills |
 | `python .harness/scripts/validate_techniques.py` | Validates 106 technique cards, references and status/invocation invariants | Does not prove technique effectiveness or installation |
 | `python .harness/scripts/validate_routing.py` | Validates nine profiles, 14 routes and 24 recipes | Does not route or execute tasks |
-| `python .harness/scripts/validate_execution.py` | Validates trace/checkpoint structure and state semantics | Does not capture runs, execute commands or resume work |
+| `python .harness/scripts/validate_execution.py` | Validates trace/checkpoint structure and state semantics | The validator itself does not execute commands or resume work; `verify` separately captures observed traces |
 | `python .harness/scripts/validate_tool_manifest.py` | Checks 20 candidate records, lifecycle semantics, procedures and `NOT_RUN` research commands | Does not install tools, grant credentials or prove effectiveness |
 | `python scripts/render_diagrams.py` | Invokes Graphviz to regenerate DOT assets when Graphviz exists | Does not render Mermaid; the audited shell PATH may not include a user-scope Graphviz installation |
 
