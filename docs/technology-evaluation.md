@@ -1,6 +1,6 @@
 # Technology and Harness Evaluation
 
-**As of:** 2026-11-26. **Decision:** no new framework or product stack selected. This repository has no application code, and team skills, deployment environment, source permissions, timeline, and budget are unknown.
+**As of:** 2026-11-28. **Decision:** no new product framework or stack selected; Diagram Design Plugin 2.6.131 is installed at user scope only. This repository has no application code, and team skills, deployment environment, source permissions, timeline, and budget are unknown.
 
 ## Selection criteria
 
@@ -17,7 +17,7 @@
 | Repository-native Markdown, Git branches, CI, task/requirement registers | Already present and runnable in this repository; no new runtime dependency needed for documentation work. | Manual linking/traceability and no automatic task-state enforcement. | Use for setup baseline and keep records portable. |
 | GitHub Spec Kit | Official docs describe specification-driven workflows through specify, plan, task, implementation, and convergence activities. Its docs also note teams must decide how specs change as requirements evolve. | Adds conventions/tooling; fit with the current standalone harness and agents must be tested; generated artifacts still need owner review. | Candidate for a bounded brownfield pilot, not installed. [Official docs](https://github.github.com/spec-kit/) |
 | OpenSpec | Official project describes spec-driven development for AI coding assistants and change-oriented specification artifacts. | Requires comparing its change lifecycle and CLI/runtime dependencies with repository-native docs and Spec Kit. No Ecomdy pilot exists. | Candidate, not installed. [Official repository](https://github.com/Fission-AI/OpenSpec) |
-| DevHarness OS starter | Bundled in `.harness/`; Python CLI preserves existing files, inventories/hashes local documents, provides prompts and local validation. Two unit tests passed before packaging; repository CI will repeat them. | It does not extract documents, call models, run implementation tasks, enforce permissions, or schedule work. No independent harness release or remote is established. | Bundle as an advisory, reusable component; do not describe it as a full orchestrator. |
+| DevHarness OS starter | Bundled in `.harness/`; Python CLI preserves existing files, inventories/hashes local documents, protects generated outputs from unapproved overwrite, provides prompts and local validation. Three unit tests pass locally, in fresh clones and in CI. | It does not extract documents, call models, run implementation tasks, enforce permissions/budgets, checkpoint/resume, or schedule work. No independent harness release or remote is established. | Bundle as an advisory, reusable component; do not describe it as a full orchestrator. See [Phase 0 acceptance](setup/PHASE_0_ACCEPTANCE.md). |
 | Custom bounded workflow | Existing simple scripts and GitHub Actions can cover today's documentation checks. | Building a durable agent state machine, approval UI, or scheduler now would be unvalidated new work. | Keep custom implementation limited to demonstrated gaps. |
 
 Spec Kit and OpenSpec should not be installed together by default. If either is trialed, define the same feature task, compare artifacts, setup friction, agent compatibility, and requirement drift, then decide from observed results.
@@ -34,6 +34,17 @@ No benchmark shows that a framework or model improves Ecomdy accuracy, Vietnames
 ## Product stack evaluation status
 
 The blueprint lists React/Next.js, Python/FastAPI, PostgreSQL, workers, and optional vector search as candidates. There is no codebase to preserve or team/deployment profile to compare against. Record these as candidates only; defer stack decision until constraints are known. A later ADR should compare at least one viable alternative per layer and include version, support lifecycle, security update process, deployment fit, skills, and total operating cost.
+
+## Diagram engineering evaluation — Phase 1
+
+| Option | Verified facts | Decision |
+|---|---|---|
+| Diagram Design Plugin | Qoder market identity `diagram-design` 2.6.131, publisher Cathryn Lavery; canonical repository `cathrynlavery/diagram-design`; MIT license; 1 skill, 6 commands, 0 MCP; no install hooks in the Qoder manifest. Static review of packaged commands/scripts found no hidden installer/network execution; exports may use Playwright and one SVG template references a remote Google Fonts URL. Upstream `main` was observed at commit `795eec47…` with manifest 2.6.181, newer than the market pin. | Installed/enabled at user scope after explicit selection and exposed as a Skill. Subsequent controlled remediation generated an isolated HTML/SVG/PNG smoke flowchart, passed offline self-check and visual/mobile/network checks, and parsed 56/56 Mermaid sources after a one-line compatibility fix. No Mermaid source was rendered. |
+| Mermaid CLI | `@mermaid-js/mermaid-cli` 12.2.0, MIT, Node >=22.13.0; local Node 22.18.0 satisfies the engine; npm distribution integrity was recorded during evaluation. PNG/PDF require a browser runtime. | Evaluated, not selected or installed. A separate pin/lock/audit/render task is required for CI-safe validation. |
+| Draw.io-compatible tooling | Diagram Design supports `.drawio` import. No official Draw.io MCP was verified in the Qoder market/MCP catalog. | Use only the installed plugin's import capability after it is loaded; do not label third-party candidates official. |
+| Structurizr | Useful for model-driven C4 views, but no current requirement or implementation need is established. | Deferred; no installation. |
+
+No Mermaid source or existing repository artifact was rendered or regenerated. The comprehensive audit recorded 55/56 parser extraction; subsequent remediation quoted one semicolon-containing edge label and reached 56/56 (482 nodes, 499 edges, zero dangling edges). Mermaid/DOT parity remains 26/26 on unchanged paired inputs and static SVG/PNG validation remains 26/26. The isolated Diagram Design smoke render does not establish Mermaid rendering, repository-wide visual acceptance or as-built correctness; see [diagram tooling](setup/DIAGRAM_TOOLING.md), [COMPREHENSIVE_AUDIT.md](setup/COMPREHENSIVE_AUDIT.md) and [VERIFICATION_REPORT.md](setup/VERIFICATION_REPORT.md#comprehensive-audit--2026-11-28).
 
 ## Research scope and sources
 

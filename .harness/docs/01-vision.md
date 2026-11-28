@@ -23,4 +23,4 @@ Reusable local-first development control plane; portable via Git/ZIP. Separate c
 | H15 | Observability | Proposed |
 | H16 | Learning engine | Proposed |
 
-Implemented in starter: local inventory, prompt template generation, doctor, non-destructive initialization, diagram assets and repository checks only. Model calls, extraction, scheduler and enforcement are future work.
+Implemented in starter: local inventory, prompt template generation, doctor, non-clobbering initialization (existing files are preserved, but missing `.gitignore` rules may be appended), diagram assets and repository checks only. Model calls, extraction, scheduler and enforcement are future work.

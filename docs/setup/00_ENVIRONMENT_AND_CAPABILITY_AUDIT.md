@@ -11,7 +11,7 @@
 | Repository existence | Exists and is public | GitHub repository API returned `visibility: public`, `private: false`, `archived: false`. |
 | Default branch and history | `main`; one existing commit, `560cf0d` (`Initial commit`) | `git ls-remote` and local fetch. Remote tree contains only `README.md` (`# Ecomdy`). |
 | Local Git | Git 2.50.1; configured commit identity name `macxuanhoa` | `git --version`, local Git config. The configured email is intentionally omitted from this public audit. |
-| Working branch | `setup/phase-0-audit`, tracking `origin/main` | Created after fetching remote history; remote `main` was not changed. |
+| Working branch | `setup/phase-0-audit`, tracking `origin/setup/phase-0-audit`; Phase 0 acceptance uses local `docs/phase-0-acceptance` | Remote `main` was not changed; the acceptance branch is uncommitted and has no upstream. |
 | Authentication / write access | Verified | `gh` is not installed, but Git Credential Manager authenticated a branch push and authorized repository API updates. Credential values were not exposed. |
 | Python | Python 3.11.9 on PATH; bundled Python runtime also available | `python --version`; bundled runtime loaded through Codex workspace dependencies. |
 | Other tools | Bundled Node.js is available. Graphviz (`dot`), Poppler (`pdftoppm`), and `gh` were not found on PATH. | Command discovery. Existing rendered diagrams are present. |
@@ -25,7 +25,7 @@
 | GitHub Projects | Not created | GraphQL `projectsV2` query returned missing `read:project` scope; current credential scopes are `gist`, `repo`, and `workflow`. Project API work requires a GitHub authorization with project access. |
 | Document libraries | Bundled `pypdf`, `pdfplumber`, `openpyxl`, and Pillow are available | Module discovery and use for source extraction / image inspection. |
 | Local product implementation | No application source, package manifest, or runtime configuration is present in `ecomdy-intelligence` | Full local file inventory. The repository contains proposed specifications, diagrams, bootstrap material, and a documentation validator. |
-| Local harness | The supplied sibling directory `devharness-os` was copied into `.harness/` in this repository. It includes a Python CLI, config, skills, docs, diagrams, templates, scripts, and tests. | Local file inventory. It remains an advisory starter and is not a product runtime dependency. Two unit tests are recorded in the verification report. |
+| Local harness | The supplied sibling directory `devharness-os` was adapted into `.harness/` with overwrite protection and a stronger validator. It includes a Python CLI, config, skills, docs, diagrams, templates, scripts, and tests. | Local file inventory. It remains an advisory starter and is not a product runtime dependency. Three embedded unit tests pass; standalone parity is not implemented. |
 | Inputs | Two PDFs (41 pages total), one two-sheet XLSX, one JPG note image, and source README | Both PDFs and both workbook sheets were text-extracted; the JPG was visually inspected. The source README says originals are ignored by Git. |
 | Input publication | Original files are excluded by `docs/00-original/*`; only the README is re-included | Verified with `git check-ignore`. The remote is public, so original source files remain local. |
 | Attachments in chat | No separate ZIP or additional file attachment was present in the available local input directory | The extracted starter pack and its `docs/00-original` materials were inspected. |
@@ -53,3 +53,9 @@ Local file reads/writes, Git operations, Python scripts, GitHub branch push, pul
 
 **Verified:** remote public/readable, source materials inventoried and extracted, originals ignored; setup package commit `a08bb16` and follow-up status commit `d4584ae` are on the PR branch; push and pull-request GitHub Actions passed for both; repository metadata, security settings, labels, milestones, and `main` protection read back successfully.<br>
 **Pending verification:** merge and post-merge default-branch checks, Ecomdy application behavior, owner-approved product scope, source allowlist, brand inputs, seller interviews, and Content Team feedback.
+
+## Phase 0 recheck — 2026-11-27
+
+The acceptance audit verified baseline `4bddc925c941979da60b1250ec4d139381776e22`, PR #1, two successful CI event runs, local validators, 3/3 embedded harness tests, two fresh clones and the 56-diagram inventory. It did not install tools, create Jira data, commit, push or merge.
+
+Current limits at this Phase 0 snapshot: Jira access is unavailable; branch-protection/security API revalidation returned HTTP 401; 30 Mermaid-only diagrams lack local parser/render evidence; DOT/MMD parity is not reliably verified; product runtime and autonomous harness behavior are absent. The later [comprehensive audit](COMPREHENSIVE_AUDIT.md) records parser extraction at 55/56, Mermaid/DOT parity at 26/26 and static assets at 26/26, while rendering and current governance read-back remain open. See [PHASE_0_ACCEPTANCE.md](PHASE_0_ACCEPTANCE.md) and [CAPABILITY_COVERAGE.md](CAPABILITY_COVERAGE.md).

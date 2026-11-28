@@ -4,7 +4,7 @@
 
 | Phase | Output | Acceptance |
 |---|---|---|
-| V0.1 | Bootstrap, configuration, source inventory | repeatable non-destructive install; tests |
+| V0.1 | Bootstrap, configuration, source inventory | repeatable non-clobbering initialization; existing files preserved, missing ignore rules appended; tests |
 | V0.2 | Extraction, indexes and context compiler | grounded source pointers; retrieval benchmark |
 | V0.3 | Requirements, DAG, task contracts, approval | reject invalid or unapproved plans |
 | V0.4 | Agent adapter, scoped execution, gates | deny out-of-scope changes; verify actual tests |

@@ -331,7 +331,7 @@ flowchart TD
 
 ## Additional harness architecture and workflow diagrams
 
-These sources fill the component, memory, skill/tool, prompt, dependency, review, approval, recovery, security, and CI/CD gaps. Each Mermaid file includes ID, version, and target-state metadata and renders on GitHub when opened.
+These sources fill the component, memory, skill/tool, prompt, dependency, review, approval, recovery, security, and CI/CD gaps. Each Mermaid file includes ID, version, and target-state metadata and is intended to render on GitHub when opened; that rendering behavior was not locally verified.
 
 | ID | Diagram | Editable / rendered Mermaid source |
 |---|---|---|
