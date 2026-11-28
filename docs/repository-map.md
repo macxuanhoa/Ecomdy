@@ -10,13 +10,13 @@
 |---|---:|---|---|
 | Root | 11 | Entry points, Git/editor settings, project profile, security/contribution/changelog | Repository policy and navigation |
 | `.github/` | 4 | Validation workflow, Dependabot, issue and PR templates | Implemented documentation CI; no product CI |
-| `docs/` | 133 | Requirements, architecture, product/workflow specs, diagrams, setup evidence and ignored originals | Mixed: official/proposed requirements, verified setup evidence and target design |
+| `docs/` | 137 | Requirements, architecture, product/workflow specs, diagrams, setup evidence and ignored originals | Mixed: official/proposed requirements, verified setup evidence and target design |
 | `.harness/` | 87 | Advisory Python CLI, config, registries, prompts, three skills, tests, validators, docs and diagrams | Small executable starter; most catalogue is proposed |
 | `scripts/` | 2 | Product documentation validator and DOT renderer | Implemented |
 | `prompts/` | 1 | Bootstrap prompt | Instruction only |
-| **Total working-tree files** | **238** | Excludes `.git`, caches and virtual environments | Includes 4 ignored local original inputs and 9 nonignored audit/Phase 1 files |
+| **Total working-tree files** | **242** | Excludes `.git`, caches and virtual environments | Inventory snapshot before final staging: 234 tracked, 4 new operational documents and 4 ignored local originals |
 
-A clean acceptance-branch clone at `f516230…` contains 225 tracked files. The current working tree contains 238 files after adding nine nonignored audit/Phase 1 files and retaining four ignored local originals. Default `main` currently contains only `README.md` because PR #1 is unmerged.
+A clean acceptance-branch clone at `f516230…` contains 225 tracked files. Preservation commit `4cfab07b8a163715ad608e5aaff6628b990d59a5` added nine new files and modified 24, producing 234 tracked files. The controlled remediation adds four operational documents; after staging/commit, verify the tracked count with `git ls-files` rather than treating this snapshot as a released-package count. Default `main` currently contains only `README.md` because PR #1 is unmerged.
 
 ## 2. Directory map
 
@@ -48,8 +48,11 @@ A clean acceptance-branch clone at `f516230…` contains 225 tracked files. The 
 │   ├── phase1-requirements-delta.md
 │   ├── phase1-architecture-delta.md
 │   ├── vertical-slice-01-plan.md
+│   ├── vs01-owner-approval-pack.md
 │   ├── team-development-readiness.md
 │   ├── developer-onboarding.md
+│   ├── developer-operations.md
+│   ├── minimum-viable-harness-plan.md
 │   ├── project-owner-guide.md
 │   └── repository-map.md
 ├── .harness/
@@ -154,10 +157,10 @@ Do not add fictional handles to `CODEOWNERS` or invent Jira assignees.
 | Change documentation | [AGENTS.md](../AGENTS.md), [CONTRIBUTING.md](../CONTRIBUTING.md) | Relevant specification, validator, PR template |
 | Plan a product task | [task-register.md](task-register.md), [vertical-slice-01-plan.md](vertical-slice-01-plan.md) | Module/workflow/architecture contracts and acceptance tests |
 | Review a PR | [team-development-readiness.md](team-development-readiness.md) | Diff, traceability, exact checks, security/source/diagram impact |
-| Change a diagram | [diagram gallery](diagrams/README.md) | Source metadata, paired artifacts, parser/render evidence |
+| Change a diagram | [diagram gallery](diagrams/README.md) | [Diagram tooling](setup/DIAGRAM_TOOLING.md), source metadata, paired artifacts, parser/render evidence |
 | Use DevHarness | [harness-installation-guide.md](harness-installation-guide.md) | CLI help, tests, config limits and skill instructions |
 | Resume a session | [HANDOFF.md](setup/HANDOFF.md) | Git status/HEAD, blockers, execution status, relevant task only |
-| Prepare owner decisions | [project-owner-guide.md](project-owner-guide.md) | Open questions, VS01 gates, Jira plan, PR state |
+| Prepare owner decisions | [project-owner-guide.md](project-owner-guide.md) | [VS01 approval pack](vs01-owner-approval-pack.md), open questions, Jira plan, PR state |
 
 ## 9. Known map limitations
 

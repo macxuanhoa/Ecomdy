@@ -8,6 +8,8 @@
 
 This audit preserves the Phase 0/Phase 1 capability matrix, requirements, diagrams, rendered assets, historical evidence and uncommitted acceptance work. It records observed behavior separately from proposals. No Jira data, people, source approvals, test results, metrics, integrations or product capabilities were fabricated.
 
+**Historical-snapshot note:** the 55/56 parser result and uncommitted-working-tree statements below describe the audit checkpoint. Preservation commit `4cfab07b8a163715ad608e5aaff6628b990d59a5` and the later controlled remediation supersede the working-tree state; see [HANDOFF.md](HANDOFF.md) and [DIAGRAM_TOOLING.md](DIAGRAM_TOOLING.md) for current evidence.
+
 ## Executive answers
 
 | Question | Evidence-based answer | Immediate consequence |

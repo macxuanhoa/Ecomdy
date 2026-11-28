@@ -8,5 +8,5 @@ flowchart TD
   change --> tests["Run focused and regression checks"]
   tests --> result{"Passes?"}
   result -->|Yes| review["Independent review and evidence update"]
-  result -->|No; retries remain| hypothesis
+  result -->|"No; retries remain"| hypothesis
   result -->|Limit reached| blocked["Stop with BLOCKED status and evidence"]

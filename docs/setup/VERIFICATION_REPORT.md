@@ -143,3 +143,36 @@ The comprehensive audit found no product implementation and did not merge PRs, p
 | Mermaid rendering/visual acceptance | No renderer installed or executed | NOT RUN — remains an explicit blocker |
 
 These results accept the documentation/setup and advisory-harness scope only. They do not accept product behavior, live integrations, current GitHub governance settings, Jira operation, Mermaid rendering, visual quality, deployment or production readiness.
+
+## Controlled operational remediation — 2026-11-28
+
+**Preservation baseline:** `4cfab07b8a163715ad608e5aaff6628b990d59a5`<br>
+**Scope:** operational documentation, one Mermaid compatibility edit, isolated Diagram Design smoke test and status reconciliation. No product/runtime implementation, dependency installation, Jira mutation, PR merge or permission change.
+
+| Check | Command / method | Result |
+|---|---|---|
+| Checkpoint preservation | Hashed temporary backup and manifest for all 33 modified/untracked files; classification against the actual Git DAG | PASS — all 33 files preserved; commit `4cfab07…` created with 2,246 insertions and 73 deletions |
+| Product documentation validator | `python scripts/validate.py` | PASS — `Validation: PASS`, exit 0 |
+| Harness documentation validator | `python .harness/scripts/validate.py` | PASS — `Validation: PASS`, exit 0 |
+| Harness unit tests | `python -m unittest discover -s .harness/tests -v` | PASS — 3/3 tests, `OK`, exit 0 |
+| Python compile | `python -m compileall -q scripts .harness` | PASS — exit 0, no compiler output |
+| Harness doctor | `python .harness/harness.py doctor --project .` | PASS/advisory — Python/Git detected; Graphviz/GitHub CLI absent; no execution or scheduling |
+| Jira CSV integrity | CSV parse, internal-ID uniqueness, empty Jira-key and dependency checks | PASS — 39 rows, 39 unique IDs, empty Jira keys, dependencies resolved |
+| Capability baseline integrity | Parse only the Phase 0 matrix before the audit overlay | PASS — 70 rows, 70 unique IDs, M01–M20 complete and ordered |
+| Configuration syntax | `json.loads` / `yaml.safe_load` | PASS — 4 JSON and 3 YAML files parsed |
+| Bounded Mermaid extraction | Diagram Design 2.6.131 `mermaid_extract.py --diagram all --json` over all 56 sources | PASS — 56/56 files; 482 nodes; 499 edges; 101 labeled edges; 0 dangling edges |
+| Mermaid warnings | Extractor analysis review | INFORMATIONAL — one intentional isolated secret-store node; 16 existing target diagrams exceed the skill generation budget, not parser failures |
+| Mermaid/DOT parity | Prior deterministic normalized comparison; changed debugging source is not one of the 26 paired inputs | PASS for unchanged paired inputs — 26/26; not a fresh render result |
+| Static SVG/PNG assets | XML parse plus normalized DOT-label comparison; Pillow decode/nonblank check | PASS — 26/26 SVGs and 26/26 PNGs |
+| Diagram Design offline self-check | `self_check.py --offline` on temporary `vs01-gate-smoke.html` | PASS — `OK` |
+| SVG/PNG smoke export | `export_svg.py --system-fonts`; `export_png.py` scale 1 | PASS with dimension caveat — SVG viewBox `0 0 960 600`; PNG `960 × 601`, RGB |
+| Smoke visual/mobile/network review | Full-size image inspection; browser at `390 × 844`; request log | PASS within smoke scope — readable branches, no observed clipping/overlap, wrapper scrolls without page overflow, only local `file://` request |
+| Geometry/Mermaid rendering | Installed-package capability inventory | NOT RUN — `verify-geometry.py` is not shipped; no Mermaid renderer is installed |
+| Jira access | CLI, MCP catalog and environment-name inventory | BLOCKED — no authorized site/connector/CLI/credential; no values printed or fabricated |
+| Tool versions | Direct executable/package checks | PASS with recorded discrepancy — Git 2.50.1, Python 3.11.9, Node 22.18.0, Playwright 1.60.0, Chromium 148.0.7778.96; earlier environment notice reported Node 24.22.1 |
+| Diff whitespace | `git diff --check` | PASS — exit 0 after removing introduced trailing whitespace |
+| Nonignored-file hygiene | Scan Git-listed nonignored text files for trailing whitespace, conflict markers and common credential patterns | PASS — 238 nonignored files / 208 text files; zero issues; not a full secret scanner |
+| Original-input exclusion | `git check-ignore -v` and Git-list inspection | PASS — both original PDF paths ignored; zero original inputs in the nonignored Git list |
+| Remote push and PR #2 CI | Post-push GitHub read-back | PENDING AT REPORT COMMIT — verify current head, `validate` checks and mergeability after the authorized push; do not claim remote success from local checks |
+
+The smoke artifacts were temporary and are not repository diagram assets. Existing valid diagrams and static artifacts were not regenerated. The 960×601 PNG result is retained as an unresolved export detail; the SVG/viewBox remains the geometry reference.

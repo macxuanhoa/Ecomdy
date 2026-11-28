@@ -17,7 +17,7 @@ The challenge is to help Ecomdy's Marketing / Content Team research internationa
 - [Security and governance](docs/security-governance.md) · [risk register](docs/risk-register.md) · [Definition of Ready / Done](docs/definition-of-ready-done.md)
 - [Agent and tool registry](docs/agent-tool-registry.md) · [automation](docs/automation-specification.md) · [context engineering](docs/context-engineering.md)
 - [Target architecture and candidate stack](docs/03-architecture.md) · [Phase 1 requirements delta](docs/phase1-requirements-delta.md) · [Phase 1 architecture delta](docs/phase1-architecture-delta.md)
-- [First vertical-slice plan](docs/vertical-slice-01-plan.md) · [team development readiness](docs/team-development-readiness.md) · [Phase 1 transition checkpoint](docs/setup/PHASE_1_TRANSITION.md)
+- [First vertical-slice plan](docs/vertical-slice-01-plan.md) · [VS01 owner approval pack](docs/vs01-owner-approval-pack.md) · [team development readiness](docs/team-development-readiness.md) · [Phase 1 transition checkpoint](docs/setup/PHASE_1_TRANSITION.md)
 - [Technology and harness evaluation](docs/technology-evaluation.md)
 - [Business and technical workflows](docs/04-workflows.md)
 - [Implementation roadmap](docs/05-roadmap.md)
@@ -97,13 +97,37 @@ No stack has been approved. Current documentation evaluates candidates such as R
 | Area | State |
 |---|---|
 | Product vision, requirements, proposed workflows and architecture | Documentation present; owner validation pending |
-| Diagrams | 56 Mermaid sources and 26 static DOT/SVG/PNG sets; bounded parser extraction passed 55/56 sources (one extractor compatibility exception), Mermaid/DOT parity passed 26/26, and static assets passed 26/26; no Mermaid source was rendered locally; Diagram Design Plugin 2.6.131 is installed, enabled and exposed in the audit session; all diagrams remain target design |
+| Diagrams | 56 Mermaid sources and 26 static DOT/SVG/PNG sets; bounded parser extraction passed 56/56 sources after a one-line quoted-label compatibility fix (482 nodes, 499 edges, zero dangling edges), Mermaid/DOT parity passed 26/26 on unchanged paired inputs, and static assets passed 26/26; no Mermaid source was rendered locally; Diagram Design Plugin 2.6.131 generated and exported an isolated smoke flowchart; all repository diagrams remain target design |
 | Documentation validator | Implemented as `python scripts/validate.py`; run locally or in CI |
 | GitHub Actions | Documentation and harness validation workflow present; push and PR checks passed for the audited setup baseline |
 | Ecomdy application and runtime | Not implemented |
 | DevHarness OS | Bundled under `.harness/` as an advisory starter; independent from Ecomdy runtime; config/scope/budget enforcement not implemented |
 | Jira delivery system | Blocked pending owner-authorized Jira access; no Jira data fabricated |
 | Seller interviews, team feedback, benchmarks | Outstanding; no results claimed |
+
+## Operational readiness
+
+The repository is usable now for controlled documentation, diagram-source and advisory-harness work. It is not yet usable for product development, live collection, paid AI or deployment. The table below is the direct entry point; each detailed guide is one click away.
+
+| Topic | Current reality | What to do / detailed guide |
+|---|---|---|
+| Project purpose | Evidence-linked marketplace, tax and shipping intelligence for Ecomdy's Marketing / Content Team | Read [product context](docs/project-context.md) and [official requirements](docs/01-requirements.md). |
+| Actual implementation status | Documentation, diagrams, validators and a three-command harness only; no product runtime | Use the [capability matrix](docs/setup/CAPABILITY_COVERAGE.md) and [comprehensive audit](docs/setup/COMPREHENSIVE_AUDIT.md); never describe a proposal as implemented. |
+| Product target state | Modular monolith plus bounded worker/scheduler; deterministic evidence processing before AI assistance | Review [target architecture](docs/03-architecture.md) and [Phase 1 architecture delta](docs/phase1-architecture-delta.md). |
+| Development architecture | Git/GitHub PR stack, documentation CI, local validators, advisory `.harness/`, manual Jira-ready backlog | Follow [repository map](docs/repository-map.md) and [contribution protocol](CONTRIBUTING.md). |
+| Product workflows | Collection, normalization, verification, digest, content approval and freshness audit are specifications only | Use the [workflow catalogue](docs/04-workflows.md); do not run a product workflow that has no implementation. |
+| Development workflows | Task contract → scoped branch → implementation/docs → deterministic checks → review → handoff | Follow the [developer operations matrix](docs/developer-operations.md) and [developer playbook](docs/developer-onboarding.md). |
+| Repository structure | `docs/` is specification/evidence, `.harness/` is advisory tooling, `scripts/` contains working validators/renderer, no application tree exists | Navigate with the [repository map](docs/repository-map.md). |
+| Clone and setup | Default `main` is not ready; acceptance-branch clone passes documentation/harness checks | Use the branch-specific Quick Start below and [onboarding](docs/developer-onboarding.md). |
+| AI coding agent configuration | `AGENTS.md` defines scope and stop rules; DevHarness does not route roles or enforce budgets automatically | Read [AGENTS.md](AGENTS.md) and the [agent configuration procedure](docs/developer-operations.md#2-configure-the-coding-agent). |
+| Available skills and tools | Three manual harness instruction files; user-level Diagram Design plugin; tool candidates are not automatically installed | Use the [skill/tool map](docs/developer-operations.md#skill-and-tool-map) and [technology evaluation](docs/technology-evaluation.md). |
+| Actual working commands | Validators, 3 harness tests, compile check, `init`, `ingest`, `doctor`; Graphviz renderer only when Graphviz exists | Run the [verified command set](docs/repository-map.md#4-executable-behavior-map). |
+| Jira and GitHub workflow | GitHub owns source/review/CI; Jira is intended delivery tracker but access is blocked; 39 CSV records are import-ready | Follow [Jira setup](docs/setup/JIRA_SETUP_PLAN.md) and [team readiness](docs/team-development-readiness.md). |
+| Branching | One task per short-lived branch; PR #2 is stacked on PR #1; no force-push or direct `main` change | Follow [branch/sync procedure](docs/developer-onboarding.md#3-create-a-task-branch) and [contribution protocol](CONTRIBUTING.md). |
+| Testing | Three harness unit tests and documentation validators exist; no product tests exist | Run the [verification procedure](docs/developer-onboarding.md#5-run-verification) and record exact results. |
+| Diagram generation | Existing DOT/SVG/PNG assets are preserved; Mermaid rendering is not reproducible yet; parser extraction is not rendering | Follow [diagram workflow](docs/developer-onboarding.md#12-diagram-workflow) and [diagram tooling](docs/setup/DIAGRAM_TOOLING.md). |
+| Current roadmap | Integrable baseline → accountable delivery → approved slice contract → fixture vertical slice → editorial MVP | Use the [master roadmap](docs/05-roadmap.md#master-roadmap-and-critical-path). |
+| Immediate next actions | Owner review, authenticated governance read-back, real reviewers, Jira authorization and VS01 gate decisions | Use the [Project Owner guide](docs/project-owner-guide.md), [VS01 approval pack](docs/vs01-owner-approval-pack.md) and [ordered audit plan](docs/setup/COMPREHENSIVE_AUDIT.md#20-ordered-owner-action-plan). |
 
 ## Quick start
 
@@ -136,7 +160,7 @@ For new projects, existing projects, context refresh, or interrupted sessions, u
 
 ## Diagrams
 
-The Ecomdy gallery contains 32 target diagram sources; 14 have checked-in DOT plus SVG/PNG assets, and 18 are supplemental Mermaid files. The DevHarness gallery contains 24 target sources; 12 have checked-in DOT plus SVG/PNG assets, and 12 are supplemental Mermaid files. Supplemental Mermaid is intended to render on GitHub, but this behavior was not locally verified. All source files carry diagram ID, version, and state metadata. Update sources in their gallery folder. The three C4-level views use C4-style flowcharts because GitHub's renderer does not bundle the experimental native C4 extension. Regenerate existing DOT renders with `python scripts/render_diagrams.py` where Graphviz is installed; the script invokes Graphviz `dot` directly. Local Graphviz is unavailable in this setup, so existing static images were structurally validated and visually inspected at overview scale, not freshly regenerated. See the [comprehensive audit](docs/setup/COMPREHENSIVE_AUDIT.md) for parser, parity and asset evidence.
+The Ecomdy gallery contains 32 target diagram sources; 14 have checked-in DOT plus SVG/PNG assets, and 18 are supplemental Mermaid files. The DevHarness gallery contains 24 target sources; 12 have checked-in DOT plus SVG/PNG assets, and 12 are supplemental Mermaid files. Supplemental Mermaid is intended to render on GitHub, but this behavior was not locally verified. All source files carry diagram ID, version, and state metadata. Update sources in their gallery folder. The three C4-level views use C4-style flowcharts because GitHub's renderer does not bundle the experimental native C4 extension. Regenerate existing DOT renders with `python scripts/render_diagrams.py` where Graphviz is installed; the script invokes Graphviz `dot` directly. Local Graphviz is unavailable in this setup, so existing static images were structurally validated and visually inspected at overview scale, not freshly regenerated. The installed Diagram Design extractor now parses 56/56 Mermaid sources after a semantics-preserving quote around one semicolon-containing edge label; this is parser evidence, not Mermaid rendering. See the [diagram tooling guide](docs/setup/DIAGRAM_TOOLING.md) for the manifest, commands, smoke-test evidence and limits, and the [comprehensive audit](docs/setup/COMPREHENSIVE_AUDIT.md) for historical parser, parity and asset evidence.
 
 ## GitHub Actions
 

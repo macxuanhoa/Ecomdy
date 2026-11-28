@@ -1,12 +1,15 @@
 # Jira-First Delivery Setup Plan
 
 **State:** BLOCKED pending owner authorization. This is a setup plan, not evidence that a Jira project exists.
-**Audit date:** 2026-11-27
+**Audit date:** 2026-11-27<br>
+**Access revalidation:** 2026-11-28
 **Repository:** `macxuanhoa/Ecomdy`
 
 ## 1. Availability and authority
 
-Phase 0 found no Jira Cloud site URL, connector, CLI, credential or authorized integration. No tenant, project key, issue, sprint or automation result is assumed.
+Phase 0 found no Jira Cloud site URL, connector, CLI, credential or authorized integration. The 2026-11-28 revalidation found no Jira CLI executable, no Jira/Atlassian MCP tools in the active catalog and no Jira/Atlassian environment variable names. Values were not printed or inferred. No tenant, project key, issue, sprint or automation result is assumed.
+
+The shortest safe authorization path is for the Project Owner to provide the real Jira Cloud site, approve an access method, designate the project administrator and confirm the project key/type plus least-privilege groups. Credentials must be supplied through an approved secret store or connector, not pasted into chat, Git or Jira. Until those facts are verified, `TBD` remains the only acceptable value.
 
 GitHub remains authoritative for source, branches, commits, pull requests, review, CI/CD and versioned documentation. Jira becomes authoritative for delivery planning, priority, assignment, dependencies, sprint state and acceptance tracking after the owner authorizes it. GitHub Projects V2 is not the primary board and no additional Projects permission is requested.
 

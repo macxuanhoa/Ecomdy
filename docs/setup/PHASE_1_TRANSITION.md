@@ -6,6 +6,8 @@
 **Current work branch:** `docs/phase-0-acceptance`, based on the accepted package<br>
 **Verdict:** Phase 1 planning and bounded tool installation completed within the approved scope; product implementation, Jira configuration, diagram rendering, merge and deployment remain unperformed or unapproved.
 
+**Historical-snapshot note:** working-tree and 55/56 parser statements below describe this checkpoint. Preservation commit `4cfab07b8a163715ad608e5aaff6628b990d59a5` and the controlled operational remediation supersede the working-tree state; see [HANDOFF.md](HANDOFF.md) for the current resume point.
+
 ## 1. Actual repository and pull-request state
 
 | Item | Observed state at this checkpoint |

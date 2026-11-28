@@ -96,7 +96,7 @@ These are proposed requirements. Current branch protection cannot be revalidated
 
 ## 8. Local setup and verified quick start
 
-Prerequisites verified in the current environment: Git 2.50.1, Python 3.11.9 and Node 22.18.0. Graphviz and Mermaid CLI are not installed. Default `main` currently contains only a one-line README because PR #1 is unmerged. The following commands are verified for the acceptance-branch documentation/harness baseline:
+Prerequisites verified by direct executable checks: Git 2.50.1, Python 3.11.9 and Node 22.18.0. An earlier environment notice reported Node 24.22.1; the discrepancy is recorded and the direct executable result is used for current commands. Graphviz and Mermaid CLI are not installed. Default `main` currently contains only a one-line README because PR #1 is unmerged. The following commands are verified for the acceptance-branch documentation/harness baseline:
 
 ```bash
 git clone --branch docs/phase-0-acceptance https://github.com/macxuanhoa/Ecomdy.git
@@ -120,7 +120,7 @@ After PR #1 merges, verify a default-branch clone before replacing this branch-s
 ## 10. Diagram engineering readiness
 
 - Qoder market Plugin `diagram-design` 2.6.131 is installed, enabled and exposed as a Skill in the current audit session.
-- Its reviewed bounded extractor parsed 55/56 Mermaid sources; one source hit an extractor compatibility exception. Mermaid/DOT parity passed 26/26 and static assets passed 26/26. No Mermaid source was rendered locally.
+- After a one-line quoted-label compatibility fix, its reviewed bounded extractor parsed 56/56 Mermaid sources: 482 nodes, 499 edges and zero dangling edges. One isolated secret-store node is intentional. Mermaid/DOT parity passed 26/26 on unchanged paired inputs and static assets passed 26/26. No Mermaid source was rendered locally.
 - Mermaid CLI was evaluated but not selected or installed. Rendering and visual acceptance remain open.
 - Preserve all 56 existing sources and valid artifacts. Add/replace only task-relevant diagrams after a pinned, CI-safe validation tool is approved.
 - User-level plugin installation and parser extraction do not make fresh-clone Mermaid rendering reproducible.
@@ -142,3 +142,83 @@ Update [setup/HANDOFF.md](setup/HANDOFF.md) and [setup/EXECUTION_STATUS.md](setu
 ## 12. Readiness verdict
 
 The repository has a usable documentation/harness onboarding path and a proposed collaboration model. It is **not yet team-ready for parallel product implementation** until real owners/reviewers, Jira access, API/schema ownership, migration policy, source/provider decisions and the vertical-slice approval are confirmed.
+
+## 13. Dependency and parallel-work matrix
+
+“Can parallelize” means work can proceed against approved contracts without editing the same files. It does not authorize product implementation or invent staff assignments.
+
+| Workstream / modules | Must exist before implementation | Can proceed in parallel with | Hands off to | Owner role placeholder | Current state |
+|---|---|---|---|---|---|
+| Track A — team infrastructure | Owner authorization; reviewed PR stack | Track B planning; Track C documentation | Reviewers, Jira keys, protected integration path | Project Owner + Technical Lead + Platform/Quality | Partly prepared; external authorization and authenticated read-back blocked |
+| Track B — Minimum Viable DevHarness P0 | Approved H0 scope and security boundaries | Track A setup; Track C contract/fixture documentation | Scoped context, verification and handoff for all tracks | DevHarness Owner + Platform/Quality | Plan only; no new command implemented |
+| Diagram source/tooling | Reviewed tool identity; task-scoped source change | Track A/B documentation | Validated source and, later, approved renderer | Diagram/Platform reviewer | 56/56 parser pass; Mermaid render not installed |
+| M01–M03 source and collection | VS01-G1; contract freeze from VS01-G3 | M04–M06 after contracts are stable | Normalized source/capture contracts | Source & Collection Owner | Specification only |
+| M04–M06 normalization, dedup and classification | Source/capture contracts; VS01-G3 | M09–M11 against the same fixtures | Immutable article versions and claim candidates | Processing & Evidence Owner | Specification only |
+| M12 knowledge store | VS01-G2 retention; VS01-G3 schema/DB decision | Verification and digest contract work | Persistence/query contracts to all consumers | Knowledge & API Owner | Specification only |
+| M09–M11 claims and verification | M04–M06/M12 contracts; VS01-G4 adapter policy | Digest aggregation against fixed fixtures | Eligible evidence and verification states | Processing & Evidence Owner | Specification only |
+| M13–M17 digest and editorial | Eligible claim contracts; VS01-G5 review roles | UI/API work after contract freeze | Versioned digest preview and review evidence | Content & Editorial Owner | Specification only |
+| M18–M20 validation/extensions | Accepted MVP evidence and new scope approval | Later discovery only | Post-MVP decision | Project Owner + affected module owner | Specification only |
+
+Critical path: approved source/retention/architecture decisions → contract-only freeze → collector/processing/evidence work in parallel → digest integration → independent demo acceptance. Track B P1 is not a prerequisite for fixture-only product work; only the approved deterministic checks needed by the task are prerequisites.
+
+## 14. Track A/B/C execution boundaries
+
+| Track | Can start now without product code | Blocked until | Must not do |
+|---|---|---|---|
+| A — Team Infrastructure | Review PR stack; prepare reviewer-role mapping; prepare Jira import and onboarding test plan | Owner assigns real people; Jira site/project authorization; authenticated GitHub settings read-back | Invent owners, create Jira issues, change protection/permissions or claim default-branch onboarding |
+| B — Minimum Viable DevHarness | Review H0-01–H0-08 plan; identify reusable validators and fixtures | Owner approves implementation scope, execution policy and tests | Add proposed commands to docs as if implemented; enable shell execution, network or paid AI |
+| C — Ecomdy Product | Review VS01 plan and approval pack; prepare synthetic fixture/contract proposals | VS01-G1–G6 recorded; then only fixture-only implementation | Crawl live sources, call paid AI, migrate production data, deploy or publish |
+
+Track A and Track B can progress in parallel after their own approvals. Track C documentation can progress alongside them, but Track C implementation waits for the six gates. A blocker in one track must not silently expand another track's authority.
+
+## 15. Shared-file ownership and coordination
+
+| Shared path / concern | Coordination owner role | Rule |
+|---|---|---|
+| `README.md`, `docs/README.md`, `CONTRIBUTING.md`, `AGENTS.md` | Platform/Quality + Technical Lead | One integration owner per cross-track edit; review navigation and status claims together |
+| `docs/setup/HANDOFF.md`, `EXECUTION_STATUS.md`, `TASK_REGISTRY.md`, `VERIFICATION_REPORT.md`, `DECISION_LOG.md` | Platform/Quality | Update from observed evidence; do not rewrite historical results |
+| `.harness/**` | DevHarness Owner | Keep isolated from product runtime; preserve standalone/embedded boundary |
+| `docs/diagrams/**`, `.harness/docs/diagrams/**`, `scripts/render_diagrams.py`, `scripts/validate.py` | Diagram/Platform reviewer | One owner per source/artifact set; no parallel regeneration of the same output |
+| Requirements, architecture, module, API and database specifications | Technical Lead + affected module owner | Contract-first PR; record compatibility and affected consumers |
+| Future application modules | Assigned module owner | One task branch; no cross-module edits without the affected owner's review |
+| Future migration chain | One Knowledge/API migration owner | Single ordered chain; forward-only reviewed changes; no parallel migration authors |
+| `.github/**`, protection, secrets and deployment configuration | Platform/Quality + Project Owner | Explicit authorization and authenticated read-back required |
+
+Coordination rules:
+
+1. Announce the shared file and intended change in the task record before editing.
+2. Keep shared-file diffs small and separate from unrelated feature work.
+3. Use contract-first branches for APIs, schemas and shared events; consumers branch from the approved contract.
+4. Give each migration chain one owner and each generated artifact one producer.
+5. Sync from the approved base without force-pushing; resolve conflicts explicitly.
+6. If two tasks need the same shared file, sequence them or assign one integration owner rather than merging unreviewed competing edits.
+7. Record cross-track decisions in the decision log and handoff, not only in chat.
+
+## 16. Worked developer task — DIAG-01 compatibility remediation
+
+This example uses the controlled diagram change executed in the current acceptance branch. It is a documentation/tooling task, not product implementation.
+
+| Field | Worked example |
+|---|---|
+| Stable task ID | `DIAG-01`; no Jira key exists |
+| What | Quote one Mermaid edge label and add the shared diagram tooling guide |
+| Why | The installed extractor rejected a semicolon inside an unquoted pipe label; contributors also lacked a precise installed-capability guide |
+| Allowed paths | `.harness/docs/diagrams/19-debugging-workflow.mmd`, `docs/setup/DIAGRAM_TOOLING.md`, `docs/README.md` and linked status evidence |
+| Forbidden paths | Other diagram sources/assets, Qoder plugin cache, dependency manifests, product code, credentials and local originals |
+| Dependencies | Reviewed Diagram Design 2.6.131 package; existing valid sources; approved documentation branch |
+| Tool / skill | Python standard-library extractor; `diagram-design:diagram-design` for the separate smoke test; repository validators |
+| Harness capability | Existing validation only; no new harness command |
+| How | Change only the label quoting; run full extraction; run both validators; document parser/render limits and smoke evidence |
+| Expected result | 56/56 sources parse with unchanged visible edge text; no dangling edge; no claim of Mermaid rendering |
+| Actual verification | 56/56 parsed; 482 nodes; 499 edges; 101 labeled edges; 0 dangling edges; both repository validators passed |
+| Recovery | Revert only the one-line compatibility change through a reviewed commit if a supported renderer later proves a problem; do not regenerate unrelated diagrams |
+| Next step | Owner selects and approves a pinned Mermaid parser/renderer before rendering acceptance is claimed |
+
+The final commit and PR identifiers for this example are recorded in [setup/HANDOFF.md](setup/HANDOFF.md) rather than duplicated here.
+
+## 17. Delegation and assignment rules
+
+- **Agent-delegable now:** read-only source/evidence lookup; deterministic validation; draft documentation from verified facts; diagram smoke generation in an isolated temporary directory; diff review against explicit scope.
+- **Agent-delegable only after task approval:** implement one bounded H0 capability with tests; update one approved diagram source; prepare a contract-only PR. The agent must not choose new dependencies, permissions, paid services or product scope.
+- **Human-only:** assign real owners/reviewers; approve Jira/GitHub permissions; approve VS01 gates; authorize dependencies, live collection, AI budget, migration, merge, deployment and publication.
+- **Team-assignable after owner mapping:** independent documentation tasks, harness capabilities with disjoint paths, fixture/contract tasks after G3, and module implementation after G6. Shared files and migration chains remain single-owner.

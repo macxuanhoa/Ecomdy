@@ -225,7 +225,7 @@ Parallelization can reduce elapsed time but not total effort. Add contingency fo
 | VS01-G6 | Owner approves implementation start | No substantive product code before this gate |
 | VS01-G7 | Demo acceptance and remaining gaps recorded | Failed evidence/security criteria |
 
-No live source collection, paid AI use, production migration, deployment or publication is implied by approval of fixture-only implementation. Each broader action requires its own authorization.
+No live source collection, paid AI use, production migration, deployment or publication is implied by approval of fixture-only implementation. Each broader action requires its own authorization. Use the [VS01 owner approval pack](vs01-owner-approval-pack.md) for plain-language G1–G6 decision cards and the approval record template; that pack does not approve any gate by itself.
 
 ## 13. Rollback and recovery
 

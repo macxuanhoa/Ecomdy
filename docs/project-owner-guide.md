@@ -87,14 +87,14 @@ Do not request GitHub Projects V2 access for this Jira-first model.
 | VS01-G6 | Is substantive product implementation authorized? | Explicit owner approval referencing the accepted plan |
 | VS01-G7 | Does the fixture demo satisfy acceptance without hidden gaps? | Recorded demo, exact checks, review findings and residual gaps |
 
-Fixture-only approval never authorizes live collection, paid AI, production migration, deployment or publication.
+Fixture-only approval never authorizes live collection, paid AI, production migration, deployment or publication. Use the [VS01 owner approval pack](vs01-owner-approval-pack.md) for plain-language decision cards, recommendations, consequences and the approval record template.
 
 ## 7. Diagram decision checklist
 
 - Preserve all 56 sources and 26 static sets unless a task-specific change is approved.
 - Treat the installed Diagram Design Plugin as an authoring/import skill, not a CI renderer.
-- Record parser-only results accurately: 55/56 extracted; one extractor compatibility exception; no local render.
-- Select and pin an independent parser/renderer only after license, dependency, sandbox/security and CI compatibility review.
+- Record parser-only results accurately: 56/56 extracted after a one-line quoted-label compatibility fix; 482 nodes, 499 edges and zero dangling edges; no Mermaid render.
+- Select and pin an independent parser/renderer only after license, dependency, sandbox/security and CI compatibility review. See [diagram tooling](setup/DIAGRAM_TOOLING.md) for the installed manifest, commands and smoke-test limits.
 - Inspect changed SVG/PNG at full size before visual acceptance.
 - Compare Mermaid/DOT semantic parity after source changes; do not infer parity from filenames.
 - Keep all target diagrams labelled as target until as-built evidence exists.

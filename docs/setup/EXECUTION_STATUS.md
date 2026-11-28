@@ -2,36 +2,39 @@
 
 **As of:** 2026-11-28 (Asia/Saigon)<br>
 **Accepted Phase 0 package:** `f5162302aae3b9ab5e5798d722cfbfa60d9164b9`<br>
+**Preservation commit:** `4cfab07b8a163715ad608e5aaff6628b990d59a5`<br>
 **Current branch:** `docs/phase-0-acceptance`<br>
-**Working tree:** Phase 1 and comprehensive-audit documentation/CSV changes are uncommitted and unpushed<br>
-**Overall:** Conditional acceptance of the documentation/setup baseline only; Phase 1 planning and audit package prepared; product/runtime acceptance open
+**Review container:** stacked draft [PR #2](https://github.com/macxuanhoa/Ecomdy/pull/2); read its current remote head and CI after the authorized push<br>
+**Overall:** Conditional acceptance of the documentation/setup baseline only; controlled operational remediation prepared; product/runtime acceptance remains open
 
 ## State summary
 
-- **Verified repository state:** remote `main` remains `560cf0d…`; PR #1 head is `4bddc925…`; PR #2 head is `f516230…`. Both PRs are open drafts, mergeable/clean, with successful `validate` checks and zero submitted reviews or requested reviewers/teams.
-- **Verified locally:** product validator, harness validator, 3/3 harness tests, Python compile, tracked diff whitespace, changed-file hygiene, CSV integrity and capability-matrix integrity pass for the audited baseline and Phase 1 package.
-- **Clean-clone evidence:** default `main` clone is blocked because it contains only a one-line README; the `docs/phase-0-acceptance` clone passes documentation/harness checks. Two isolated acceptance-branch workspaces pass independently and retain separate marker files.
-- **Preserved:** 70 unique capability IDs and their original status counts; all M01–M20 remain SPECIFICATION ONLY; 56 Mermaid sources and 26 DOT/SVG/PNG sets remain unchanged.
-- **Diagram evidence:** bounded parser extraction passed 55/56 Mermaid sources; `.harness/docs/diagrams/19-debugging-workflow.mmd:11` hit an extractor compatibility limit. Mermaid/DOT parity passed 26/26. Static SVG/PNG checks passed 26/26. No Mermaid source was rendered locally.
-- **Prepared for review:** comprehensive audit, repository map, owner guide, expanded module/architecture/workflow/roadmap assessments and developer playbook; Phase 1 requirements delta, targeted architecture delta, team operating model, 39-row import-ready Jira backlog and fixture-first Vertical Slice 01 plan.
-- **Diagram plugin:** Qoder market Plugin `diagram-design` 2.6.131 is installed, enabled and exposed as a Skill in the current audit session. Its reviewed standard-library extractor was used; no diagram was generated or rendered.
+- **Last verified remote state before remediation push:** remote `main` `560cf0d2ecaf862749edbe9b8823eebc4e0327a0`; PR #1 head `4bddc925c941979da60b1250ec4d139381776e22`; PR #2 head `f5162302aae3b9ab5e5798d722cfbfa60d9164b9`. Both PRs were open drafts, mergeable/clean, with successful `validate` checks and zero submitted reviews or requested reviewers/teams. Post-push state must be read from GitHub rather than inferred from this snapshot.
+- **Verified locally for the remediation:** product validator, harness validator, 3/3 harness tests, Python compile, harness doctor, JSON/YAML syntax, Jira CSV integrity, capability-matrix integrity, static SVG/PNG checks, diff whitespace and nonignored-file hygiene pass within their stated scope.
+- **Data and capability integrity:** Jira CSV has 39 rows/39 unique internal IDs and empty Jira keys; the Phase 0 matrix has 70 unique capability IDs; all M01–M20 remain SPECIFICATION ONLY.
+- **Clean-clone evidence:** historical acceptance-branch clone at `f516230…` and two isolated workspaces passed documentation/harness checks. Default `main` remains blocked because it contains only a one-line README while PR #1 is unmerged.
+- **Diagram evidence:** bounded extraction passes 56/56 Mermaid sources after a one-line quoted-label compatibility fix: 482 nodes, 499 edges, 101 labeled edges and zero dangling edges. One isolated secret-store node is intentional. Mermaid/DOT parity passed 26/26 on unchanged paired inputs; static SVG/PNG checks passed 26/26. No Mermaid source was rendered.
+- **Diagram Design smoke test:** Plugin 2.6.131 generated temporary HTML/SVG/PNG, passed offline self-check, full-size visual inspection, mobile overflow and network-isolation checks. The PNG is 960×601 against a 960×600 viewBox; exact-size PNG acceptance remains open. No repository diagram was regenerated.
+- **Operational documentation:** root README, 13-action developer operations matrix, dependency-aware P0/P1 harness plan, team dependency/shared-file/Track A/B/C model and plain-language VS01-G1–G6 approval pack are prepared.
+- **Environment discrepancy:** direct checks return Git 2.50.1, Python 3.11.9 and Node 22.18.0. An earlier environment notice reported Node 24.22.1; the direct executable result is used for current commands and the discrepancy is retained.
 - **Blocked:** Jira access/configuration; current authenticated branch-protection/security read-back; real reviewer/module ownership; CI-safe Mermaid rendering; first-slice source/retention/provider/budget decisions.
-- **Requires owner approval:** PR #1/PR #2 disposition, reviewer/CODEOWNERS model, source/retention/provider/budget decisions, vertical-slice implementation, harness hardening and any live/production action.
+- **Requires owner approval:** PR #1/PR #2 disposition, reviewer/`CODEOWNERS` model, source/retention/provider/budget decisions, vertical-slice implementation, harness hardening and any live/production action.
 - **Not implemented:** Ecomdy application, ingestion runtime, database, API, UI, AI execution, scheduler, Telegram integration, deployment, production monitoring, harness scope/budget enforcement, checkpoint/resume, retrieval index or automatic handoff.
 
 ## Deliverables
 
 | Deliverable | State | Evidence |
 |---|---|---|
-| Comprehensive audit and operating plan | Prepared for owner review | `docs/setup/COMPREHENSIVE_AUDIT.md`, `docs/repository-map.md`, `docs/project-owner-guide.md` |
+| Comprehensive audit and operating plan | Historical audit preserved; current resume point separated | `docs/setup/COMPREHENSIVE_AUDIT.md`, `docs/repository-map.md`, `docs/project-owner-guide.md` |
 | Product/architecture/workflow/roadmap assessment | Prepared for owner review | `docs/module-specifications.md`, `docs/03-architecture.md`, `docs/04-workflows.md`, `docs/05-roadmap.md` |
-| Developer journey | Reconciled with actual branch and harness behavior | `docs/developer-onboarding.md`, `README.md`, `docs/README.md` |
+| Developer journey | Reconciled with actual branch and harness behavior | `docs/developer-onboarding.md`, `docs/developer-operations.md`, `README.md`, `docs/README.md` |
+| Minimum Viable DevHarness | Dependency-aware proposal only; no new command implemented | `docs/minimum-viable-harness-plan.md` |
 | Requirements/architecture reconciliation | Prepared for owner review | `docs/phase1-requirements-delta.md`, `docs/phase1-architecture-delta.md` |
-| Team readiness and Jira backlog | Prepared; Jira execution blocked | `docs/team-development-readiness.md`, `docs/setup/JIRA_IMPORT_BACKLOG.csv` |
-| First vertical slice | Prepared for approval; no implementation | `docs/vertical-slice-01-plan.md` |
-| Diagram engineering | Plugin loaded; parser/parity/static checks recorded; rendering open | `docs/technology-evaluation.md`, `docs/setup/VERIFICATION_REPORT.md`, `docs/setup/BLOCKERS.md` |
-| Phase 1 checkpoint | Reconciled locally; historical evidence preserved | `docs/setup/PHASE_1_TRANSITION.md`, this file and `docs/setup/HANDOFF.md` |
+| Team readiness and Jira backlog | Operating model expanded; Jira execution blocked | `docs/team-development-readiness.md`, `docs/setup/JIRA_SETUP_PLAN.md`, `docs/setup/JIRA_IMPORT_BACKLOG.csv` |
+| First vertical slice | Plan plus approval pack; no implementation | `docs/vertical-slice-01-plan.md`, `docs/vs01-owner-approval-pack.md` |
+| Diagram engineering | 56/56 parser pass and isolated Diagram Design smoke; Mermaid rendering open | `docs/setup/DIAGRAM_TOOLING.md`, `docs/setup/VERIFICATION_REPORT.md`, `docs/setup/BLOCKERS.md` |
+| Checkpoint and handoff | Preservation commit recorded; remediation review diff prepared | `docs/setup/HANDOFF.md`, this file and `docs/setup/TASK_REGISTRY.md` |
 
 ## State definitions
 
-`Proposed` = candidate scope; `Prepared for review` = artifact exists and local integrity checks pass, but owner approval is pending; `In Progress` = active work; `Blocked` = required capability/evidence missing; `Verified` = a check produced recorded evidence; `Completed` = all acceptance criteria for that task are verified. See [capability matrix](CAPABILITY_COVERAGE.md) for the full status taxonomy and [Phase 1 transition](PHASE_1_TRANSITION.md) for evidence and limits.
+`Proposed` = candidate scope; `Prepared for review` = artifact exists and local integrity checks pass, but owner approval is pending; `In Progress` = active work; `Blocked` = required capability/evidence missing; `Verified` = a check produced recorded evidence; `Completed` = all acceptance criteria for that task are verified. See [capability matrix](CAPABILITY_COVERAGE.md) for the full status taxonomy and [HANDOFF.md](HANDOFF.md) for the next safe action.
