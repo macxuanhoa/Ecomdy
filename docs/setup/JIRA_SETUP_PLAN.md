@@ -96,13 +96,14 @@ The local planning IDs below are not Jira keys. Assign real keys only after the 
 | 1 | SET-10 | Owner review of Phase 0 acceptance package and PR #1 | Owner availability | Recorded approval/rejection and next branch/PR decision. |
 | 2 | PM-SETUP | Authorize and configure Jira project/board/integration | Owner Jira authorization | Verified project URL/key, permissions, board and GitHub link. |
 | 3 | PRGOV-01 | Adopt branch/PR convention, assign reviewers and module owners | SET-10, owner assignments | Updated CONTRIBUTING/template/CODEOWNERS and protection read-back. |
-| 4 | DIAG-01 | Pin and validate Mermaid parser/render toolchain | Owner tool selection, license/security review | Locked version, clean install record and 56-source syntax/render result. |
-| 5 | HARD-01 | Enforce approved-task and budget configuration | SET-10, executable task contract | Tests proving disabled automation, stop conditions and config loading. |
-| 6 | HARD-02 | Enforce allowed/forbidden paths and dependency checks | HARD-01 | Deterministic tests for scope violation and missing dependency. |
-| 7 | HARD-03 | Persist checkpoints and generate structured handoff | HARD-01/02 | Resume test and handoff generated from verified state. |
-| 8 | CTX-01 | Pilot scoped context pack on one approved task | HARD-02, telemetry method | Measured file/token/runtime baseline and provenance checks. |
-| 9 | COL-02 | Define API/schema contract-change workflow | Module owners, ECO-05 | Compatibility checklist, contract fixture and rollback rule. |
-| 10 | COL-03 | Add integration-test policy and fixtures | COL-02, selected vertical slice | CI-backed contract/integration evidence. |
+| 4 | DIAG-01 | Verify installed Diagram Design plugin usage | Reviewed user-scope installation | Loaded Skill, isolated generation/visual inspection and installation/version/license evidence; no clone/CI inheritance assumed. |
+| 5 | DIAG-02 | Pin and validate Mermaid parser/render toolchain | Owner tool selection, license/security review | Locked version, clean install record and 56-source syntax/render result. |
+| 6 | HARD-01 | Enforce approved-task and budget configuration | SET-10, executable task contract | Tests proving disabled automation, stop conditions and config loading. |
+| 7 | HARD-02 | Enforce allowed/forbidden paths and dependency checks | HARD-01 | Deterministic tests for scope violation and missing dependency. |
+| 8 | HARD-03 | Persist checkpoints and generate structured handoff | HARD-01/02 | Resume test and handoff generated from verified state. |
+| 9 | CTX-01 | Pilot scoped context pack on one approved task | HARD-02, telemetry method | Measured file/token/runtime baseline and provenance checks. |
+| 10 | COL-02 | Define API/schema contract-change workflow | Module owners, ECO-05 | Compatibility checklist, contract fixture and rollback rule. |
+| 11 | COL-03 | Add integration-test policy and fixtures | COL-02, selected vertical slice | CI-backed contract/integration evidence. |
 
 ECO-01–ECO-12 remain in the product task register and should be linked to Jira after owner-approved scope and dependencies are ready. Do not bulk-create speculative issues before the project model is accepted.
 

@@ -194,13 +194,13 @@ Coordination rules:
 6. If two tasks need the same shared file, sequence them or assign one integration owner rather than merging unreviewed competing edits.
 7. Record cross-track decisions in the decision log and handoff, not only in chat.
 
-## 16. Worked developer task — DIAG-01 compatibility remediation
+## 16. Worked developer task — OPS-03 compatibility remediation
 
 This example uses the controlled diagram change executed in the current acceptance branch. It is a documentation/tooling task, not product implementation.
 
 | Field | Worked example |
 |---|---|
-| Stable task ID | `DIAG-01`; no Jira key exists |
+| Stable task ID | `OPS-03`; no Jira key exists. `DIAG-01` remains plugin verification and `DIAG-02` remains CI-safe parser/renderer pinning. |
 | What | Quote one Mermaid edge label and add the shared diagram tooling guide |
 | Why | The installed extractor rejected a semicolon inside an unquoted pipe label; contributors also lacked a precise installed-capability guide |
 | Allowed paths | `.harness/docs/diagrams/19-debugging-workflow.mmd`, `docs/setup/DIAGRAM_TOOLING.md`, `docs/README.md` and linked status evidence |
@@ -209,12 +209,12 @@ This example uses the controlled diagram change executed in the current acceptan
 | Tool / skill | Python standard-library extractor; `diagram-design:diagram-design` for the separate smoke test; repository validators |
 | Harness capability | Existing validation only; no new harness command |
 | How | Change only the label quoting; run full extraction; run both validators; document parser/render limits and smoke evidence |
-| Expected result | 56/56 sources parse with unchanged visible edge text; no dangling edge; no claim of Mermaid rendering |
+| Expected result | 56/56 sources parse with unchanged extractor-normalized label text and endpoints; no dangling edge; no claim of Mermaid rendering |
 | Actual verification | 56/56 parsed; 482 nodes; 499 edges; 101 labeled edges; 0 dangling edges; both repository validators passed |
 | Recovery | Revert only the one-line compatibility change through a reviewed commit if a supported renderer later proves a problem; do not regenerate unrelated diagrams |
 | Next step | Owner selects and approves a pinned Mermaid parser/renderer before rendering acceptance is claimed |
 
-The final commit and PR identifiers for this example are recorded in [setup/HANDOFF.md](setup/HANDOFF.md) rather than duplicated here.
+The remediation commit `27b628ba1fd6e91ac7365859606c8501c1f4c884`, PR #2 link and CI evidence are recorded in [setup/HANDOFF.md](setup/HANDOFF.md) and [setup/VERIFICATION_REPORT.md](setup/VERIFICATION_REPORT.md). Later review-fix commits are tracked on PR #2 rather than pinned in this example.
 
 ## 17. Delegation and assignment rules
 

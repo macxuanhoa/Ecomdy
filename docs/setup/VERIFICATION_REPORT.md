@@ -4,6 +4,8 @@
 **Snapshot commit:** `a08bb1635ae210915cb5c1d13074b98c9b8c2d19`<br>
 **Status:** Local checks, independent review, push, and remote CI pass for the expanded specifications and diagram package (`a08bb16`) and status reconciliation (`d4584ae`). Draft PR #1 remains open; no merge or product tests are claimed.
 
+> **Historical-snapshot notice:** The setup, Phase 0 acceptance, comprehensive-audit and final post-edit sections below preserve evidence at their stated commits and worktree states. Statements such as “uncommitted”, “no push” and “55/56 parsed” are historical, not current. The controlled operational remediation section and PR #2 record the later state.
+
 | Check | Command / method | Result |
 |---|---|---|
 | Git installed | `git --version` | PASS — `git version 2.50.1.windows.1` |
@@ -66,7 +68,7 @@ No application tests or deployment checks are reported as passing. Markdown vali
 
 The C4-named additions are C4-style Mermaid flowchart views, not native Mermaid C4 DSL diagrams. The diagram gallery records that distinction and the limitation of local render tooling.
 
-## Phase 0 acceptance package — 2026-11-27
+## Phase 0 acceptance package — 2026-11-27 (historical snapshot)
 
 **Baseline:** `4bddc925c941979da60b1250ec4d139381776e22`<br>
 **Worktree:** `docs/phase-0-acceptance`, uncommitted; no push, merge, installation or paid-service action.
@@ -90,7 +92,7 @@ The C4-named additions are C4-style Mermaid flowchart views, not native Mermaid 
 
 The successful checks verify the acceptance package and the existing documentation/harness scope only. They do not verify Mermaid grammar, diagram semantics, live Jira, current GitHub protection settings or product behavior.
 
-## Comprehensive audit — 2026-11-28
+## Comprehensive audit — 2026-11-28 (historical snapshot)
 
 **Audit baseline:** `f5162302aae3b9ab5e5798d722cfbfa60d9164b9` on `docs/phase-0-acceptance`<br>
 **Working tree:** later Phase 1/comprehensive-audit documentation changes remained uncommitted during evidence collection<br>
@@ -123,7 +125,7 @@ The successful checks verify the acceptance package and the existing documentati
 
 The comprehensive audit found no product implementation and did not merge PRs, push, change permissions, install new software, mutate Jira, collect external sources, call models or deploy.
 
-## Final post-edit verification — 2026-11-28
+## Final post-edit verification — 2026-11-28 (historical snapshot)
 
 | Check | Command / method | Result |
 |---|---|---|
@@ -171,8 +173,10 @@ These results accept the documentation/setup and advisory-harness scope only. Th
 | Jira access | CLI, MCP catalog and environment-name inventory | BLOCKED — no authorized site/connector/CLI/credential; no values printed or fabricated |
 | Tool versions | Direct executable/package checks | PASS with recorded discrepancy — Git 2.50.1, Python 3.11.9, Node 22.18.0, Playwright 1.60.0, Chromium 148.0.7778.96; earlier environment notice reported Node 24.22.1 |
 | Diff whitespace | `git diff --check` | PASS — exit 0 after removing introduced trailing whitespace |
-| Nonignored-file hygiene | Scan Git-listed nonignored text files for trailing whitespace, conflict markers and common credential patterns | PASS — 238 nonignored files / 208 text files; zero issues; not a full secret scanner |
+| Nonignored-file hygiene | Scan Git-listed nonignored text files for trailing whitespace, conflict markers and common credential patterns | PASS — 238 nonignored files / 212 text files; zero issues; not a full secret scanner |
 | Original-input exclusion | `git check-ignore -v` and Git-list inspection | PASS — both original PDF paths ignored; zero original inputs in the nonignored Git list |
-| Remote push and PR #2 CI | Post-push GitHub read-back | PENDING AT REPORT COMMIT — verify current head, `validate` checks and mergeability after the authorized push; do not claim remote success from local checks |
+| Review-fix deterministic checks | Validators, 3/3 tests, compile, doctor, Jira CSV/setup-ID mapping, portal numbering, harness scope semantics, hygiene, JSON/YAML and static assets | PASS — 39 CSV IDs/dependencies valid; 11 setup IDs unique and mapped; portal 1–18 sequential; untracked paths always included and fail-closed; 26 SVG/PNG checks pass |
+| Independent remediation review | Read-only review of `4cfab07..27b628b` | COMPLETED WITH FOLLOW-UP — no blocker found; task-ID conflict, evidence labels, render wording, portal numbering and untracked-path semantics addressed in this follow-up |
+| Remote push and PR #2 CI | Post-push GitHub read-back for remediation commit `27b628ba1fd6e91ac7365859606c8501c1f4c884` | PASS — remote head matched; `validate` runs [46100355853](https://github.com/macxuanhoa/Ecomdy/actions/runs/46100355853) and [46100351225](https://github.com/macxuanhoa/Ecomdy/actions/runs/46100351225) succeeded; PR #2 open draft, mergeable/clean, zero reviews. Later review-fix commits may supersede this head; PR #2 is authoritative. |
 
 The smoke artifacts were temporary and are not repository diagram assets. Existing valid diagrams and static artifacts were not regenerated. The 960×601 PNG result is retained as an unresolved export detail; the SVG/viewBox remains the geometry reference.

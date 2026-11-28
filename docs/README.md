@@ -15,11 +15,11 @@
 11. [First vertical-slice implementation plan](vertical-slice-01-plan.md)
 12. [VS01 owner approval pack](vs01-owner-approval-pack.md)
 13. [Team development readiness](team-development-readiness.md)
-13. [Project context and current state](project-context.md)
-14. [Official requirements register](01-requirements.md)
-15. [Environment and capability audit](setup/00_ENVIRONMENT_AND_CAPABILITY_AUDIT.md)
-16. [Requirements traceability](requirements-traceability.md)
-17. [Implementation roadmap](05-roadmap.md)
+14. [Project context and current state](project-context.md)
+15. [Official requirements register](01-requirements.md)
+16. [Environment and capability audit](setup/00_ENVIRONMENT_AND_CAPABILITY_AUDIT.md)
+17. [Requirements traceability](requirements-traceability.md)
+18. [Implementation roadmap](05-roadmap.md)
 
 ## Product specification
 

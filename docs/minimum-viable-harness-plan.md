@@ -128,17 +128,18 @@ All CLI examples in this section are **PROPOSED — NOT IMPLEMENTED**.
 
 - **User problem:** Agents edit forbidden or unrelated paths.
 - **Reuse:** Task template, Git diff/name-status and H0-01 path checks.
-- **Proposed implementation:** Compare changed, staged and untracked paths against allowed/forbidden globs; classify deletions and renames; emit a deterministic report.
+- **Proposed implementation:** Compare changed, staged and untracked paths against allowed/forbidden globs; classify deletions and renames; emit a deterministic report. Untracked paths are always included; there is no opt-out flag.
 - **Dependencies:** H0-01 and approved task contract.
-- **Proposed CLI:** `python .harness/harness.py scope check --task PATH --base REF --include-untracked`
+- **Proposed CLI:** `python .harness/harness.py scope check --task PATH --base REF`
 - **Acceptance tests:**
   - Allowed modification passes; forbidden modification fails.
-  - Untracked file is included by default in the report.
+  - Untracked file is always included in the report and cannot be excluded by a flag.
   - Rename is checked against both old and new paths.
   - Deletion outside scope fails.
   - `../escape`, absolute outside path and symlink target are rejected.
+  - Git/path enumeration failure or ambiguity fails closed.
   - No filesystem content is modified.
-- **Security:** Read-only Git/path inspection; no shell; no automatic revert.
+- **Security:** Read-only Git/path inspection; no shell; no automatic revert; incomplete path enumeration is a failure, not an empty scope.
 - **Effort:** 2–3 engineer-days.
 - **Priority:** P0.
 - **Team impact:** Enables safer parallel documentation and later contract-first product work.

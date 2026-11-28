@@ -6,9 +6,9 @@
 - Remote `main`: `560cf0d2ecaf862749edbe9b8823eebc4e0327a0` at the last verified read-back.
 - Phase 0 acceptance package: `f5162302aae3b9ab5e5798d722cfbfa60d9164b9`.
 - Preservation commit: `4cfab07b8a163715ad608e5aaff6628b990d59a5` — 33 checkpoint files committed after a hashed backup.
-- Current branch: `docs/phase-0-acceptance`. The controlled operational remediation is the branch's current review diff; use `git rev-parse HEAD`, `git status` and [PR #2](https://github.com/macxuanhoa/Ecomdy/pull/2) for the exact post-commit/push state.
+- Current branch: `docs/phase-0-acceptance`. Controlled remediation commit `27b628ba1fd6e91ac7365859606c8501c1f4c884` was pushed and validated; later review-fix commits are tracked on [PR #2](https://github.com/macxuanhoa/Ecomdy/pull/2), which is authoritative for the moving head.
 - PR #1: last verified open draft, base `main`, head `4bddc925c941979da60b1250ec4d139381776e22`; mergeable/clean; CI success; no submitted reviews or requested reviewers/teams.
-- PR #2: last verified open draft, base `setup/phase-0-audit`, remote head `f5162302aae3b9ab5e5798d722cfbfa60d9164b9`; mergeable/clean; CI success; no submitted reviews or requested reviewers/teams. Re-read head/CI after the authorized remediation push.
+- PR #2: open draft, base `setup/phase-0-audit`. Remediation head `27b628ba1fd6e91ac7365859606c8501c1f4c884` was verified with successful `validate` runs, mergeable/clean state and zero submitted reviews or requested reviewers/teams. Later review-fix commits may supersede that head; re-read PR #2 after each push.
 - Neither PR is merged. Owner review and authenticated protection/security read-back remain pending.
 - The repository is a documentation/design scaffold plus a bounded advisory harness. No Ecomdy product runtime is implemented.
 - Current local checks pass within scope: both validators, 3/3 harness tests, Python compile, harness doctor, JSON/YAML syntax, 39-row Jira CSV integrity, 70-capability matrix integrity, 26 SVG/PNG asset checks, diff whitespace and nonignored-file hygiene.
@@ -49,10 +49,12 @@
 - Revalidated Jira availability and recorded the exact owner authorization path without creating data.
 - Added the team dependency matrix, shared-file coordination rules, Track A/B/C boundaries, worked developer task and plain-language VS01-G1–G6 approval cards.
 - Reconciled current status, task registry, blockers, decisions, capability overlay, repository map and verification evidence while preserving historical audit snapshots.
+- Pushed remediation commit `27b628ba1fd6e91ac7365859606c8501c1f4c884`; both `validate` runs passed and PR #2 remained mergeable/clean with zero reviews.
+- Addressed the independent review findings in this follow-up: stable task ID reconciliation, historical/current evidence labels, render-claim limits, portal numbering and fail-closed untracked-path semantics. The moving follow-up hash is tracked on PR #2 rather than pinned here.
 
 ## Continue with
 
-1. Read the current branch/PR state after the authorized push; confirm PR #2 head, `validate` CI, mergeability and review state. Do not infer remote success from local checks.
+1. PR #2 remediation push and CI for `27b628b…` are verified. After this or any later follow-up push, re-read the PR #2 head, `validate` CI, mergeability and review state; do not infer remote success from local checks.
 2. Obtain the Project Owner's review decision on PR #1 and an authenticated read-back of branch protection/security settings.
 3. Keep both PRs unmerged until approved. After PR #1 merges, retarget or rebase PR #2 onto `main` through the normal reviewed process; do not force-push.
 4. Assign real reviewers/module owners and approve the review count, `CODEOWNERS`, API/schema ownership and migration ownership.

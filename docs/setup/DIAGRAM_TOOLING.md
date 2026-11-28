@@ -122,7 +122,7 @@ The extractor previously rejected `.harness/docs/diagrams/19-debugging-workflow.
 +  result -->|"No; retries remain"| hypothesis
 ```
 
-The quoted label preserves the visible text, edge endpoints and loop semantics while remaining compatible with the installed extractor. This is a compatibility normalization, not proof that the earlier Mermaid source was invalid.
+The quoted label preserves the extractor-normalized label text, edge endpoints and loop semantics while remaining compatible with the installed extractor. Rendered appearance remains unverified because no Mermaid renderer was run. This is a compatibility normalization, not proof that the earlier Mermaid source was invalid.
 
 Full-set extraction after the change:
 
