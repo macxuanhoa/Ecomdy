@@ -1,7 +1,7 @@
 # Technique Routing, Profiles and Recipes
 
 **As of:** 2026-11-28 (Asia/Saigon)
-**Status:** Advisory design. No routing CLI, task executor or model router is implemented.
+**Status:** Advisory routing and capability inspection implemented and tested. No task executor, model router or autonomous runtime is implemented.
 
 ## Sources of truth
 
@@ -12,20 +12,24 @@
 | [`.harness/registry/routing/recipes.json`](../registry/routing/recipes.json) | Twenty-four reusable workflow recipes |
 | [`.harness/schemas/routing.schema.json`](../schemas/routing.schema.json) | JSON Schema Draft 2020-12 contract |
 | [`.harness/scripts/validate_routing.py`](../scripts/validate_routing.py) | Standard-library reference and invariant checks |
+| [`.harness/scripts/technique_router.py`](../scripts/technique_router.py) | Deterministic advisory route selection and explainability record |
+| [`.harness/scripts/capability_doctor.py`](../scripts/capability_doctor.py) | Local capability lifecycle inspection |
+| [`.harness/harness.py`](../harness.py) | `route` and `capabilities` CLI entry points |
 
 ## Deterministic selection procedure
 
-A human or future adapter should apply this order:
+The implemented router applies this order:
 
-1. Read the approved task contract: objective, task type, allowed paths, acceptance checks, dependencies, budget and stop conditions.
-2. Reject or block the task if authority, scope or required inputs are missing.
-3. Match explicit task-type and activation rules against a route manifest. Do not infer a route from vague keywords alone.
-4. Use the route's profile and required techniques. Optional techniques require a stated reason.
-5. Remove incompatible techniques and stop if a required technique is incompatible.
-6. Compile the ordered steps, context scope, verification gates, approvals, stop conditions and fallback into an explainable advisory recipe.
-7. Record the selection before execution. A selection is not an attempt, an execution or verification.
+1. Validate the routing facts and reject malformed task input.
+2. Block `execution_mode: AUTONOMOUS` before registry evaluation.
+3. Evaluate every explicit activation rule. Missing fields do not match; keywords are not used to infer a route.
+4. Select the unique matching route with the most activation rules. Equally specific matches require an explicit matching `route_id`.
+5. Return `NO_MATCH` when no route matches; never silently choose a framework.
+6. Select required techniques, block required conflicts or route incompatibilities, and accept optional techniques only when the route allows them and a non-empty reason is supplied.
+7. Return the ordered sequence, context scope, limits, gates, approvals, stop conditions, fallback and compatible recipe IDs with every route decision.
+8. Record the selection as `RECOMMENDED` and `NOT_EXECUTED`.
 
-If no route matches, return `NO_MATCH` with guidance. Do not guess a framework or activate the whole technique library.
+A requested `route_id` narrows the matching candidates but does not override activation rules. Optional techniques that conflict with selected techniques are excluded with a reason rather than treated as execution evidence.
 
 ## Profiles
 
@@ -89,11 +93,47 @@ For each selection record:
 
 Use the [execution trace contract](07-execution-traces-and-checkpoints.md) to distinguish selection from later runtime states.
 
-## Supported checks
+## Supported commands
 
-```bash
-python .harness/scripts/validate_routing.py
-python -m unittest discover -s .harness/tests -p "test_routing.py" -v
+Run from the repository root. The router accepts a JSON object on stdin by default, or a file through `--task`. The minimum routing facts for the quick-documentation route are shown below; other routes require the activation facts in their manifests.
+
+```json
+{
+  "task_id": "TASK-ROUTE-001",
+  "task_type": "documentation",
+  "risk": "low",
+  "complexity": "low",
+  "changed_file_count": 2,
+  "mutation_required": true
+}
 ```
 
-There is no `harness.py route`, `recipe compile` or autonomous execution command. Such names in planning documents remain proposed until implemented and tested.
+```bash
+python .harness/harness.py route --task task.json --output route.json
+python .harness/scripts/technique_router.py task.json
+python .harness/harness.py capabilities
+python .harness/scripts/capability_doctor.py --session-skill TOOL-013
+python .harness/scripts/capability_doctor.py --strict
+python .harness/scripts/validate_routing.py
+python -m unittest discover -s .harness/tests -p "test_technique_router.py" -v
+python -m unittest discover -s .harness/tests -p "test_capability_doctor.py" -v
+python -m unittest discover -s .harness/tests -p "test_harness.py" -v
+```
+
+Route exit codes are `0` for `RECOMMENDED`, `2` for `NO_MATCH`, `3` for `BLOCKED`, and `1` for input errors. These codes describe selection only. They do not report task execution.
+
+Capability exit codes are `0` for a valid inspection, `1` for inspection/registry failure, and `2` for `--strict` when a registered tool is `BLOCKED`.
+
+## Capability lifecycle inspection
+
+Capability Doctor reports `registered`, `installed`, `configured`, `available_in_session`, `smoke_tested`, `integrated` and `verified` independently. Each value is `true`, `false` or `null`; `null` means unknown, not failed.
+
+- Internal skills are discovered under `.harness/skills`. Project copies under `.qoder/skills` must match the canonical `SKILL.md` and a matching local `skills-lock.json` source record before configuration is reported.
+- CLI artifacts are detected from recorded activation paths or known commands on `PATH`. Diagram Design is detected only at its recorded or pinned plugin version.
+- Current-session availability is `true` only for a capability explicitly observed through `--session-skill`; absence from that optional observation remains unknown.
+- A smoke-test record does not imply integration. Verification is not reported for a tool whose recorded artifact is missing and has no detected fallback.
+- The inspection is not an OS sandbox, a complete host catalog or proof that another contributor inherited user-scope installations.
+
+## Implementation boundary
+
+The routing and capability commands are local advisory tools. They do not execute tasks, invoke agents, enforce filesystem/process boundaries, compile recipes or provide model routing. `harness.py recipe compile` and autonomous execution remain unimplemented. Context and runtime limits remain advisory until R05–R07 add reviewed enforcement and evidence contracts.

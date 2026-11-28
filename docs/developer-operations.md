@@ -15,6 +15,8 @@
 | `.harness/harness.py init` | Implemented and tested | Scaffold missing files without clobbering existing files | May append missing `.gitignore` rules |
 | `.harness/harness.py ingest` | Implemented and tested | Inventory/hash `<project>/docs/00-original` | No content extraction or source approval |
 | `.harness/harness.py doctor` | Implemented and tested | Report environment in advisory mode | No readiness gate or agent execution |
+| `.harness/harness.py route` | Implemented and tested | Select the unique most-specific explicit route and write an explainable advisory JSON record | No task execution, recipe compilation, model routing or limit enforcement |
+| `.harness/harness.py capabilities` | Implemented and tested | Report registered/installed/configured/session/smoke/integrated/verified states independently | Local artifact inspection only; not a complete host catalog or OS sandbox |
 | `scripts/validate.py` | Implemented and tested | Validate local Markdown links, diagram metadata/listings and static assets | No Mermaid grammar/render/semantic validation |
 | `.harness/scripts/validate.py` | Implemented and tested | Validate harness docs/diagram metadata/assets | No role/skill execution |
 | `.harness/scripts/validate_techniques.py` | Implemented and tested | Validate technique cards and references | No installation or effectiveness claim |

@@ -101,15 +101,17 @@ A clean acceptance-branch clone at `f516230…` contains 225 tracked files. Pres
 |---|---|---|
 | `python scripts/validate.py` | Checks local Markdown links, diagram metadata, gallery listing and required static assets | Does not parse Mermaid, render diagrams, test products or verify semantics |
 | `python .harness/harness.py doctor` | Reports Python/project path and optional Git/Graphviz/GitHub CLI availability | Does not validate Jira, credentials, models, source policy or product readiness |
+| `python .harness/harness.py route --task task.json --output route.json` | Evaluates explicit activation rules and returns a deterministic advisory route record | Does not execute tasks, compile recipes, route models or enforce limits |
+| `python .harness/harness.py capabilities` | Inspects local registry, skill-copy and detectable tool lifecycle states | Does not prove host-wide/session availability, integration or sandbox enforcement |
 | `python .harness/harness.py init --project PATH` | Creates missing starter files and appends missing ignore rules | Does not install the reusable harness into the destination or enforce task scope |
 | `python .harness/harness.py ingest --project PATH` | Inventories/hashes regular non-symlink files under `PATH/docs/00-original` | Does not extract contents, call models or approve sources |
 | `python -m unittest discover -s .harness/tests -v` | Runs harness starter, technique/routing/tool-manifest, mapping and execution-contract tests | Does not test Ecomdy product behavior |
 | `python .harness/scripts/validate.py` | Checks harness Markdown/diagram metadata/assets | Does not execute harness roles or skills |
-| `python .harness/scripts/validate_techniques.py` | Validates 40 technique cards, references and status/invocation invariants | Does not prove technique effectiveness or installation |
+| `python .harness/scripts/validate_techniques.py` | Validates 106 technique cards, references and status/invocation invariants | Does not prove technique effectiveness or installation |
 | `python .harness/scripts/validate_routing.py` | Validates nine profiles, 14 routes and 24 recipes | Does not route or execute tasks |
 | `python .harness/scripts/validate_execution.py` | Validates trace/checkpoint structure and state semantics | Does not capture runs, execute commands or resume work |
 | `python .harness/scripts/validate_tool_manifest.py` | Checks 20 candidate records, lifecycle semantics, procedures and `NOT_RUN` research commands | Does not install tools, grant credentials or prove effectiveness |
-| `python scripts/render_diagrams.py` | Invokes Graphviz to regenerate DOT assets when Graphviz exists | Does not render Mermaid; Graphviz is currently unavailable |
+| `python scripts/render_diagrams.py` | Invokes Graphviz to regenerate DOT assets when Graphviz exists | Does not render Mermaid; the audited shell PATH may not include a user-scope Graphviz installation |
 
 There is no application install, migration, API server, UI, collector, scheduler, worker, model call or deployment command.
 

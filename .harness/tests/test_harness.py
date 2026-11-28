@@ -1,5 +1,8 @@
 import tempfile, unittest, sys, json
+from contextlib import redirect_stdout
+from io import StringIO
 from pathlib import Path
+from unittest.mock import patch
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 import harness
 class StarterTests(unittest.TestCase):
@@ -23,4 +26,24 @@ class StarterTests(unittest.TestCase):
             self.assertEqual(registry.read_text(),'owner-edited registry'); self.assertEqual(prompt.read_text(),'owner-edited prompt')
             harness.ingest(p,overwrite=True)
             self.assertEqual(json.loads(registry.read_text())[0]['status'],'inventoried_not_extracted')
+    def test_route_command_returns_recommended_json(self):
+        with tempfile.TemporaryDirectory() as d:
+            task=Path(d)/'task.json'; output=Path(d)/'route.json'
+            task.write_text(json.dumps({'task_id':'TASK-CLI-001','task_type':'documentation','risk':'low','complexity':'low','changed_file_count':2}))
+            stdout=StringIO()
+            with patch('sys.argv',['harness.py','route','--task',str(task),'--output',str(output)]), redirect_stdout(stdout):
+                self.assertEqual(harness.main(),0)
+            self.assertEqual(json.loads(output.read_text())['route_id'],'ROUTE-QUICK-DOCS')
+    def test_route_command_distinguishes_no_match_and_blocked(self):
+        cases=[({'task_id':'TASK-NO-MATCH','task_type':'unknown'},2),({'task_id':'TASK-BLOCKED','task_type':'documentation','execution_mode':'AUTONOMOUS'},3)]
+        with tempfile.TemporaryDirectory() as d:
+            for index,(task,expected) in enumerate(cases):
+                path=Path(d)/f'task-{index}.json'; path.write_text(json.dumps(task))
+                with patch('sys.argv',['harness.py','route','--task',str(path)]), redirect_stdout(StringIO()):
+                    self.assertEqual(harness.main(),expected)
+    def test_capabilities_command_reports_blocked_tool(self):
+        stdout=StringIO()
+        with patch('sys.argv',['harness.py','capabilities','--strict']), redirect_stdout(stdout):
+            self.assertEqual(harness.main(),2)
+        self.assertEqual(json.loads(stdout.getvalue())['registries']['tools']['blocked'],['TOOL-001'])
 if __name__=='__main__': unittest.main()

@@ -18,6 +18,9 @@ python scripts/validate_techniques.py
 python scripts/validate_routing.py
 python scripts/validate_execution.py
 python scripts/validate_tool_manifest.py
+# provide a task JSON object with explicit routing facts
+python harness.py route --task task.json --output route.json
+python harness.py capabilities
 ```
 
 The example destination is outside the Ecomdy checkout when this harness is run from `Ecomdy/.harness/`. Choose a different destination as needed; never initialize a workspace inside a public repository by accident. If this is a standalone harness clone rather than the embedded `.harness/` directory, set `--project` to a path outside that checkout.
@@ -38,4 +41,4 @@ Open the generated `docs/01-project-context/CONTEXT_UPDATE_PROMPT.md` in your co
 - [Diagram catalogue](docs/diagrams/README.md)
 - [Contribution protocol](CONTRIBUTING.md)
 
-Future capabilities are proposals, not features already implemented. The technique/routing registries and trace contracts are implemented validators and advisory data, not an autonomous runtime. Project-specific data must stay outside this reusable repository.
+Future capabilities are proposals, not features already implemented. The technique/routing registries, deterministic advisory router, capability doctor and trace contracts are implemented validators or local advisory tools, not an autonomous runtime. `route` returns `RECOMMENDED`/`NOT_EXECUTED`; `capabilities` does not prove host-wide availability. Project-specific data must stay outside this reusable repository.

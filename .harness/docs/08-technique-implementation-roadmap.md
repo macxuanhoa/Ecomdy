@@ -10,7 +10,7 @@
 | M1 | Inventory techniques and repository baseline | Implemented | 145 source entries imported; 106 canonical cards; complete crosswalk with zero unresolved mappings |
 | M2 | Technique cards and compatibility research | Partial | Cards validate; 20 external candidates have version/license/security research, but no candidate is approved or compatibility-proven in the target workflow |
 | M3 | Installation and activation manifests | Partial | Manifest and evidence implemented; four internal skills installed; Diagram Design, Mermaid CLI, Gitleaks and Graphviz smoke-tested; OpenSpec blocked by Node compatibility; no workflow integration claim |
-| M4 | Advisory router and recipe compiler | Partial | 9 profiles, 14 routes, 24 recipes and validator exist; no executable compiler |
+| M4 | Advisory router and recipe compiler | Partial | Executable deterministic Technique Router and Capability Doctor implemented with CLI/tests; 9 profiles, 14 routes and 24 recipes validate; recipe compiler and task execution remain unimplemented |
 | M5 | Runtime context, verification and file-scope controls | Not implemented | Bounded context loader; allowlisted runner; timeout/output caps; scope report; adversarial tests |
 | M6 | Skill and tool integration | Partial | Wave 1 skills/tools installed or smoke-tested with evidence; current-session availability and approved workflow integration remain unproven |
 | M7 | Checkpoints, traces and resource controls | Partial | Trace/checkpoint schema, examples, validator and tests exist; no automatic capture, process limits or resume |
@@ -54,7 +54,9 @@ Local verification on 2026-11-28, branch `devharness/technique-library`:
 | Routing registry validator | PASS: 9 profiles, 14 routes, 24 recipes; advisory only |
 | Execution contract validator | PASS: 2 templates; not run evidence |
 | Tool manifest validator | PASS: 20 candidates; proposed commands remain `NOT_RUN`; separate Wave 1 evidence exists |
-| Full harness unit suite | PASS: 65 tests |
+| Full harness unit suite | PASS: 91 tests |
+| `python .harness/harness.py route` | PASS/advisory: bounded documentation fixture selected `ROUTE-QUICK-DOCS` / `PROFILE-QUICK`; `RECOMMENDED` and `NOT_EXECUTED`; 14 route decisions recorded |
+| `python .harness/harness.py capabilities` | PASS: 106 techniques, 20 tools, seven internal skills; eight installed artifacts and zero integrations detected locally; OpenSpec reported `BLOCKED` |
 | JSON Schema conformance | PASS: 4 schemas checked, 7 documents validated with local `jsonschema` 4.26.0 |
 | Workflow YAML parse | PASS: 7 run steps |
 | Python compile and `git diff --check` | PASS |

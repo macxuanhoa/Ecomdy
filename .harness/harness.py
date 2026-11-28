@@ -39,9 +39,41 @@ def ingest(project, overwrite=False):
     context_prompt.write_text(prompt,encoding='utf-8')
     print(f'Inventoried {len(data)} files. Content extraction and requirement approval are manual in V0.1.')
 def main():
-    p=argparse.ArgumentParser(description='DevHarness V0.1 advisory starter'); p.add_argument('command',choices=['init','ingest','doctor']); p.add_argument('--project',default='.'); p.add_argument('--overwrite',action='store_true',help='replace existing generated inventory and prompt files (ingest only)'); a=p.parse_args(); project=Path(a.project).resolve()
+    p=argparse.ArgumentParser(description='DevHarness V0.1 advisory starter')
+    p.add_argument('command',choices=['init','ingest','doctor','route','capabilities'])
+    p.add_argument('--project',default='.')
+    p.add_argument('--task',default='-',help='Task JSON file or - for stdin (route only)')
+    p.add_argument('--output',help='Write JSON to this path (route only)')
+    p.add_argument('--root',help='Harness root to inspect (capabilities only)')
+    p.add_argument('--session-skill',action='append',default=[],help='Observed session capability ID or skill name; repeatable')
+    p.add_argument('--strict',action='store_true',help='Fail when a registered tool is BLOCKED (capabilities only)')
+    p.add_argument('--overwrite',action='store_true',help='replace existing generated inventory and prompt files (ingest only)')
+    a=p.parse_args(); project=Path(a.project).resolve()
     if a.command=='init': initialize(project)
     elif a.command=='ingest': ingest(project,overwrite=a.overwrite)
-    else:
+    elif a.command=='doctor':
         print('Python',sys.version.split()[0]); print('Project',project); print('Git:',shutil.which('git') or 'not installed'); print('Graphviz:',shutil.which('dot') or 'optional / not installed'); print('GitHub CLI:',shutil.which('gh') or 'optional / not installed'); print('Mode: advisory; no agent execution or scheduling.')
-if __name__=='__main__': main()
+    else:
+        sys.path.insert(0,str(HOME/'scripts'))
+        if a.command=='route':
+            import technique_router
+            try:
+                task=technique_router.load_task(a.task); result=technique_router.route_task(task)
+            except (OSError,ValueError,json.JSONDecodeError) as exc:
+                print(f'Route input error: {exc}',file=sys.stderr); return 1
+            text=json.dumps(result,indent=2,ensure_ascii=False)+'\n'
+            if a.output:
+                try: Path(a.output).write_text(text,encoding='utf-8')
+                except OSError as exc:
+                    print(f'Route output error: {exc}',file=sys.stderr); return 1
+            print(text,end='')
+            return {'RECOMMENDED':0,'NO_MATCH':2,'BLOCKED':3}.get(result['state'],1)
+        import capability_doctor
+        try: result=capability_doctor.inspect_capabilities(Path(a.root).resolve() if a.root else HOME,a.session_skill)
+        except (OSError,ValueError,json.JSONDecodeError) as exc:
+            print(f'Capability inspection error: {exc}',file=sys.stderr); return 1
+        print(json.dumps(result,indent=2,ensure_ascii=False))
+        if result['status']=='FAIL': return 1
+        if a.strict and result['registries']['tools']['blocked']: return 2
+    return 0
+if __name__=='__main__': sys.exit(main())
